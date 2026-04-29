@@ -119,6 +119,18 @@ export function MaternityCalculator() {
             </div>
           )}
 
+          {result.type === "育嬰留職停薪" && (
+            <div className="mt-4 p-3 bg-brand-50 rounded-[10px] text-xs text-brand-700">
+              <p className="font-semibold mb-1">育嬰留停重要須知</p>
+              <ul className="list-disc pl-4 space-y-1">
+                <li>每位家長各可申請最長 2 年</li>
+                <li>父母可同時申請，不需輪流</li>
+                <li>津貼僅發放 6 個月（投保薪資 80%），非整個留停期間</li>
+                <li>留停期間勞保可選擇繼續加保或退保</li>
+              </ul>
+            </div>
+          )}
+
           {/* 薪資估算 */}
           {result.salary === "full" && parseInt(monthlySalary) > 0 && (
             <div className="mt-4 p-4 bg-slate-50 rounded-[12px]">

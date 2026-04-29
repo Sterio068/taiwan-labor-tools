@@ -141,7 +141,11 @@ export default function PrivacyPage() {
             六、聯繫方式
           </h2>
           <p>
-            如對本站隱私權政策有任何疑問，歡迎透過網站提供的聯繫管道與我們聯繫。
+            如對本站隱私權政策有任何疑問，歡迎來信{" "}
+            <a href="mailto:sterio068@gmail.com" className="text-brand-600 underline underline-offset-2">
+              sterio068@gmail.com
+            </a>
+            。
           </p>
         </section>
       </div>

@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
+import { FaqSection } from "@/components/seo/FaqSection";
+import { RelatedLinks } from "@/components/seo/RelatedLinks";
+import { ShareButtons } from "@/components/seo/ShareButtons";
 import { OvertimeCalculator } from "@/components/tools/OvertimeCalculator";
+import { TOOL_FAQS } from "@/data/tool-faqs";
+import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "加班費計算機 — 2026 最新勞基法",
@@ -23,6 +28,23 @@ export default function OvertimePage() {
           path: "/tools/overtime",
         })}
       />
+      <JsonLd data={faqSchema(TOOL_FAQS["overtime"])} />
+      <JsonLd data={howToSchema({
+        name: "如何計算加班費（平日/休息日/國定假日）",
+        description: "依勞基法第 24 條計算各類型加班費",
+        totalTime: "PT1M",
+        steps: [
+          { name: "輸入月薪或時薪", text: "填入你的月薪（月薪制）或時薪（時薪制），計算機自動換算時薪基準" },
+          { name: "選擇加班類型", text: "選擇平日加班、休息日加班或國定假日/例假日加班，各類型倍率不同" },
+          { name: "輸入加班時數", text: "填入本次加班的實際時數（休息日以 4/8/12 小時級距計算）" },
+          { name: "查看加班費金額", text: "系統顯示加班費金額與計算明細，可複製或分享" },
+        ],
+      })} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "首頁", url: SITE_URL },
+        { name: "計算工具", url: `${SITE_URL}/tools` },
+        { name: "加班費計算機", url: `${SITE_URL}/tools/overtime` },
+      ])} />
       <Breadcrumb
         items={[
           { label: "首頁", href: "/" },
@@ -63,6 +85,13 @@ export default function OvertimePage() {
       </article>
 
       <AdBanner slot="tool-bottom" />
+
+      <div className="mt-8"><ShareButtons title="加班費計算機" path="/tools/overtime" /></div>
+      <FaqSection items={TOOL_FAQS["overtime"]} />
+      <RelatedLinks
+        articles={TOOL_RELATED_ARTICLES["overtime"]}
+        tools={TOOL_RELATED_TOOLS["overtime"]}
+      />
     </div>
   );
 }

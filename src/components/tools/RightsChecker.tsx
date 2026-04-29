@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { LABOR_CONSTANTS } from "@/data/constants";
+import { formatMoney } from "@/lib/format";
 
 interface Question {
   id: number;
@@ -15,8 +17,8 @@ interface Question {
 const QUESTIONS: Question[] = [
   {
     id: 1,
-    text: "月薪是否低於 $29,500？",
-    law: "勞基法第 21 條：工資不得低於基本工資。2025 年基本工資為 $29,500。",
+    text: `月薪是否低於 $${formatMoney(LABOR_CONSTANTS.minimumMonthlyWage)}？`,
+    law: `勞基法第 21 條：工資不得低於基本工資。${LABOR_CONSTANTS.year} 年基本工資為 $${formatMoney(LABOR_CONSTANTS.minimumMonthlyWage)}。`,
     action: "向勞工局檢舉，雇主可處 2-100 萬元罰鍰。",
     toolLink: { label: "薪資計算機", href: "/tools/salary" },
   },

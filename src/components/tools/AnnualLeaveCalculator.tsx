@@ -87,6 +87,8 @@ export function AnnualLeaveCalculator() {
               </tbody>
             </table>
           </div>
+
+          <p className="mt-4 text-xs text-slate-400">特休天數依勞基法第 38 條計算，實際起算日依公司採用之週年制或曆年制而定。</p>
         </Card>
       )}
     </div>

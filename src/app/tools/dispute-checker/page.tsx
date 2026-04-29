@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
+import { FaqSection } from "@/components/seo/FaqSection";
+import { RelatedLinks } from "@/components/seo/RelatedLinks";
+import { ShareButtons } from "@/components/seo/ShareButtons";
 import { DisputeChecker } from "@/components/tools/DisputeChecker";
+import { TOOL_FAQS } from "@/data/tool-faqs";
+import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "勞資爭議檢查器 — 遇到勞資糾紛怎麼辦？",
@@ -32,6 +37,22 @@ export default function DisputeCheckerPage() {
           path: "/tools/dispute-checker",
         })}
       />
+      <JsonLd data={faqSchema(TOOL_FAQS["dispute-checker"])} />
+      <JsonLd data={howToSchema({
+        description: "",
+        name: "如何使用勞資爭議檢查器",
+        totalTime: "PT3M",
+        steps: [
+          { name: "選擇爭議類型", text: "從欠薪、資遣、加班費未付、違法解僱等類型中選擇" },
+          { name: "填入爭議相關資訊", text: "說明具體情況，例如金額、時間、事件經過" },
+          { name: "查看申訴流程與法律依據", text: "系統說明適用法條、申訴管道（勞動局/法院）與注意時效" },
+        ],
+      })} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "首頁", url: SITE_URL },
+        { name: "計算工具", url: `${SITE_URL}/tools` },
+        { name: "勞資爭議檢查器", url: `${SITE_URL}/tools/dispute-checker` },
+      ])} />
       <Breadcrumb
         items={[
           { label: "首頁", href: "/" },
@@ -88,6 +109,13 @@ export default function DisputeCheckerPage() {
       </article>
 
       <AdBanner slot="tool-bottom" />
+
+      <div className="mt-8"><ShareButtons title="勞資爭議檢查器" path="/tools/dispute-checker" /></div>
+      <FaqSection items={TOOL_FAQS["dispute-checker"]} />
+      <RelatedLinks
+        articles={TOOL_RELATED_ARTICLES["dispute-checker"]}
+        tools={TOOL_RELATED_TOOLS["dispute-checker"]}
+      />
     </div>
   );
 }

@@ -3,6 +3,9 @@ import { SearchDialog } from "@/components/search/SearchDialog";
 
 const NAV_LINKS = [
   { href: "/tools", label: "計算工具" },
+  { href: "/guides", label: "完整指南" },
+  { href: "/compare", label: "熱門比較" },
+  { href: "/faq", label: "FAQ" },
   { href: "/articles", label: "權益文章" },
   { href: "/about", label: "關於" },
 ];

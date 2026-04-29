@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
+import { FaqSection } from "@/components/seo/FaqSection";
+import { RelatedLinks } from "@/components/seo/RelatedLinks";
+import { ShareButtons } from "@/components/seo/ShareButtons";
 import { AnnualLeaveCalculator } from "@/components/tools/AnnualLeaveCalculator";
+import { TOOL_FAQS } from "@/data/tool-faqs";
+import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "特休天數計算 — 輸入到職日自動算",
@@ -23,6 +28,22 @@ export default function AnnualLeavePage() {
           path: "/tools/annual-leave",
         })}
       />
+      <JsonLd data={faqSchema(TOOL_FAQS["annual-leave"])} />
+      <JsonLd data={howToSchema({
+        name: "如何計算特休天數",
+        description: "依勞基法第 38 條，依年資計算法定特休假天數",
+        totalTime: "PT1M",
+        steps: [
+          { name: "輸入到職日期", text: "在計算機填入實際到職日期（年/月/日）" },
+          { name: "查看年資與特休天數", text: "系統自動計算目前年資，並對照法定特休天數（6 個月→3 天；1 年→7 天；2 年→10 天……）" },
+          { name: "了解未休假折算規定", text: "年度終結未休的特休假，雇主應折算工資發給，不可強制作廢" },
+        ],
+      })} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "首頁", url: SITE_URL },
+        { name: "計算工具", url: `${SITE_URL}/tools` },
+        { name: "特休天數計算", url: `${SITE_URL}/tools/annual-leave` },
+      ])} />
       <Breadcrumb
         items={[
           { label: "首頁", href: "/" },
@@ -60,6 +81,13 @@ export default function AnnualLeavePage() {
       </article>
 
       <AdBanner slot="tool-bottom" />
+
+      <div className="mt-8"><ShareButtons title="特休天數計算" path="/tools/annual-leave" /></div>
+      <FaqSection items={TOOL_FAQS["annual-leave"]} />
+      <RelatedLinks
+        articles={TOOL_RELATED_ARTICLES["annual-leave"]}
+        tools={TOOL_RELATED_TOOLS["annual-leave"]}
+      />
     </div>
   );
 }

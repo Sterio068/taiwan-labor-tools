@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
+import { FaqSection } from "@/components/seo/FaqSection";
+import { RelatedLinks } from "@/components/seo/RelatedLinks";
+import { ShareButtons } from "@/components/seo/ShareButtons";
 import { HourlyMonthlyConverter } from "@/components/tools/HourlyMonthlyConverter";
 import { LABOR_CONSTANTS } from "@/data/constants";
+import { TOOL_FAQS } from "@/data/tool-faqs";
+import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 import { formatMoney } from "@/lib/format";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -25,6 +30,22 @@ export default function HourlyMonthlyPage() {
           path: "/tools/hourly-monthly",
         })}
       />
+      <JsonLd data={faqSchema(TOOL_FAQS["hourly-monthly"])} />
+      <JsonLd data={howToSchema({
+        description: "",
+        name: "如何換算時薪與月薪",
+        totalTime: "PT1M",
+        steps: [
+          { name: "輸入時薪", text: "填入每小時薪資，最低不得低於基本時薪 190 元" },
+          { name: "設定每日工時與月工作天數", text: "預設每日 8 小時、每月 21.75 天（法定工時標準）" },
+          { name: "查看月薪換算結果", text: "系統自動顯示換算後的月薪，並標示是否符合基本工資標準" },
+        ],
+      })} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "首頁", url: SITE_URL },
+        { name: "計算工具", url: `${SITE_URL}/tools` },
+        { name: "時薪月薪換算器", url: `${SITE_URL}/tools/hourly-monthly` },
+      ])} />
       <Breadcrumb
         items={[
           { label: "首頁", href: "/" },
@@ -80,6 +101,13 @@ export default function HourlyMonthlyPage() {
       </article>
 
       <AdBanner slot="tool-bottom" />
+
+      <div className="mt-8"><ShareButtons title="時薪月薪換算器" path="/tools/hourly-monthly" /></div>
+      <FaqSection items={TOOL_FAQS["hourly-monthly"]} />
+      <RelatedLinks
+        articles={TOOL_RELATED_ARTICLES["hourly-monthly"]}
+        tools={TOOL_RELATED_TOOLS["hourly-monthly"]}
+      />
     </div>
   );
 }

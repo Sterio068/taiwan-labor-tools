@@ -201,6 +201,309 @@ export const ARTICLES: ArticleMeta[] = [
     publishedAt: "2026-04-07",
     readingMinutes: 5,
   },
+  // — 第二批文章 —
+  {
+    slug: "remote-work-rights",
+    title: "居家工作的勞基法適用指南：加班、工時、保險怎麼算",
+    description:
+      "居家辦公的工時認定、加班費計算、設備補助義務與勞健保適用，遠距工作者必讀的法律指南。",
+    category: "rights",
+    keywords: ["居家工作", "遠距工作", "WFH", "在家上班", "居家辦公勞基法"],
+    publishedAt: "2026-04-07",
+    readingMinutes: 7,
+  },
+  {
+    slug: "salary-tax-guide-2026",
+    title: "2026 薪資報稅完全指南：稅級表、扣除額、節稅方法",
+    description:
+      "薪資所得稅怎麼算？2026 年綜所稅級距表、標準扣除額、特別扣除額完整說明，上班族報稅一次搞懂。",
+    category: "salary",
+    keywords: ["報稅", "薪資所得稅", "綜合所得稅", "稅級表", "扣除額", "節稅"],
+    publishedAt: "2026-04-07",
+    readingMinutes: 8,
+  },
+  {
+    slug: "wage-theft-what-to-do",
+    title: "老闆欠薪怎麼辦？7 步驟催討薪水完全指南",
+    description:
+      "遭遇欠薪、遲發薪水時的完整處理流程：證據保全、1955 專線、勞工局申訴、調解與訴訟途徑。",
+    category: "rights",
+    keywords: ["欠薪", "遲發薪水", "催討薪資", "積欠工資", "老闆不發薪水"],
+    publishedAt: "2026-04-07",
+    readingMinutes: 7,
+  },
+  {
+    slug: "nhi-supplement-premium",
+    title: "二代健保補充保費完全攻略：什麼時候要繳？怎麼算？",
+    description:
+      "補充保費的觸發條件（獎金、租金、利息、股利）、費率 2.11%、計算方式與免扣門檻完整解說。",
+    category: "insurance",
+    keywords: ["補充保費", "二代健保", "獎金扣補充保費", "健保補充保費"],
+    publishedAt: "2026-04-07",
+    readingMinutes: 6,
+  },
+  {
+    slug: "old-vs-new-pension",
+    title: "舊制 vs 新制勞退：差在哪？該怎麼選？",
+    description:
+      "勞退舊制與新制的資格條件、計算公式、可攜性、請領方式完整比較，幫你搞懂退休金制度。",
+    category: "pension",
+    keywords: ["舊制勞退", "新制勞退", "退休金比較", "勞退制度", "退休金怎麼算"],
+    publishedAt: "2026-04-07",
+    readingMinutes: 7,
+  },
+  {
+    slug: "side-job-tax-insurance",
+    title: "副業收入怎麼報稅？兼職勞保健保完全指南",
+    description:
+      "斜槓族的稅務申報：執行業務所得 vs 薪資所得、多重投保規則、開發票與收據處理方式。",
+    category: "freelance",
+    keywords: ["副業報稅", "兼職", "斜槓", "副業勞保", "兼職所得稅"],
+    publishedAt: "2026-04-07",
+    readingMinutes: 7,
+  },
+  {
+    slug: "workplace-harassment",
+    title: "職場性騷擾怎麼處理？申訴流程與法律保障",
+    description:
+      "性別平等工作法下的職場性騷擾定義、雇主防治義務、內外部申訴管道、證據保全與賠償請求。",
+    category: "rights",
+    keywords: ["職場性騷擾", "性騷擾申訴", "性平法", "職場霸凌"],
+    publishedAt: "2026-04-07",
+    readingMinutes: 7,
+  },
+  {
+    slug: "overwork-karoshi",
+    title: "過勞認定標準與職災申請：加班超時怎麼保護自己",
+    description:
+      "過勞（職業促發腦心血管疾病）認定基準、加班時數對照、職災給付申請流程與雇主法律責任。",
+    category: "injury",
+    keywords: ["過勞", "過勞死", "加班超時", "職業病", "腦心血管疾病"],
+    publishedAt: "2026-04-07",
+    readingMinutes: 7,
+  },
+  {
+    slug: "contract-vs-permanent",
+    title: "定期契約 vs 不定期契約：差別在哪？權益比較",
+    description:
+      "定期與不定期勞動契約的法律差異、適用情境、自動轉換規則、資遣費與特休權益比較。",
+    category: "hr",
+    keywords: ["定期契約", "不定期契約", "勞動契約", "約聘", "臨時工"],
+    publishedAt: "2026-04-07",
+    readingMinutes: 6,
+  },
+  {
+    slug: "labor-inspection-guide",
+    title: "勞動檢查來了怎麼辦？雇主與勞工都該知道的事",
+    description:
+      "勞動檢查的觸發原因、檢查項目、雇主文件義務、勞工匿名檢舉管道、常見違規與罰鍰。",
+    category: "hr",
+    keywords: ["勞動檢查", "勞檢", "檢舉雇主", "勞動局", "罰鍰"],
+    publishedAt: "2026-04-07",
+    readingMinutes: 7,
+  },
+  // — 第三批文章：高流量長尾關鍵字 —
+  {
+    slug: "salary-45000-take-home",
+    title: "月薪 45000 實領多少？2026 最新試算",
+    description:
+      "月薪 45,000 元的勞工每月實領金額試算，含勞保、健保、勞退扣款明細，以及眷屬加保、自提 6% 的差異分析。",
+    category: "salary",
+    keywords: ["月薪45000實領", "45000實拿", "月薪45000薪資", "實領薪水"],
+    publishedAt: "2026-04-09",
+    readingMinutes: 7,
+  },
+  {
+    slug: "overtime-2hours-calculation",
+    title: "平日加班 2 小時多少錢？加班費試算範例",
+    description:
+      "月薪 30k/40k/50k/60k 加班 2 小時的加班費試算表，含計算公式、倍率規則與常見陷阱。",
+    category: "overtime",
+    keywords: ["加班2小時", "加班費2小時", "平日加班費", "加班費計算"],
+    publishedAt: "2026-04-09",
+    readingMinutes: 6,
+  },
+  {
+    slug: "severance-3years",
+    title: "工作 3 年被資遣有多少錢？資遣費實例計算",
+    description:
+      "3 年年資勞工在不同薪資下的資遣費試算，新舊制比較、平均工資計算、試用期年資爭議一次解答。",
+    category: "severance",
+    keywords: ["工作3年資遣費", "3年資遣", "資遣費範例", "年資3年"],
+    publishedAt: "2026-04-09",
+    readingMinutes: 7,
+  },
+  {
+    slug: "annual-leave-after-6months",
+    title: "滿 6 個月有幾天特休？入職半年權益解析",
+    description:
+      "入職滿 6 個月的 3 天特休怎麼算？何時開始可以用？離職前未休完怎麼辦？勞基法第 38 條實務解析。",
+    category: "leave",
+    keywords: ["6個月特休幾天", "滿半年特休", "入職半年特休", "6個月特休"],
+    publishedAt: "2026-04-09",
+    readingMinutes: 6,
+  },
+  {
+    slug: "minimum-wage-hourly-2026",
+    title: "時薪 190 元合理嗎？2026 基本時薪計算",
+    description:
+      "2026 年基本時薪 190 元解析，含歷年調幅、打工族月收入試算、與生活成本比較。",
+    category: "salary",
+    keywords: ["時薪190", "基本時薪", "時薪制", "打工時薪"],
+    publishedAt: "2026-04-09",
+    readingMinutes: 6,
+  },
+  {
+    slug: "labor-insurance-payout",
+    title: "勞保老年給付怎麼算？一次領 vs 月領試算",
+    description:
+      "勞保老年給付的一次領與月領公式、計算範例、適用資格與選擇建議，幫你規劃退休現金流。",
+    category: "pension",
+    keywords: ["勞保老年給付", "勞保退休金", "勞保年金", "一次領月領"],
+    publishedAt: "2026-04-09",
+    readingMinutes: 8,
+  },
+  {
+    slug: "quit-job-rights",
+    title: "自願離職前必看：這 8 件事不能漏",
+    description:
+      "自願離職前的完整檢查清單：預告期、特休折算、失業給付影響、離職證明、勞保轉出等關鍵事項。",
+    category: "severance",
+    keywords: ["自願離職", "離職前注意", "自請離職", "離職流程"],
+    publishedAt: "2026-04-09",
+    readingMinutes: 7,
+  },
+  {
+    slug: "night-shift-allowance",
+    title: "夜班津貼合法嗎？夜班工時與加給完全指南",
+    description:
+      "夜間工作（22:00-06:00）的法律規範、夜班津貼是否強制、女性勞工夜間工作規定、輪班制勞工權益解析。",
+    category: "rights",
+    keywords: ["夜班津貼", "夜班工時", "輪班", "大夜班薪水"],
+    publishedAt: "2026-04-09",
+    readingMinutes: 7,
+  },
+  {
+    slug: "layoff-compensation-comparison",
+    title: "資遣費 vs 退職金 vs 離職金：差別在哪？",
+    description:
+      "資遣費、退職金、離職金三者定義、適用情境、稅務處理與給付標準的完整對照。",
+    category: "severance",
+    keywords: ["資遣費退職金", "退職金差別", "離職金", "資遣費退職金比較"],
+    publishedAt: "2026-04-09",
+    readingMinutes: 6,
+  },
+  {
+    slug: "work-from-home-overtime",
+    title: "居家上班加班費怎麼算？WFH 工時認定指南",
+    description:
+      "居家辦公的工時認定、加班費計算、出勤紀錄責任、勞動部解釋令完整解析，WFH 族必讀。",
+    category: "rights",
+    keywords: ["居家加班費", "WFH加班", "遠距加班", "居家工作工時"],
+    publishedAt: "2026-04-09",
+    readingMinutes: 7,
+  },
+  // — 第四批文章：更多高流量長尾關鍵字 —
+  {
+    slug: "salary-30000-take-home",
+    title: "月薪 30000 實領多少？2026 完整試算",
+    description:
+      "月薪 30,000 元扣除勞保、健保、勞退後的實領金額試算，包含單身、有眷屬、自提 6% 的三種情境比較。",
+    category: "salary",
+    keywords: ["月薪30000實領", "30000實拿", "月薪30000扣多少", "最低薪資實領"],
+    publishedAt: "2026-04-10",
+    readingMinutes: 6,
+  },
+  {
+    slug: "forced-overtime-illegal",
+    title: "強迫加班違法嗎？加班上限與拒絕加班的權利",
+    description:
+      "勞基法規定的每月加班時數上限（46 小時），雇主能否強迫加班、拒絕加班的法律依據，以及違法加班的投訴管道。",
+    category: "overtime",
+    keywords: ["強迫加班", "拒絕加班", "加班上限", "加班時數規定", "不想加班"],
+    publishedAt: "2026-04-10",
+    readingMinutes: 6,
+  },
+  {
+    slug: "salary-cut-rights",
+    title: "雇主可以降薪嗎？被降薪的法律對策",
+    description:
+      "雇主單方面降薪是否合法？依勞基法第 11 條的規定，降薪需經勞工同意，否則勞工可主張資遣費並離職。",
+    category: "rights",
+    keywords: ["雇主降薪", "被降薪怎麼辦", "薪資被減少", "強制降薪合法嗎"],
+    publishedAt: "2026-04-10",
+    readingMinutes: 6,
+  },
+  {
+    slug: "company-bankrupt-workers",
+    title: "公司倒閉怎麼辦？勞工薪資與資遣費保障",
+    description:
+      "公司解散、破產、歇業時，勞工的薪資、資遣費、勞保如何保障？積欠工資墊償基金申請完整教學。",
+    category: "severance",
+    keywords: ["公司倒閉", "雇主倒閉", "積欠工資", "積欠薪資", "墊償基金"],
+    publishedAt: "2026-04-10",
+    readingMinutes: 7,
+  },
+  {
+    slug: "holiday-overtime-complete",
+    title: "國定假日加班費怎麼算？10 大節日完整說明",
+    description:
+      "元旦、春節、勞動節、中秋節等 10 個國定假日出勤工資規定，含雙倍計算公式與補休規定對照表。",
+    category: "overtime",
+    keywords: ["國定假日加班", "過年加班費", "國慶日加班", "勞動節加班", "假日加班工資"],
+    publishedAt: "2026-04-10",
+    readingMinutes: 7,
+  },
+  {
+    slug: "pension-account-query",
+    title: "如何查詢勞退帳戶餘額？線上查詢完整教學",
+    description:
+      "透過勞動部勞工保險局官網，免費查詢個人勞退帳戶餘額與歷年提繳紀錄，3 分鐘完成線上申請。",
+    category: "pension",
+    keywords: ["勞退帳戶查詢", "勞退餘額", "個人退休金查詢", "勞退線上查詢"],
+    publishedAt: "2026-04-10",
+    readingMinutes: 5,
+  },
+  {
+    slug: "employment-contract-traps",
+    title: "勞動契約 5 大地雷條款，簽前必讀",
+    description:
+      "「試用期不保勞保」「競業禁止不給補償」「責任制不計加班費」等常見非法條款識別與應對方式。",
+    category: "hr",
+    keywords: ["勞動契約地雷", "不合理條款", "勞動契約違法", "簽約注意", "勞動契約問題"],
+    publishedAt: "2026-04-10",
+    readingMinutes: 7,
+  },
+  {
+    slug: "annual-leave-refused",
+    title: "老闆不讓請特休怎麼辦？拒絕特休違法嗎？",
+    description:
+      "雇主拒絕特休申請的法律依據與例外情形，員工可採取的行動步驟，以及未休完特休的折算權益。",
+    category: "leave",
+    keywords: ["特休被拒絕", "老闆不讓請假", "特休假被拒", "拒給特休違法"],
+    publishedAt: "2026-04-10",
+    readingMinutes: 6,
+  },
+  {
+    slug: "part-time-health-insurance",
+    title: "打工族健保怎麼保？4 種情況完整說明",
+    description:
+      "兼職打工的健保加保規定：雇主何時強制投保、如何以眷屬加保、工作多份的健保轉換注意事項。",
+    category: "insurance",
+    keywords: ["打工健保", "兼職健保", "部分工時健保", "打工加保", "兼差健保"],
+    publishedAt: "2026-04-10",
+    readingMinutes: 6,
+  },
+  {
+    slug: "salary-negotiation-rights",
+    title: "薪資談判的勞基法底線：這些雇主不能做",
+    description:
+      "薪資談判中雇主不得低於基本工資、不得因族群/性別差異薪資、不得以試用期為由低薪，勞工的法定談判底線。",
+    category: "salary",
+    keywords: ["薪資談判", "談薪水", "薪資歧視", "薪資底線", "基本工資談判"],
+    publishedAt: "2026-04-10",
+    readingMinutes: 6,
+  },
 ];
 
 export function getArticleBySlug(slug: string): ArticleMeta | undefined {

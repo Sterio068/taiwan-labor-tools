@@ -87,6 +87,24 @@ export default function AboutPage() {
         </ul>
       </section>
 
+      {/* Editorial standards */}
+      <section className="mb-10">
+        <h2 className="text-xl font-bold text-slate-900 mb-3">
+          編輯與更新原則
+        </h2>
+        <div className="space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            勞工權益站的文章與工具以官方法規、主管機關公告及公開資料為主要依據。
+            內容撰寫時會優先核對全國法規資料庫、勞動部、勞工保險局與健保署等來源，
+            並在文章頁面列出相關參考資料，方便讀者自行查證。
+          </p>
+          <p>
+            遇到基本工資、勞健保費率、投保級距或勞退規定調整時，我們會更新相關工具與文章。
+            若讀者發現資料過期、計算異常或文字說明不清楚，歡迎來信提供頁面網址與問題描述。
+          </p>
+        </div>
+      </section>
+
       {/* Disclaimer */}
       <section className="bg-amber-50 border border-amber-200 rounded-[12px] p-6">
         <h2 className="text-xl font-bold text-amber-900 mb-3">
@@ -96,6 +114,18 @@ export default function AboutPage() {
           本站提供的計算工具與文章內容僅供參考，不構成法律建議。
           每個人的勞動條件與契約內容不同，實際權益可能因個案而異。
           如有具體法律問題，建議諮詢專業律師或向各縣市勞動局洽詢。
+        </p>
+      </section>
+
+      {/* Contact */}
+      <section className="mt-10 mb-10">
+        <h2 className="text-xl font-bold text-slate-900 mb-3">聯絡我們</h2>
+        <p className="text-slate-700 leading-relaxed">
+          如有任何建議、勘誤回報或合作需求，歡迎來信{" "}
+          <a href="mailto:sterio068@gmail.com" className="text-brand-600 font-semibold underline underline-offset-2">
+            sterio068@gmail.com
+          </a>
+          。
         </p>
       </section>
 

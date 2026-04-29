@@ -40,6 +40,7 @@ export function Footer() {
             © {new Date().getFullYear()} 勞工權益站 · 本站內容僅供參考，不構成法律建議
           </p>
           <div className="flex gap-4">
+            <a href="mailto:sterio068@gmail.com" className="hover:text-slate-100">聯絡我們</a>
             <Link href="/privacy" className="hover:text-slate-100">隱私權政策</Link>
             <Link href="/terms" className="hover:text-slate-100">服務條款</Link>
           </div>

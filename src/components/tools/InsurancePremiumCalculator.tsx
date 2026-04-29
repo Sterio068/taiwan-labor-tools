@@ -21,7 +21,7 @@ export function InsurancePremiumCalculator() {
 
   const handleCalculate = () => {
     const s = parseInt(salary);
-    if (!s || s < 0) return;
+    if (!s || s <= 0) return;
     setResult({
       li: calculateLaborInsurance(s),
       nhi: calculateNhi(s, parseInt(dependents)),

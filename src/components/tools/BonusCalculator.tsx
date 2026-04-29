@@ -167,6 +167,8 @@ export function BonusCalculator() {
               年終獎金 = 月薪 x 年終月數 x (在職月數 / 12)
             </p>
           </div>
+
+          <p className="mt-4 text-xs text-slate-400">年終獎金非法定義務，實際金額依勞動契約或公司規定。</p>
         </Card>
       )}
     </div>

@@ -154,7 +154,7 @@ export function WorkInjuryCalculator() {
             <p className="text-sm font-semibold text-slate-700 mb-1">注意事項</p>
             <ul className="text-sm text-slate-500 space-y-1 list-disc list-inside">
               <li>此為概估金額，實際給付依勞保局審核為準</li>
-              <li>雇主補償金額與勞保給付可互相抵充</li>
+              <li>雇主補償與勞保給付可互相抵充（勞基法第 59 條但書），實際負擔視個案而定</li>
               <li>如雇主未依法補償，勞工可向勞工局申訴</li>
             </ul>
           </div>
