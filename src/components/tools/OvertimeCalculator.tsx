@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
@@ -8,18 +9,67 @@ import { Card } from "@/components/ui/Card";
 import { calculateOvertime, type OvertimeResult } from "@/lib/calculations/overtime";
 import { formatMoney, formatMoneyDecimal } from "@/lib/format";
 
-export function OvertimeCalculator() {
-  const [salary, setSalary] = useState("");
-  const [hours, setHours] = useState("");
-  const [type, setType] = useState("weekday");
+const VALID_OT_TYPES = ["weekday", "rest-day", "holiday", "national-holiday"] as const;
+type OtType = typeof VALID_OT_TYPES[number];
+
+function parseInitialParams(params: URLSearchParams): {
+  salary: string;
+  hours: string;
+  type: OtType;
+} {
+  const wRaw = params.get("w");
+  const hRaw = params.get("h");
+  const otRaw = params.get("ot");
+
+  const w = wRaw ? parseInt(wRaw, 10) : NaN;
+  const h = hRaw ? parseFloat(hRaw) : NaN;
+  const ot = VALID_OT_TYPES.includes(otRaw as OtType) ? (otRaw as OtType) : "weekday";
+
+  return {
+    salary: !isNaN(w) && w > 0 ? String(w) : "",
+    hours: !isNaN(h) && h > 0 && h <= 24 ? String(h) : "",
+    type: ot,
+  };
+}
+
+function OvertimeCalculatorInner() {
+  const searchParams = useSearchParams();
+  const initial = parseInitialParams(searchParams);
+
+  const [salary, setSalary] = useState(initial.salary);
+  const [hours, setHours] = useState(initial.hours);
+  const [type, setType] = useState<OtType>(initial.type);
   const [result, setResult] = useState<OvertimeResult | null>(null);
+
+  // 若 URL 帶有有效的初始值，自動觸發一次計算
+  useEffect(() => {
+    if (initial.salary && initial.hours) {
+      const s = parseInt(initial.salary, 10);
+      const h = parseFloat(initial.hours);
+      if (s > 0 && h > 0) {
+        setResult(calculateOvertime(s, h, initial.type));
+      }
+    }
+  // 只在 mount 時跑一次
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // result 更新時同步 URL（不產生歷史紀錄，不觸發 Next.js re-render）
+  useEffect(() => {
+    if (!result) return;
+    const url = new URL(window.location.href);
+    url.searchParams.set("w", salary);
+    url.searchParams.set("h", hours);
+    url.searchParams.set("ot", type);
+    window.history.replaceState(null, "", url.toString());
+  }, [result, salary, hours, type]);
 
   const handleCalculate = () => {
     const s = parseInt(salary);
     const h = parseFloat(hours);
-    if (!s || !h || s < 0 || h < 0) return;
+    if (!s || !h || s <= 0 || h <= 0) return;
     setResult(
-      calculateOvertime(s, h, type as "weekday" | "rest-day" | "holiday" | "national-holiday")
+      calculateOvertime(s, h, type)
     );
   };
 
@@ -55,7 +105,7 @@ export function OvertimeCalculator() {
               { value: "national-holiday", label: "例假日加班" },
             ]}
             value={type}
-            onChange={(e) => setType(e.target.value)}
+            onChange={(e) => setType(e.target.value as "weekday" | "rest-day" | "holiday" | "national-holiday")}
           />
         </div>
         <div className="mt-6">
@@ -64,6 +114,12 @@ export function OvertimeCalculator() {
           </Button>
         </div>
       </Card>
+
+      {result && type === "national-holiday" && (
+        <div className="mb-4 p-3 bg-danger-50 border border-danger-500/30 rounded-[10px] text-sm text-danger-600">
+          例假日原則上不得加班。僅在天災、事變或突發事件時，雇主始得要求勞工於例假日出勤，且事後應給予補假。
+        </div>
+      )}
 
       {result && (
         <Card>
@@ -80,12 +136,18 @@ export function OvertimeCalculator() {
             </p>
           </div>
 
+          {result.note && (
+            <div className="mb-4 p-3 bg-warning-50 border border-warning-500/30 rounded-[10px] text-sm text-warning-600">
+              {result.note}
+            </div>
+          )}
+
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-slate-200">
                   <th className="text-left py-2 text-slate-500 font-medium">時段</th>
-                  <th className="text-right py-2 text-slate-500 font-medium">時數</th>
+                  <th className="text-right py-2 text-slate-500 font-medium">計薪時數</th>
                   <th className="text-right py-2 text-slate-500 font-medium">倍率</th>
                   <th className="text-right py-2 text-slate-500 font-medium">金額</th>
                 </tr>
@@ -94,7 +156,7 @@ export function OvertimeCalculator() {
                 {result.breakdown.map((row, i) => (
                   <tr key={i}>
                     <td className="py-2.5 text-slate-700">{row.label}</td>
-                    <td className="py-2.5 text-right text-slate-700">{row.hours} 小時</td>
+                    <td className="py-2.5 text-right text-slate-700">{row.billedHours} 小時</td>
                     <td className="py-2.5 text-right text-slate-700">{formatMoneyDecimal(row.rate)}x</td>
                     <td className="py-2.5 text-right font-semibold text-slate-900">
                       ${formatMoney(row.pay)}
@@ -113,5 +175,13 @@ export function OvertimeCalculator() {
         </Card>
       )}
     </div>
+  );
+}
+
+export function OvertimeCalculator() {
+  return (
+    <Suspense>
+      <OvertimeCalculatorInner />
+    </Suspense>
   );
 }

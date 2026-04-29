@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
+import { FaqSection } from "@/components/seo/FaqSection";
+import { RelatedLinks } from "@/components/seo/RelatedLinks";
+import { ShareButtons } from "@/components/seo/ShareButtons";
 import { RightsChecker } from "@/components/tools/RightsChecker";
+import { TOOL_FAQS } from "@/data/tool-faqs";
+import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "勞工權益健檢 — 8 題快速檢查勞動條件是否合法",
@@ -32,6 +37,22 @@ export default function RightsCheckPage() {
           path: "/tools/rights-check",
         })}
       />
+      <JsonLd data={faqSchema(TOOL_FAQS["rights-check"])} />
+      <JsonLd data={howToSchema({
+        description: "",
+        name: "如何使用勞工權益健檢",
+        totalTime: "PT3M",
+        steps: [
+          { name: "選擇問題類型", text: "從薪資、加班、假別、離職、霸凌等分類中選擇你遭遇的狀況" },
+          { name: "回答相關問題", text: "依序回答問題，說明你的工作條件與具體情況" },
+          { name: "查看法規說明與建議", text: "系統依勞基法條文判斷合法性，並提供申訴管道與下一步建議" },
+        ],
+      })} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "首頁", url: SITE_URL },
+        { name: "計算工具", url: `${SITE_URL}/tools` },
+        { name: "勞工權益健檢", url: `${SITE_URL}/tools/rights-check` },
+      ])} />
       <Breadcrumb
         items={[
           { label: "首頁", href: "/" },
@@ -62,7 +83,7 @@ export default function RightsCheckPage() {
           基本工資與工資全額給付
         </h3>
         <p className="text-slate-700 leading-relaxed my-4">
-          依勞基法第 21 條，勞工的工資不得低於基本工資。2025 年起，月薪制基本工資調整為 $29,500，時薪制為 $207。雇主不得以任何名目任意扣薪，勞基法第 22 條明確規定工資應全額直接給付勞工。若雇主違法扣薪，勞工可保留薪資單據向勞工局檢舉。
+          依勞基法第 21 條，勞工的工資不得低於基本工資。2026 年起，月薪制基本工資調整為 $29,500，時薪制為 $190。雇主不得以任何名目任意扣薪，勞基法第 22 條明確規定工資應全額直接給付勞工。若雇主違法扣薪，勞工可保留薪資單據向勞工局檢舉。
         </p>
 
         <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">
@@ -88,6 +109,13 @@ export default function RightsCheckPage() {
       </article>
 
       <AdBanner slot="tool-bottom" />
+
+      <div className="mt-8"><ShareButtons title="勞工權益健檢" path="/tools/rights-check" /></div>
+      <FaqSection items={TOOL_FAQS["rights-check"]} />
+      <RelatedLinks
+        articles={TOOL_RELATED_ARTICLES["rights-check"]}
+        tools={TOOL_RELATED_TOOLS["rights-check"]}
+      />
     </div>
   );
 }

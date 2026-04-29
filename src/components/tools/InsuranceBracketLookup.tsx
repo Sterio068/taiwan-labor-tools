@@ -54,6 +54,15 @@ export function InsuranceBracketLookup() {
 
       {result && (
         <>
+          <div className="p-4 bg-brand-50 border border-brand-200 rounded-[12px] text-sm text-brand-700 mb-6">
+            <p className="font-semibold mb-1">為什麼三個級距不同？</p>
+            <p>勞保、健保、勞退各有獨立的投保級距表。你的月薪會分別對照三張表格，找到大於等於你月薪的最近一級。級距不同是因為三個制度的上下限不同：勞保上限 $45,800、健保上限 $219,500、勞退上限 $150,000。</p>
+          </div>
+
+          {parseInt(salary) > 45800 && (
+            <p className="text-xs text-warning-600 mt-2">你的月薪超過勞保投保上限 $45,800，勞保以最高級距計算。</p>
+          )}
+
           {/* 三張結果卡 */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card className="bg-brand-50 border border-brand-200">

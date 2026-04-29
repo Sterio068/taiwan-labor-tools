@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
+import { FaqSection } from "@/components/seo/FaqSection";
+import { RelatedLinks } from "@/components/seo/RelatedLinks";
+import { ShareButtons } from "@/components/seo/ShareButtons";
 import { InsurancePremiumCalculator } from "@/components/tools/InsurancePremiumCalculator";
+import { TOOL_FAQS } from "@/data/tool-faqs";
+import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "勞健保保費計算機 — 2026 最新費率",
@@ -23,6 +28,22 @@ export default function InsurancePremiumPage() {
           path: "/tools/insurance-premium",
         })}
       />
+      <JsonLd data={faqSchema(TOOL_FAQS["insurance-premium"])} />
+      <JsonLd data={howToSchema({
+        name: "如何計算勞健保保費自付額",
+        description: "依 2026 年費率計算勞保與健保每月自付額",
+        totalTime: "PT1M",
+        steps: [
+          { name: "輸入月薪", text: "填入每月薪資，系統自動對應勞保、健保、勞退各自的投保級距" },
+          { name: "選擇健保眷屬人數", text: "設定健保眷屬加保口數（最多 3 口），每增加 1 口眷屬，健保自付額等比增加" },
+          { name: "查看三大費用明細", text: "系統顯示勞保自付額、健保自付額（含眷屬）、勞退雇主提繳，以及雇主負擔金額" },
+        ],
+      })} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "首頁", url: SITE_URL },
+        { name: "計算工具", url: `${SITE_URL}/tools` },
+        { name: "勞健保保費計算", url: `${SITE_URL}/tools/insurance-premium` },
+      ])} />
       <Breadcrumb
         items={[
           { label: "首頁", href: "/" },
@@ -63,6 +84,13 @@ export default function InsurancePremiumPage() {
       </article>
 
       <AdBanner slot="tool-bottom" />
+
+      <div className="mt-8"><ShareButtons title="勞健保保費計算機" path="/tools/insurance-premium" /></div>
+      <FaqSection items={TOOL_FAQS["insurance-premium"]} />
+      <RelatedLinks
+        articles={TOOL_RELATED_ARTICLES["insurance-premium"]}
+        tools={TOOL_RELATED_TOOLS["insurance-premium"]}
+      />
     </div>
   );
 }

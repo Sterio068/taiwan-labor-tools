@@ -8,8 +8,8 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
 import "./globals.css";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID;
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID?.trim();
+const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID?.trim();
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,7 +25,8 @@ const notoSansTC = Noto_Sans_TC({
   display: "swap",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://example.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -47,6 +48,9 @@ export const metadata: Metadata = {
     "退休金試算",
   ],
   authors: [{ name: "勞工權益站" }],
+  verification: {
+    google: "e58910d0ffcea7b8",
+  },
   openGraph: {
     type: "website",
     locale: "zh_TW",
@@ -69,6 +73,11 @@ export const metadata: Metadata = {
       follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,
+    },
+  },
+  alternates: {
+    types: {
+      "application/rss+xml": `${SITE_URL}/feed.xml`,
     },
   },
 };

@@ -106,7 +106,7 @@ export function PensionCalculator() {
                 ${formatMoney(result.projection.monthlyPension)}
               </p>
               <p className="text-sm text-slate-500 mt-2">
-                以平均餘命 24 年（288 個月）計算
+                以平均餘命 24 年（288 個月）概估，實際依退休時勞保局公告之平均餘命計算
               </p>
             </div>
 
@@ -149,6 +149,9 @@ export function PensionCalculator() {
                   ${formatMoney(result.projection.estimatedBalance)}
                 </span>
               </div>
+            </div>
+            <div className="mt-4 p-3 bg-slate-50 rounded-[10px] text-xs text-slate-500">
+              此為概估，實際報酬率依勞退基金運作狀況而定。歷年最低保證收益率不低於兩年期定存利率。
             </div>
           </Card>
 

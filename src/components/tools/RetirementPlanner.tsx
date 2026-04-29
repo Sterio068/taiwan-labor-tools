@@ -29,14 +29,27 @@ export function RetirementPlanner() {
   const [voluntaryRate, setVoluntaryRate] = useState("0");
   const [retireAge, setRetireAge] = useState("65");
   const [result, setResult] = useState<RetirementResult | null>(null);
+  const [error, setError] = useState("");
 
   const handleCalculate = () => {
     const age = parseInt(currentAge);
     const sal = parseInt(salary);
-    if (!age || !sal || age < 20 || age > 70 || sal < 0) return;
-
     const rAge = parseInt(retireAge);
-    if (rAge <= age) return;
+
+    if (!age || age < 18 || age > 70) {
+      setError("年齡須介於 18 至 70 歲之間");
+      return;
+    }
+    if (!sal || sal <= 0) {
+      setError("月薪須大於 0");
+      return;
+    }
+    if (!rAge || rAge <= age) {
+      setError("退休年齡須大於目前年齡");
+      return;
+    }
+
+    setError("");
 
     const defaultYears = Math.max(0, age - 25);
     const liYears = parseInt(insuranceYears) || defaultYears;
@@ -159,6 +172,10 @@ export function RetirementPlanner() {
           </Button>
         </div>
       </Card>
+
+      {error && (
+        <div className="p-3 bg-danger-50 border border-danger-500/30 rounded-[10px] text-sm text-danger-600">{error}</div>
+      )}
 
       {result && (
         <>

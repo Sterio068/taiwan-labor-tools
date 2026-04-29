@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
+import { FaqSection } from "@/components/seo/FaqSection";
+import { RelatedLinks } from "@/components/seo/RelatedLinks";
+import { ShareButtons } from "@/components/seo/ShareButtons";
 import { InsuranceBracketLookup } from "@/components/tools/InsuranceBracketLookup";
+import { TOOL_FAQS } from "@/data/tool-faqs";
+import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "投保級距查詢 — 2026 勞保/健保/勞退級距表",
@@ -23,6 +28,22 @@ export default function InsuranceBracketPage() {
           path: "/tools/insurance-bracket",
         })}
       />
+      <JsonLd data={faqSchema(TOOL_FAQS["insurance-bracket"])} />
+      <JsonLd data={howToSchema({
+        description: "",
+        name: "如何查詢勞健保投保薪資級距",
+        totalTime: "PT1M",
+        steps: [
+          { name: "輸入月薪", text: "填入你的月薪（底薪加各項固定津貼）" },
+          { name: "查看投保薪資級距", text: "系統自動找到對應的勞保、健保、勞退投保薪資級距" },
+          { name: "對照實際扣款金額", text: "顯示三種保險的級距金額與對應的勞工自付保費" },
+        ],
+      })} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "首頁", url: SITE_URL },
+        { name: "計算工具", url: `${SITE_URL}/tools` },
+        { name: "投保薪資級距查詢", url: `${SITE_URL}/tools/insurance-bracket` },
+      ])} />
       <Breadcrumb
         items={[
           { label: "首頁", href: "/" },
@@ -82,6 +103,13 @@ export default function InsuranceBracketPage() {
       </article>
 
       <AdBanner slot="tool-bottom" />
+
+      <div className="mt-8"><ShareButtons title="投保級距查詢" path="/tools/insurance-bracket" /></div>
+      <FaqSection items={TOOL_FAQS["insurance-bracket"]} />
+      <RelatedLinks
+        articles={TOOL_RELATED_ARTICLES["insurance-bracket"]}
+        tools={TOOL_RELATED_TOOLS["insurance-bracket"]}
+      />
     </div>
   );
 }

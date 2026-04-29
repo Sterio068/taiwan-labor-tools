@@ -27,28 +27,26 @@ function calculateNoticePeriod(startDate: Date): NoticePeriodResult {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const diffMs = today.getTime() - startDate.getTime();
-  const yearsOfService = diffMs / (365.25 * 24 * 60 * 60 * 1000);
+  const diffMonths = (today.getFullYear() - startDate.getFullYear()) * 12 + (today.getMonth() - startDate.getMonth());
+  const diffDays = today.getDate() - startDate.getDate();
+  const totalMonths = diffMonths + (diffDays >= 0 ? 0 : -1);
+  const yearsOfService = totalMonths / 12;
 
   let noticeDays = 0;
   let label = "";
 
-  for (const rule of LABOR_CONSTANTS.noticePeriod) {
-    const minYears = rule.minYears;
-    const maxYears = rule.maxYears;
-    if (yearsOfService >= minYears && yearsOfService < maxYears) {
-      noticeDays = rule.days;
-      if (noticeDays === 0) {
-        label = "未滿 3 個月，無預告期間";
-      } else if ("minMonths" in rule) {
-        label = `${rule.minMonths} 個月以上未滿 1 年`;
-      } else if (maxYears === Infinity) {
-        label = `${minYears} 年以上`;
-      } else {
-        label = `${minYears} 年以上未滿 ${maxYears} 年`;
-      }
-      break;
-    }
+  if (totalMonths < 3) {
+    noticeDays = 0;
+    label = "未滿 3 個月，無預告期間";
+  } else if (totalMonths < 12) {
+    noticeDays = 10;
+    label = "3 個月以上未滿 1 年";
+  } else if (totalMonths < 36) {
+    noticeDays = 20;
+    label = "1 年以上未滿 3 年";
+  } else {
+    noticeDays = 30;
+    label = "3 年以上";
   }
 
   const suggestedLastDay = new Date(today);
@@ -196,6 +194,8 @@ export function NoticePeriodCalculator() {
               </tbody>
             </table>
           </div>
+
+          <p className="mt-4 text-xs text-slate-400">預告天數依勞基法第 16 條。勞工自請辭職亦應遵守預告期間。</p>
         </Card>
       )}
     </div>

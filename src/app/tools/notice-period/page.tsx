@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
+import { FaqSection } from "@/components/seo/FaqSection";
+import { RelatedLinks } from "@/components/seo/RelatedLinks";
+import { ShareButtons } from "@/components/seo/ShareButtons";
 import { NoticePeriodCalculator } from "@/components/tools/NoticePeriodCalculator";
+import { TOOL_FAQS } from "@/data/tool-faqs";
+import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "離職預告期計算 — 提前幾天告知才合法？",
@@ -23,6 +28,22 @@ export default function NoticePeriodPage() {
           path: "/tools/notice-period",
         })}
       />
+      <JsonLd data={faqSchema(TOOL_FAQS["notice-period"])} />
+      <JsonLd data={howToSchema({
+        description: "",
+        name: "如何計算離職預告期天數",
+        totalTime: "PT1M",
+        steps: [
+          { name: "選擇預告方", text: "選擇是雇主預告資遣，或是勞工提出辭職" },
+          { name: "輸入年資", text: "填入在現職的年資（年/月），系統自動對應法定預告天數" },
+          { name: "查看預告天數與應注意事項", text: "顯示法定預告天數、是否可以用代通知金代替，以及例外狀況說明" },
+        ],
+      })} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "首頁", url: SITE_URL },
+        { name: "計算工具", url: `${SITE_URL}/tools` },
+        { name: "離職預告期計算機", url: `${SITE_URL}/tools/notice-period` },
+      ])} />
       <Breadcrumb
         items={[
           { label: "首頁", href: "/" },
@@ -85,6 +106,13 @@ export default function NoticePeriodPage() {
       </article>
 
       <AdBanner slot="tool-bottom" />
+
+      <div className="mt-8"><ShareButtons title="離職預告期計算" path="/tools/notice-period" /></div>
+      <FaqSection items={TOOL_FAQS["notice-period"]} />
+      <RelatedLinks
+        articles={TOOL_RELATED_ARTICLES["notice-period"]}
+        tools={TOOL_RELATED_TOOLS["notice-period"]}
+      />
     </div>
   );
 }

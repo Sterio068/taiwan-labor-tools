@@ -32,7 +32,7 @@ const CATEGORIES: DisputeCategory[] = [
       },
     ],
     employerDuty: [
-      "按時全額給付工資，不得低於基本工資 $29,500（2025 年）",
+      "按時全額給付工資，不得低於基本工資 $29,500（2026 年）",
       "不得以任何名義任意扣薪",
       "工資應於約定日期給付，最遲不得超過 15 日",
       "應提供薪資明細（勞基法第 23 條）",
@@ -349,6 +349,7 @@ export function DisputeChecker() {
                 撥打 1955
               </a>
             </div>
+            <p className="text-xs text-slate-400 mt-2">市話或手機直撥 1955（免付費勞工諮詢專線）</p>
           </Card>
         </>
       )}

@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
+import { FaqSection } from "@/components/seo/FaqSection";
+import { RelatedLinks } from "@/components/seo/RelatedLinks";
+import { ShareButtons } from "@/components/seo/ShareButtons";
 import { SalaryCalculator } from "@/components/tools/SalaryCalculator";
 import { LABOR_CONSTANTS } from "@/data/constants";
+import { TOOL_FAQS } from "@/data/tool-faqs";
+import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 import { formatMoney } from "@/lib/format";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -25,6 +30,23 @@ export default function SalaryPage() {
           path: "/tools/salary",
         })}
       />
+      <JsonLd data={faqSchema(TOOL_FAQS["salary"])} />
+      <JsonLd data={howToSchema({
+        name: "如何計算每月實領薪資（勞健保扣款）",
+        description: "依 2026 年費率，計算月薪扣除勞保、健保、勞退後的實領金額",
+        totalTime: "PT2M",
+        steps: [
+          { name: "輸入月薪", text: "在計算機填入你的月薪（底薪加上各項固定津貼）" },
+          { name: "選擇眷屬人數", text: "設定健保眷屬加保人數（配偶、直系親屬），影響健保自付額" },
+          { name: "設定勞退自提比例", text: "若有自願提繳勞退，填入比例（0-6%）；不自提填 0" },
+          { name: "查看扣款明細與實領金額", text: "系統自動顯示勞保自付額、健保自付額、勞退提繳及每月實領金額" },
+        ],
+      })} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "首頁", url: SITE_URL },
+        { name: "計算工具", url: `${SITE_URL}/tools` },
+        { name: "薪資明細計算機", url: `${SITE_URL}/tools/salary` },
+      ])} />
       <Breadcrumb
         items={[
           { label: "首頁", href: "/" },
@@ -72,6 +94,13 @@ export default function SalaryPage() {
       </article>
 
       <AdBanner slot="tool-bottom" />
+
+      <div className="mt-8"><ShareButtons title="薪資明細計算機" path="/tools/salary" /></div>
+      <FaqSection items={TOOL_FAQS["salary"]} />
+      <RelatedLinks
+        articles={TOOL_RELATED_ARTICLES["salary"]}
+        tools={TOOL_RELATED_TOOLS["salary"]}
+      />
     </div>
   );
 }

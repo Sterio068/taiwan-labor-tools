@@ -27,11 +27,11 @@ export function HourlyMonthlyConverter() {
   const handleCalculate = () => {
     if (mode === "monthly-to-hourly") {
       const s = parseInt(monthlySalary);
-      if (!s || s < 0) return;
+      if (!s || s <= 0) return;
       setResult(monthlyToHourly(s));
     } else {
       const h = parseFloat(hourlyRate);
-      if (!h || h < 0) return;
+      if (!h || h <= 0) return;
       setResult(
         hourlyToMonthly(h, parseFloat(hoursPerDay) || 8, parseFloat(daysPerMonth) || 22)
       );
@@ -74,6 +74,18 @@ export function HourlyMonthlyConverter() {
             />
           </div>
         ) : (
+          <>
+          <div className="flex flex-wrap gap-2 mb-4">
+            <button onClick={() => { setHoursPerDay("8"); setDaysPerMonth("22"); }} className="px-3 py-1.5 text-xs rounded-[8px] bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-600 transition-colors">
+              全職 8h×22天
+            </button>
+            <button onClick={() => { setHoursPerDay("4"); setDaysPerMonth("22"); }} className="px-3 py-1.5 text-xs rounded-[8px] bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-600 transition-colors">
+              半天 4h×22天
+            </button>
+            <button onClick={() => { setHoursPerDay("8"); setDaysPerMonth("10"); }} className="px-3 py-1.5 text-xs rounded-[8px] bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-600 transition-colors">
+              兼職 8h×10天
+            </button>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Input
               label="時薪"
@@ -104,6 +116,7 @@ export function HourlyMonthlyConverter() {
               max="31"
             />
           </div>
+          </>
         )}
 
         <div className="mt-6">

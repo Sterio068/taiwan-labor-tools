@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
@@ -8,15 +9,66 @@ import { Card } from "@/components/ui/Card";
 import { calculateSalaryBreakdown, type SalaryBreakdownResult } from "@/lib/calculations/salary-breakdown";
 import { formatMoney } from "@/lib/format";
 
-export function SalaryCalculator() {
-  const [salary, setSalary] = useState("");
-  const [dependents, setDependents] = useState("0");
-  const [pensionRate, setPensionRate] = useState("0");
+function parseInitialParams(params: URLSearchParams): {
+  salary: string;
+  dependents: string;
+  pensionRate: string;
+} {
+  const mRaw = params.get("m");
+  const dRaw = params.get("d");
+  const sRaw = params.get("s");
+
+  const m = mRaw ? parseInt(mRaw, 10) : NaN;
+  const d = dRaw ? parseInt(dRaw, 10) : NaN;
+  const s = sRaw ? parseInt(sRaw, 10) : NaN;
+
+  return {
+    salary: !isNaN(m) && m > 0 ? String(m) : "",
+    dependents: !isNaN(d) && d >= 0 && d <= 3 ? String(d) : "0",
+    pensionRate: !isNaN(s) && s >= 0 && s <= 6 ? String(s) : "0",
+  };
+}
+
+function SalaryCalculatorInner() {
+  const searchParams = useSearchParams();
+  const initial = parseInitialParams(searchParams);
+
+  const [salary, setSalary] = useState(initial.salary);
+  const [dependents, setDependents] = useState(initial.dependents);
+  const [pensionRate, setPensionRate] = useState(initial.pensionRate);
   const [result, setResult] = useState<SalaryBreakdownResult | null>(null);
+
+  // 若 URL 帶有有效的初始值，自動觸發一次計算
+  useEffect(() => {
+    if (initial.salary) {
+      const s = parseInt(initial.salary, 10);
+      if (s > 0) {
+        setResult(
+          calculateSalaryBreakdown(
+            s,
+            parseInt(initial.dependents, 10),
+            parseFloat(initial.pensionRate) / 100
+          )
+        );
+      }
+    }
+  // 只在 mount 時跑一次
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // result 更新時同步 URL（不產生歷史紀錄，不觸發 Next.js re-render）
+  useEffect(() => {
+    if (!result) return;
+    const url = new URL(window.location.href);
+    url.searchParams.set("m", String(result.grossSalary));
+    url.searchParams.set("d", dependents);
+    url.searchParams.set("s", pensionRate);
+    window.history.replaceState(null, "", url.toString());
+  }, [result, dependents, pensionRate]);
 
   const handleCalculate = () => {
     const s = parseInt(salary);
-    if (!s || s < 0) return;
+    if (!s || s <= 0) return;
     setResult(
       calculateSalaryBreakdown(s, parseInt(dependents), parseFloat(pensionRate) / 100)
     );
@@ -149,8 +201,30 @@ export function SalaryCalculator() {
               </span>
             </div>
           </div>
+
+          <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+            <button
+              type="button"
+              onClick={() => {
+                const text = `薪資明細\n月薪: $${formatMoney(result.grossSalary)}\n勞保: -$${formatMoney(result.laborInsurance)}\n健保: -$${formatMoney(result.nhi)}\n實領: $${formatMoney(result.netSalary)}\n雇主成本: $${formatMoney(result.employerCost)}`;
+                navigator.clipboard.writeText(text);
+              }}
+              className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              複製結果
+            </button>
+          </div>
         </Card>
       )}
     </div>
+  );
+}
+
+export function SalaryCalculator() {
+  return (
+    <Suspense>
+      <SalaryCalculatorInner />
+    </Suspense>
   );
 }

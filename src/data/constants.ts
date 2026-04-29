@@ -227,4 +227,11 @@ export const TOOLS: {
     icon: "sunset",
     keywords: ["幾歲退休", "退休規劃"],
   },
+  {
+    name: "颱風假薪資計算機",
+    description: "颱風出勤雙倍工資怎麼算？一秒計算應得補償金額。",
+    href: "/tools/typhoon",
+    icon: "shield",
+    keywords: ["颱風假薪資", "颱風出勤加倍", "颱風假不能扣薪"],
+  },
 ];

@@ -19,7 +19,7 @@ export function SeveranceCalculator() {
     const s = parseInt(salary);
     const y = parseInt(years) || 0;
     const m = parseInt(months) || 0;
-    if (!s || s < 0) return;
+    if (!s || s <= 0) return;
     setResult(
       calculateSeverance(system as "new" | "old", s, y, m)
     );
@@ -91,7 +91,13 @@ export function SeveranceCalculator() {
             <div className="flex justify-between py-2 border-b border-slate-100">
               <span className="text-slate-500">年資</span>
               <span className="font-semibold text-slate-900">
-                {formatMoneyDecimal(result.yearsOfService, 1)} 年
+                {(() => {
+                  const y = Math.floor(result.yearsOfService);
+                  const m = Math.round((result.yearsOfService - y) * 12);
+                  if (y === 0) return `${m} 個月`;
+                  if (m === 0) return `${y} 年`;
+                  return `${y} 年 ${m} 個月`;
+                })()}
               </span>
             </div>
             <div className="flex justify-between py-2 border-b border-slate-100">
@@ -115,6 +121,8 @@ export function SeveranceCalculator() {
               </span>
             </div>
           </div>
+
+          <p className="mt-4 text-xs text-slate-400">資遣費以離職前 6 個月平均工資為基準，含加班費與經常性給與。</p>
         </Card>
       )}
     </div>

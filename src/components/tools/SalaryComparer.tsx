@@ -50,15 +50,17 @@ export function SalaryComparer() {
 
   const computeOffer = (input: OfferInput): OfferResult | null => {
     const salary = parseInt(input.salary);
-    if (!salary || salary < 0) return null;
+    if (!salary || salary <= 0) return null;
     const bonusMonths = parseFloat(input.bonusMonths) || 0;
     const allowances = parseInt(input.allowances) || 0;
     const dependents = parseInt(input.dependents) || 0;
 
     const breakdown = calculateSalaryBreakdown(salary, dependents, 0);
-    const annualGross = salary * 12 + salary * bonusMonths + allowances * 12;
+    const bonusTotal = salary * bonusMonths;
+    const annualGross = salary * 12 + bonusTotal + allowances * 12;
     const monthlyNet = breakdown.netSalary + allowances;
-    const annualNet = monthlyNet * 12 + salary * bonusMonths;
+    // 年度淨收入 = 12 個月實領 + 年終獎金（年終通常不另扣勞健保，但需扣補充保費）
+    const annualNet = monthlyNet * 12 + bonusTotal;
     const employerCost = breakdown.employerCost + allowances;
 
     return { input, breakdown, annualGross, annualNet, monthlyNet, employerCost };
@@ -255,6 +257,9 @@ export function SalaryComparer() {
                 {formatMoney(
                   Math.abs(results[0].annualNet - results[1].annualNet) / 12
                 )}
+              </p>
+              <p className="text-xs text-accent-600 mt-0.5">
+                差距約 {((Math.abs(results[0].annualNet - results[1].annualNet) / Math.min(results[0].annualNet, results[1].annualNet)) * 100).toFixed(1)}%
               </p>
             </div>
           )}
