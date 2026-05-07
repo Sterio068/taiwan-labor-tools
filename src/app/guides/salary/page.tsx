@@ -23,7 +23,7 @@ const FAQS = [
   {
     question: "月薪 45000 實領多少？",
     answer:
-      "以 2026 費率，月薪 $45,000 單身勞工每月實領約 $43,140。勞保扣 $1,147、健保扣 $713、勞退雇主提繳 $2,748 不扣薪。實際金額依眷屬人數、所得稅預扣、自提比例而定。",
+      "以 2026 費率，月薪 $45,000 單身勞工每月實領約 $43,145。勞保與就保扣 $1,145、健保扣 $710、勞退雇主提繳 $2,748 不扣薪。實際金額依眷屬人數、所得稅預扣、自提比例而定。",
   },
   {
     question: "為什麼薪資單的勞保扣款跟我想的不一樣？",
@@ -61,7 +61,7 @@ const SALARY_ARTICLES = [
   { title: "月薪 45000 實領多少？實例試算", href: "/articles/salary-45000-take-home" },
   { title: "2026 薪資報稅完全指南", href: "/articles/salary-tax-guide-2026" },
   { title: "最低工資 29,500：2026 新制影響", href: "/articles/minimum-wage-2026" },
-  { title: "時薪 190 元合理嗎？", href: "/articles/minimum-wage-hourly-2026" },
+  { title: "時薪 196 元合理嗎？", href: "/articles/minimum-wage-hourly-2026" },
   { title: "平日加班 2 小時多少錢？", href: "/articles/overtime-2hours-calculation" },
   { title: "加班費完整圖解指南", href: "/articles/overtime-pay-guide" },
   { title: "責任制加班合法嗎？", href: "/articles/exempt-employee" },
@@ -177,7 +177,7 @@ export default function SalaryGuidePage() {
 
         <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">雇主總成本與你的月薪差多少？</h3>
         <p className="text-slate-700 leading-relaxed my-4">
-          以月薪 $45,000 為例：雇主除了付你月薪外，還要額外負擔勞保雇主端（約 $4,015）、健保雇主端（約 $1,423）、勞退 6% 提繳（$2,748），合計每月成本約 $53,186。
+          以月薪 $45,000 為例：雇主除了付你月薪外，還要額外負擔勞保雇主端（約 $4,007）、健保雇主端（約 $2,216，含平均眷口數）、勞退 6% 提繳（$2,748），合計每月成本約 $53,971。
           也就是說，你每月為公司創造的「人事成本」比你實領薪水還多約 $10,000。
         </p>
 

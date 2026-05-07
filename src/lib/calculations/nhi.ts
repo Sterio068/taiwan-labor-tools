@@ -24,8 +24,12 @@ export function calculateNhi(
   const cappedDependents = Math.min(dependents, 3);
   const total = Math.round(bracket * LABOR_CONSTANTS.nhiRate);
   const workerShare = Math.round(total * LABOR_CONSTANTS.nhiWorkerShare);
-  const employerShare = Math.round(total * LABOR_CONSTANTS.nhiEmployerShare);
-  const govShare = total - workerShare - employerShare;
+  const employerShare = Math.round(
+    total *
+      LABOR_CONSTANTS.nhiEmployerShare *
+      (1 + LABOR_CONSTANTS.nhiAverageDependentCount)
+  );
+  const govShare = Math.round(total * LABOR_CONSTANTS.nhiGovShare);
   const workerShareWithDependents = workerShare * (1 + cappedDependents);
 
   return {

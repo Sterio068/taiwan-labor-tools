@@ -106,7 +106,7 @@ export function TyphoonCalculator() {
               <Input
                 label="時薪"
                 type="number"
-                placeholder="例：190"
+                placeholder="例：196"
                 suffix="元"
                 value={hourlyRate}
                 onChange={(e) => setHourlyRate(e.target.value)}

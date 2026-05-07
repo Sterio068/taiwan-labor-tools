@@ -7,6 +7,7 @@ import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { calculateOvertime, type OvertimeResult } from "@/lib/calculations/overtime";
+import { trackEvent } from "@/lib/analytics";
 import { formatMoney, formatMoneyDecimal } from "@/lib/format";
 
 const VALID_OT_TYPES = ["weekday", "rest-day", "holiday", "national-holiday"] as const;
@@ -68,9 +69,12 @@ function OvertimeCalculatorInner() {
     const s = parseInt(salary);
     const h = parseFloat(hours);
     if (!s || !h || s <= 0 || h <= 0) return;
-    setResult(
-      calculateOvertime(s, h, type)
-    );
+    trackEvent("tool_started", { tool_id: "overtime" });
+    setResult(calculateOvertime(s, h, type));
+    trackEvent("tool_completed", {
+      tool_id: "overtime",
+      overtime_type: type,
+    });
   };
 
   return (
@@ -171,6 +175,30 @@ function OvertimeCalculatorInner() {
                 </tr>
               </tbody>
             </table>
+          </div>
+          <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                navigator.clipboard.writeText(`加班費試算\n加班類型: ${type}\n應領加班費: $${formatMoney(result.overtimePay)}`);
+                trackEvent("tool_result_copied", { tool_id: "overtime" });
+              }}
+              className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              複製結果
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                window.print();
+                trackEvent("tool_result_printed", { tool_id: "overtime" });
+              }}
+              className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+              列印摘要
+            </button>
           </div>
         </Card>
       )}

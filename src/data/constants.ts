@@ -10,7 +10,7 @@ export const LABOR_CONSTANTS = {
 
   // 基本工資
   minimumMonthlyWage: 29_500,
-  minimumHourlyWage: 190,
+  minimumHourlyWage: 196,
 
   // 月薪制每小時工資計算基礎
   monthlyWorkHours: 240, // 30 天 × 8 小時（勞基法施行細則第 7 條）
@@ -27,6 +27,7 @@ export const LABOR_CONSTANTS = {
   nhiWorkerShare: 0.3,
   nhiEmployerShare: 0.6,
   nhiGovShare: 0.1,
+  nhiAverageDependentCount: 0.56, // 投保單位負擔平均眷口數，113 年 1 月 1 日起
   nhiDependentMultiplier: 1, // 眷屬人數上限 3 口
 
   // 勞退

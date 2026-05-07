@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">
         隱私權政策
       </h1>
-      <p className="text-sm text-slate-400 mb-8">最後更新：2026 年 4 月 7 日</p>
+      <p className="text-sm text-slate-400 mb-8">最後更新：2026 年 5 月 7 日</p>
 
       <div className="space-y-8 text-slate-700 leading-relaxed">
         <section>
@@ -28,10 +28,11 @@ export default function PrivacyPage() {
           </h2>
           <p>
             本站使用 Google Analytics 4 (GA4)
-            收集匿名的網站使用統計數據，包括瀏覽頁面、停留時間、裝置類型等，用以改善網站內容與使用者體驗。
+            收集匿名的網站使用統計數據，包括瀏覽頁面、裝置類型、文章閱讀深度、工具開始/完成、分享與 CTA 點擊等事件，用以改善內容品質與使用者體驗。
           </p>
           <p className="mt-3">
-            本站的計算工具在您的瀏覽器本地端執行，所有輸入的薪資、年資等資料不會傳送至伺服器，也不會被儲存。
+            本站的計算工具在您的瀏覽器本地端執行，所有輸入的薪資、年資、到職日等敏感資料不會傳送至本站伺服器，也不會作為 GA4 事件參數送出。
+            工具事件只記錄工具名稱、是否完成與互動類型。
           </p>
         </section>
 
@@ -47,7 +48,7 @@ export default function PrivacyPage() {
             </li>
             <li>
               <strong>廣告用 Cookies</strong> — Google AdSense
-              用於顯示相關廣告內容
+              用於顯示相關廣告內容；本站不會要求或鼓勵使用者點擊廣告
             </li>
           </ul>
           <p className="mt-3">

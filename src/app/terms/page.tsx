@@ -19,7 +19,7 @@ export default function TermsPage() {
       <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">
         服務條款
       </h1>
-      <p className="text-sm text-slate-400 mb-8">最後更新：2026 年 4 月 7 日</p>
+      <p className="text-sm text-slate-400 mb-8">最後更新：2026 年 5 月 7 日</p>
 
       <div className="space-y-8 text-slate-700 leading-relaxed">
         <section>
@@ -67,12 +67,26 @@ export default function TermsPage() {
             <li>
               您透過本站計算工具所輸入的資料僅在您的瀏覽器本地端處理，本站不會收集或儲存您的個人薪資等敏感資料。
             </li>
+            <li>
+              您不得以任何方式要求、交換、誘導或鼓勵他人點擊本站廣告，或使用自動化方式產生不正常流量。
+            </li>
           </ul>
         </section>
 
         <section>
           <h2 className="text-xl font-bold text-slate-900 mb-3">
-            四、責任限制
+            四、廣告與贊助揭露
+          </h2>
+          <p>
+            本站可能透過 Google AdSense 或其他合規廣告服務維持營運。廣告區塊會清楚標示為廣告，
+            並與工具操作、下載、分享或導覽按鈕保持合理距離。本站不保證任何廣告內容、商品或服務的品質，
+            使用者應自行判斷外部廣告連結的風險。
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold text-slate-900 mb-3">
+            五、責任限制
           </h2>
           <p>
             在法律允許的最大範圍內，本站及其營運者不對因使用或無法使用本站服務所導致的任何直接、間接、附帶、特殊或衍生性損害負責，
@@ -82,7 +96,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-bold text-slate-900 mb-3">
-            五、外部連結
+            六、外部連結
           </h2>
           <p>
             本站可能包含指向其他網站的連結（如政府機關官網、法規資料庫等），
@@ -92,7 +106,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-bold text-slate-900 mb-3">
-            六、條款修改
+            七、條款修改
           </h2>
           <p>
             本站保留隨時修改本服務條款的權利。修改後的條款將於本頁公布，
@@ -102,7 +116,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-bold text-slate-900 mb-3">
-            七、適用法律
+            八、適用法律
           </h2>
           <p>
             本服務條款受中華民國法律管轄，如有爭議應以台灣台北地方法院為第一審管轄法院。

@@ -4,6 +4,7 @@ import { Inter, Noto_Sans_TC } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { BottomNav } from "@/components/layout/BottomNav";
+import { AnalyticsEvents } from "@/components/analytics/AnalyticsEvents";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
 import "./globals.css";
@@ -51,6 +52,11 @@ export const metadata: Metadata = {
   verification: {
     google: "e58910d0ffcea7b8",
   },
+  other: ADSENSE_ID
+    ? {
+        "google-adsense-account": ADSENSE_ID,
+      }
+    : undefined,
   openGraph: {
     type: "website",
     locale: "zh_TW",
@@ -114,6 +120,7 @@ export default function RootLayout({
             strategy="afterInteractive"
           />
         )}
+        <AnalyticsEvents />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

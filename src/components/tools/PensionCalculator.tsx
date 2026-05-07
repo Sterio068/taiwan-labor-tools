@@ -6,6 +6,7 @@ import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { calculatePension, projectPension } from "@/lib/calculations/pension";
+import { trackEvent } from "@/lib/analytics";
 import { formatMoney } from "@/lib/format";
 
 export function PensionCalculator() {
@@ -26,9 +27,14 @@ export function PensionCalculator() {
     if (!s || !a || !r || s < 0 || a < 18 || a >= r) return;
     const vr = parseInt(voluntaryRate) / 100;
     const rr = parseInt(returnRate) / 100;
+    trackEvent("tool_started", { tool_id: "pension" });
     setResult({
       monthly: calculatePension(s, vr),
       projection: projectPension(s, a, r, rr, vr),
+    });
+    trackEvent("tool_completed", {
+      tool_id: "pension",
+      has_voluntary_pension: voluntaryRate !== "0",
     });
   };
 
@@ -152,6 +158,18 @@ export function PensionCalculator() {
             </div>
             <div className="mt-4 p-3 bg-slate-50 rounded-[10px] text-xs text-slate-500">
               此為概估，實際報酬率依勞退基金運作狀況而定。歷年最低保證收益率不低於兩年期定存利率。
+            </div>
+            <div className="mt-5 pt-4 border-t border-slate-100 flex justify-end">
+              <button
+                type="button"
+                onClick={() => {
+                  navigator.clipboard.writeText(`勞退退休金試算\n預估每月退休金: $${formatMoney(result.projection.monthlyPension)}\n退休時帳戶預估金額: $${formatMoney(result.projection.estimatedBalance)}`);
+                  trackEvent("tool_result_copied", { tool_id: "pension" });
+                }}
+                className="text-sm text-slate-500 hover:text-brand-600 transition-colors"
+              >
+                複製結果
+              </button>
             </div>
           </Card>
 

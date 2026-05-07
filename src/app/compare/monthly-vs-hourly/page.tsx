@@ -9,7 +9,7 @@ import { buildPageMetadata, faqSchema } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "月薪 vs 時薪：哪個比較划算？2026 完整比較表｜台灣勞工權益",
   description:
-    "月薪制和時薪制差在哪？勞健保、加班費、特休、資遣費怎麼算？用 2026 基本工資 $29,500 vs 時薪 $190 為基準，一次比較兩種僱用型態的優缺點與適合對象。",
+    "月薪制和時薪制差在哪？勞健保、加班費、特休、資遣費怎麼算？用 2026 最低工資 $29,500 vs 時薪 $196 為基準，一次比較兩種僱用型態的優缺點與適合對象。",
   keywords: [
     "月薪vs時薪",
     "月薪時薪比較",
@@ -17,7 +17,7 @@ export const metadata: Metadata = buildPageMetadata({
     "月薪制",
     "哪個划算",
     "2026基本工資",
-    "時薪190",
+    "時薪196",
     "月薪29500",
     "部分工時",
     "勞健保時薪",
@@ -27,9 +27,9 @@ export const metadata: Metadata = buildPageMetadata({
 
 const FAQS = [
   {
-    question: "時薪 $190 換算成月薪是多少？",
+    question: "時薪 $196 換算成月薪是多少？",
     answer:
-      "以全職每月工作 174 小時（每週 40 小時 × 4.35 週）計算，時薪 $190 × 174 小時 ≈ $33,060，已高於月薪基本工資 $29,500。但時薪制勞工通常不會穩定排到 174 小時，實際月收入多為 $20,000~$28,000。",
+      "以全職每月工作 174 小時（每週 40 小時 × 4.35 週）計算，時薪 $196 × 174 小時 ≈ $34,104，已高於月薪最低工資 $29,500。但時薪制勞工通常不會穩定排到 174 小時，實際月收入多為 $20,000~$30,000。",
   },
   {
     question: "時薪制也有勞健保嗎？",
@@ -44,7 +44,7 @@ const FAQS = [
   {
     question: "月薪制的加班費基數怎麼算？",
     answer:
-      "月薪制時薪基數 = 月薪 ÷ 30 ÷ 8。2026 年月薪基本工資 $29,500，換算時薪基數約 $123，已低於時薪基本工資 $190。這是月薪制加班費常被低估的主因，也是許多勞檢開罰的重點。",
+      "月薪制時薪基數 = 月薪 ÷ 30 ÷ 8。2026 年月薪最低工資 $29,500，換算時薪基數約 $123，已低於最低時薪 $196。這是月薪制加班費常被低估的主因，也是許多勞檢開罰的重點。",
   },
   {
     question: "部分工時一定要用時薪制嗎？",
@@ -66,7 +66,7 @@ const ROWS: Array<{
   {
     label: "2026 最低工資",
     monthly: "月薪 $29,500（底線）",
-    hourly: "時薪 $190（底線）",
+    hourly: "時薪 $196（底線）",
   },
   {
     label: "勞健保適用",
@@ -117,7 +117,7 @@ const SCENARIOS: Array<{ title: string; body: string }> = [
   },
   {
     title: "你是學生或需要時間彈性",
-    body: "選時薪制。時薪制可依課表、家庭狀況自由排班，時薪 $190 也已高於月薪換算的時薪 $123，實際每小時工資反而更高。",
+    body: "選時薪制。時薪制可依課表、家庭狀況自由排班，時薪 $196 也已高於月薪換算的時薪 $123，實際每小時工資反而更高。",
   },
   {
     title: "你想同時兼多份工作",
@@ -144,7 +144,7 @@ const RELATED_TOOLS = [
 
 const RELATED_ARTICLES = [
   { title: "打工族必懂：部分工時勞工的 7 大權益", href: "/articles/part-time-rights" },
-  { title: "2026 時薪基本工資 $190 完全解析", href: "/articles/minimum-wage-hourly-2026" },
+  { title: "2026 最低時薪 $196 完全解析", href: "/articles/minimum-wage-hourly-2026" },
 ];
 
 export default function MonthlyVsHourlyPage() {
@@ -163,7 +163,7 @@ export default function MonthlyVsHourlyPage() {
         月薪 vs 時薪：哪個比較划算？
       </h1>
       <p className="text-lg text-slate-600 leading-relaxed mb-10">
-        2026 年月薪基本工資 $29,500、時薪基本工資 $190，兩者是同一條最低工資底線的兩種呈現方式。
+        2026 年月薪最低工資 $29,500、最低時薪 $196，兩者是同一條最低工資底線的兩種呈現方式。
         但對勞工來說，選擇月薪制還是時薪制會影響加班費、勞健保、收入穩定性，甚至退休金累積速度。
         這份完整對照表幫你快速看懂兩者差異。
       </p>
@@ -205,16 +205,16 @@ export default function MonthlyVsHourlyPage() {
         </h2>
         <div className="space-y-2 text-slate-700">
           <p>
-            以 <strong>2026 年時薪 $190</strong> 為基準，不同每月工時換算的月收入：
+            以 <strong>2026 年時薪 $196</strong> 為基準，不同每月工時換算的月收入：
           </p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>每月 80 小時（兼職、週末打工）≈ $15,200</li>
-            <li>每月 120 小時（約每週 28 小時）≈ $22,800</li>
-            <li>每月 160 小時（約每週 37 小時）≈ $30,400（已超過月薪底線）</li>
-            <li>每月 174 小時（全職換算）≈ $33,060</li>
+            <li>每月 80 小時（兼職、週末打工）≈ $15,680</li>
+            <li>每月 120 小時（約每週 28 小時）≈ $23,520</li>
+            <li>每月 160 小時（約每週 37 小時）≈ $31,360（已超過月薪底線）</li>
+            <li>每月 174 小時（全職換算）≈ $34,104</li>
           </ul>
           <p className="text-sm text-slate-500 mt-3">
-            備註：月薪基本工資 $29,500 換算時薪約 $123，實際時薪 $190 已高出 55%，也因此時薪制在單價上通常優於月薪制。
+            備註：月薪最低工資 $29,500 換算時薪約 $123，實際時薪 $196 已高出約 59%，也因此時薪制在單價上通常優於月薪制。
           </p>
         </div>
       </section>
@@ -234,7 +234,7 @@ export default function MonthlyVsHourlyPage() {
         <div className="bg-slate-50 p-6 rounded-[16px]">
           <h3 className="font-bold text-xl mb-4 text-slate-900">時薪制的優點</h3>
           <ul className="space-y-2 text-slate-700">
-            <li>實際時薪單價較高（$190 vs $123）</li>
+            <li>實際時薪單價較高（$196 vs $123）</li>
             <li>工時彈性，適合兼職、副業</li>
             <li>加班認定明確，超時必算加班費</li>
             <li>可同時接多份工作，分散風險</li>

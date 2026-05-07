@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { TOOLS } from "@/data/constants";
+import { GUIDE_HUBS } from "@/data/guide-hubs";
 import { ARTICLES } from "@/lib/articles";
+import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
 
 const TOOL_ICONS: Record<string, string> = {
   calculator: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
@@ -14,12 +16,12 @@ const TOOL_ICONS: Record<string, string> = {
 // 最熱門的 6 個工具（人工挑選，基於常見搜尋意圖）
 const POPULAR_TOOLS = TOOLS.slice(0, 6);
 
-const GUIDES = [
-  { title: "薪資完全指南", desc: "實領、報稅、加班費全解析", href: "/guides/salary", emoji: "💰" },
-  { title: "離職資遣指南", desc: "資遣費、失業給付、預告期", href: "/guides/severance", emoji: "📋" },
-  { title: "勞健保攻略", desc: "費率、級距、給付、眷屬加保", href: "/guides/insurance", emoji: "🛡️" },
-  { title: "退休金規劃", desc: "新舊制、自提、領取策略", href: "/guides/retirement", emoji: "🌅" },
-];
+const GUIDES = GUIDE_HUBS.map((hub) => ({
+  title: hub.shortTitle,
+  desc: hub.description,
+  href: `/guides/${hub.slug}`,
+  emoji: hub.emoji,
+}));
 
 const COMPARE_PAGES = [
   { title: "月薪 vs 時薪", desc: "哪個比較划算？", href: "/compare/monthly-vs-hourly" },
@@ -35,7 +37,7 @@ const POPULAR_QUESTIONS = [
   { q: "工作 3 年被資遣有多少錢？", href: "/articles/severance-3years" },
   { q: "滿 6 個月有幾天特休？", href: "/articles/annual-leave-after-6months" },
   { q: "勞退自提 6% 划算嗎？", href: "/articles/pension-voluntary" },
-  { q: "時薪 190 元合理嗎？", href: "/articles/minimum-wage-hourly-2026" },
+  { q: "時薪 196 元合理嗎？", href: "/articles/minimum-wage-hourly-2026" },
 ];
 
 export default function HomePage() {
@@ -60,12 +62,18 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/tools"
+              data-track="home_primary_cta_clicked"
+              data-track-label="開始計算"
+              data-track-target="/tools"
               className="inline-flex items-center justify-center px-8 py-3.5 bg-white text-brand-600 font-bold rounded-[12px] hover:bg-brand-50 transition-colors shadow-lg text-lg"
             >
               開始計算
             </Link>
             <Link
-              href="/guides/salary"
+              href="/guides"
+              data-track="home_secondary_cta_clicked"
+              data-track-label="瀏覽指南"
+              data-track-target="/guides"
               className="inline-flex items-center justify-center px-8 py-3.5 bg-brand-800/40 text-white font-bold rounded-[12px] hover:bg-brand-800/60 transition-colors border border-white/30 text-lg"
             >
               瀏覽指南
@@ -85,6 +93,9 @@ export default function HomePage() {
               <Link
                 key={q.href}
                 href={q.href}
+                data-track="home_question_clicked"
+                data-track-label={q.q}
+                data-track-target={q.href}
                 className="inline-flex items-center px-4 py-2 bg-white text-slate-700 rounded-full border border-slate-200 hover:border-brand-300 hover:text-brand-600 hover:bg-brand-50 transition-colors text-sm"
               >
                 {q.q}
@@ -106,6 +117,8 @@ export default function HomePage() {
             </div>
             <Link
               href="/tools"
+              data-track="home_tools_index_clicked"
+              data-track-target="/tools"
               className="hidden sm:inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-sm"
             >
               查看全部 →
@@ -116,6 +129,9 @@ export default function HomePage() {
               <Link
                 key={tool.href}
                 href={tool.href}
+                data-track="home_tool_clicked"
+                data-track-label={tool.name}
+                data-track-target={tool.href}
                 className="group bg-white rounded-[16px] p-6 shadow-[0_1px_3px_rgba(15,23,42,0.06)] hover:shadow-[0_10px_25px_rgba(15,23,42,0.1)] transition-all"
               >
                 <div className="w-12 h-12 rounded-[12px] bg-brand-50 flex items-center justify-center mb-4 group-hover:bg-brand-100 transition-colors">
@@ -144,11 +160,14 @@ export default function HomePage() {
           <p className="text-center text-slate-500 mb-10">
             按主題整理的深度內容中樞，工具與文章一次看完
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {GUIDES.map((g) => (
               <Link
                 key={g.href}
                 href={g.href}
+                data-track="home_guide_clicked"
+                data-track-label={g.title}
+                data-track-target={g.href}
                 className="block p-6 bg-slate-50 rounded-[16px] hover:bg-brand-50 border border-transparent hover:border-brand-200 transition-all"
               >
                 <div className="text-3xl mb-3">{g.emoji}</div>
@@ -197,6 +216,8 @@ export default function HomePage() {
             </div>
             <Link
               href="/articles"
+              data-track="home_articles_index_clicked"
+              data-track-target="/articles"
               className="hidden sm:inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-sm"
             >
               全部文章 →
@@ -207,6 +228,9 @@ export default function HomePage() {
               <Link
                 key={article.slug}
                 href={`/articles/${article.slug}`}
+                data-track="home_article_clicked"
+                data-track-label={article.title}
+                data-track-target={`/articles/${article.slug}`}
                 className="block p-5 bg-slate-50 rounded-[14px] hover:bg-white hover:shadow-md border border-transparent hover:border-slate-200 transition-all"
               >
                 <div className="text-xs text-slate-400 mb-2">
@@ -240,10 +264,20 @@ export default function HomePage() {
             </div>
             <div>
               <div className="text-3xl font-extrabold text-brand-600 mb-2">100%</div>
-              <p className="text-slate-700 font-medium">依據勞基法</p>
-              <p className="text-sm text-slate-500 mt-1">法條對照，計算透明</p>
+              <p className="text-slate-700 font-medium">官方來源對照</p>
+              <p className="text-sm text-slate-500 mt-1">
+                <Link href="/sources" className="text-brand-600 hover:text-brand-700 font-semibold">
+                  查看資料來源與更新紀錄
+                </Link>
+              </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <NewsletterSignup />
         </div>
       </section>
 
@@ -258,6 +292,9 @@ export default function HomePage() {
           </p>
           <Link
             href="/tools/salary"
+            data-track="home_bottom_cta_clicked"
+            data-track-label="試算薪資明細"
+            data-track-target="/tools/salary"
             className="inline-flex items-center px-8 py-3.5 bg-brand-500 text-white font-bold rounded-[12px] hover:bg-brand-600 transition-colors shadow-md text-lg"
           >
             試算薪資明細

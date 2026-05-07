@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 interface Props {
   title: string;
@@ -16,9 +17,18 @@ export function ShareButtons({ title, path }: Props) {
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
 
+  const trackShare = (channel: string) => {
+    trackEvent("content_shared", {
+      channel,
+      path,
+      content_title: title,
+    });
+  };
+
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(url);
+      trackShare("copy_link");
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -35,6 +45,7 @@ export function ShareButtons({ title, path }: Props) {
         href={`https://social-plugins.line.me/lineit/share?url=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackShare("line")}
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] bg-[#06C755] text-white text-sm font-medium hover:opacity-90 transition-opacity"
         aria-label="分享到 LINE"
       >
@@ -49,6 +60,7 @@ export function ShareButtons({ title, path }: Props) {
         href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackShare("facebook")}
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] bg-[#1877F2] text-white text-sm font-medium hover:opacity-90 transition-opacity"
         aria-label="分享到 Facebook"
       >
@@ -63,6 +75,7 @@ export function ShareButtons({ title, path }: Props) {
         href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackShare("x")}
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] bg-slate-900 text-white text-sm font-medium hover:opacity-90 transition-opacity"
         aria-label="分享到 X"
       >

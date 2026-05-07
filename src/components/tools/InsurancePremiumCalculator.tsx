@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { calculateLaborInsurance } from "@/lib/calculations/labor-insurance";
 import { calculateNhi } from "@/lib/calculations/nhi";
+import { trackEvent } from "@/lib/analytics";
 import { formatMoney } from "@/lib/format";
 
 interface Result {
@@ -22,9 +23,14 @@ export function InsurancePremiumCalculator() {
   const handleCalculate = () => {
     const s = parseInt(salary);
     if (!s || s <= 0) return;
+    trackEvent("tool_started", { tool_id: "insurance-premium" });
     setResult({
       li: calculateLaborInsurance(s),
       nhi: calculateNhi(s, parseInt(dependents)),
+    });
+    trackEvent("tool_completed", {
+      tool_id: "insurance-premium",
+      has_dependents: dependents !== "0",
     });
   };
 
@@ -133,7 +139,7 @@ export function InsurancePremiumCalculator() {
                   </tr>
                   <tr>
                     <td className="py-2.5 text-slate-700">雇主負擔</td>
-                    <td className="py-2.5 text-right text-slate-500">60%</td>
+                    <td className="py-2.5 text-right text-slate-500">60% × 平均眷口 1.56</td>
                     <td className="py-2.5 text-right font-semibold text-slate-900">
                       ${formatMoney(result.nhi.employerShare)}
                     </td>
@@ -160,6 +166,18 @@ export function InsurancePremiumCalculator() {
               <p className="text-3xl font-extrabold text-brand-700">
                 ${formatMoney(result.li.workerShare + result.nhi.workerShareWithDependents)}
               </p>
+            </div>
+            <div className="mt-5 pt-4 border-t border-brand-100 flex justify-end">
+              <button
+                type="button"
+                onClick={() => {
+                  navigator.clipboard.writeText(`勞健保保費試算\n勞保自付: $${formatMoney(result.li.workerShare)}\n健保自付: $${formatMoney(result.nhi.workerShareWithDependents)}\n合計: $${formatMoney(result.li.workerShare + result.nhi.workerShareWithDependents)}`);
+                  trackEvent("tool_result_copied", { tool_id: "insurance-premium" });
+                }}
+                className="text-sm text-brand-700 hover:text-brand-800 transition-colors"
+              >
+                複製結果
+              </button>
             </div>
           </Card>
         </>

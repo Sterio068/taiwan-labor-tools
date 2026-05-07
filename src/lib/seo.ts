@@ -156,15 +156,21 @@ export function articleSchema(article: {
   publishedAt: string;
   updatedAt?: string;
 }) {
+  const url = `${SITE_URL}/articles/${article.slug}`;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.title,
     description: article.description,
-    url: `${SITE_URL}/articles/${article.slug}`,
+    url,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
     datePublished: article.publishedAt,
     dateModified: article.updatedAt || article.publishedAt,
     inLanguage: "zh-TW",
+    isAccessibleForFree: true,
     author: {
       "@type": "Organization",
       name: SITE_NAME,
@@ -175,5 +181,6 @@ export function articleSchema(article: {
       name: SITE_NAME,
       url: SITE_URL,
     },
+    image: `${SITE_URL}/opengraph-image`,
   };
 }

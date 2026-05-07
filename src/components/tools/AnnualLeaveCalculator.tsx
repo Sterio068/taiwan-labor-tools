@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { calculateAnnualLeave, type AnnualLeaveResult } from "@/lib/calculations/annual-leave";
 import { LABOR_CONSTANTS } from "@/data/constants";
+import { trackEvent } from "@/lib/analytics";
 
 export function AnnualLeaveCalculator() {
   const [startDate, setStartDate] = useState("");
@@ -15,7 +16,9 @@ export function AnnualLeaveCalculator() {
     if (!startDate) return;
     const date = new Date(startDate);
     if (isNaN(date.getTime())) return;
+    trackEvent("tool_started", { tool_id: "annual-leave" });
     setResult(calculateAnnualLeave(date));
+    trackEvent("tool_completed", { tool_id: "annual-leave" });
   };
 
   return (
@@ -89,6 +92,30 @@ export function AnnualLeaveCalculator() {
           </div>
 
           <p className="mt-4 text-xs text-slate-400">特休天數依勞基法第 38 條計算，實際起算日依公司採用之週年制或曆年制而定。</p>
+          <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                navigator.clipboard.writeText(`特休天數試算\n今年特休: ${result.days} 天\n${result.label}`);
+                trackEvent("tool_result_copied", { tool_id: "annual-leave" });
+              }}
+              className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              複製結果
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                window.print();
+                trackEvent("tool_result_printed", { tool_id: "annual-leave" });
+              }}
+              className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+              列印摘要
+            </button>
+          </div>
         </Card>
       )}
     </div>

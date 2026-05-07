@@ -1,0 +1,88 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Breadcrumb } from "@/components/layout/Breadcrumb";
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "成效追蹤 Dashboard 說明｜Search Console、GA4、AdSense 指標",
+  description:
+    "說明勞工權益站如何用 Search Console、GA4 與 AdSense 指標追蹤內容品質、搜尋流量、工具使用率與合法廣告曝光。",
+  keywords: ["Search Console", "GA4", "AdSense", "成效追蹤", "SEO dashboard"],
+  path: "/growth-dashboard",
+});
+
+const METRICS = [
+  { area: "Search Console", metric: "曝光、點擊、CTR、平均排名", use: "判斷文章與指南是否被搜尋者看見，優先優化高曝光低 CTR 的標題與摘要。" },
+  { area: "GA4", metric: "工具開始、完成計算、分享、CTA 點擊", use: "確認使用者是否真的完成試算與進入下一步，不收集薪資與年資等敏感輸入。" },
+  { area: "GA4", metric: "文章 25/50/75/90% 閱讀深度", use: "找出使用者停留與流失位置，補強直接答案、表格、FAQ 與內部連結。" },
+  { area: "AdSense", metric: "頁面 RPM、曝光、可見率、政策中心", use: "通過後只看合法曝光品質與政策狀態，不以誘導點擊作為優化方向。" },
+];
+
+export default function GrowthDashboardPage() {
+  return (
+    <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <Breadcrumb items={[{ label: "首頁", href: "/" }, { label: "成效追蹤" }]} />
+      <header className="mb-10">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
+          成效追蹤 Dashboard 說明
+        </h1>
+        <p className="text-lg text-slate-600 leading-relaxed">
+          本站以內容品質、搜尋流量、工具使用率、回訪與合法廣告曝光作為成長指標，不追蹤個資，也不以鼓勵廣告點擊為目標。
+        </p>
+      </header>
+
+      <section className="mb-10 overflow-hidden rounded-[16px] border border-slate-200 bg-white">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-slate-200 bg-slate-50">
+              <th className="text-left py-3 px-4 font-semibold text-slate-600">工具</th>
+              <th className="text-left py-3 px-4 font-semibold text-slate-600">核心指標</th>
+              <th className="text-left py-3 px-4 font-semibold text-slate-600">判讀方式</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100">
+            {METRICS.map((row) => (
+              <tr key={`${row.area}-${row.metric}`}>
+                <td className="py-3 px-4 font-semibold text-slate-900">{row.area}</td>
+                <td className="py-3 px-4 text-slate-700">{row.metric}</td>
+                <td className="py-3 px-4 text-slate-600 leading-relaxed">{row.use}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <section className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-[16px] border border-slate-200 bg-white p-5">
+          <h2 className="text-xl font-bold text-slate-900 mb-3">每週檢查</h2>
+          <ul className="space-y-2 text-slate-700">
+            <li>• sitemap 是否成功讀取、是否有索引錯誤</li>
+            <li>• 六大指南是否有曝光與長尾關鍵字</li>
+            <li>• 工具完成率是否低於文章 CTA 點擊率</li>
+            <li>• AdSense 政策中心是否有警示</li>
+          </ul>
+        </div>
+        <div className="rounded-[16px] border border-slate-200 bg-white p-5">
+          <h2 className="text-xl font-bold text-slate-900 mb-3">優化順序</h2>
+          <ul className="space-y-2 text-slate-700">
+            <li>• 高曝光低 CTR：改標題、描述與結構化資料</li>
+            <li>• 高流量低完成：改善工具表單與預設情境</li>
+            <li>• 高完成低回訪：加強 checklist、newsletter 與延伸閱讀</li>
+            <li>• 廣告影響閱讀：降低投放密度或移到文章底部</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="mt-10 rounded-[16px] border border-brand-100 bg-brand-50 p-5 md:p-6">
+        <h2 className="text-xl font-bold text-slate-900 mb-3">追蹤事件命名</h2>
+        <p className="text-slate-700 leading-relaxed mb-4">
+          GA4 事件包含 tool_started、tool_completed、content_shared、article_scroll_depth、cta_clicked、newsletter_intent_submitted 與 checklist_print_clicked。
+          事件參數只描述頁面、工具名稱與互動類型，不上傳薪資、年資、到職日等敏感輸入。
+        </p>
+        <Link href="/privacy" className="font-semibold text-brand-700 hover:text-brand-800">
+          查看隱私權政策
+        </Link>
+      </section>
+    </div>
+  );
+}

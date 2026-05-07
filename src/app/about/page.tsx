@@ -85,6 +85,13 @@ export default function AboutPage() {
           <li>勞動部及勞動部勞工保險局公告之費率與級距表</li>
           <li>衛生福利部中央健康保險署公告之保費費率</li>
         </ul>
+        <p className="mt-4 text-slate-700 leading-relaxed">
+          完整來源連結、最近查核日期與更新紀錄可見
+          <Link href="/sources" className="mx-1 text-brand-600 font-semibold underline underline-offset-2">
+            資料來源與更新紀錄
+          </Link>
+          。
+        </p>
       </section>
 
       {/* Editorial standards */}
@@ -101,6 +108,10 @@ export default function AboutPage() {
           <p>
             遇到基本工資、勞健保費率、投保級距或勞退規定調整時，我們會更新相關工具與文章。
             若讀者發現資料過期、計算異常或文字說明不清楚，歡迎來信提供頁面網址與問題描述。
+          </p>
+          <p>
+            本站可能顯示 Google AdSense 廣告。廣告區塊會以「廣告」標示，並與工具按鈕、表單與主要操作保持距離；
+            我們不會要求、暗示、交換或鼓勵任何使用者點擊廣告。
           </p>
         </div>
       </section>
@@ -121,10 +132,12 @@ export default function AboutPage() {
       <section className="mt-10 mb-10">
         <h2 className="text-xl font-bold text-slate-900 mb-3">聯絡我們</h2>
         <p className="text-slate-700 leading-relaxed">
-          如有任何建議、勘誤回報或合作需求，歡迎來信{" "}
-          <a href="mailto:sterio068@gmail.com" className="text-brand-600 font-semibold underline underline-offset-2">
-            sterio068@gmail.com
-          </a>
+          如有任何建議、勘誤回報或合作需求，歡迎使用
+          <Link href="/contact" className="mx-1 text-brand-600 font-semibold underline underline-offset-2">
+            聯絡與回饋頁
+          </Link>
+          或來信{" "}
+          <a href="mailto:sterio068@gmail.com" className="text-brand-600 font-semibold underline underline-offset-2">sterio068@gmail.com</a>
           。
         </p>
       </section>

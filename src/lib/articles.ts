@@ -95,7 +95,7 @@ export const ARTICLES: ArticleMeta[] = [
     slug: "part-time-rights",
     title: "時薪制勞工權益懶人包",
     description:
-      "打工族必看：2026 基本時薪 190 元、加班費、勞健保、特休假、國定假日出勤等權益完整整理。",
+      "打工族必看：2026 最低時薪 196 元、加班費、勞健保、特休假、國定假日出勤等權益完整整理。",
     category: "rights",
     keywords: ["時薪", "打工", "兼職", "基本時薪", "打工權益"],
     publishedAt: "2026-04-07",
@@ -155,9 +155,9 @@ export const ARTICLES: ArticleMeta[] = [
     slug: "minimum-wage-2026",
     title: "最低工資 29,500：2026 新制影響",
     description:
-      "2026 年基本工資調整為月薪 29,500 元、時薪 190 元，對勞健保保費、加班費基數的連動影響。",
+      "2026 年最低工資調整為月薪 29,500 元、時薪 196 元，對勞健保保費、加班費基數的連動影響。",
     category: "salary",
-    keywords: ["基本工資", "最低工資", "基本工資2026", "時薪190", "月薪29500"],
+    keywords: ["基本工資", "最低工資", "基本工資2026", "時薪196", "月薪29500"],
     publishedAt: "2026-04-07",
     readingMinutes: 5,
   },
@@ -345,11 +345,11 @@ export const ARTICLES: ArticleMeta[] = [
   },
   {
     slug: "minimum-wage-hourly-2026",
-    title: "時薪 190 元合理嗎？2026 基本時薪計算",
+    title: "時薪 196 元合理嗎？2026 最低時薪計算",
     description:
-      "2026 年基本時薪 190 元解析，含歷年調幅、打工族月收入試算、與生活成本比較。",
+      "2026 年最低時薪 196 元解析，含歷年調幅、打工族月收入試算、與生活成本比較。",
     category: "salary",
-    keywords: ["時薪190", "基本時薪", "時薪制", "打工時薪"],
+    keywords: ["時薪196", "基本時薪", "最低時薪", "時薪制", "打工時薪"],
     publishedAt: "2026-04-09",
     readingMinutes: 6,
   },

@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer className="mt-auto bg-slate-900 text-slate-100 pb-24 md:pb-10">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center gap-2 font-bold text-xl mb-3">
               <svg className="w-6 h-6 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -31,7 +31,20 @@ export function Footer() {
             <h3 className="font-semibold mb-3 text-slate-100">關於</h3>
             <ul className="space-y-2 text-sm text-slate-400">
               <li><Link href="/about" className="hover:text-slate-100">關於我們</Link></li>
+              <li><Link href="/sources" className="hover:text-slate-100">資料來源與更新紀錄</Link></li>
+              <li><Link href="/contact" className="hover:text-slate-100">聯絡與回饋</Link></li>
+              <li><Link href="/privacy" className="hover:text-slate-100">隱私權政策</Link></li>
+              <li><Link href="/terms" className="hover:text-slate-100">服務條款</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-3 text-slate-100">成長入口</h3>
+            <ul className="space-y-2 text-sm text-slate-400">
               <li><Link href="/articles" className="hover:text-slate-100">權益文章</Link></li>
+              <li><Link href="/guides" className="hover:text-slate-100">六大指南</Link></li>
+              <li><Link href="/checklists" className="hover:text-slate-100">權益檢查表</Link></li>
+              <li><Link href="/newsletter" className="hover:text-slate-100">更新提醒</Link></li>
+              <li><Link href="/growth-dashboard" className="hover:text-slate-100">成效追蹤說明</Link></li>
             </ul>
           </div>
         </div>

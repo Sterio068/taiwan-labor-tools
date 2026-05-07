@@ -36,7 +36,7 @@ export default function HourlyMonthlyPage() {
         name: "如何換算時薪與月薪",
         totalTime: "PT1M",
         steps: [
-          { name: "輸入時薪", text: "填入每小時薪資，最低不得低於基本時薪 190 元" },
+          { name: "輸入時薪", text: "填入每小時薪資，最低不得低於最低時薪 196 元" },
           { name: "設定每日工時與月工作天數", text: "預設每日 8 小時、每月 21.75 天（法定工時標準）" },
           { name: "查看月薪換算結果", text: "系統自動顯示換算後的月薪，並標示是否符合基本工資標準" },
         ],

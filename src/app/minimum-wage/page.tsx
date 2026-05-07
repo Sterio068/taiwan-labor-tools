@@ -4,21 +4,21 @@ import { buildPageMetadata, faqSchema, breadcrumbSchema, SITE_URL } from "@/lib/
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "2026 基本工資：月薪 29,500、時薪 190 元完整解說",
+  title: "2026 最低工資：月薪 29,500、時薪 196 元完整解說",
   description:
-    "2026 年基本工資月薪 $29,500、時薪 $190。含歷年調整趨勢、實領薪水試算、違反基本工資申訴方法，以及對時薪制勞工的影響。",
+    "2026 年最低工資月薪 $29,500、時薪 $196。含歷年調整趨勢、實領薪水試算、違反最低工資申訴方法，以及對時薪制勞工的影響。",
   keywords: [
     "2026基本工資",
     "最低薪資2026",
     "基本工資月薪",
-    "基本時薪190",
+    "基本時薪196",
     "基本工資計算",
   ],
   path: "/minimum-wage",
 });
 
 const HISTORY = [
-  { year: "2026", monthly: "$29,500", hourly: "$190" },
+  { year: "2026", monthly: "$29,500", hourly: "$196" },
   { year: "2025", monthly: "$28,590", hourly: "$190" },
   { year: "2024", monthly: "$27,470", hourly: "$183" },
   { year: "2023", monthly: "$26,400", hourly: "$176" },
@@ -29,7 +29,7 @@ const HISTORY = [
 const FAQ_ITEMS = [
   {
     question: "2026 基本工資是多少？",
-    answer: "月薪 $29,500、時薪 $190。",
+    answer: "月薪 $29,500、時薪 $196。",
   },
   {
     question: "試用期薪資可以低於基本工資嗎？",
@@ -39,12 +39,12 @@ const FAQ_ITEMS = [
   {
     question: "時薪工作要看哪個標準？",
     answer:
-      "依規定最低不得低於時薪 $190。如果你的月薪折算每小時低於 $190，也是違法。",
+      "依規定最低不得低於時薪 $196。如果你的月薪折算每小時低於 $196，也是違法。",
   },
   {
     question: "加班費也要依基本工資計算嗎？",
     answer:
-      "是的，加班費計算的時薪基準，不得低於基本時薪 $190。月薪制以月薪÷30÷8換算時薪，但結果不得低於 $190。",
+      "是的，加班費計算的時薪基準，不得低於最低時薪 $196。月薪制以月薪÷30÷8換算時薪，但結果不得低於 $196。",
   },
   {
     question: "發現老闆給的薪資低於基本工資怎麼辦？",
@@ -101,7 +101,7 @@ export default function MinimumWagePage() {
               時薪制
             </p>
             <p className="text-5xl font-extrabold text-brand-600 mb-1">
-              $190
+              $196
             </p>
             <p className="text-slate-500 text-sm">每小時最低工資</p>
           </div>
@@ -130,7 +130,7 @@ export default function MinimumWagePage() {
             時薪 = 月薪 ÷ 30 ÷ 8
           </div>
           <p className="text-slate-500 text-sm mt-3">
-            例如月薪 $30,000：時薪 = 30,000 ÷ 30 ÷ 8 = $125。但兼職或時薪制勞工，時薪不得低於 $190，即使月薪折算低於此值也違法。
+            例如月薪 $30,000：時薪 = 30,000 ÷ 30 ÷ 8 = $125。但兼職或時薪制勞工，時薪不得低於 $196，即使月薪折算低於此值也違法。
           </p>
         </div>
 
@@ -139,7 +139,7 @@ export default function MinimumWagePage() {
             加班費怎麼算？
           </h2>
           <p className="text-slate-600 leading-relaxed">
-            加班費以時薪為基準計算，且時薪不得低於基本時薪 $190。月薪制勞工以「月薪 ÷ 30 ÷ 8」換算時薪；時薪制勞工直接以時薪計算。平日前 2 小時加班費為時薪 × 4/3，第 3 小時起為時薪 × 5/3。
+            加班費以時薪為基準計算，且時薪不得低於最低時薪 $196。月薪制勞工以「月薪 ÷ 30 ÷ 8」換算時薪；時薪制勞工直接以時薪計算。平日前 2 小時加班費為時薪 × 4/3，第 3 小時起為時薪 × 5/3。
           </p>
         </div>
       </div>

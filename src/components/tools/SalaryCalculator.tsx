@@ -7,6 +7,7 @@ import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { calculateSalaryBreakdown, type SalaryBreakdownResult } from "@/lib/calculations/salary-breakdown";
+import { trackEvent } from "@/lib/analytics";
 import { formatMoney } from "@/lib/format";
 
 function parseInitialParams(params: URLSearchParams): {
@@ -69,9 +70,14 @@ function SalaryCalculatorInner() {
   const handleCalculate = () => {
     const s = parseInt(salary);
     if (!s || s <= 0) return;
-    setResult(
-      calculateSalaryBreakdown(s, parseInt(dependents), parseFloat(pensionRate) / 100)
-    );
+    trackEvent("tool_started", { tool_id: "salary" });
+    const nextResult = calculateSalaryBreakdown(s, parseInt(dependents), parseFloat(pensionRate) / 100);
+    setResult(nextResult);
+    trackEvent("tool_completed", {
+      tool_id: "salary",
+      has_dependents: dependents !== "0",
+      has_voluntary_pension: pensionRate !== "0",
+    });
   };
 
   return (
@@ -202,17 +208,29 @@ function SalaryCalculatorInner() {
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+          <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap justify-end gap-3">
             <button
               type="button"
               onClick={() => {
                 const text = `薪資明細\n月薪: $${formatMoney(result.grossSalary)}\n勞保: -$${formatMoney(result.laborInsurance)}\n健保: -$${formatMoney(result.nhi)}\n實領: $${formatMoney(result.netSalary)}\n雇主成本: $${formatMoney(result.employerCost)}`;
                 navigator.clipboard.writeText(text);
+                trackEvent("tool_result_copied", { tool_id: "salary" });
               }}
               className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
               複製結果
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                window.print();
+                trackEvent("tool_result_printed", { tool_id: "salary" });
+              }}
+              className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+              列印摘要
             </button>
           </div>
         </Card>

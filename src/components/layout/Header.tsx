@@ -5,8 +5,9 @@ const NAV_LINKS = [
   { href: "/tools", label: "計算工具" },
   { href: "/guides", label: "完整指南" },
   { href: "/compare", label: "熱門比較" },
-  { href: "/faq", label: "FAQ" },
   { href: "/articles", label: "權益文章" },
+  { href: "/checklists", label: "檢查表" },
+  { href: "/sources", label: "資料來源" },
   { href: "/about", label: "關於" },
 ];
 
@@ -27,7 +28,7 @@ export function Header() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="px-4 py-2 rounded-[10px] text-slate-700 font-medium hover:bg-brand-50 hover:text-brand-600 transition-colors"
+                    className="px-3 py-2 rounded-[10px] text-sm text-slate-700 font-medium hover:bg-brand-50 hover:text-brand-600 transition-colors"
                   >
                     {link.label}
                   </Link>

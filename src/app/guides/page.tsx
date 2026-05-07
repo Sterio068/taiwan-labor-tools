@@ -2,64 +2,24 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildPageMetadata } from "@/lib/seo";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
+import { GUIDE_HUBS } from "@/data/guide-hubs";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "勞工權益指南 — 薪資、保險、退休、資遣完整攻略",
+  title: "勞工權益指南 — 薪資、加班、資遣、特休、勞健保、勞資爭議",
   description:
-    "依主題整理的深度勞工權益指南，涵蓋薪資計算、勞健保、退休規劃、離職資遣。每個主題都有工具連結與完整文章，一次看懂你的勞動權益。",
-  keywords: ["勞工指南", "薪資指南", "勞健保攻略", "退休規劃", "資遣指南", "勞基法"],
+    "依六大搜尋主題整理的深度勞工權益指南，涵蓋薪資、加班費、資遣離職、特休請假、勞健保勞退與勞資爭議。",
+  keywords: ["勞工指南", "薪資指南", "加班費指南", "資遣指南", "特休指南", "勞資爭議"],
   path: "/guides",
 });
 
-const GUIDES = [
-  {
-    title: "薪資完全指南",
-    desc: "實領、報稅、加班費、基本工資全解析",
-    href: "/guides/salary",
-    emoji: "💰",
-    topics: ["薪資明細計算", "勞健保扣款", "加班費計算", "報稅規劃"],
-    tools: [
-      { name: "薪資明細計算機", href: "/tools/salary" },
-      { name: "加班費計算機", href: "/tools/overtime" },
-      { name: "薪資比較器", href: "/tools/salary-compare" },
-    ],
-  },
-  {
-    title: "離職資遣指南",
-    desc: "資遣費、失業給付、預告期完整流程",
-    href: "/guides/severance",
-    emoji: "📋",
-    topics: ["新舊制資遣費", "非自願離職", "失業給付申請", "預告期計算"],
-    tools: [
-      { name: "資遣費計算機", href: "/tools/severance" },
-      { name: "離職預告期計算", href: "/tools/notice-period" },
-      { name: "勞資爭議檢查器", href: "/tools/dispute-checker" },
-    ],
-  },
-  {
-    title: "勞健保攻略",
-    desc: "費率、級距、給付、眷屬加保全說明",
-    href: "/guides/insurance",
-    emoji: "🛡️",
-    topics: ["勞保費率計算", "健保投保級距", "生育給付", "職災保險"],
-    tools: [
-      { name: "勞健保保費計算", href: "/tools/insurance-premium" },
-      { name: "投保級距查詢", href: "/tools/insurance-bracket" },
-      { name: "產假育嬰假計算機", href: "/tools/maternity" },
-    ],
-  },
-  {
-    title: "退休金規劃",
-    desc: "新舊制勞退、自提策略、領取方式",
-    href: "/guides/retirement",
-    emoji: "🌅",
-    topics: ["勞退新制自提", "勞保老年給付", "所得替代率", "提前退休規劃"],
-    tools: [
-      { name: "勞退退休金試算", href: "/tools/pension" },
-      { name: "退休年齡規劃", href: "/tools/retirement-planner" },
-    ],
-  },
-];
+const GUIDES = GUIDE_HUBS.map((hub) => ({
+  title: hub.title,
+  desc: hub.description,
+  href: `/guides/${hub.slug}`,
+  emoji: hub.emoji,
+  topics: hub.keywords.slice(0, 4),
+  tools: hub.tools.map((tool) => ({ name: tool.title, href: tool.href })).slice(0, 3),
+}));
 
 export default function GuidesIndexPage() {
   return (
@@ -76,7 +36,7 @@ export default function GuidesIndexPage() {
           勞工權益指南
         </h1>
         <p className="text-slate-500 text-lg">
-          依主題整理的深度內容中樞，每個指南都整合工具、文章與法條，讓你一次搞清楚。
+          依六大搜尋主題整理的深度內容中樞，每個指南都整合工具、文章、FAQ 與官方來源。
         </p>
       </div>
 
