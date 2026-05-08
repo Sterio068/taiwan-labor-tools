@@ -13,8 +13,17 @@ export function trackEvent(eventName: string, params: AnalyticsParams = {}) {
   const sanitized = Object.fromEntries(
     Object.entries(params).filter(([, value]) => value !== undefined)
   ) as AnalyticsParams;
+  const pageFields = {
+    page_location: `${window.location.origin}${window.location.pathname}`,
+    page_path: window.location.pathname,
+    page_title: document.title,
+  };
+  const eventParams = {
+    ...sanitized,
+    ...pageFields,
+  };
 
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: eventName, ...sanitized });
-  window.gtag?.("event", eventName, sanitized);
+  window.dataLayer.push({ event: eventName, ...eventParams });
+  window.gtag?.("event", eventName, eventParams);
 }

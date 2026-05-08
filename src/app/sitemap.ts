@@ -2,9 +2,7 @@ import type { MetadataRoute } from "next";
 import { ARTICLES } from "@/lib/articles";
 import { TOOLS } from "@/data/constants";
 import { GUIDE_HUBS } from "@/data/guide-hubs";
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://example.com";
+import { SITE_URL } from "@/lib/seo";
 
 const UPDATED_2026_05_07 = "2026-05-07";
 const UPDATED_2026_04_30 = "2026-04-30";

@@ -1,8 +1,28 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { TOOLS } from "@/data/constants";
 import { GUIDE_HUBS } from "@/data/guide-hubs";
 import { ARTICLES } from "@/lib/articles";
+import { buildPageMetadata } from "@/lib/seo";
 import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "台灣勞工權益工具站 — 薪資、加班費、資遣費免費計算",
+  description:
+    "免費勞工權益計算工具：薪資明細、加班費、資遣費、特休天數、勞健保保費、勞退退休金。依據最新勞基法，幫你算清楚每一筆錢。",
+  keywords: [
+    "勞工權益",
+    "薪資計算",
+    "加班費計算",
+    "資遣費",
+    "特休天數",
+    "勞保費",
+    "健保費",
+    "勞退",
+    "退休金試算",
+  ],
+  path: "/",
+});
 
 const TOOL_ICONS: Record<string, string> = {
   calculator: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",

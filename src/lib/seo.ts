@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://example.com";
+  (process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://twlabor.org").replace(
+    /\/+$/,
+    ""
+  );
 export const SITE_NAME = "台灣勞工權益工具站";
+export const SITE_SHORT_NAME = "勞工權益站";
 
 export interface PageMetaInput {
   title: string;
   description: string;
   keywords?: string[];
   path: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  section?: string;
 }
 
 export function buildPageMetadata({
@@ -16,21 +24,40 @@ export function buildPageMetadata({
   description,
   keywords,
   path,
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  section,
 }: PageMetaInput): Metadata {
   const url = `${SITE_URL}${path}`;
+  const openGraphBase = {
+    title,
+    description,
+    url,
+    siteName: SITE_NAME,
+    locale: "zh_TW",
+  };
+
   return {
     title,
     description,
-    keywords: keywords?.join(", "),
+    keywords,
     alternates: { canonical: url },
-    openGraph: {
-      title,
-      description,
-      url,
-      siteName: SITE_NAME,
-      locale: "zh_TW",
-      type: "website",
-    },
+    openGraph:
+      type === "article"
+        ? {
+            ...openGraphBase,
+            type: "article",
+            publishedTime,
+            modifiedTime,
+            section,
+            authors: [SITE_NAME],
+            tags: keywords,
+          }
+        : {
+            ...openGraphBase,
+            type: "website",
+          },
     twitter: {
       card: "summary_large_image",
       title,
@@ -155,6 +182,8 @@ export function articleSchema(article: {
   slug: string;
   publishedAt: string;
   updatedAt?: string;
+  keywords?: string[];
+  category?: string;
 }) {
   const url = `${SITE_URL}/articles/${article.slug}`;
   return {
@@ -169,6 +198,10 @@ export function articleSchema(article: {
     },
     datePublished: article.publishedAt,
     dateModified: article.updatedAt || article.publishedAt,
+    ...(article.keywords?.length
+      ? { keywords: article.keywords.join(", ") }
+      : {}),
+    ...(article.category ? { articleSection: article.category } : {}),
     inLanguage: "zh-TW",
     isAccessibleForFree: true,
     author: {
@@ -181,6 +214,6 @@ export function articleSchema(article: {
       name: SITE_NAME,
       url: SITE_URL,
     },
-    image: `${SITE_URL}/opengraph-image`,
+    image: `${url}/opengraph-image`,
   };
 }

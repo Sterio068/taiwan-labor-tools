@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { TOOLS } from "@/data/constants";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
+import { buildPageMetadata } from "@/lib/seo";
 
 const TOOL_ICONS: Record<string, string> = {
   calculator: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
@@ -12,10 +13,20 @@ const TOOL_ICONS: Record<string, string> = {
   "piggy-bank": "M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z",
 };
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "勞工權益計算工具",
-  description: "免費勞工計算工具：薪資明細、加班費、資遣費、特休天數、勞健保保費、退休金試算。依據 2026 最新勞基法。",
-};
+  description:
+    "免費勞工計算工具：薪資明細、加班費、資遣費、特休天數、勞健保保費、退休金試算。依據 2026 最新勞基法。",
+  keywords: [
+    "勞工權益計算工具",
+    "薪資計算",
+    "加班費計算",
+    "資遣費計算",
+    "特休計算",
+    "勞健保保費",
+  ],
+  path: "/tools",
+});
 
 export default function ToolsPage() {
   return (

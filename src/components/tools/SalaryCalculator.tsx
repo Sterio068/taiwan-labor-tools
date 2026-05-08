@@ -57,16 +57,6 @@ function SalaryCalculatorInner() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // result 更新時同步 URL（不產生歷史紀錄，不觸發 Next.js re-render）
-  useEffect(() => {
-    if (!result) return;
-    const url = new URL(window.location.href);
-    url.searchParams.set("m", String(result.grossSalary));
-    url.searchParams.set("d", dependents);
-    url.searchParams.set("s", pensionRate);
-    window.history.replaceState(null, "", url.toString());
-  }, [result, dependents, pensionRate]);
-
   const handleCalculate = () => {
     const s = parseInt(salary);
     if (!s || s <= 0) return;

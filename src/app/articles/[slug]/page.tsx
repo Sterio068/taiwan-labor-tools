@@ -34,6 +34,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: article.description,
     keywords: article.keywords,
     path: `/articles/${slug}`,
+    type: "article",
+    publishedTime: article.publishedAt,
+    modifiedTime: article.updatedAt || article.publishedAt,
+    section: CATEGORY_LABELS[article.category],
   });
 }
 

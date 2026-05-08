@@ -6,7 +6,12 @@ import { Footer } from "@/components/layout/Footer";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { AnalyticsEvents } from "@/components/analytics/AnalyticsEvents";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { organizationSchema, websiteSchema } from "@/lib/seo";
+import {
+  organizationSchema,
+  SITE_SHORT_NAME,
+  SITE_URL,
+  websiteSchema,
+} from "@/lib/seo";
 import "./globals.css";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID?.trim();
@@ -26,14 +31,11 @@ const notoSansTC = Noto_Sans_TC({
   display: "swap",
 });
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://example.com";
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: "台灣勞工權益工具站 — 薪資、加班費、資遣費免費計算",
-    template: "%s | 勞工權益站",
+    template: `%s | ${SITE_SHORT_NAME}`,
   },
   description:
     "免費勞工權益計算工具：薪資明細、加班費、資遣費、特休天數、勞健保保費、勞退退休金。依據最新勞基法，幫你算清楚每一筆錢。",
@@ -61,7 +63,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "zh_TW",
     url: SITE_URL,
-    siteName: "勞工權益站",
+    siteName: SITE_SHORT_NAME,
     title: "台灣勞工權益工具站 — 薪資、加班費、資遣費免費計算",
     description:
       "免費勞工權益計算工具：薪資明細、加班費、資遣費、特休天數、勞健保保費、勞退退休金。",
@@ -108,7 +110,7 @@ export default function RootLayout({
               strategy="afterInteractive"
             />
             <Script id="ga4" strategy="afterInteractive">
-              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','${GA_ID}');`}
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','${GA_ID}',{page_location:window.location.origin+window.location.pathname,page_path:window.location.pathname,page_title:document.title});`}
             </Script>
           </>
         )}

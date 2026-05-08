@@ -55,16 +55,6 @@ function OvertimeCalculatorInner() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // result 更新時同步 URL（不產生歷史紀錄，不觸發 Next.js re-render）
-  useEffect(() => {
-    if (!result) return;
-    const url = new URL(window.location.href);
-    url.searchParams.set("w", salary);
-    url.searchParams.set("h", hours);
-    url.searchParams.set("ot", type);
-    window.history.replaceState(null, "", url.toString());
-  }, [result, salary, hours, type]);
-
   const handleCalculate = () => {
     const s = parseInt(salary);
     const h = parseFloat(hours);
