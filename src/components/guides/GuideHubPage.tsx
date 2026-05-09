@@ -42,7 +42,7 @@ export function GuideHubPage({ hub }: GuideHubPageProps) {
           { name: hub.shortTitle, url: `${SITE_URL}${path}` },
         ])}
       />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "勞工權益指南", href: "/guides" },

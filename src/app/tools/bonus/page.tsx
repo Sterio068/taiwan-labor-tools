@@ -44,7 +44,7 @@ export default function BonusPage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "年終獎金計算機", url: `${SITE_URL}/tools/bonus` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

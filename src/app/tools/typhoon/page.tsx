@@ -45,7 +45,7 @@ export default function TyphoonPage() {
         { name: "颱風假薪資計算機", url: `${SITE_URL}/tools/typhoon` },
       ])} />
 
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

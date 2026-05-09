@@ -9,9 +9,10 @@ export interface BreadcrumbItem {
 
 interface Props {
   items: BreadcrumbItem[];
+  jsonLd?: boolean;
 }
 
-export function Breadcrumb({ items }: Props) {
+export function Breadcrumb({ items, jsonLd = true }: Props) {
   const schemaItems = items.map((item, idx) => ({
     "@type": "ListItem",
     position: idx + 1,
@@ -27,7 +28,7 @@ export function Breadcrumb({ items }: Props) {
 
   return (
     <>
-      <JsonLd data={schema} />
+      {jsonLd && <JsonLd data={schema} />}
       <nav aria-label="Breadcrumb" className="text-sm text-slate-500 mb-4">
         <ol className="flex items-center gap-1.5 flex-wrap">
           {items.map((item, idx) => {

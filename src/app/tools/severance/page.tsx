@@ -45,7 +45,7 @@ export default function SeverancePage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "資遣費計算機", url: `${SITE_URL}/tools/severance` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

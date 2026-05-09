@@ -45,7 +45,7 @@ export default function OvertimePage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "加班費計算機", url: `${SITE_URL}/tools/overtime` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

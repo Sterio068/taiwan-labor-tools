@@ -53,7 +53,7 @@ export default function RightsCheckPage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "勞工權益健檢", url: `${SITE_URL}/tools/rights-check` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

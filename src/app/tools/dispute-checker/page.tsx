@@ -53,7 +53,7 @@ export default function DisputeCheckerPage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "勞資爭議檢查器", url: `${SITE_URL}/tools/dispute-checker` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

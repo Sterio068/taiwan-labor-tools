@@ -44,7 +44,7 @@ export default function WorkInjuryPage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "職災補償計算機", url: `${SITE_URL}/tools/work-injury` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

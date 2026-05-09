@@ -52,7 +52,7 @@ export default function SalaryComparePage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "薪資比較器", url: `${SITE_URL}/tools/salary-compare` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

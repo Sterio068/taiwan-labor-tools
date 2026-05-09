@@ -46,7 +46,10 @@ export default async function ArticlePage({ params }: Props) {
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
-  const articleSchema = buildArticleSchema(article);
+  const articleSchema = buildArticleSchema({
+    ...article,
+    category: CATEGORY_LABELS[article.category],
+  });
 
   const bcSchema = breadcrumbSchema([
     { name: "首頁", url: SITE_URL },
@@ -112,7 +115,7 @@ export default async function ArticlePage({ params }: Props) {
       <JsonLd data={bcSchema} />
       <JsonLd data={faqSchema(articleFaqs)} />
       <JsonLd data={articleHowTo} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "權益文章", href: "/articles" },

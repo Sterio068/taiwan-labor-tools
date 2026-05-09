@@ -2,9 +2,9 @@ import type { MDXComponents } from "mdx/types";
 
 const components: MDXComponents = {
   h1: ({ children }) => (
-    <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-8 mb-4 leading-tight">
+    <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mt-10 mb-4 leading-tight">
       {children}
-    </h1>
+    </h2>
   ),
   h2: ({ children }) => (
     <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mt-10 mb-4 leading-tight">

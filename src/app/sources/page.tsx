@@ -33,7 +33,7 @@ export default function SourcesPage() {
           { name: "資料來源與更新紀錄", url: `${SITE_URL}/sources` },
         ])}
       />
-      <Breadcrumb items={[{ label: "首頁", href: "/" }, { label: "資料來源" }]} />
+      <Breadcrumb jsonLd={false} items={[{ label: "首頁", href: "/" }, { label: "資料來源" }]} />
 
       <header className="mb-10">
         <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">

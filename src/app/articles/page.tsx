@@ -1,33 +1,56 @@
-"use client";
-
-import { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ARTICLES, CATEGORY_LABELS, getAllCategories } from "@/lib/articles";
-import type { ArticleCategory } from "@/types";
+
+interface ArticlesPageProps {
+  searchParams?: Promise<{ q?: string }>;
+}
 
 const categories = getAllCategories();
 
-function ArticleList() {
-  const searchParams = useSearchParams();
-  const [active, setActive] = useState<ArticleCategory | "all">("all");
-  const [query, setQuery] = useState(searchParams.get("q") ?? "");
+function normalizeQuery(value: string | undefined) {
+  return (value ?? "").trim();
+}
 
-  const q = query.trim().toLowerCase();
+export default async function ArticlesPage({ searchParams }: ArticlesPageProps) {
+  const params = searchParams ? await searchParams : {};
+  const query = normalizeQuery(params.q);
+  const normalizedQuery = query.toLowerCase();
+  const filtered = ARTICLES.filter((article) => {
+    if (!normalizedQuery) return true;
 
-  const filtered = ARTICLES.filter((a) => {
-    const matchCategory = active === "all" || a.category === active;
-    const matchQuery =
-      !q ||
-      a.title.toLowerCase().includes(q) ||
-      a.description.toLowerCase().includes(q);
-    return matchCategory && matchQuery;
+    return (
+      article.title.toLowerCase().includes(normalizedQuery) ||
+      article.description.toLowerCase().includes(normalizedQuery) ||
+      article.keywords.some((keyword) =>
+        keyword.toLowerCase().includes(normalizedQuery)
+      )
+    );
   });
 
   return (
-    <>
-      {/* 搜尋框 */}
-      <div className="relative mb-6 max-w-md">
+    <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <nav aria-label="Breadcrumb" className="text-sm text-slate-500 mb-4">
+        <ol className="flex items-center gap-1.5 flex-wrap">
+          <li className="flex items-center gap-1.5">
+            <Link href="/" className="hover:text-brand-600 transition-colors">
+              首頁
+            </Link>
+            <span className="text-slate-300">/</span>
+          </li>
+          <li>
+            <span className="text-slate-700">權益文章</span>
+          </li>
+        </ol>
+      </nav>
+
+      <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
+        勞工權益文章
+      </h1>
+      <p className="text-slate-500 mb-6 max-w-2xl">
+        白話解讀勞基法與勞工權益，搭配免費計算工具，幫你搞懂薪資、加班、資遣、假別等常見問題。
+      </p>
+
+      <form action="/articles" className="relative mb-6 max-w-md">
         <svg
           className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
           fill="none"
@@ -44,45 +67,34 @@ function ArticleList() {
         </svg>
         <input
           type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          name="q"
+          defaultValue={query}
           placeholder="搜尋文章…"
           className="w-full pl-9 pr-4 py-2.5 rounded-[10px] border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent"
           aria-label="搜尋文章"
         />
-      </div>
+      </form>
 
-      {/* Category filter tabs */}
       <div className="flex flex-wrap gap-2 mb-8">
-        <button
-          type="button"
-          onClick={() => setActive("all")}
-          className={`inline-flex items-center px-3.5 py-1.5 rounded-[8px] text-sm font-medium transition-all ${
-            active === "all"
-              ? "bg-brand-500 text-white shadow-sm"
-              : "bg-white text-slate-700 border border-slate-200 hover:border-brand-300 hover:text-brand-600"
-          }`}
+        <Link
+          href="/articles"
+          className="inline-flex items-center px-3.5 py-1.5 rounded-[8px] text-sm font-medium bg-brand-500 text-white shadow-sm transition-all"
         >
           全部
-        </button>
-        {categories.map((c) => (
-          <button
-            key={c.category}
-            type="button"
-            onClick={() => setActive(c.category)}
-            className={`inline-flex items-center px-3.5 py-1.5 rounded-[8px] text-sm font-medium transition-all ${
-              active === c.category
-                ? "bg-brand-500 text-white shadow-sm"
-                : "bg-white text-slate-700 border border-slate-200 hover:border-brand-300 hover:text-brand-600"
-            }`}
+          <span className="ml-1 text-xs opacity-80">{ARTICLES.length}</span>
+        </Link>
+        {categories.map((category) => (
+          <Link
+            key={category.category}
+            href={`/articles/category/${category.category}`}
+            className="inline-flex items-center px-3.5 py-1.5 rounded-[8px] text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:border-brand-300 hover:text-brand-600 transition-all"
           >
-            {c.label}
-            <span className="ml-1 text-xs opacity-70">{c.count}</span>
-          </button>
+            {category.label}
+            <span className="ml-1 text-xs opacity-70">{category.count}</span>
+          </Link>
         ))}
       </div>
 
-      {/* Article cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((article) => (
           <Link
@@ -111,55 +123,16 @@ function ArticleList() {
       {filtered.length === 0 && (
         <div className="text-center py-16">
           <p className="text-slate-400 mb-2">
-            {q ? `找不到「${query}」相關文章` : "此分類尚無文章"}
+            找不到「{query}」相關文章
           </p>
-          {q && (
-            <button
-              type="button"
-              onClick={() => setQuery("")}
-              className="text-sm text-brand-600 hover:text-brand-700"
-            >
-              清除搜尋
-            </button>
-          )}
+          <Link
+            href="/articles"
+            className="text-sm text-brand-600 hover:text-brand-700"
+          >
+            清除搜尋
+          </Link>
         </div>
       )}
-    </>
-  );
-}
-
-export default function ArticlesPage() {
-  return (
-    <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-      {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="text-sm text-slate-500 mb-4">
-        <ol className="flex items-center gap-1.5 flex-wrap">
-          <li className="flex items-center gap-1.5">
-            <Link href="/" className="hover:text-brand-600 transition-colors">
-              首頁
-            </Link>
-            <span className="text-slate-300">/</span>
-          </li>
-          <li>
-            <span className="text-slate-700">權益文章</span>
-          </li>
-        </ol>
-      </nav>
-
-      <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
-        勞工權益文章
-      </h1>
-      <p className="text-slate-500 mb-6 max-w-2xl">
-        白話解讀勞基法與勞工權益，搭配免費計算工具，幫你搞懂薪資、加班、資遣、假別等常見問題。
-      </p>
-
-      <Suspense
-        fallback={
-          <div className="text-sm text-slate-400 py-4">載入中…</div>
-        }
-      >
-        <ArticleList />
-      </Suspense>
     </div>
   );
 }

@@ -47,7 +47,7 @@ export default function SalaryPage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "薪資明細計算機", url: `${SITE_URL}/tools/salary` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

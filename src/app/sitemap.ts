@@ -5,22 +5,23 @@ import { GUIDE_HUBS } from "@/data/guide-hubs";
 import { SITE_URL } from "@/lib/seo";
 
 const UPDATED_2026_05_07 = "2026-05-07";
+const UPDATED_2026_05_09 = "2026-05-09";
 const UPDATED_2026_04_30 = "2026-04-30";
 const UPDATED_2026_04_07 = "2026-04-07";
 
 const STATIC_LASTMOD: Record<string, string> = {
-  "/": UPDATED_2026_05_07,
-  "/tools": UPDATED_2026_05_07,
-  "/guides": UPDATED_2026_05_07,
+  "/": UPDATED_2026_05_09,
+  "/tools": UPDATED_2026_05_09,
+  "/guides": UPDATED_2026_05_09,
   "/compare": UPDATED_2026_04_07,
-  "/articles": UPDATED_2026_05_07,
-  "/faq": UPDATED_2026_04_07,
-  "/glossary": UPDATED_2026_05_07,
-  "/minimum-wage": UPDATED_2026_04_07,
+  "/articles": UPDATED_2026_05_09,
+  "/faq": UPDATED_2026_05_09,
+  "/glossary": UPDATED_2026_05_09,
+  "/minimum-wage": UPDATED_2026_05_09,
   "/about": UPDATED_2026_05_07,
   "/privacy": UPDATED_2026_05_07,
   "/terms": UPDATED_2026_05_07,
-  "/sources": UPDATED_2026_05_07,
+  "/sources": UPDATED_2026_05_09,
   "/contact": UPDATED_2026_05_07,
   "/newsletter": UPDATED_2026_05_07,
   "/checklists": UPDATED_2026_05_07,
@@ -65,7 +66,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const guidePages: MetadataRoute.Sitemap = GUIDE_HUBS.map((hub) => ({
     url: `${SITE_URL}/guides/${hub.slug}`,
-    lastModified: UPDATED_2026_05_07,
+    lastModified: UPDATED_2026_05_09,
     changeFrequency: "weekly" as const,
     priority: 0.95,
   }));
@@ -88,14 +89,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const toolPages: MetadataRoute.Sitemap = TOOLS.map((tool) => ({
     url: `${SITE_URL}${tool.href}`,
-    lastModified: UPDATED_2026_05_07,
+    lastModified: UPDATED_2026_05_09,
     changeFrequency: "monthly" as const,
     priority: 0.9,
   }));
 
   const articlePages: MetadataRoute.Sitemap = ARTICLES.map((article) => ({
     url: `${SITE_URL}/articles/${article.slug}`,
-    lastModified: article.updatedAt || article.publishedAt,
+    lastModified: UPDATED_2026_05_09,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));

@@ -44,7 +44,7 @@ export default function InsuranceBracketPage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "投保薪資級距查詢", url: `${SITE_URL}/tools/insurance-bracket` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

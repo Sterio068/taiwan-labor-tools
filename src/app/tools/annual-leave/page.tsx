@@ -44,7 +44,7 @@ export default function AnnualLeavePage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "特休天數計算", url: `${SITE_URL}/tools/annual-leave` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

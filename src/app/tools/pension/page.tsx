@@ -45,7 +45,7 @@ export default function PensionPage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "勞退退休金試算", url: `${SITE_URL}/tools/pension` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

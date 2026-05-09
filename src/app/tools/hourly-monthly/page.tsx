@@ -46,7 +46,7 @@ export default function HourlyMonthlyPage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "時薪月薪換算器", url: `${SITE_URL}/tools/hourly-monthly` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

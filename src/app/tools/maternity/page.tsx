@@ -44,7 +44,7 @@ export default function MaternityPage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "產假育嬰假計算機", url: `${SITE_URL}/tools/maternity` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },

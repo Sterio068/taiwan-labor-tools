@@ -44,7 +44,7 @@ export default function NoticePeriodPage() {
         { name: "計算工具", url: `${SITE_URL}/tools` },
         { name: "離職預告期計算機", url: `${SITE_URL}/tools/notice-period` },
       ])} />
-      <Breadcrumb
+      <Breadcrumb jsonLd={false}
         items={[
           { label: "首頁", href: "/" },
           { label: "計算工具", href: "/tools" },
