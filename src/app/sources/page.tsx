@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { DATA_UPDATE_LOG, OFFICIAL_SOURCES } from "@/data/official-sources";
 import { breadcrumbSchema, buildPageMetadata, SITE_URL } from "@/lib/seo";
 
@@ -26,26 +27,49 @@ const topicLabels: Record<string, string> = {
 
 export default function SourcesPage() {
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className="bg-slate-50">
       <JsonLd
         data={breadcrumbSchema([
           { name: "首頁", url: SITE_URL },
           { name: "資料來源與更新紀錄", url: `${SITE_URL}/sources` },
         ])}
       />
-      <Breadcrumb jsonLd={false} items={[{ label: "首頁", href: "/" }, { label: "資料來源" }]} />
+      <div className="container-page py-8 md:py-12">
+        <Breadcrumb jsonLd={false} items={[{ label: "首頁", href: "/" }, { label: "資料來源" }]} />
 
-      <header className="mb-10">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
-          資料來源與更新紀錄
-        </h1>
-        <p className="text-lg text-slate-600 leading-relaxed">
-          本站計算工具與文章以主管機關公告、法規資料庫與公開資料為主要依據。法規與費率可能調整，實際適用仍以官方最新公告與個案事實為準。
-        </p>
-      </header>
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+          <header>
+            <p className="mb-3 inline-flex rounded-full border border-brand-200 bg-surface px-3 py-1 text-xs font-bold text-brand-700">
+              Trust Center
+            </p>
+            <h1 className="text-3xl font-extrabold leading-tight text-slate-950 md:text-5xl">
+              資料來源與更新紀錄
+            </h1>
+            <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700 md:text-lg">
+              本站計算工具與文章以主管機關公告、法規資料庫與公開資料為主要依據。法規與費率可能調整，實際適用仍以官方最新公告與個案事實為準。
+            </p>
+          </header>
+          <aside className="rounded-[22px] border border-slate-200 bg-surface p-5 shadow-[0_12px_32px_rgba(15,23,42,0.07)]">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
+              Review Cadence
+            </p>
+            <h2 className="mt-2 text-xl font-extrabold text-slate-950">
+              核心資料優先查核
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              最低工資、勞保、健保、勞退、加班倍率與資遣規則會優先同步到工具頁、指南與 sitemap。
+            </p>
+          </aside>
+        </div>
+      </div>
 
+      <div className="container-page pb-16">
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 mb-5">官方來源</h2>
+        <SectionHeader
+          eyebrow="Official Sources"
+          title="官方來源"
+          description="每一個核心費率、公式與法規結論都要能回到官方資料或法規頁。"
+        />
         <div className="grid gap-4 md:grid-cols-2">
           {OFFICIAL_SOURCES.map((source) => (
             <a
@@ -53,7 +77,7 @@ export default function SourcesPage() {
               href={source.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-[16px] border border-slate-200 bg-white p-5 hover:border-brand-300 hover:shadow-md transition-all"
+              className="block rounded-[18px] border border-slate-200 bg-surface p-5 shadow-[0_1px_3px_rgba(15,23,42,0.05)] transition-[background-color,border-color,box-shadow] hover:border-brand-300 hover:shadow-[0_10px_25px_rgba(15,23,42,0.09)]"
             >
               <p className="text-sm font-semibold text-brand-700 mb-1">{source.agency}</p>
               <h3 className="text-lg font-bold text-slate-900 mb-2">{source.title}</h3>
@@ -72,8 +96,12 @@ export default function SourcesPage() {
       </section>
 
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 mb-5">更新紀錄</h2>
-        <div className="overflow-hidden rounded-[16px] border border-slate-200 bg-white">
+        <SectionHeader
+          eyebrow="Update Log"
+          title="更新紀錄"
+          description="用時間線記錄資料變更，讓使用者知道工具結果背後的依據何時查核。"
+        />
+        <div className="overflow-hidden rounded-[20px] border border-slate-200 bg-surface shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
           {DATA_UPDATE_LOG.map((record) => (
             <div key={`${record.date}-${record.title}`} className="border-b border-slate-100 p-5 last:border-b-0">
               <p className="text-sm font-semibold text-brand-700">{record.date}</p>
@@ -91,18 +119,19 @@ export default function SourcesPage() {
         </div>
       </section>
 
-      <section className="rounded-[16px] border border-amber-200 bg-amber-50 p-5 md:p-6">
+      <section className="rounded-[20px] border border-warning-100 bg-warning-50 p-5 md:p-6">
         <h2 className="text-xl font-bold text-amber-900 mb-3">勘誤與回報</h2>
         <p className="text-amber-800 leading-relaxed mb-4">
           若你發現工具計算、文章說明或來源連結有誤，請提供頁面網址、錯誤描述與你看到的官方資料來源，我們會優先查核核心工具頁。
         </p>
         <Link
           href="/contact"
-          className="inline-flex items-center rounded-[10px] bg-amber-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-amber-800 transition-colors"
+          className="inline-flex min-h-11 items-center rounded-[12px] bg-amber-900 px-5 text-sm font-semibold text-surface transition-colors hover:bg-amber-800"
         >
           回報資料問題
         </Link>
       </section>
+      </div>
     </div>
   );
 }

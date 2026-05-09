@@ -110,6 +110,7 @@ export default async function ArticlePage({ params }: Props) {
   }
 
   return (
+    <div className="bg-slate-50">
     <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <JsonLd data={articleSchema} />
       <JsonLd data={bcSchema} />
@@ -156,14 +157,14 @@ export default async function ArticlePage({ params }: Props) {
               data-track="article_answer_tool_clicked"
               data-track-label={tool.label}
               data-track-target={tool.href}
-              className="rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-brand-700 border border-brand-100 hover:border-brand-300 transition-colors"
+              className="rounded-full border border-brand-100 bg-surface px-3 py-1.5 text-sm font-semibold text-brand-700 transition-colors hover:border-brand-300"
             >
               {tool.label}
             </Link>
           ))}
           <Link
             href="/sources"
-            className="rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 border border-slate-200 hover:border-brand-300 transition-colors"
+            className="rounded-full border border-slate-200 bg-surface px-3 py-1.5 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-300"
           >
             查官方來源
           </Link>
@@ -188,7 +189,7 @@ export default async function ArticlePage({ params }: Props) {
       )}
 
       {sources.length > 0 && (
-        <section className="mt-10 rounded-[16px] border border-slate-200 bg-white p-5">
+        <section className="mt-10 rounded-[16px] border border-slate-200 bg-surface p-5">
           <h2 className="text-lg font-bold text-slate-900 mb-2">
             本文參考資料
           </h2>
@@ -217,7 +218,7 @@ export default async function ArticlePage({ params }: Props) {
         </section>
       )}
 
-      <section className="mt-10 rounded-[16px] border border-slate-200 bg-white p-5">
+      <section className="mt-10 rounded-[16px] border border-slate-200 bg-surface p-5">
         <h2 className="text-lg font-bold text-slate-900 mb-4">下一步檢查流程</h2>
         <ol className="grid gap-3">
           {articleHowTo.step.map((step) => (
@@ -234,7 +235,7 @@ export default async function ArticlePage({ params }: Props) {
         </ol>
       </section>
 
-      <section className="mt-10 rounded-[16px] border border-slate-200 bg-white p-5">
+      <section className="mt-10 rounded-[16px] border border-slate-200 bg-surface p-5">
         <h2 className="text-lg font-bold text-slate-900 mb-4">常見問題</h2>
         <div className="space-y-3">
           {articleFaqs.map((item) => (
@@ -251,7 +252,7 @@ export default async function ArticlePage({ params }: Props) {
       {/* Tool CTA */}
       {tools.length > 0 && (
         <div className="mt-10 p-5 bg-brand-50 rounded-[16px] border border-brand-100">
-          <p className="text-sm font-bold text-brand-700 mb-3">🧮 立即使用計算工具</p>
+          <p className="text-sm font-bold text-brand-700 mb-3">立即使用計算工具</p>
           <div className="flex flex-col sm:flex-row gap-3">
             {tools.map((tool) => (
               <Link
@@ -260,7 +261,7 @@ export default async function ArticlePage({ params }: Props) {
                 data-track="article_tool_cta_clicked"
                 data-track-label={tool.label}
                 data-track-target={tool.href}
-                className="flex-1 block bg-white rounded-[12px] p-4 border border-brand-200 hover:border-brand-400 hover:shadow-sm transition-all group"
+                className="group block flex-1 rounded-[12px] border border-brand-200 bg-surface p-4 transition-[background-color,border-color,box-shadow] hover:border-brand-400 hover:shadow-sm"
               >
                 <p className="font-bold text-slate-900 text-sm group-hover:text-brand-600 transition-colors">
                   {tool.label} →
@@ -287,7 +288,7 @@ export default async function ArticlePage({ params }: Props) {
               <Link
                 key={rel.slug}
                 href={`/articles/${rel.slug}`}
-                className="group flex items-start gap-3 p-4 bg-slate-50 rounded-[12px] hover:bg-brand-50 border border-transparent hover:border-brand-200 transition-all"
+                className="group flex items-start gap-3 rounded-[12px] border border-transparent bg-slate-50 p-4 transition-colors hover:border-brand-200 hover:bg-brand-50"
               >
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-slate-900 text-sm group-hover:text-brand-600 transition-colors leading-snug">
@@ -303,6 +304,7 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }

@@ -30,11 +30,16 @@ export function Breadcrumb({ items, jsonLd = true }: Props) {
     <>
       {jsonLd && <JsonLd data={schema} />}
       <nav aria-label="Breadcrumb" className="text-sm text-slate-500 mb-4">
-        <ol className="flex items-center gap-1.5 flex-wrap">
+        <ol className="flex min-w-0 flex-wrap items-center gap-1.5">
           {items.map((item, idx) => {
             const isLast = idx === items.length - 1;
             return (
-              <li key={idx} className="flex items-center gap-1.5">
+              <li
+                key={idx}
+                className={`flex min-w-0 items-center gap-1.5 ${
+                  isLast ? "max-w-full flex-1" : "shrink-0"
+                }`}
+              >
                 {item.href && !isLast ? (
                   <Link
                     href={item.href}
@@ -43,7 +48,9 @@ export function Breadcrumb({ items, jsonLd = true }: Props) {
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="text-slate-700">{item.label}</span>
+                  <span className="block max-w-[16rem] truncate text-slate-700 sm:max-w-[38rem]">
+                    {item.label}
+                  </span>
                 )}
                 {!isLast && <span className="text-slate-300">/</span>}
               </li>
