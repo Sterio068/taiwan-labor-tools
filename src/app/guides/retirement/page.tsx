@@ -110,13 +110,13 @@ export default function RetirementGuidePage() {
 
       {/* 工具清單 */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6">🏦 退休金試算工具</h2>
+        <h2 className="text-2xl font-bold text-slate-900 mb-6">退休金試算工具</h2>
         <div className="grid md:grid-cols-2 gap-4">
           {RETIREMENT_TOOLS.map((tool) => (
             <Link
               key={tool.href}
               href={tool.href}
-              className="block p-5 bg-white rounded-[14px] border border-slate-200 hover:border-brand-300 hover:shadow-md transition-all"
+              className="group block rounded-[14px] border border-slate-200 bg-surface p-5 shadow-[var(--shadow-card)] transition-colors hover:border-brand-300 hover:bg-brand-50"
             >
               <h3 className="font-bold text-slate-900 mb-1 group-hover:text-brand-600">
                 {tool.name}
@@ -131,8 +131,8 @@ export default function RetirementGuidePage() {
 
       {/* 權益文章 */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6">📖 深度文章</h2>
-        <div className="bg-white rounded-[14px] border border-slate-200 divide-y divide-slate-100">
+        <h2 className="text-2xl font-bold text-slate-900 mb-6">深度文章</h2>
+        <div className="divide-y divide-slate-100 rounded-[14px] border border-slate-200 bg-surface shadow-[var(--shadow-card)]">
           {RETIREMENT_ARTICLES.map((a) => (
             <Link
               key={a.href}
@@ -211,12 +211,12 @@ export default function RetirementGuidePage() {
 
       <FaqSection items={FAQS} />
 
-      <section className="mt-12 p-6 bg-brand-50 rounded-[16px] text-center">
+      <section className="mt-12 rounded-[16px] border border-brand-100 bg-brand-50 p-6 text-center">
         <h2 className="text-xl font-bold text-slate-900 mb-3">立即試算你的退休金</h2>
         <p className="text-slate-600 mb-5">輸入月薪與年資，看退休時帳戶能累積多少</p>
         <Link
           href="/tools/pension"
-          className="inline-flex items-center px-6 py-3 bg-brand-500 text-white font-bold rounded-[12px] hover:bg-brand-600 transition-colors"
+          className="inline-flex min-h-11 items-center rounded-[12px] bg-brand-500 px-6 text-sm font-bold text-surface transition-colors hover:bg-brand-600 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
         >
           開始計算 →
         </Link>

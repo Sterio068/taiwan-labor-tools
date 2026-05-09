@@ -14,7 +14,7 @@ export function FaqSection({ items }: Props) {
         {items.map((item, i) => (
           <details
             key={i}
-            className="group bg-white rounded-[12px] border border-slate-200 overflow-hidden"
+            className="group overflow-hidden rounded-[12px] border border-slate-200 bg-surface"
           >
             <summary className="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50 transition-colors">
               <h3 className="font-semibold text-slate-900 pr-4">

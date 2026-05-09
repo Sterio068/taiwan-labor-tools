@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
 import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { AdBanner } from "@/components/ads/AdBanner";
-import { FaqSection } from "@/components/seo/FaqSection";
-import { RelatedLinks } from "@/components/seo/RelatedLinks";
-import { ShareButtons } from "@/components/seo/ShareButtons";
 import { AnnualLeaveCalculator } from "@/components/tools/AnnualLeaveCalculator";
+import { ToolPageShell } from "@/components/tools/ToolPageShell";
 import { TOOL_FAQS } from "@/data/tool-faqs";
 import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "特休天數計算 — 輸入到職日自動算",
+  title: "特休天數計算：輸入到職日自動算",
   description:
     "輸入到職日期，立即計算今年度特休天數。完整年資對照表。依據勞基法第 38 條。",
   keywords: ["特休幾天", "年假計算", "特休天數", "年資特休對照表"],
@@ -20,7 +16,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function AnnualLeavePage() {
   return (
-    <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <>
       <JsonLd
         data={webApplicationSchema({
           name: "特休天數計算",
@@ -42,52 +38,62 @@ export default function AnnualLeavePage() {
       <JsonLd data={breadcrumbSchema([
         { name: "首頁", url: SITE_URL },
         { name: "計算工具", url: `${SITE_URL}/tools` },
-        { name: "特休天數計算", url: `${SITE_URL}/tools/annual-leave` },
-      ])} />
-      <Breadcrumb jsonLd={false}
-        items={[
-          { label: "首頁", href: "/" },
-          { label: "計算工具", href: "/tools" },
-          { label: "特休天數計算" },
+          { name: "特休天數計算", url: `${SITE_URL}/tools/annual-leave` },
+        ])} />
+      <ToolPageShell
+        title="特休天數計算"
+        eyebrow="Annual leave calculator"
+        description="輸入到職日期，快速確認今年特休天數、未休折算與週年制、曆年制差異。"
+        breadcrumbLabel="特休天數計算"
+        facts={[
+          { label: "滿 6 個月", value: "3 天" },
+          { label: "滿 1 年", value: "7 天" },
+          { label: "最高", value: "30 天" },
         ]}
-      />
-      <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
-        特休天數計算
-      </h1>
-      <p className="text-slate-500 mb-8">
-        輸入到職日期，依勞基法第 38 條自動計算今年度特休天數，附完整年資對照表。
-      </p>
-
-      <AnnualLeaveCalculator />
-
-      <AdBanner slot="tool-result" />
-
-      <article className="mt-12 prose prose-slate max-w-none">
-        <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">特休假完全攻略</h2>
-        <p className="text-slate-700 leading-relaxed my-4">
-          勞基法第 38 條規定，勞工在同一雇主工作滿 6 個月後，即享有特休假。
-          年資越長，特休天數越多，最多 30 天。
-        </p>
-        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">特休未休完怎麼辦？</h3>
-        <p className="text-slate-700 leading-relaxed my-4">
-          年度終結或契約終止時，特休假如有未休完的天數，雇主應按未休天數折算工資發給勞工。
-          不能以「規定一次請完」或「逾期作廢」為由拒絕折算。
-        </p>
-        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">週年制 vs 曆年制</h3>
-        <p className="text-slate-700 leading-relaxed my-4">
-          特休可採「週年制」（以到職日起算）或「曆年制」（以每年 1/1 起算）。
-          無論採何種制度，勞工的特休總天數不得少於法定標準。
-        </p>
-      </article>
-
-      <AdBanner slot="tool-bottom" />
-
-      <div className="mt-8"><ShareButtons title="特休天數計算" path="/tools/annual-leave" /></div>
-      <FaqSection items={TOOL_FAQS["annual-leave"]} />
-      <RelatedLinks
-        articles={TOOL_RELATED_ARTICLES["annual-leave"]}
-        tools={TOOL_RELATED_TOOLS["annual-leave"]}
-      />
-    </div>
+        nextSteps={[
+          {
+            label: "看特休完整攻略",
+            href: "/articles/annual-leave-2026",
+            description: "對照年資、未休折算與雇主常見做法。",
+          },
+          {
+            label: "閱讀請假指南",
+            href: "/guides/leave",
+            description: "一次整理特休、病假、事假與產假。",
+          },
+          {
+            label: "查加班與補休",
+            href: "/tools/overtime",
+            description: "把補休、加班費與特休分開核對。",
+          },
+        ]}
+        faqItems={TOOL_FAQS["annual-leave"]}
+        relatedArticles={TOOL_RELATED_ARTICLES["annual-leave"]}
+        relatedTools={TOOL_RELATED_TOOLS["annual-leave"]}
+        shareTitle="特休天數計算"
+        sharePath="/tools/annual-leave"
+        article={
+          <>
+            <h2>特休假完全攻略</h2>
+            <p>
+              勞基法第 38 條規定，勞工在同一雇主工作滿 6 個月後，即享有特休假。
+              年資越長，特休天數越多，最多 30 天。
+            </p>
+            <h3>特休未休完怎麼辦？</h3>
+            <p>
+              年度終結或契約終止時，特休假如有未休完的天數，雇主應按未休天數折算工資發給勞工。
+              不能以「規定一次請完」或「逾期作廢」為由拒絕折算。
+            </p>
+            <h3>週年制 vs 曆年制</h3>
+            <p>
+              特休可採「週年制」（以到職日起算）或「曆年制」（以每年 1/1 起算）。
+              無論採何種制度，勞工的特休總天數不得少於法定標準。
+            </p>
+          </>
+        }
+      >
+        <AnnualLeaveCalculator />
+      </ToolPageShell>
+    </>
   );
 }
