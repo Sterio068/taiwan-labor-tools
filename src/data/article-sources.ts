@@ -27,7 +27,7 @@ const insuranceSources: ArticleSource[] = [
   },
   {
     label: "勞工保險投保薪資分級表",
-    url: "https://www.bli.gov.tw/0005475.html",
+    url: "https://www.bli.gov.tw/0100493.html",
     description: "勞保投保薪資級距與保險費計算基礎。",
   },
   {

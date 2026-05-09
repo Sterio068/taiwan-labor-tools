@@ -198,6 +198,10 @@ export const ARTICLE_TOOLS: Record<string, ArticleTool[]> = {
     { label: "薪資明細計算機", href: "/tools/salary", desc: "精確計算月薪 30000 實領" },
     { label: "投保級距查詢", href: "/tools/insurance-bracket", desc: "查詢對應投保薪資級距" },
   ],
+  "salary-35000-take-home": [
+    { label: "薪資明細計算機", href: "/tools/salary?m=35000", desc: "精確計算月薪 35000 實領" },
+    { label: "投保級距查詢", href: "/tools/insurance-bracket", desc: "查詢 36300 附近級距" },
+  ],
   "forced-overtime-illegal": [
     { label: "加班費計算機", href: "/tools/overtime", desc: "計算應得加班費金額" },
     { label: "勞資爭議檢查器", href: "/tools/dispute-checker", desc: "強迫加班申訴流程" },
@@ -233,6 +237,26 @@ export const ARTICLE_TOOLS: Record<string, ArticleTool[]> = {
   "salary-negotiation-rights": [
     { label: "薪資比較器", href: "/tools/salary-compare", desc: "比較不同薪資方案實領差異" },
     { label: "薪資明細計算機", href: "/tools/salary", desc: "試算談判後的實領金額" },
+  ],
+  "labor-insurance-bracket-2026": [
+    { label: "投保級距查詢", href: "/tools/insurance-bracket", desc: "查詢勞保、健保、勞退級距" },
+    { label: "勞健保保費計算", href: "/tools/insurance-premium", desc: "試算自付額與雇主負擔" },
+  ],
+  "health-insurance-bracket-2026": [
+    { label: "勞健保保費計算", href: "/tools/insurance-premium", desc: "輸入眷屬數試算健保扣款" },
+    { label: "投保級距查詢", href: "/tools/insurance-bracket", desc: "核對健保投保金額級距" },
+  ],
+  "labor-pension-6-percent": [
+    { label: "薪資明細計算機", href: "/tools/salary", desc: "比較自提 0% 與 6% 實領" },
+    { label: "勞退退休金試算", href: "/tools/pension", desc: "估算長期退休金累積" },
+  ],
+  "unused-annual-leave-wage": [
+    { label: "特休天數計算", href: "/tools/annual-leave", desc: "先確認剩餘特休天數" },
+    { label: "離職預告期計算", href: "/tools/notice-period", desc: "離職前同步確認預告期" },
+  ],
+  "involuntary-separation-certificate": [
+    { label: "資遣費計算機", href: "/tools/severance", desc: "先估資遣費與年資" },
+    { label: "勞資爭議檢查器", href: "/tools/dispute-checker", desc: "整理公司拒開文件的爭議" },
   ],
 };
 

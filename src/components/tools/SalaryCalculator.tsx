@@ -6,9 +6,17 @@ import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { ResultActions } from "@/components/tools/ResultActions";
 import { calculateSalaryBreakdown, type SalaryBreakdownResult } from "@/lib/calculations/salary-breakdown";
 import { trackEvent } from "@/lib/analytics";
 import { formatMoney } from "@/lib/format";
+
+const SALARY_PRESETS = [
+  { id: "minimum_wage", label: "基本工資", salary: "29500", dependents: "0", pensionRate: "0" },
+  { id: "monthly_35000", label: "月薪 35000", salary: "35000", dependents: "0", pensionRate: "0" },
+  { id: "monthly_50000", label: "月薪 50000", salary: "50000", dependents: "0", pensionRate: "0" },
+  { id: "voluntary_pension_6", label: "自提 6%", salary: "45000", dependents: "0", pensionRate: "6" },
+];
 
 function parseInitialParams(params: URLSearchParams): {
   salary: string;
@@ -70,6 +78,17 @@ function SalaryCalculatorInner() {
     });
   };
 
+  const applyPreset = (preset: typeof SALARY_PRESETS[number]) => {
+    setSalary(preset.salary);
+    setDependents(preset.dependents);
+    setPensionRate(preset.pensionRate);
+    setResult(null);
+    trackEvent("tool_preset_applied", {
+      tool_id: "salary",
+      preset_id: preset.id,
+    });
+  };
+
   return (
     <div className="space-y-6">
       <Card>
@@ -107,6 +126,19 @@ function SalaryCalculatorInner() {
             value={pensionRate}
             onChange={(e) => setPensionRate(e.target.value)}
           />
+        </div>
+        <div className="mt-5 flex flex-wrap items-center gap-2">
+          <span className="mr-1 text-sm font-bold text-slate-600">常用情境</span>
+          {SALARY_PRESETS.map((preset) => (
+            <button
+              key={preset.id}
+              type="button"
+              onClick={() => applyPreset(preset)}
+              className="min-h-9 rounded-full border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
+            >
+              {preset.label}
+            </button>
+          ))}
         </div>
         <div className="mt-6">
           <Button onClick={handleCalculate} size="lg" className="w-full md:w-auto">
@@ -198,31 +230,18 @@ function SalaryCalculatorInner() {
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap justify-end gap-3">
-            <button
-              type="button"
-              onClick={() => {
-                const text = `薪資明細\n月薪: $${formatMoney(result.grossSalary)}\n勞保: -$${formatMoney(result.laborInsurance)}\n健保: -$${formatMoney(result.nhi)}\n實領: $${formatMoney(result.netSalary)}\n雇主成本: $${formatMoney(result.employerCost)}`;
-                navigator.clipboard.writeText(text);
-                trackEvent("tool_result_copied", { tool_id: "salary" });
-              }}
-              className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-              複製結果
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                window.print();
-                trackEvent("tool_result_printed", { tool_id: "salary" });
-              }}
-              className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
-              列印摘要
-            </button>
-          </div>
+          <ResultActions
+            toolId="salary"
+            shareTitle="薪資明細試算摘要"
+            summary={[
+              "薪資明細試算",
+              `月薪: $${formatMoney(result.grossSalary)}`,
+              `勞保: -$${formatMoney(result.laborInsurance)}`,
+              `健保: -$${formatMoney(result.nhi)}`,
+              `實領: $${formatMoney(result.netSalary)}`,
+              `雇主成本: $${formatMoney(result.employerCost)}`,
+            ].join("\n")}
+          />
         </Card>
       )}
     </div>

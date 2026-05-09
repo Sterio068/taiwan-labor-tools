@@ -2,13 +2,14 @@ import Link from "next/link";
 import { SearchDialog } from "@/components/search/SearchDialog";
 
 const NAV_LINKS = [
-  { href: "/tools", label: "計算工具" },
-  { href: "/guides", label: "完整指南" },
-  { href: "/compare", label: "熱門比較" },
-  { href: "/articles", label: "權益文章" },
-  { href: "/checklists", label: "檢查表" },
-  { href: "/sources", label: "資料來源" },
-  { href: "/about", label: "關於" },
+  { href: "/tools", label: "工具" },
+  { href: "/questions", label: "熱門問題" },
+  { href: "/scenarios", label: "情境" },
+  { href: "/guides", label: "指南" },
+  { href: "/compare", label: "比較" },
+  { href: "/articles", label: "文章" },
+  { href: "/checklists", label: "清單" },
+  { href: "/sources", label: "來源" },
 ];
 
 export function Header() {

@@ -48,6 +48,8 @@ export function Footer() {
           <div>
             <h3 className="mb-3 font-bold text-slate-950">成長入口</h3>
             <ul className="space-y-2 text-sm text-slate-600">
+              <li><Link href="/questions" className="hover:text-brand-700">熱門問題</Link></li>
+              <li><Link href="/scenarios" className="hover:text-brand-700">情境入口</Link></li>
               <li><Link href="/articles" className="hover:text-brand-700">權益文章</Link></li>
               <li><Link href="/guides" className="hover:text-brand-700">六大指南</Link></li>
               <li><Link href="/checklists" className="hover:text-brand-700">權益檢查表</Link></li>

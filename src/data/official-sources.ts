@@ -34,7 +34,7 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     description:
       "2026 年月最低工資 29,500 元、時最低工資 196 元，以及最低工資適用說明。",
     topics: ["salary", "minimum-wage", "hourly"],
-    lastChecked: "2026-05-07",
+    lastChecked: "2026-05-10",
   },
   {
     id: "labor-insurance-rate",
@@ -44,17 +44,17 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     description:
       "勞保普通事故保險費率、勞工/雇主/政府負擔比例與保險費計算依據；薪資工具另合併就業保險 1% 估算。",
     topics: ["salary", "insurance", "labor-insurance"],
-    lastChecked: "2026-05-07",
+    lastChecked: "2026-05-10",
   },
   {
     id: "labor-insurance-brackets",
     title: "勞工保險投保薪資分級表",
     agency: "勞動部勞工保險局",
-    url: "https://www.bli.gov.tw/0005475.html",
+    url: "https://www.bli.gov.tw/0100493.html",
     description:
       "115 年 1 月 1 日起適用之勞工保險投保薪資級距，用於勞保費與給付基準。",
     topics: ["salary", "insurance", "bracket"],
-    lastChecked: "2026-05-07",
+    lastChecked: "2026-05-10",
   },
   {
     id: "employment-insurance",
@@ -74,7 +74,17 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     description:
       "健保投保金額、5.17% 費率、負擔比率、眷屬人數與自付保費公式。",
     topics: ["salary", "insurance", "nhi"],
-    lastChecked: "2026-05-07",
+    lastChecked: "2026-05-10",
+  },
+  {
+    id: "nhi-brackets-2026",
+    title: "健保投保金額分級表",
+    agency: "衛生福利部中央健康保險署",
+    url: "https://www.nhi.gov.tw/ch/cp-19421-f9533-2569-1.html",
+    description:
+      "115 年 1 月 1 日生效之健保投保金額級距，用於一般保費與薪資單扣款核對。",
+    topics: ["salary", "insurance", "nhi", "bracket"],
+    lastChecked: "2026-05-10",
   },
   {
     id: "labor-pension-intro",
@@ -84,7 +94,17 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     description:
       "勞退新制、雇主提繳不低於每月工資 6%、個人專戶與可攜制度說明。",
     topics: ["pension", "salary", "retirement"],
-    lastChecked: "2026-05-07",
+    lastChecked: "2026-05-10",
+  },
+  {
+    id: "labor-pension-brackets-2026",
+    title: "勞工退休金月提繳工資分級表",
+    agency: "勞動部勞工保險局",
+    url: "https://www.bli.gov.tw/0013083.html",
+    description:
+      "115 年 1 月 1 日生效之勞退月提繳工資分級表，用於雇主提繳 6% 與自願提繳試算。",
+    topics: ["pension", "salary", "bracket"],
+    lastChecked: "2026-05-10",
   },
   {
     id: "voluntary-pension",
@@ -109,6 +129,13 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
 ];
 
 export const DATA_UPDATE_LOG: UpdateRecord[] = [
+  {
+    date: "2026-05-10",
+    title: "新增熱門問題與情境入口資料核對",
+    summary:
+      "核對 115 年最低工資、勞保投保薪資分級表、健保投保金額分級表與勞退月提繳工資分級表，補上熱門問題與情境入口使用的官方來源。",
+    affectedPages: ["/questions", "/scenarios", "/sources", "/articles/*", "/tools/*"],
+  },
   {
     date: "2026-05-07",
     title: "建立官方來源與更新紀錄中心",

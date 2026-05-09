@@ -50,10 +50,18 @@ const corePages = [
   "/tools/salary",
   "/tools/overtime",
   "/tools/severance",
+  "/questions",
+  "/scenarios",
   "/guides/salary",
   "/guides/overtime",
   "/guides/severance",
   "/growth-dashboard",
+  "/articles/salary-35000-take-home",
+  "/articles/labor-insurance-bracket-2026",
+  "/articles/health-insurance-bracket-2026",
+  "/articles/labor-pension-6-percent",
+  "/articles/unused-annual-leave-wage",
+  "/articles/involuntary-separation-certificate",
   "/articles/salary-40000-take-home",
   "/articles/salary-50000-take-home",
   "/articles/salary-60000-take-home",
@@ -90,6 +98,14 @@ assert.ok(
   getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/articles/salary-50000-take-home`).startsWith("2026-05-09"),
   "sitemap should expose new article lastmod"
 );
+assert.ok(
+  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/articles/salary-35000-take-home`).startsWith("2026-05-10"),
+  "sitemap should expose latest long-tail article lastmod"
+);
+assert.ok(
+  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/questions`).startsWith("2026-05-10"),
+  "sitemap should expose questions hub lastmod"
+);
 
 const salaryTool = await fetchText(baseUrl, "/tools/salary");
 if (shouldCheckMarketingScripts) {
@@ -103,5 +119,13 @@ assertIncludes(salaryTool, `${expectedSiteUrl}/tools/salary`, "canonical");
 const highIntentArticle = await fetchText(baseUrl, "/articles/salary-60000-take-home");
 assertIncludes(highIntentArticle, "月薪 60000 實領多少", "high intent article title");
 assertIncludes(highIntentArticle, "application/ld+json", "article schema JSON-LD");
+
+const questionsHub = await fetchText(baseUrl, "/questions");
+assertIncludes(questionsHub, "勞工權益熱門問題", "questions hub title");
+assertIncludes(questionsHub, "application/ld+json", "questions schema JSON-LD");
+
+const scenariosHub = await fetchText(baseUrl, "/scenarios");
+assertIncludes(scenariosHub, "勞工權益情境入口", "scenarios hub title");
+assertIncludes(scenariosHub, "application/ld+json", "scenarios schema JSON-LD");
 
 console.log(`Smoke check passed for ${baseUrl}`);

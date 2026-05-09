@@ -6,12 +6,27 @@ import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { ResultActions } from "@/components/tools/ResultActions";
 import { calculateOvertime, type OvertimeResult } from "@/lib/calculations/overtime";
 import { trackEvent } from "@/lib/analytics";
 import { formatMoney, formatMoneyDecimal } from "@/lib/format";
 
 const VALID_OT_TYPES = ["weekday", "rest-day", "holiday", "national-holiday"] as const;
 type OtType = typeof VALID_OT_TYPES[number];
+
+const OVERTIME_TYPE_LABEL: Record<OtType, string> = {
+  weekday: "平日加班",
+  "rest-day": "休息日加班",
+  holiday: "國定假日加班",
+  "national-holiday": "例假日加班",
+};
+
+const OVERTIME_PRESETS = [
+  { id: "weekday_1h", label: "平日 1 小時", salary: "45000", hours: "1", type: "weekday" as OtType },
+  { id: "weekday_3h", label: "平日 3 小時", salary: "45000", hours: "3", type: "weekday" as OtType },
+  { id: "holiday_8h", label: "國定假日 8 小時", salary: "45000", hours: "8", type: "holiday" as OtType },
+  { id: "rest_day_4h", label: "休息日 4 小時", salary: "45000", hours: "4", type: "rest-day" as OtType },
+];
 
 function parseInitialParams(params: URLSearchParams): {
   salary: string;
@@ -67,6 +82,17 @@ function OvertimeCalculatorInner() {
     });
   };
 
+  const applyPreset = (preset: typeof OVERTIME_PRESETS[number]) => {
+    setSalary(salary || preset.salary);
+    setHours(preset.hours);
+    setType(preset.type);
+    setResult(null);
+    trackEvent("tool_preset_applied", {
+      tool_id: "overtime",
+      preset_id: preset.id,
+    });
+  };
+
   return (
     <div className="space-y-6">
       <Card>
@@ -101,6 +127,19 @@ function OvertimeCalculatorInner() {
             value={type}
             onChange={(e) => setType(e.target.value as "weekday" | "rest-day" | "holiday" | "national-holiday")}
           />
+        </div>
+        <div className="mt-5 flex flex-wrap items-center gap-2">
+          <span className="mr-1 text-sm font-bold text-slate-600">常用情境</span>
+          {OVERTIME_PRESETS.map((preset) => (
+            <button
+              key={preset.id}
+              type="button"
+              onClick={() => applyPreset(preset)}
+              className="min-h-9 rounded-full border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
+            >
+              {preset.label}
+            </button>
+          ))}
         </div>
         <div className="mt-6">
           <Button onClick={handleCalculate} size="lg" className="w-full md:w-auto">
@@ -166,30 +205,17 @@ function OvertimeCalculatorInner() {
               </tbody>
             </table>
           </div>
-          <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap justify-end gap-3">
-            <button
-              type="button"
-              onClick={() => {
-                navigator.clipboard.writeText(`加班費試算\n加班類型: ${type}\n應領加班費: $${formatMoney(result.overtimePay)}`);
-                trackEvent("tool_result_copied", { tool_id: "overtime" });
-              }}
-              className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              複製結果
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                window.print();
-                trackEvent("tool_result_printed", { tool_id: "overtime" });
-              }}
-              className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
-              列印摘要
-            </button>
-          </div>
+          <ResultActions
+            toolId="overtime"
+            shareTitle="加班費試算摘要"
+            summary={[
+              "加班費試算",
+              `加班類型: ${OVERTIME_TYPE_LABEL[type]}`,
+              `加班時數: ${hours} 小時`,
+              `時薪基數: $${formatMoneyDecimal(result.hourlyBase)}`,
+              `應領加班費: $${formatMoney(result.overtimePay)}`,
+            ].join("\n")}
+          />
         </Card>
       )}
     </div>

@@ -515,6 +515,16 @@ const RAW_ARTICLES: ArticleMeta[] = [
     readingMinutes: 6,
   },
   {
+    slug: "salary-35000-take-home",
+    title: "月薪 35000 實領多少？2026 勞健保級距試算",
+    description:
+      "月薪 35,000 元實領金額試算，拆解 36,300 元投保級距、勞保健保自付、自提勞退與眷屬加保差異。",
+    category: "salary",
+    keywords: ["月薪35000實領", "35000實拿", "月薪35000扣多少", "勞健保級距"],
+    publishedAt: "2026-05-10",
+    readingMinutes: 7,
+  },
+  {
     slug: "forced-overtime-illegal",
     title: "強迫加班違法嗎？加班上限與拒絕加班的權利",
     description:
@@ -603,6 +613,56 @@ const RAW_ARTICLES: ArticleMeta[] = [
     keywords: ["薪資談判", "談薪水", "薪資歧視", "薪資底線", "基本工資談判"],
     publishedAt: "2026-04-10",
     readingMinutes: 6,
+  },
+  {
+    slug: "labor-insurance-bracket-2026",
+    title: "勞保級距怎麼查？2026 投保薪資低報檢查",
+    description:
+      "勞保投保薪資級距怎麼看？整理 2026 常見級距、低報風險、薪資單核對方式與申訴前要保存的資料。",
+    category: "insurance",
+    keywords: ["勞保級距", "勞保投保薪資", "投保薪資低報", "勞保分級表"],
+    publishedAt: "2026-05-10",
+    readingMinutes: 7,
+  },
+  {
+    slug: "health-insurance-bracket-2026",
+    title: "健保級距怎麼看？眷屬加保扣款完整說明",
+    description:
+      "健保投保金額級距、5.17% 費率、眷屬加保與薪資單扣款核對方式，一次看懂為什麼實領會變少。",
+    category: "insurance",
+    keywords: ["健保級距", "健保投保金額", "眷屬加保", "健保扣款"],
+    publishedAt: "2026-05-10",
+    readingMinutes: 7,
+  },
+  {
+    slug: "labor-pension-6-percent",
+    title: "勞退 6% 可以從薪水扣嗎？雇主提繳與自提差異",
+    description:
+      "勞退雇主提繳 6% 不得從薪水扣除。本文比較雇主強制提繳與勞工自願提繳，整理薪資單檢查方式。",
+    category: "pension",
+    keywords: ["勞退6%", "勞退扣薪", "雇主提繳", "勞退自提", "退休金"],
+    publishedAt: "2026-05-10",
+    readingMinutes: 7,
+  },
+  {
+    slug: "unused-annual-leave-wage",
+    title: "特休沒休完怎麼算錢？未休特休折現公式",
+    description:
+      "特休未休工資怎麼算？整理勞基法第 38 條、離職與年度終結折現公式、月薪制試算與常見爭議。",
+    category: "leave",
+    keywords: ["特休未休折現", "特休沒休完", "未休特休工資", "離職特休"],
+    publishedAt: "2026-05-10",
+    readingMinutes: 7,
+  },
+  {
+    slug: "involuntary-separation-certificate",
+    title: "非自願離職證明拿不到怎麼辦？被資遣文件清單",
+    description:
+      "被資遣時非自願離職證明為什麼重要？整理申請失業給付前要確認的文件、常見錯誤文字與公司拒開時的處理方式。",
+    category: "severance",
+    keywords: ["非自願離職證明", "離職證明", "被資遣文件", "失業給付"],
+    publishedAt: "2026-05-10",
+    readingMinutes: 7,
   },
 ];
 

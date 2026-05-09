@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { TOOLS } from "@/data/constants";
 import { GUIDE_HUBS } from "@/data/guide-hubs";
+import { GROWTH_QUESTIONS, SCENARIO_ENTRIES } from "@/data/growth-entrypoints";
 import { ARTICLES } from "@/lib/articles";
 import { buildPageMetadata } from "@/lib/seo";
 import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
@@ -27,6 +28,7 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 const POPULAR_TOOLS = TOOLS.slice(0, 6);
+const FEATURED_SCENARIOS = SCENARIO_ENTRIES.slice(0, 3);
 
 const WORKBENCH_ACTIONS = [
   {
@@ -55,15 +57,7 @@ const WORKBENCH_ACTIONS = [
   },
 ];
 
-const POPULAR_QUESTIONS = [
-  { q: "月薪 40000 實領多少？", href: "/articles/salary-40000-take-home" },
-  { q: "月薪 45000 實領多少？", href: "/articles/salary-45000-take-home" },
-  { q: "月薪 50000 實領多少？", href: "/articles/salary-50000-take-home" },
-  { q: "加班 3 小時多少錢？", href: "/articles/overtime-3hours-calculation" },
-  { q: "工作 2 年被資遣有多少錢？", href: "/articles/severance-2years" },
-  { q: "工作 3 年被資遣有多少錢？", href: "/articles/severance-3years" },
-  { q: "滿 6 個月有幾天特休？", href: "/articles/annual-leave-after-6months" },
-];
+const POPULAR_QUESTIONS = GROWTH_QUESTIONS.slice(0, 9);
 
 const COMPARE_PAGES = [
   { title: "月薪 vs 時薪", desc: "換工作或接案前，先比較實際待遇", href: "/compare/monthly-vs-hourly" },
@@ -188,14 +182,57 @@ export default function HomePage() {
                   key={q.href}
                   href={q.href}
                   data-track="home_question_clicked"
-                  data-track-label={q.q}
+                  data-track-label={q.question}
                   data-track-target={q.href}
                   className="inline-flex min-h-10 items-center rounded-full border border-slate-200 bg-slate-50 px-4 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700"
                 >
-                  {q.q}
+                  {q.question}
                 </Link>
               ))}
+              <Link
+                href="/questions"
+                data-track="home_question_hub_clicked"
+                data-track-label="全部熱門問題"
+                data-track-target="/questions"
+                className="inline-flex min-h-10 items-center rounded-full bg-brand-50 px-4 text-sm font-bold text-brand-700 transition-colors hover:bg-brand-100"
+              >
+                全部熱門問題
+              </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-surface py-14 md:py-20">
+        <div className="container-page">
+          <SectionHeader
+            eyebrow="Scenarios"
+            title="用你的情境開始"
+            description="先選狀況，再進工具、文章與檢查表。這些入口讓新訪客不用先知道法條名稱。"
+            actionHref="/scenarios"
+            actionLabel="全部情境"
+          />
+          <div className="grid gap-4 lg:grid-cols-3">
+            {FEATURED_SCENARIOS.map((scenario) => (
+              <Link
+                key={scenario.slug}
+                href={`/scenarios#${scenario.slug}`}
+                data-track="home_scenario_clicked"
+                data-track-label={scenario.title}
+                data-track-target={`/scenarios#${scenario.slug}`}
+                className="group rounded-[18px] border border-slate-200 bg-slate-50 p-5 transition-colors hover:border-brand-300 hover:bg-brand-50 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
+              >
+                <h2 className="text-lg font-extrabold leading-snug text-slate-950 group-hover:text-brand-700">
+                  {scenario.title}
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  {scenario.description}
+                </p>
+                <span className="mt-4 inline-flex min-h-10 items-center rounded-[12px] bg-surface px-3 text-sm font-bold text-brand-700 shadow-[0_1px_2px_rgba(15,23,42,0.06)]">
+                  {scenario.primaryLabel}
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

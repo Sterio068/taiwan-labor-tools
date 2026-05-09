@@ -5,9 +5,17 @@ import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { ResultActions } from "@/components/tools/ResultActions";
 import { calculateSeverance, type SeveranceResult } from "@/lib/calculations/severance";
 import { trackEvent } from "@/lib/analytics";
 import { formatMoney, formatMoneyDecimal } from "@/lib/format";
+
+const SEVERANCE_PRESETS = [
+  { id: "new_1y", label: "新制 1 年", system: "new", salary: "45000", years: "1", months: "0" },
+  { id: "new_2y", label: "新制 2 年", system: "new", salary: "45000", years: "2", months: "0" },
+  { id: "new_5y", label: "新制 5 年", system: "new", salary: "45000", years: "5", months: "0" },
+  { id: "new_2y_6m", label: "新制 2 年 6 個月", system: "new", salary: "45000", years: "2", months: "6" },
+];
 
 export function SeveranceCalculator() {
   const [system, setSystem] = useState("new");
@@ -26,6 +34,18 @@ export function SeveranceCalculator() {
     trackEvent("tool_completed", {
       tool_id: "severance",
       severance_system: system,
+    });
+  };
+
+  const applyPreset = (preset: typeof SEVERANCE_PRESETS[number]) => {
+    setSystem(preset.system);
+    setSalary(salary || preset.salary);
+    setYears(preset.years);
+    setMonths(preset.months);
+    setResult(null);
+    trackEvent("tool_preset_applied", {
+      tool_id: "severance",
+      preset_id: preset.id,
     });
   };
 
@@ -68,6 +88,19 @@ export function SeveranceCalculator() {
             value={months}
             onChange={(e) => setMonths(e.target.value)}
           />
+        </div>
+        <div className="mt-5 flex flex-wrap items-center gap-2">
+          <span className="mr-1 text-sm font-bold text-slate-600">常用情境</span>
+          {SEVERANCE_PRESETS.map((preset) => (
+            <button
+              key={preset.id}
+              type="button"
+              onClick={() => applyPreset(preset)}
+              className="min-h-9 rounded-full border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
+            >
+              {preset.label}
+            </button>
+          ))}
         </div>
         <div className="mt-6">
           <Button onClick={handleCalculate} size="lg" className="w-full md:w-auto">
@@ -127,30 +160,17 @@ export function SeveranceCalculator() {
           </div>
 
           <p className="mt-4 text-xs text-slate-400">資遣費以離職前 6 個月平均工資為基準，含加班費與經常性給與。</p>
-          <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap justify-end gap-3">
-            <button
-              type="button"
-              onClick={() => {
-                navigator.clipboard.writeText(`資遣費試算\n制度: ${result.system === "new" ? "新制" : "舊制"}\n資遣費: $${formatMoney(result.amount)}`);
-                trackEvent("tool_result_copied", { tool_id: "severance" });
-              }}
-              className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              複製結果
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                window.print();
-                trackEvent("tool_result_printed", { tool_id: "severance" });
-              }}
-              className="text-sm text-slate-500 hover:text-brand-600 transition-colors flex items-center gap-1.5"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
-              列印摘要
-            </button>
-          </div>
+          <ResultActions
+            toolId="severance"
+            shareTitle="資遣費試算摘要"
+            summary={[
+              "資遣費試算",
+              `制度: ${result.system === "new" ? "新制" : "舊制"}`,
+              `平均月薪: $${formatMoney(result.avgSalary)}`,
+              `年資基數: ${formatMoneyDecimal(result.months, 2)} 個月`,
+              `資遣費: $${formatMoney(result.amount)}`,
+            ].join("\n")}
+          />
         </Card>
       )}
     </div>
