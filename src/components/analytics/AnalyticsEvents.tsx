@@ -36,7 +36,7 @@ export function AnalyticsEvents() {
       for (const mark of SCROLL_MARKS) {
         if (percent >= mark && !sent.has(mark)) {
           sent.add(mark);
-          trackEvent("article_scroll_depth", {
+          trackEvent("content_scroll_depth_reached", {
             path: pathname,
             content_group: contentGroup,
             percent,

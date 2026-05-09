@@ -25,6 +25,21 @@ function assertIncludes(body, expected, label) {
   assert.ok(body.includes(expected), `${label} missing: ${expected}`);
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function getSitemapLastMod(sitemapXml, url) {
+  const match = sitemapXml.match(
+    new RegExp(
+      `<url>\\s*<loc>${escapeRegExp(url)}</loc>\\s*<lastmod>([^<]+)</lastmod>`,
+      "m"
+    )
+  );
+  assert.ok(match, `sitemap entry missing for ${url}`);
+  return match[1];
+}
+
 const baseUrl = getBaseUrl();
 const expectedSiteUrl = getExpectedSiteUrl();
 const shouldCheckMarketingScripts =
@@ -39,10 +54,16 @@ const corePages = [
   "/guides/overtime",
   "/guides/severance",
   "/growth-dashboard",
+  "/articles/salary-40000-take-home",
+  "/articles/salary-50000-take-home",
   "/articles/salary-60000-take-home",
+  "/articles/overtime-1hour-calculation",
+  "/articles/overtime-3hours-calculation",
   "/articles/overtime-4hours-calculation",
   "/articles/severance-1year",
+  "/articles/severance-2years",
   "/articles/severance-5years",
+  "/articles/severance-10years",
 ];
 
 for (const path of corePages) {
@@ -61,6 +82,14 @@ const sitemapXml = await fetchText(baseUrl, "/sitemap.xml");
 for (const path of corePages) {
   assertIncludes(sitemapXml, `${expectedSiteUrl}${path}`, `sitemap ${path}`);
 }
+assert.ok(
+  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/articles/salary-slip-explained`).startsWith("2026-04-07"),
+  "sitemap should keep older article lastmod stable"
+);
+assert.ok(
+  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/articles/salary-50000-take-home`).startsWith("2026-05-09"),
+  "sitemap should expose new article lastmod"
+);
 
 const salaryTool = await fetchText(baseUrl, "/tools/salary");
 if (shouldCheckMarketingScripts) {

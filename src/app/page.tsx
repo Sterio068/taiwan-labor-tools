@@ -56,12 +56,13 @@ const WORKBENCH_ACTIONS = [
 ];
 
 const POPULAR_QUESTIONS = [
+  { q: "月薪 40000 實領多少？", href: "/articles/salary-40000-take-home" },
   { q: "月薪 45000 實領多少？", href: "/articles/salary-45000-take-home" },
-  { q: "加班 2 小時多少錢？", href: "/articles/overtime-2hours-calculation" },
+  { q: "月薪 50000 實領多少？", href: "/articles/salary-50000-take-home" },
+  { q: "加班 3 小時多少錢？", href: "/articles/overtime-3hours-calculation" },
+  { q: "工作 2 年被資遣有多少錢？", href: "/articles/severance-2years" },
   { q: "工作 3 年被資遣有多少錢？", href: "/articles/severance-3years" },
   { q: "滿 6 個月有幾天特休？", href: "/articles/annual-leave-after-6months" },
-  { q: "勞退自提 6% 划算嗎？", href: "/articles/pension-voluntary" },
-  { q: "時薪 196 元合理嗎？", href: "/articles/minimum-wage-hourly-2026" },
 ];
 
 const COMPARE_PAGES = [

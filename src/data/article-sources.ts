@@ -37,7 +37,7 @@ const insuranceSources: ArticleSource[] = [
   },
   {
     label: "健保投保金額分級表",
-    url: "https://www.nhi.gov.tw/ch/cp-17661-84c1f-2569-1.html",
+    url: "https://www.nhi.gov.tw/ch/cp-19421-f9533-2569-1.html",
     description: "全民健保投保金額級距與一般保費計算基礎。",
   },
 ];

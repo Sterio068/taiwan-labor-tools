@@ -16,7 +16,8 @@
 | Search Console | 曝光、點擊、CTR、平均排名 | 優先處理高曝光低 CTR、排名 8-20 與已曝光但未收錄完整 topic cluster 的頁面 |
 | Search Console | sitemap 狀態、探索但未建立索引、已檢索尚未建立索引 | 部署後確認 `/sitemap.xml` 成功讀取，並優先要求核心工具與新增長尾文章建立索引 |
 | GA4 | tool_started、tool_completed | 檢查工具使用率與完成率，依 content_group 分析工具、文章、指南入口 |
-| GA4 | article_scroll_depth、scroll_mark | 觀察文章 25/50/75/90% 閱讀深度，找出直接答案、表格或 FAQ 是否太晚出現 |
+| GA4 | content_scroll_depth_reached、scroll_mark | 觀察文章與指南 25/50/75/90% 閱讀深度，找出直接答案、表格或 FAQ 是否太晚出現 |
+| GA4 | site_search_performed、site_search_result_clicked | 只追蹤查詢長度、結果數、是否有結果與點擊位置，不送出原始搜尋字串 |
 | GA4 | content_shared、cta_clicked、tool_next_step_clicked | 評估分享、內部延伸閱讀與工具結果下一步，但不追蹤薪資、年資或日期輸入 |
 | AdSense | Page RPM、曝光、可見率、政策中心 | 只做合法曝光品質優化，不以點擊誘導為目標 |
 

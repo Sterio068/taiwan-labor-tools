@@ -13,7 +13,14 @@ function escapeXml(str: string): string {
 }
 
 export async function GET() {
-  const items = [...ARTICLES]
+  const sortedArticles = [...ARTICLES].sort((a, b) =>
+    (b.updatedAt || b.publishedAt).localeCompare(a.updatedAt || a.publishedAt)
+  );
+  const latestBuildDate = new Date(
+    sortedArticles[0]?.updatedAt || sortedArticles[0]?.publishedAt || "2026-05-09"
+  ).toUTCString();
+
+  const items = sortedArticles
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
     .map((article) => {
       const url = `${SITE_URL}/articles/${article.slug}`;
@@ -37,7 +44,7 @@ export async function GET() {
     <link>${SITE_URL}</link>
     <description>台灣勞工的免費權益計算工具與勞動法規知識</description>
     <language>zh-TW</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <lastBuildDate>${latestBuildDate}</lastBuildDate>
     <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml" />
 ${items}
   </channel>

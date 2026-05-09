@@ -36,7 +36,9 @@ export const GUIDE_HUBS: GuideHub[] = [
     articles: [
       { title: "2026 薪資單完全解讀", href: "/articles/salary-slip-explained" },
       { title: "最低工資 29,500：2026 新制影響", href: "/articles/minimum-wage-2026" },
+      { title: "月薪 40,000 實領多少？", href: "/articles/salary-40000-take-home" },
       { title: "月薪 45,000 實領多少？", href: "/articles/salary-45000-take-home" },
+      { title: "月薪 50,000 實領多少？", href: "/articles/salary-50000-take-home" },
       { title: "月薪 60,000 實領多少？", href: "/articles/salary-60000-take-home" },
       { title: "2026 薪資報稅完全指南", href: "/articles/salary-tax-guide-2026" },
     ],
@@ -62,6 +64,8 @@ export const GUIDE_HUBS: GuideHub[] = [
     ],
     articles: [
       { title: "加班費怎麼算？完整圖解", href: "/articles/overtime-pay-guide" },
+      { title: "平日加班 1 小時多少錢？", href: "/articles/overtime-1hour-calculation" },
+      { title: "平日加班 3 小時多少錢？", href: "/articles/overtime-3hours-calculation" },
       { title: "平日加班 4 小時多少錢？", href: "/articles/overtime-4hours-calculation" },
       { title: "強迫加班違法嗎？", href: "/articles/forced-overtime-illegal" },
       { title: "責任制合法嗎？", href: "/articles/exempt-employee" },
@@ -90,9 +94,11 @@ export const GUIDE_HUBS: GuideHub[] = [
     articles: [
       { title: "被資遣了怎麼辦？", href: "/articles/fired-what-to-do" },
       { title: "工作 1 年資遣費怎麼算？", href: "/articles/severance-1year" },
+      { title: "工作 2 年資遣費怎麼算？", href: "/articles/severance-2years" },
       { title: "失業給付怎麼領？", href: "/articles/unemployment-benefits" },
       { title: "工作 3 年資遣費怎麼算？", href: "/articles/severance-3years" },
       { title: "工作 5 年資遣費怎麼算？", href: "/articles/severance-5years" },
+      { title: "工作 10 年資遣費怎麼算？", href: "/articles/severance-10years" },
       { title: "離職要提前幾天？", href: "/articles/resignation-notice" },
     ],
     steps: ["先確認終止理由", "計算資遣費與預告工資", "索取非自願離職證明", "確認勞健保退保日", "必要時申請勞資調解"],

@@ -42,6 +42,21 @@ export function SearchDialog() {
     }
   }, [open]);
 
+  useEffect(() => {
+    const normalizedQuery = query.trim();
+    if (!open || normalizedQuery.length < 2) return;
+
+    const id = window.setTimeout(() => {
+      trackEvent("site_search_performed", {
+        query_length: Math.min(normalizedQuery.length, 60),
+        result_count: results.length,
+        has_results: results.length > 0,
+      });
+    }, 600);
+
+    return () => window.clearTimeout(id);
+  }, [open, query, results.length]);
+
   const typeColors: Record<string, string> = {
     tool: "bg-brand-100 text-brand-700",
     article: "bg-accent-100 text-accent-700",

@@ -1,7 +1,5 @@
 import type { ArticleMeta, ArticleCategory } from "@/types";
 
-export const ARTICLE_CONTENT_UPDATED_AT = "2026-05-09";
-
 const RAW_ARTICLES: ArticleMeta[] = [
   {
     slug: "salary-slip-explained",
@@ -316,6 +314,26 @@ const RAW_ARTICLES: ArticleMeta[] = [
     readingMinutes: 7,
   },
   {
+    slug: "salary-40000-take-home",
+    title: "月薪 40000 實領多少？2026 勞健保扣款試算",
+    description:
+      "月薪 40,000 元實領金額試算，拆解勞保、健保、勞退級距、眷屬加保與自提 6% 對每月入帳的影響。",
+    category: "salary",
+    keywords: ["月薪40000實領", "40000實拿", "月薪40000扣多少", "實領薪水"],
+    publishedAt: "2026-05-09",
+    readingMinutes: 7,
+  },
+  {
+    slug: "salary-50000-take-home",
+    title: "月薪 50000 實領多少？2026 勞健保與勞退完整試算",
+    description:
+      "月薪 50,000 元每月實領試算，含勞保上限、健保級距、勞退自提 6%、眷屬加保與薪資單核對重點。",
+    category: "salary",
+    keywords: ["月薪50000實領", "50000實拿", "月薪50000扣多少", "薪資扣款"],
+    publishedAt: "2026-05-09",
+    readingMinutes: 7,
+  },
+  {
     slug: "salary-60000-take-home",
     title: "月薪 60000 實領多少？2026 勞健保扣款完整試算",
     description:
@@ -334,6 +352,26 @@ const RAW_ARTICLES: ArticleMeta[] = [
     keywords: ["加班2小時", "加班費2小時", "平日加班費", "加班費計算"],
     publishedAt: "2026-04-09",
     readingMinutes: 6,
+  },
+  {
+    slug: "overtime-1hour-calculation",
+    title: "平日加班 1 小時多少錢？2026 加班費快速試算",
+    description:
+      "平日加班 1 小時的加班費公式與常見月薪速查表，說明時薪基數、4/3 倍倍率與薪資單核對方式。",
+    category: "overtime",
+    keywords: ["加班1小時", "加班費1小時", "平日加班費", "加班費試算"],
+    publishedAt: "2026-05-09",
+    readingMinutes: 6,
+  },
+  {
+    slug: "overtime-3hours-calculation",
+    title: "平日加班 3 小時多少錢？第 3 小時倍率怎麼算",
+    description:
+      "平日加班 3 小時的分段加班費試算，前 2 小時 4/3、第 3 小時 5/3，附常見月薪速查表。",
+    category: "overtime",
+    keywords: ["加班3小時", "加班費3小時", "第3小時加班費", "平日加班費"],
+    publishedAt: "2026-05-09",
+    readingMinutes: 7,
   },
   {
     slug: "overtime-4hours-calculation",
@@ -356,6 +394,16 @@ const RAW_ARTICLES: ArticleMeta[] = [
     readingMinutes: 7,
   },
   {
+    slug: "severance-2years",
+    title: "工作 2 年被資遣有多少錢？資遣費與預告工資試算",
+    description:
+      "工作滿 2 年被資遣的新制資遣費、20 天預告期、非自願離職證明與失業給付下一步，含不同月薪試算表。",
+    category: "severance",
+    keywords: ["工作2年資遣費", "2年資遣", "資遣費試算", "年資2年"],
+    publishedAt: "2026-05-09",
+    readingMinutes: 7,
+  },
+  {
     slug: "severance-3years",
     title: "工作 3 年被資遣有多少錢？資遣費實例計算",
     description:
@@ -374,6 +422,16 @@ const RAW_ARTICLES: ArticleMeta[] = [
     keywords: ["工作5年資遣費", "5年資遣", "資遣費計算", "年資5年"],
     publishedAt: "2026-05-09",
     readingMinutes: 7,
+  },
+  {
+    slug: "severance-10years",
+    title: "工作 10 年被資遣有多少錢？新制資遣費上限前試算",
+    description:
+      "工作滿 10 年被資遣的新制資遣費、30 天預告工資、特休折現與非自願離職證明檢查清單，含薪資級距試算。",
+    category: "severance",
+    keywords: ["工作10年資遣費", "10年資遣", "資遣費上限", "年資10年"],
+    publishedAt: "2026-05-09",
+    readingMinutes: 8,
   },
   {
     slug: "annual-leave-after-6months",
@@ -550,7 +608,7 @@ const RAW_ARTICLES: ArticleMeta[] = [
 
 export const ARTICLES: ArticleMeta[] = RAW_ARTICLES.map((article) => ({
   ...article,
-  updatedAt: article.updatedAt ?? ARTICLE_CONTENT_UPDATED_AT,
+  updatedAt: article.updatedAt ?? article.publishedAt,
 }));
 
 export function getArticleBySlug(slug: string): ArticleMeta | undefined {
