@@ -6,11 +6,26 @@ import { trackEvent } from "@/lib/analytics";
 
 const SCROLL_MARKS = [25, 50, 75, 90];
 
+function getContentGroup(pathname: string) {
+  if (pathname === "/") return "home";
+  if (pathname.startsWith("/tools/")) return "tool";
+  if (pathname.startsWith("/articles/")) return "article";
+  if (pathname.startsWith("/guides/")) return "guide";
+  if (pathname.startsWith("/checklists/")) return "checklist";
+  return "site";
+}
+
 export function AnalyticsEvents() {
   const pathname = usePathname();
 
   useEffect(() => {
     const sent = new Set<number>();
+    const contentGroup = getContentGroup(pathname);
+
+    trackEvent("page_context_viewed", {
+      path: pathname,
+      content_group: contentGroup,
+    });
 
     const onScroll = () => {
       const scrollable =
@@ -23,7 +38,9 @@ export function AnalyticsEvents() {
           sent.add(mark);
           trackEvent("article_scroll_depth", {
             path: pathname,
+            content_group: contentGroup,
             percent,
+            scroll_mark: mark,
           });
         }
       }
@@ -36,6 +53,7 @@ export function AnalyticsEvents() {
 
       trackEvent(tracked.dataset.track || "cta_clicked", {
         path: pathname,
+        content_group: contentGroup,
         label: tracked.dataset.trackLabel,
         target: tracked.dataset.trackTarget,
       });
@@ -49,6 +67,7 @@ export function AnalyticsEvents() {
       const queryField = form.dataset.trackQueryField;
       const params: Record<string, string | number | boolean | undefined> = {
         path: pathname,
+        content_group: contentGroup,
         label: form.dataset.trackLabel,
         target: form.dataset.trackTarget,
       };

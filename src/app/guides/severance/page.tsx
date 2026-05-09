@@ -53,7 +53,9 @@ const SEVERANCE_TOOLS = [
 
 const SEVERANCE_ARTICLES = [
   { title: "被資遣了怎麼辦？5 步驟自保", href: "/articles/fired-what-to-do" },
+  { title: "工作 1 年被資遣多少錢？試算實例", href: "/articles/severance-1year" },
   { title: "工作 3 年被資遣多少錢？試算實例", href: "/articles/severance-3years" },
+  { title: "工作 5 年被資遣多少錢？試算實例", href: "/articles/severance-5years" },
   { title: "失業給付怎麼領？完整申請流程", href: "/articles/unemployment-benefits" },
   { title: "離職要提前幾天？預告期規定", href: "/articles/resignation-notice" },
   { title: "自願離職前必看 5 件事", href: "/articles/quit-job-rights" },
@@ -95,7 +97,7 @@ export default function SeveranceGuidePage() {
         <p className="text-lg text-slate-600 leading-relaxed">
           被資遣了怎麼辦？資遣費怎麼算？失業給付能領多少？
           從離職原因判定到資遣費試算、非自願離職證明、失業給付申辦流程，一次說清楚。
-          3 個免費工具 + 9 篇深度文章，依據 2026 最新勞基法與就業保險法。
+          3 個免費工具 + 11 篇深度文章，依據 2026 最新勞基法與就業保險法。
         </p>
       </header>
 

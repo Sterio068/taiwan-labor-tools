@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "smoke:prod": "node scripts/smoke-site.mjs",
     "lint": "eslint",
     "design:audit": "impeccable detect src --fast"
   },

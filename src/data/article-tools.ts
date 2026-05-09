@@ -126,11 +126,26 @@ export const ARTICLE_TOOLS: Record<string, ArticleTool[]> = {
   "salary-45000-take-home": [
     { label: "薪資明細計算機", href: "/tools/salary", desc: "精確計算月薪 45000 實領" },
   ],
+  "salary-60000-take-home": [
+    { label: "薪資明細計算機", href: "/tools/salary", desc: "精確計算月薪 60000 實領" },
+    { label: "投保級距查詢", href: "/tools/insurance-bracket", desc: "查詢勞健保與勞退級距" },
+  ],
   "overtime-2hours-calculation": [
     { label: "加班費計算機", href: "/tools/overtime", desc: "加班 2 小時費用試算" },
   ],
+  "overtime-4hours-calculation": [
+    { label: "加班費計算機", href: "/tools/overtime", desc: "平日加班 4 小時分段試算" },
+  ],
+  "severance-1year": [
+    { label: "資遣費計算機", href: "/tools/severance", desc: "工作 1 年資遣費試算" },
+    { label: "離職預告期計算", href: "/tools/notice-period", desc: "確認是否另有預告工資" },
+  ],
   "severance-3years": [
     { label: "資遣費計算機", href: "/tools/severance", desc: "工作 3 年資遣費試算" },
+  ],
+  "severance-5years": [
+    { label: "資遣費計算機", href: "/tools/severance", desc: "工作 5 年資遣費試算" },
+    { label: "離職預告期計算", href: "/tools/notice-period", desc: "確認是否另有 30 天預告工資" },
   ],
   "annual-leave-after-6months": [
     { label: "特休天數計算", href: "/tools/annual-leave", desc: "到職 6 個月特休天數" },

@@ -110,6 +110,9 @@ export function ToolPageShell({
                     <Link
                       key={step.href}
                       href={step.href}
+                      data-track="tool_next_step_clicked"
+                      data-track-label={step.label}
+                      data-track-target={step.href}
                       className="group flex gap-3 rounded-[12px] border border-brand-100 bg-surface p-3 transition-colors hover:border-brand-300 hover:bg-brand-50 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
                     >
                       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-100 text-xs font-bold text-brand-700">
@@ -135,6 +138,9 @@ export function ToolPageShell({
                 </p>
                 <Link
                   href="/privacy"
+                  data-track="privacy_link_clicked"
+                  data-track-label="工具頁隱私政策"
+                  data-track-target="/privacy"
                   className="mt-4 inline-flex text-sm font-bold text-brand-700 transition-colors hover:text-brand-800"
                 >
                   查看隱私政策

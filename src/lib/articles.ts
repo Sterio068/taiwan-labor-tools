@@ -316,6 +316,16 @@ const RAW_ARTICLES: ArticleMeta[] = [
     readingMinutes: 7,
   },
   {
+    slug: "salary-60000-take-home",
+    title: "月薪 60000 實領多少？2026 勞健保扣款完整試算",
+    description:
+      "月薪 60,000 元實領金額試算，拆解勞保、健保、勞退級距、自提 6% 與眷屬加保後的每月差異。",
+    category: "salary",
+    keywords: ["月薪60000實領", "60000實拿", "月薪60000扣多少", "實領薪水"],
+    publishedAt: "2026-05-09",
+    readingMinutes: 7,
+  },
+  {
     slug: "overtime-2hours-calculation",
     title: "平日加班 2 小時多少錢？加班費試算範例",
     description:
@@ -326,6 +336,26 @@ const RAW_ARTICLES: ArticleMeta[] = [
     readingMinutes: 6,
   },
   {
+    slug: "overtime-4hours-calculation",
+    title: "平日加班 4 小時多少錢？第 3、4 小時倍率試算",
+    description:
+      "平日加班 4 小時的加班費試算表，說明前 2 小時 4/3、第 3 小時起 5/3 的分段算法與常見錯誤。",
+    category: "overtime",
+    keywords: ["加班4小時", "加班費4小時", "第3小時加班費", "平日加班費"],
+    publishedAt: "2026-05-09",
+    readingMinutes: 7,
+  },
+  {
+    slug: "severance-1year",
+    title: "工作 1 年被資遣有多少錢？資遣費與預告期試算",
+    description:
+      "工作滿 1 年被資遣的新制資遣費、預告期間、非自願離職證明與失業給付下一步，含不同月薪試算表。",
+    category: "severance",
+    keywords: ["工作1年資遣費", "1年資遣", "資遣費試算", "年資1年"],
+    publishedAt: "2026-05-09",
+    readingMinutes: 7,
+  },
+  {
     slug: "severance-3years",
     title: "工作 3 年被資遣有多少錢？資遣費實例計算",
     description:
@@ -333,6 +363,16 @@ const RAW_ARTICLES: ArticleMeta[] = [
     category: "severance",
     keywords: ["工作3年資遣費", "3年資遣", "資遣費範例", "年資3年"],
     publishedAt: "2026-04-09",
+    readingMinutes: 7,
+  },
+  {
+    slug: "severance-5years",
+    title: "工作 5 年被資遣有多少錢？新制資遣費完整試算",
+    description:
+      "工作滿 5 年被資遣可拿多少資遣費？用新制公式試算不同平均工資，並整理預告工資、特休折現與失業給付。",
+    category: "severance",
+    keywords: ["工作5年資遣費", "5年資遣", "資遣費計算", "年資5年"],
+    publishedAt: "2026-05-09",
     readingMinutes: 7,
   },
   {

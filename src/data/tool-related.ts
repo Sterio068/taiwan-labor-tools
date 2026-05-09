@@ -12,16 +12,19 @@ export interface RelatedLink {
 export const TOOL_RELATED_ARTICLES: Record<string, RelatedLink[]> = {
   salary: [
     { label: "2026 薪資單完全解讀：每一項扣款是什麼？", href: "/articles/salary-slip-explained" },
+    { label: "月薪 60,000 實領多少？勞健保扣款完整試算", href: "/articles/salary-60000-take-home" },
     { label: "2026 薪資報稅完全指南：稅級表、扣除額、節稅方法", href: "/articles/salary-tax-guide-2026" },
     { label: "最低工資 29,500：2026 新制影響", href: "/articles/minimum-wage-2026" },
   ],
   overtime: [
     { label: "加班費怎麼算？平日/休息日/國定假日完整圖解", href: "/articles/overtime-pay-guide" },
+    { label: "平日加班 4 小時多少錢？第 3、4 小時倍率試算", href: "/articles/overtime-4hours-calculation" },
     { label: "責任制加班合法嗎？加班費爭議解析", href: "/articles/exempt-employee" },
     { label: "過勞認定標準與職災申請", href: "/articles/overwork-karoshi" },
   ],
   severance: [
     { label: "被資遣了怎麼辦？該拿的錢與流程全攻略", href: "/articles/fired-what-to-do" },
+    { label: "工作 5 年被資遣有多少錢？新制資遣費完整試算", href: "/articles/severance-5years" },
     { label: "失業給付怎麼領？資格金額期限全解析", href: "/articles/unemployment-benefits" },
     { label: "離職要提前幾天？預告期完整規定", href: "/articles/resignation-notice" },
   ],
