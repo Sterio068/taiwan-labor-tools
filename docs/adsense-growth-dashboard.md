@@ -18,7 +18,7 @@
 | GA4 | tool_started、tool_completed、tool_preset_applied | 檢查工具使用率、完成率與情境預設是否降低輸入阻力，依 content_group 分析工具、文章、指南入口 |
 | GA4 | content_scroll_depth_reached、scroll_mark | 觀察文章與指南 25/50/75/90% 閱讀深度，找出直接答案、表格或 FAQ 是否太晚出現 |
 | GA4 | site_search_performed、site_search_result_clicked | 只追蹤查詢長度、結果數、是否有結果與點擊位置，不送出原始搜尋字串 |
-| GA4 | content_shared、tool_result_shared、question_article_clicked、scenario_primary_tool_clicked、cta_clicked、tool_next_step_clicked | 評估分享、內部延伸閱讀、熱門問題與情境入口，但不追蹤薪資、年資或日期輸入 |
+| GA4 | content_shared、tool_result_shared、question_article_clicked、scenario_primary_tool_clicked、cta_clicked、tool_next_step_clicked、tool_result_next_step_clicked | 評估分享、內部延伸閱讀、熱門問題、情境入口與工具結果後續路徑，但不追蹤薪資、年資或日期輸入 |
 | AdSense | Page RPM、曝光、可見率、政策中心 | 只做合法曝光品質優化，不以點擊誘導為目標 |
 
 ## 部署後 Search Console 操作
@@ -35,11 +35,19 @@
    - `https://twlabor.org/guides/overtime`
    - `https://twlabor.org/guides/severance`
    - `https://twlabor.org/articles/salary-35000-take-home`
+   - `https://twlabor.org/articles/salary-38000-take-home`
+   - `https://twlabor.org/articles/salary-42000-take-home`
    - `https://twlabor.org/articles/labor-insurance-bracket-2026`
    - `https://twlabor.org/articles/health-insurance-bracket-2026`
    - `https://twlabor.org/articles/labor-pension-6-percent`
    - `https://twlabor.org/articles/unused-annual-leave-wage`
    - `https://twlabor.org/articles/involuntary-separation-certificate`
+   - `https://twlabor.org/articles/salary-55000-take-home`
+   - `https://twlabor.org/articles/overtime-2-5hours-calculation`
+   - `https://twlabor.org/articles/overtime-evidence-checklist`
+   - `https://twlabor.org/articles/severance-6months`
+   - `https://twlabor.org/articles/severance-18months`
+   - `https://twlabor.org/articles/labor-insurance-underreporting-complaint`
    - `https://twlabor.org/articles/salary-60000-take-home`
    - `https://twlabor.org/articles/overtime-4hours-calculation`
    - `https://twlabor.org/articles/severance-1year`
@@ -53,7 +61,7 @@
 | 維度 | 指標 | 用途 |
 | --- | --- | --- |
 | page_path、content_group | 事件數、使用者 | 分辨文章、指南、工具入口表現 |
-| event_name | 事件數 | 檢查 tool_started、tool_completed、tool_preset_applied、tool_next_step_clicked、question_article_clicked、scenario_primary_tool_clicked 是否正常 |
+| event_name | 事件數 | 檢查 tool_started、tool_completed、tool_preset_applied、tool_next_step_clicked、tool_result_next_step_clicked、question_article_clicked、scenario_primary_tool_clicked 是否正常 |
 | scroll_mark | 事件數 | 找出文章閱讀深度衰退點 |
 | target、label | 事件數 | 檢查 CTA 與下一步連結是否有效 |
 

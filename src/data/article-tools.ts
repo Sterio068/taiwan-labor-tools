@@ -258,6 +258,54 @@ export const ARTICLE_TOOLS: Record<string, ArticleTool[]> = {
     { label: "資遣費計算機", href: "/tools/severance", desc: "先估資遣費與年資" },
     { label: "勞資爭議檢查器", href: "/tools/dispute-checker", desc: "整理公司拒開文件的爭議" },
   ],
+  "salary-38000-take-home": [
+    { label: "薪資明細計算機", href: "/tools/salary?m=38000", desc: "精確計算月薪 38000 實領" },
+    { label: "投保級距查詢", href: "/tools/insurance-bracket", desc: "核對 38200 附近投保級距" },
+  ],
+  "salary-42000-take-home": [
+    { label: "薪資明細計算機", href: "/tools/salary?m=42000", desc: "精確計算月薪 42000 實領" },
+    { label: "投保級距查詢", href: "/tools/insurance-bracket", desc: "核對勞保、健保與勞退級距" },
+  ],
+  "salary-55000-take-home": [
+    { label: "薪資明細計算機", href: "/tools/salary?m=55000", desc: "精確計算月薪 55000 實領" },
+    { label: "勞健保保費計算", href: "/tools/insurance-premium", desc: "檢查勞保上限與健保級距" },
+  ],
+  "overtime-1-5hours-calculation": [
+    { label: "加班費計算機", href: "/tools/overtime?w=45000&h=1.5&ot=weekday", desc: "平日 1.5 小時快速試算" },
+    { label: "加班證據清單", href: "/articles/overtime-evidence-checklist", desc: "保存打卡與主管訊息" },
+  ],
+  "overtime-2-5hours-calculation": [
+    { label: "加班費計算機", href: "/tools/overtime?w=45000&h=2.5&ot=weekday", desc: "平日 2.5 小時分段試算" },
+    { label: "加班證據清單", href: "/articles/overtime-evidence-checklist", desc: "整理申訴前證據" },
+  ],
+  "holiday-overtime-8hours": [
+    { label: "加班費計算機", href: "/tools/overtime?w=45000&h=8&ot=holiday", desc: "國定假日 8 小時試算" },
+    { label: "勞工權益健檢", href: "/tools/rights-check", desc: "確認假日出勤是否合法" },
+  ],
+  "severance-6months": [
+    { label: "資遣費計算機", href: "/tools/severance", desc: "工作 6 個月資遣費試算" },
+    { label: "離職預告期計算", href: "/tools/notice-period", desc: "確認短年資預告規則" },
+  ],
+  "severance-18months": [
+    { label: "資遣費計算機", href: "/tools/severance", desc: "工作 1 年 6 個月資遣費試算" },
+    { label: "非自願離職證明", href: "/articles/involuntary-separation-certificate", desc: "確認失業給付前文件" },
+  ],
+  "severance-4years": [
+    { label: "資遣費計算機", href: "/tools/severance", desc: "工作 4 年資遣費試算" },
+    { label: "失業給付指南", href: "/articles/unemployment-benefits", desc: "確認後續給付資格" },
+  ],
+  "annual-leave-resignation-payout-example": [
+    { label: "特休天數計算", href: "/tools/annual-leave", desc: "確認離職前剩餘特休" },
+    { label: "薪資明細計算機", href: "/tools/salary", desc: "核對最後一期薪資結清" },
+  ],
+  "labor-insurance-underreporting-complaint": [
+    { label: "投保級距查詢", href: "/tools/insurance-bracket", desc: "比對實際薪資與投保級距" },
+    { label: "勞工權益健檢", href: "/tools/rights-check", desc: "檢查雇主投保義務" },
+  ],
+  "overtime-evidence-checklist": [
+    { label: "加班費計算機", href: "/tools/overtime", desc: "先估算短少加班費" },
+    { label: "勞資爭議檢查器", href: "/tools/dispute-checker", desc: "整理加班費爭議流程" },
+  ],
 };
 
 /** 根據 slug 和 category 取得 3 篇相關文章 slug */

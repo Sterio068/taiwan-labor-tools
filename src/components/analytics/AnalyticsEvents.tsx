@@ -11,7 +11,7 @@ function getContentGroup(pathname: string) {
   if (pathname.startsWith("/tools/")) return "tool";
   if (pathname.startsWith("/articles/")) return "article";
   if (pathname.startsWith("/guides/")) return "guide";
-  if (pathname.startsWith("/checklists/")) return "checklist";
+  if (pathname === "/checklists" || pathname.startsWith("/checklists/")) return "checklist";
   return "site";
 }
 
@@ -56,6 +56,7 @@ export function AnalyticsEvents() {
         content_group: contentGroup,
         label: tracked.dataset.trackLabel,
         target: tracked.dataset.trackTarget,
+        tool_id: tracked.dataset.trackToolId,
       });
     };
 

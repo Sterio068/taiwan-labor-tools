@@ -54,7 +54,11 @@ const INSURANCE_TOOLS = [
 
 const INSURANCE_ARTICLES = [
   { title: "勞保 vs 國保 vs 農保差在哪？", href: "/articles/labor-insurance-comparison" },
+  { title: "2026 勞保投保級距怎麼看？", href: "/articles/labor-insurance-bracket-2026" },
+  { title: "2026 健保投保金額怎麼看？", href: "/articles/health-insurance-bracket-2026" },
+  { title: "勞退 6% 可以從薪水扣嗎？", href: "/articles/labor-pension-6-percent" },
   { title: "沒幫我保勞保怎麼辦？檢舉流程", href: "/articles/no-labor-insurance" },
+  { title: "勞保低報怎麼申訴？證據清單", href: "/articles/labor-insurance-underreporting-complaint" },
   { title: "二代健保補充保費完全攻略", href: "/articles/nhi-supplement-premium" },
   { title: "自由接案者怎麼保勞保？", href: "/articles/freelancer-insurance" },
   { title: "職災發生怎麼辦？完整 SOP", href: "/articles/work-injury-guide" },
@@ -93,7 +97,7 @@ export default function InsuranceGuidePage() {
         </h1>
         <p className="text-lg text-slate-600 leading-relaxed">
           從勞保、健保、勞退三層保障，到投保級距原理、各項給付資格、眷屬加保策略，
-          一次搞懂台灣社會保險制度。3 個免費工具 + 7 篇深度文章，依 2026 最新費率。
+          一次搞懂台灣社會保險制度。3 個免費工具 + 11 篇深度文章，依 2026 最新費率。
         </p>
       </header>
 

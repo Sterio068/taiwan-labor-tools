@@ -65,13 +65,25 @@ const corePages = [
   "/articles/salary-40000-take-home",
   "/articles/salary-50000-take-home",
   "/articles/salary-60000-take-home",
+  "/articles/salary-38000-take-home",
+  "/articles/salary-42000-take-home",
+  "/articles/salary-55000-take-home",
   "/articles/overtime-1hour-calculation",
+  "/articles/overtime-1-5hours-calculation",
+  "/articles/overtime-2-5hours-calculation",
   "/articles/overtime-3hours-calculation",
   "/articles/overtime-4hours-calculation",
+  "/articles/holiday-overtime-8hours",
+  "/articles/overtime-evidence-checklist",
+  "/articles/severance-6months",
   "/articles/severance-1year",
+  "/articles/severance-18months",
   "/articles/severance-2years",
+  "/articles/severance-4years",
   "/articles/severance-5years",
   "/articles/severance-10years",
+  "/articles/annual-leave-resignation-payout-example",
+  "/articles/labor-insurance-underreporting-complaint",
 ];
 
 for (const path of corePages) {
@@ -103,6 +115,14 @@ assert.ok(
   "sitemap should expose latest long-tail article lastmod"
 );
 assert.ok(
+  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/articles/salary-38000-take-home`).startsWith("2026-05-10"),
+  "sitemap should expose new salary long-tail article lastmod"
+);
+assert.ok(
+  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/articles/overtime-evidence-checklist`).startsWith("2026-05-10"),
+  "sitemap should expose new evidence article lastmod"
+);
+assert.ok(
   getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/questions`).startsWith("2026-05-10"),
   "sitemap should expose questions hub lastmod"
 );
@@ -119,6 +139,10 @@ assertIncludes(salaryTool, `${expectedSiteUrl}/tools/salary`, "canonical");
 const highIntentArticle = await fetchText(baseUrl, "/articles/salary-60000-take-home");
 assertIncludes(highIntentArticle, "月薪 60000 實領多少", "high intent article title");
 assertIncludes(highIntentArticle, "application/ld+json", "article schema JSON-LD");
+
+const evidenceArticle = await fetchText(baseUrl, "/articles/overtime-evidence-checklist");
+assertIncludes(evidenceArticle, "加班費爭議證據清單", "evidence article title");
+assertIncludes(evidenceArticle, "application/ld+json", "evidence article schema JSON-LD");
 
 const questionsHub = await fetchText(baseUrl, "/questions");
 assertIncludes(questionsHub, "勞工權益熱門問題", "questions hub title");

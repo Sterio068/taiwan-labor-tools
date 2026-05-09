@@ -7,6 +7,7 @@ import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { ResultActions } from "@/components/tools/ResultActions";
+import { ResultNextSteps } from "@/components/tools/ResultNextSteps";
 import { calculateSalaryBreakdown, type SalaryBreakdownResult } from "@/lib/calculations/salary-breakdown";
 import { trackEvent } from "@/lib/analytics";
 import { formatMoney } from "@/lib/format";
@@ -229,6 +230,27 @@ function SalaryCalculatorInner() {
               </span>
             </div>
           </div>
+
+          <ResultNextSteps
+            toolId="salary"
+            steps={[
+              {
+                label: "核對薪資單檢查表",
+                href: "/checklists#salary-slip",
+                description: "對照勞保、健保、勞退自提與加班費欄位，避免錯扣或低報。",
+              },
+              {
+                label: "查投保級距",
+                href: "/tools/insurance-bracket",
+                description: "把稅前月薪與勞健保級距比對，確認薪資單扣款合理。",
+              },
+              {
+                label: "了解勞退 6%",
+                href: "/articles/labor-pension-6-percent",
+                description: "雇主提繳 6% 不得從薪水扣除，自提才會影響實領。",
+              },
+            ]}
+          />
 
           <ResultActions
             toolId="salary"

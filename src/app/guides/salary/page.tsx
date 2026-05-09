@@ -58,7 +58,10 @@ const SALARY_TOOLS = [
 
 const SALARY_ARTICLES = [
   { title: "2026 薪資單完全解讀", href: "/articles/salary-slip-explained" },
+  { title: "月薪 38000 實領多少？級距試算", href: "/articles/salary-38000-take-home" },
+  { title: "月薪 42000 實領多少？扣款試算", href: "/articles/salary-42000-take-home" },
   { title: "月薪 45000 實領多少？實例試算", href: "/articles/salary-45000-take-home" },
+  { title: "月薪 55000 實領多少？完整試算", href: "/articles/salary-55000-take-home" },
   { title: "月薪 60000 實領多少？完整試算", href: "/articles/salary-60000-take-home" },
   { title: "2026 薪資報稅完全指南", href: "/articles/salary-tax-guide-2026" },
   { title: "最低工資 29,500：2026 新制影響", href: "/articles/minimum-wage-2026" },
@@ -103,7 +106,7 @@ export default function SalaryGuidePage() {
         </h1>
         <p className="text-lg text-slate-600 leading-relaxed">
           從月薪實領到報稅、加班費、年終，一次搞懂台灣上班族的薪資知識。
-          6 個免費計算工具 + 13 篇深度文章，依據 2026 最新勞基法與費率。
+          6 個免費計算工具 + 16 篇深度文章，依據 2026 最新勞基法與費率。
         </p>
       </header>
 

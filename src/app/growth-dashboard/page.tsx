@@ -14,7 +14,7 @@ export const metadata: Metadata = buildPageMetadata({
 const METRICS = [
   { area: "Search Console", metric: "曝光、點擊、CTR、平均排名", use: "判斷文章與指南是否被搜尋者看見，優先優化高曝光低 CTR 的標題與摘要。" },
   { area: "Search Console", metric: "sitemap 狀態、索引涵蓋範圍", use: "部署後確認 sitemap 成功讀取，並優先要求核心工具與新增長尾文章建立索引。" },
-  { area: "GA4", metric: "工具開始、完成計算、套用預設、分享、CTA 點擊", use: "確認使用者是否真的完成試算與進入下一步，不收集薪資與年資等敏感輸入。" },
+  { area: "GA4", metric: "工具開始、完成計算、套用預設、分享、CTA 與結果下一步點擊", use: "確認使用者是否真的完成試算與進入下一步，不收集薪資與年資等敏感輸入。" },
   { area: "GA4", metric: "文章與指南 25/50/75/90% 閱讀深度、站內搜尋結果數、content_group", use: "找出使用者停留、流失與找不到內容的位置，補強直接答案、表格、FAQ 與內部連結。" },
   { area: "GA4", metric: "熱門問題與情境入口點擊", use: "檢查問題頁、情境頁是否把搜尋訪客導向文章、工具與下一步清單。" },
   { area: "AdSense", metric: "頁面 RPM、曝光、可見率、政策中心", use: "通過後只看合法曝光品質與政策狀態，不以誘導點擊作為優化方向。" },
@@ -30,11 +30,19 @@ const INDEXING_QUEUE = [
   "/guides/overtime",
   "/guides/severance",
   "/articles/salary-35000-take-home",
+  "/articles/salary-38000-take-home",
+  "/articles/salary-42000-take-home",
   "/articles/labor-insurance-bracket-2026",
   "/articles/health-insurance-bracket-2026",
   "/articles/labor-pension-6-percent",
   "/articles/unused-annual-leave-wage",
   "/articles/involuntary-separation-certificate",
+  "/articles/salary-55000-take-home",
+  "/articles/overtime-2-5hours-calculation",
+  "/articles/overtime-evidence-checklist",
+  "/articles/severance-6months",
+  "/articles/severance-18months",
+  "/articles/labor-insurance-underreporting-complaint",
   "/articles/salary-60000-take-home",
   "/articles/overtime-4hours-calculation",
   "/articles/severance-1year",
@@ -99,7 +107,7 @@ export default function GrowthDashboardPage() {
       <section className="mt-10 rounded-[16px] border border-brand-100 bg-brand-50 p-5 md:p-6">
         <h2 className="text-xl font-bold text-slate-900 mb-3">追蹤事件命名</h2>
         <p className="text-slate-700 leading-relaxed mb-4">
-          GA4 事件包含 page_context_viewed、tool_started、tool_completed、tool_preset_applied、tool_result_shared、content_shared、content_scroll_depth_reached、site_search_performed、site_search_result_clicked、question_article_clicked、scenario_primary_tool_clicked、cta_clicked、tool_next_step_clicked、newsletter_intent_submitted 與 checklist_print_clicked。
+          GA4 事件包含 page_context_viewed、tool_started、tool_completed、tool_preset_applied、tool_result_shared、content_shared、content_scroll_depth_reached、site_search_performed、site_search_result_clicked、question_article_clicked、scenario_primary_tool_clicked、cta_clicked、tool_next_step_clicked、tool_result_next_step_clicked、newsletter_intent_submitted 與 checklist_print_clicked。
           事件參數只描述頁面、工具名稱與互動類型，不上傳薪資、年資、到職日等敏感輸入。
         </p>
         <Link href="/privacy" className="font-semibold text-brand-700 hover:text-brand-800">

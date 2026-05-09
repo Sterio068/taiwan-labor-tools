@@ -7,6 +7,7 @@ import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { ResultActions } from "@/components/tools/ResultActions";
+import { ResultNextSteps } from "@/components/tools/ResultNextSteps";
 import { calculateOvertime, type OvertimeResult } from "@/lib/calculations/overtime";
 import { trackEvent } from "@/lib/analytics";
 import { formatMoney, formatMoneyDecimal } from "@/lib/format";
@@ -205,6 +206,26 @@ function OvertimeCalculatorInner() {
               </tbody>
             </table>
           </div>
+          <ResultNextSteps
+            toolId="overtime"
+            steps={[
+              {
+                label: "整理加班證據",
+                href: "/articles/overtime-evidence-checklist",
+                description: "把打卡、排班、主管訊息、交付紀錄與薪資單串成同一條時間線。",
+              },
+              {
+                label: "列印加班自保清單",
+                href: "/checklists#overtime",
+                description: "用清單核對申訴或調解前還缺哪些資料。",
+              },
+              {
+                label: "判斷是否進入勞資爭議",
+                href: "/tools/dispute-checker",
+                description: "若公司否認加班或短給加班費，先整理爭議類型與下一步。",
+              },
+            ]}
+          />
           <ResultActions
             toolId="overtime"
             shareTitle="加班費試算摘要"

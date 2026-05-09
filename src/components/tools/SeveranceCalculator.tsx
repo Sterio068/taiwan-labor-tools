@@ -6,6 +6,7 @@ import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { ResultActions } from "@/components/tools/ResultActions";
+import { ResultNextSteps } from "@/components/tools/ResultNextSteps";
 import { calculateSeverance, type SeveranceResult } from "@/lib/calculations/severance";
 import { trackEvent } from "@/lib/analytics";
 import { formatMoney, formatMoneyDecimal } from "@/lib/format";
@@ -160,6 +161,26 @@ export function SeveranceCalculator() {
           </div>
 
           <p className="mt-4 text-xs text-slate-400">資遣費以離職前 6 個月平均工資為基準，含加班費與經常性給與。</p>
+          <ResultNextSteps
+            toolId="severance"
+            steps={[
+              {
+                label: "確認非自願離職證明",
+                href: "/articles/involuntary-separation-certificate",
+                description: "申請失業給付前，先確認離職文件沒有被寫成自願離職。",
+              },
+              {
+                label: "看失業給付資格",
+                href: "/articles/unemployment-benefits",
+                description: "資遣費之外，非自願離職還可能銜接就業保險失業給付。",
+              },
+              {
+                label: "核對未休特休折現",
+                href: "/articles/annual-leave-resignation-payout-example",
+                description: "最後一期薪資要同步確認加班費、特休折現與預告工資。",
+              },
+            ]}
+          />
           <ResultActions
             toolId="severance"
             shareTitle="資遣費試算摘要"
