@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { TOOLS } from "@/data/constants";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { buildPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildPageMetadata, collectionPageSchema, SITE_URL } from "@/lib/seo";
 
 const TOOL_ICONS: Record<string, string> = {
   calculator: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
@@ -29,8 +30,21 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function ToolsPage() {
+  const collectionSchema = collectionPageSchema({
+    name: "勞工權益計算工具",
+    description:
+      "免費勞工計算工具：薪資明細、加班費、資遣費、特休天數、勞健保保費、退休金試算。",
+    path: "/tools",
+    items: TOOLS.map((tool) => ({
+      name: tool.name,
+      description: tool.description,
+      url: `${SITE_URL}${tool.href}`,
+    })),
+  });
+
   return (
     <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <JsonLd data={collectionSchema} />
       <Breadcrumb items={[{ label: "首頁", href: "/" }, { label: "計算工具" }]} />
       <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
         勞工權益計算工具
@@ -43,6 +57,9 @@ export default function ToolsPage() {
           <Link
             key={tool.href}
             href={tool.href}
+            data-track="tools_index_card_clicked"
+            data-track-label={tool.name}
+            data-track-target={tool.href}
             className="group bg-white rounded-[16px] p-6 shadow-[0_1px_3px_rgba(15,23,42,0.06)] hover:shadow-[0_10px_25px_rgba(15,23,42,0.1)] transition-all"
           >
             <div className="w-12 h-12 rounded-[12px] bg-brand-50 flex items-center justify-center mb-4 group-hover:bg-brand-100 transition-colors">

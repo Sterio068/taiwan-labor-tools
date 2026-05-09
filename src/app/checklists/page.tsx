@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { PrintButton } from "@/components/print/PrintButton";
-import { buildPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildPageMetadata, collectionPageSchema, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "勞工權益檢查表｜離職、資遣、加班與薪資單 PDF 摘要",
@@ -44,8 +45,21 @@ const CHECKLISTS = [
 ];
 
 export default function ChecklistsPage() {
+  const collectionSchema = collectionPageSchema({
+    name: "勞工權益檢查表",
+    description:
+      "可列印或另存 PDF 的勞工權益檢查表，包含薪資單檢查、加班自保、資遣自保與離職文件清單。",
+    path: "/checklists",
+    items: CHECKLISTS.map((checklist) => ({
+      name: checklist.title,
+      description: checklist.intro,
+      url: `${SITE_URL}/checklists#${checklist.id}`,
+    })),
+  });
+
   return (
     <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <JsonLd data={collectionSchema} />
       <Breadcrumb items={[{ label: "首頁", href: "/" }, { label: "權益檢查表" }]} />
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>

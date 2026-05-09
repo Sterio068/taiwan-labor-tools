@@ -41,11 +41,35 @@ export function AnalyticsEvents() {
       });
     };
 
+    const onSubmit = (event: SubmitEvent) => {
+      const form = event.target;
+      if (!(form instanceof HTMLFormElement)) return;
+      if (!form.dataset.track) return;
+
+      const queryField = form.dataset.trackQueryField;
+      const params: Record<string, string | number | boolean | undefined> = {
+        path: pathname,
+        label: form.dataset.trackLabel,
+        target: form.dataset.trackTarget,
+      };
+
+      if (queryField) {
+        const formData = new FormData(form);
+        const query = String(formData.get(queryField) ?? "").trim();
+        params.has_query = query.length > 0;
+        params.query_length = Math.min(query.length, 60);
+      }
+
+      trackEvent(form.dataset.track, params);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("click", onClick);
+    document.addEventListener("submit", onSubmit);
     return () => {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("click", onClick);
+      document.removeEventListener("submit", onSubmit);
     };
   }, [pathname]);
 

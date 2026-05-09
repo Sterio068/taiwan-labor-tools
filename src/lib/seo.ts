@@ -148,6 +148,74 @@ export function breadcrumbSchema(items: { name: string; url?: string }[]) {
   };
 }
 
+export interface StructuredListItem {
+  name: string;
+  url: string;
+  description?: string;
+}
+
+export function itemListSchema(items: StructuredListItem[]) {
+  return {
+    "@type": "ItemList",
+    numberOfItems: items.length,
+    itemListElement: items.map((item, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      item: {
+        "@type": "Thing",
+        name: item.name,
+        url: item.url,
+        ...(item.description ? { description: item.description } : {}),
+      },
+    })),
+  };
+}
+
+export function collectionPageSchema(page: {
+  name: string;
+  description: string;
+  path: string;
+  items: StructuredListItem[];
+  type?: "CollectionPage" | "SearchResultsPage";
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": page.type ?? "CollectionPage",
+    name: page.name,
+    description: page.description,
+    url: `${SITE_URL}${page.path}`,
+    inLanguage: "zh-TW",
+    isPartOf: {
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    mainEntity: itemListSchema(page.items),
+  };
+}
+
+export function definedTermSetSchema(set: {
+  name: string;
+  description: string;
+  path: string;
+  terms: { name: string; description: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    name: set.name,
+    description: set.description,
+    url: `${SITE_URL}${set.path}`,
+    inLanguage: "zh-TW",
+    hasDefinedTerm: set.terms.map((term) => ({
+      "@type": "DefinedTerm",
+      name: term.name,
+      description: term.description,
+      inDefinedTermSet: `${SITE_URL}${set.path}`,
+    })),
+  };
+}
+
 export interface HowToStep {
   name: string;
   text: string;

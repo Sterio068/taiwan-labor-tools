@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, collectionPageSchema, SITE_URL } from "@/lib/seo";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "勞工權益比較頁 — 月薪 vs 時薪、勞退新舊制、被資遣 vs 辭職",
@@ -43,8 +44,21 @@ const COMPARES = [
 ];
 
 export default function CompareIndexPage() {
+  const collectionSchema = collectionPageSchema({
+    name: "職場常見兩難比較",
+    description:
+      "用對照表快速搞懂職場常見的兩難選擇：月薪制 vs 時薪制、新制 vs 舊制勞退、被資遣 vs 自願離職、勞保 vs 國保。",
+    path: "/compare",
+    items: COMPARES.map((comparison) => ({
+      name: comparison.title,
+      description: comparison.desc,
+      url: `${SITE_URL}${comparison.href}`,
+    })),
+  });
+
   return (
     <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <JsonLd data={collectionSchema} />
       <Breadcrumb
         items={[
           { label: "首頁", href: "/" },
@@ -66,6 +80,9 @@ export default function CompareIndexPage() {
           <Link
             key={c.href}
             href={c.href}
+            data-track="compare_index_card_clicked"
+            data-track-label={c.title}
+            data-track-target={c.href}
             className="group block bg-white rounded-[16px] border border-slate-200 p-6 hover:shadow-md hover:border-brand-200 transition-all"
           >
             <div className="flex items-start justify-between mb-3">
@@ -98,6 +115,9 @@ export default function CompareIndexPage() {
       <div className="mt-12 grid sm:grid-cols-3 gap-4">
         <Link
           href="/guides"
+          data-track="compare_bottom_cta_clicked"
+          data-track-label="深度指南"
+          data-track-target="/guides"
           className="block p-5 bg-slate-50 rounded-[14px] hover:bg-brand-50 border border-transparent hover:border-brand-200 transition-all text-center"
         >
           <div className="text-2xl mb-2">📚</div>
@@ -106,6 +126,9 @@ export default function CompareIndexPage() {
         </Link>
         <Link
           href="/tools"
+          data-track="compare_bottom_cta_clicked"
+          data-track-label="計算工具"
+          data-track-target="/tools"
           className="block p-5 bg-slate-50 rounded-[14px] hover:bg-brand-50 border border-transparent hover:border-brand-200 transition-all text-center"
         >
           <div className="text-2xl mb-2">🧮</div>
@@ -114,6 +137,9 @@ export default function CompareIndexPage() {
         </Link>
         <Link
           href="/articles"
+          data-track="compare_bottom_cta_clicked"
+          data-track-label="權益文章"
+          data-track-target="/articles"
           className="block p-5 bg-slate-50 rounded-[14px] hover:bg-brand-50 border border-transparent hover:border-brand-200 transition-all text-center"
         >
           <div className="text-2xl mb-2">📰</div>

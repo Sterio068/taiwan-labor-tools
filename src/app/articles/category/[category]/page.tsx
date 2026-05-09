@@ -7,7 +7,8 @@ import {
   getAllCategories,
 } from "@/lib/articles";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { buildPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildPageMetadata, collectionPageSchema, SITE_URL } from "@/lib/seo";
 import type { ArticleCategory } from "@/types";
 
 interface Props {
@@ -37,9 +38,20 @@ export default async function CategoryPage({ params }: Props) {
 
   const articles = getArticlesByCategory(category as ArticleCategory);
   const categories = getAllCategories();
+  const collectionSchema = collectionPageSchema({
+    name: `${label}相關文章`,
+    description: `台灣勞工「${label}」相關的法規解讀與權益文章。`,
+    path: `/articles/category/${category}`,
+    items: articles.map((article) => ({
+      name: article.title,
+      description: article.description,
+      url: `${SITE_URL}/articles/${article.slug}`,
+    })),
+  });
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <JsonLd data={collectionSchema} />
       <Breadcrumb
         items={[
           { label: "首頁", href: "/" },
@@ -59,6 +71,9 @@ export default async function CategoryPage({ params }: Props) {
       <div className="flex flex-wrap gap-2 mb-8">
         <Link
           href="/articles"
+          data-track="article_category_filter_clicked"
+          data-track-label="全部"
+          data-track-target="/articles"
           className="inline-flex items-center px-3.5 py-1.5 rounded-[8px] text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:border-brand-300 hover:text-brand-600 transition-all"
         >
           全部
@@ -67,6 +82,9 @@ export default async function CategoryPage({ params }: Props) {
           <Link
             key={c.category}
             href={`/articles/category/${c.category}`}
+            data-track="article_category_filter_clicked"
+            data-track-label={c.label}
+            data-track-target={`/articles/category/${c.category}`}
             className={`inline-flex items-center px-3.5 py-1.5 rounded-[8px] text-sm font-medium transition-all ${
               c.category === category
                 ? "bg-brand-500 text-white shadow-sm"
@@ -85,6 +103,9 @@ export default async function CategoryPage({ params }: Props) {
           <Link
             key={article.slug}
             href={`/articles/${article.slug}`}
+            data-track="article_category_card_clicked"
+            data-track-label={article.title}
+            data-track-target={`/articles/${article.slug}`}
             className="group bg-white rounded-[16px] p-6 shadow-[0_1px_3px_rgba(15,23,42,0.06)] hover:shadow-[0_10px_25px_rgba(15,23,42,0.1)] transition-all"
           >
             <div className="flex items-center gap-2 mb-3">

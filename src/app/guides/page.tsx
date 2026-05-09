@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, collectionPageSchema, SITE_URL } from "@/lib/seo";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { GUIDE_HUBS } from "@/data/guide-hubs";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -22,8 +23,21 @@ const GUIDES = GUIDE_HUBS.map((hub) => ({
 }));
 
 export default function GuidesIndexPage() {
+  const collectionSchema = collectionPageSchema({
+    name: "勞工權益指南",
+    description:
+      "依六大搜尋主題整理的深度勞工權益指南，涵蓋薪資、加班費、資遣離職、特休請假、勞健保勞退與勞資爭議。",
+    path: "/guides",
+    items: GUIDE_HUBS.map((hub) => ({
+      name: hub.title,
+      description: hub.description,
+      url: `${SITE_URL}/guides/${hub.slug}`,
+    })),
+  });
+
   return (
     <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <JsonLd data={collectionSchema} />
       <Breadcrumb
         items={[
           { label: "首頁", href: "/" },
@@ -43,7 +57,13 @@ export default function GuidesIndexPage() {
       <div className="grid md:grid-cols-2 gap-6">
         {GUIDES.map((guide) => (
           <div key={guide.href} className="bg-white rounded-[16px] border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
-            <Link href={guide.href} className="block p-6 hover:bg-slate-50 transition-colors">
+            <Link
+              href={guide.href}
+              data-track="guides_index_card_clicked"
+              data-track-label={guide.title}
+              data-track-target={guide.href}
+              className="block p-6 hover:bg-slate-50 transition-colors"
+            >
               <div className="text-4xl mb-3">{guide.emoji}</div>
               <h2 className="text-xl font-bold text-slate-900 mb-2">{guide.title}</h2>
               <p className="text-slate-500 text-sm mb-4">{guide.desc}</p>
@@ -62,6 +82,9 @@ export default function GuidesIndexPage() {
                   <Link
                     key={tool.href}
                     href={tool.href}
+                    data-track="guides_index_tool_clicked"
+                    data-track-label={tool.name}
+                    data-track-target={tool.href}
                     className="inline-flex items-center px-3 py-1 bg-white text-brand-600 text-xs font-medium rounded-full border border-brand-200 hover:bg-brand-50 transition-colors"
                   >
                     {tool.name}
@@ -79,12 +102,18 @@ export default function GuidesIndexPage() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/tools"
+            data-track="guides_bottom_cta_clicked"
+            data-track-label="查看全部工具"
+            data-track-target="/tools"
             className="inline-flex items-center justify-center px-6 py-2.5 bg-brand-600 text-white font-bold rounded-[10px] hover:bg-brand-700 transition-colors text-sm"
           >
             查看全部工具
           </Link>
           <Link
             href="/articles"
+            data-track="guides_bottom_cta_clicked"
+            data-track-label="瀏覽全部文章"
+            data-track-target="/articles"
             className="inline-flex items-center justify-center px-6 py-2.5 bg-white text-brand-600 font-bold rounded-[10px] hover:bg-brand-50 transition-colors border border-brand-200 text-sm"
           >
             瀏覽全部文章

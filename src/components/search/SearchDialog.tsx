@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { getSearchIndex, searchItems, type SearchItem } from "@/lib/search-index";
+import { trackEvent } from "@/lib/analytics";
 
 export function SearchDialog() {
   const [open, setOpen] = useState(false);
@@ -17,11 +18,16 @@ export function SearchDialog() {
     setQuery("");
   };
 
+  const openDialog = (method: "button" | "keyboard") => {
+    setOpen(true);
+    trackEvent("site_search_opened", { method });
+  };
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        setOpen(true);
+        openDialog("keyboard");
       }
       if (e.key === "Escape") closeDialog();
     };
@@ -46,7 +52,7 @@ export function SearchDialog() {
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => openDialog("button")}
         className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[10px] text-slate-500 hover:text-brand-600 hover:bg-brand-50 transition-colors text-sm"
         aria-label="搜尋"
       >
@@ -106,7 +112,17 @@ export function SearchDialog() {
                     <li key={i}>
                       <Link
                         href={r.href}
-                        onClick={closeDialog}
+                        onClick={() => {
+                          trackEvent("site_search_result_clicked", {
+                            query_length: Math.min(query.trim().length, 60),
+                            result_count: results.length,
+                            result_position: i + 1,
+                            result_type: r.type,
+                            label: r.title,
+                            target: r.href,
+                          });
+                          closeDialog();
+                        }}
                         className="flex items-start gap-3 px-4 py-3 hover:bg-slate-50 transition-colors"
                       >
                         <span

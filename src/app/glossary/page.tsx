@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { buildPageMetadata, breadcrumbSchema, SITE_URL } from "@/lib/seo";
+import {
+  buildPageMetadata,
+  breadcrumbSchema,
+  definedTermSetSchema,
+  SITE_URL,
+} from "@/lib/seo";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "勞動法名詞解釋 — 勞基法、勞退、資遣費等 40 個名詞",
@@ -295,13 +301,24 @@ export default function GlossaryPage() {
     { name: "首頁", url: SITE_URL },
     { name: "名詞解釋", url: `${SITE_URL}/glossary` },
   ]);
+  const terms = GLOSSARY_GROUPS.flatMap((group) =>
+    group.terms.map((term) => ({
+      name: term.term,
+      description: term.definition,
+    }))
+  );
+  const termSetJsonLd = definedTermSetSchema({
+    name: "勞動法名詞解釋",
+    description:
+      "勞基法常見名詞完整解釋，包含基本工資、投保薪資、資遣費、平均工資、特休、勞退新舊制等術語。",
+    path: "/glossary",
+    terms,
+  });
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
+      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={termSetJsonLd} />
 
       <Breadcrumb jsonLd={false}
         items={[
