@@ -18,7 +18,7 @@ export default async function OG() {
           justifyContent: "center",
           alignItems: "center",
           background: "linear-gradient(135deg, #1E40AF 0%, #2563EB 100%)",
-          color: "#fff",
+          color: "#FEFFFF",
           fontFamily: "sans-serif",
           padding: "60px",
         }}

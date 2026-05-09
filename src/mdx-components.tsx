@@ -46,7 +46,7 @@ const components: MDXComponents = {
   ),
   em: ({ children }) => <em className="italic">{children}</em>,
   blockquote: ({ children }) => (
-    <blockquote className="border-l-4 border-brand-400 bg-brand-50 pl-5 pr-4 py-3 my-6 rounded-r-[12px] text-slate-700 italic">
+    <blockquote className="my-6 rounded-[12px] border border-brand-200 bg-brand-50 px-5 py-4 text-slate-700 italic">
       {children}
     </blockquote>
   ),

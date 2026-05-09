@@ -38,6 +38,9 @@
   --color-danger-600: #DC2626;
 
   /* 中性色 */
+  --color-white: #FEFFFF;
+  --color-black: #05070C;
+  --color-surface: #FEFFFF;
   --color-slate-50: #F8FAFC;
   --color-slate-100: #F1F5F9;
   --color-slate-200: #E2E8F0;
@@ -81,7 +84,7 @@ body {
 }
 
 @utility card-base {
-  @apply bg-white rounded-[16px] shadow-[var(--shadow-card)] transition-shadow;
+  @apply bg-surface rounded-[16px] shadow-[var(--shadow-card)] transition-shadow;
 }
 
 @utility card-hover {

@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-09T16:20:00+08:00",
+  "title": "Design System: 台灣勞工權益工具站",
+  "extensions": {
+    "colorMeta": {
+      "brand-500": {
+        "role": "primary",
+        "displayName": "Civic Blue",
+        "canonical": "#2563EB",
+        "tonalRamp": ["#172554", "#1E3A8A", "#1E40AF", "#1D4ED8", "#2563EB", "#60A5FA", "#DBEAFE", "#EFF6FF"]
+      },
+      "accent-500": {
+        "role": "secondary",
+        "displayName": "Assurance Green",
+        "canonical": "#10B981",
+        "tonalRamp": ["#064E3B", "#065F46", "#047857", "#059669", "#10B981", "#34D399", "#D1FAE5", "#ECFDF5"]
+      },
+      "warning-500": {
+        "role": "tertiary",
+        "displayName": "Caution Amber",
+        "canonical": "#F59E0B",
+        "tonalRamp": ["#451A03", "#78350F", "#92400E", "#B45309", "#F59E0B", "#FCD34D", "#FEF3C7", "#FFFBEB"]
+      },
+      "danger-500": {
+        "role": "danger",
+        "displayName": "Violation Red",
+        "canonical": "#EF4444",
+        "tonalRamp": ["#450A0A", "#7F1D1D", "#991B1B", "#DC2626", "#EF4444", "#F87171", "#FEE2E2", "#FEF2F2"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Paper Surface",
+        "canonical": "#FEFFFF",
+        "tonalRamp": ["#0F172A", "#1E293B", "#334155", "#64748B", "#CBD5E1", "#E2E8F0", "#F8FAFC", "#FEFFFF"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero and major page headings only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page-level H1 and major section titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Readable Traditional Chinese guidance and tool explanations."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons, form labels, chips, table headers."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-rest",
+        "value": "0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04)",
+        "purpose": "Low ambient separation for content panels."
+      },
+      {
+        "name": "card-hover",
+        "value": "0 10px 25px rgba(15, 23, 42, 0.1)",
+        "purpose": "Hover-only lift for clickable cards."
+      },
+      {
+        "name": "mobile-nav-lift",
+        "value": "0 -2px 12px rgba(15, 23, 42, 0.06)",
+        "purpose": "Stable separation for the mobile bottom nav."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-fast",
+        "value": "150ms ease-out",
+        "purpose": "Small hover and focus state changes."
+      },
+      {
+        "name": "state-standard",
+        "value": "200ms ease-out",
+        "purpose": "Cards, chips, buttons and search panel state transitions."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main action button for calculators and high-intent CTAs.",
+      "html": "<button class=\"ds-btn-primary\">計算薪資明細</button>",
+      "css": ".ds-btn-primary{min-height:44px;border:0;border-radius:12px;background:#2563EB;color:#FEFFFF;padding:12px 24px;font:700 14px/1.4 'Noto Sans TC',Inter,system-ui,sans-serif;box-shadow:0 1px 2px rgba(15,23,42,.08);transition:background-color .18s ease-out,box-shadow .18s ease-out}.ds-btn-primary:hover{background:#1D4ED8;box-shadow:0 4px 12px rgba(37,99,235,.2)}.ds-btn-primary:focus-visible{outline:3px solid #BFDBFE;outline-offset:2px}.ds-btn-primary:active{background:#1E40AF}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Secondary action for alternate paths and source links.",
+      "html": "<button class=\"ds-btn-secondary\">查官方來源</button>",
+      "css": ".ds-btn-secondary{min-height:44px;border:1px solid #BFDBFE;border-radius:12px;background:#FEFFFF;color:#1D4ED8;padding:10px 24px;font:700 14px/1.4 'Noto Sans TC',Inter,system-ui,sans-serif;transition:background-color .18s ease-out,border-color .18s ease-out}.ds-btn-secondary:hover{background:#EFF6FF;border-color:#93C5FD}.ds-btn-secondary:focus-visible{outline:3px solid #BFDBFE;outline-offset:2px}"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Calculator and search input with calm focus state.",
+      "html": "<label class=\"ds-field\"><span>每月薪資（稅前）</span><input class=\"ds-input\" placeholder=\"例：45000\" /></label>",
+      "css": ".ds-field{display:grid;gap:6px;color:#0F172A;font:600 14px/1.4 'Noto Sans TC',Inter,system-ui,sans-serif}.ds-input{height:44px;border:1px solid #E2E8F0;border-radius:10px;background:#F1F5F9;color:#0F172A;padding:0 16px;font:400 16px/1.5 'Noto Sans TC',Inter,system-ui,sans-serif;transition:background-color .18s ease-out,border-color .18s ease-out,box-shadow .18s ease-out}.ds-input::placeholder{color:#64748B}.ds-input:focus{background:#FEFFFF;border-color:#2563EB;box-shadow:0 0 0 3px #DBEAFE;outline:none}"
+    },
+    {
+      "name": "Tool Card",
+      "kind": "card",
+      "refersTo": "card-default",
+      "description": "Clickable entry for calculators, guides and article clusters.",
+      "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-card-icon\">算</span><strong>薪資明細計算機</strong><span>輸入月薪，立即算出勞健保扣款與實領金額。</span></a>",
+      "css": ".ds-card{display:grid;gap:10px;border:1px solid transparent;border-radius:16px;background:#FEFFFF;color:#0F172A;padding:24px;text-decoration:none;box-shadow:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);transition:border-color .18s ease-out,box-shadow .18s ease-out,background-color .18s ease-out}.ds-card:hover{border-color:#BFDBFE;box-shadow:0 10px 25px rgba(15,23,42,.1)}.ds-card:focus-visible{outline:3px solid #BFDBFE;outline-offset:2px}.ds-card-icon{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:12px;background:#EFF6FF;color:#1D4ED8;font-weight:800}.ds-card strong{font:700 18px/1.35 'Noto Sans TC',Inter,system-ui,sans-serif}.ds-card span:last-child{color:#64748B;font:400 14px/1.7 'Noto Sans TC',Inter,system-ui,sans-serif}"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip-filter",
+      "description": "Category filters for article and tool clusters.",
+      "html": "<button class=\"ds-chip\" aria-pressed=\"true\">薪資</button>",
+      "css": ".ds-chip{min-height:36px;border:1px solid #E2E8F0;border-radius:8px;background:#FEFFFF;color:#334155;padding:6px 14px;font:600 14px/1.4 'Noto Sans TC',Inter,system-ui,sans-serif;transition:background-color .18s ease-out,border-color .18s ease-out,color .18s ease-out}.ds-chip:hover{border-color:#93C5FD;color:#1D4ED8}.ds-chip[aria-pressed='true']{border-color:#2563EB;background:#2563EB;color:#FEFFFF}.ds-chip:focus-visible{outline:3px solid #BFDBFE;outline-offset:2px}"
+    },
+    {
+      "name": "Top Navigation",
+      "kind": "nav",
+      "refersTo": "nav-top",
+      "description": "Desktop navigation for tool, guide, article and trust pages.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-brand\" href=\"#\">勞工權益站</a><a href=\"#\">計算工具</a><a href=\"#\">完整指南</a><a href=\"#\">權益文章</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:8px;height:64px;border-bottom:1px solid #E2E8F0;background:rgba(248,250,252,.94);padding:0 24px;font:600 14px/1.4 'Noto Sans TC',Inter,system-ui,sans-serif}.ds-nav a{border-radius:10px;color:#334155;padding:8px 12px;text-decoration:none;transition:background-color .18s ease-out,color .18s ease-out}.ds-nav a:hover{background:#EFF6FF;color:#1D4ED8}.ds-nav a:focus-visible{outline:3px solid #BFDBFE;outline-offset:2px}.ds-nav-brand{margin-right:auto!important;color:#0F172A!important;font-weight:800!important;font-size:20px!important}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Public-Service Ledger",
+    "overview": "這套介面應該像一份乾淨的公共服務帳冊：答案清楚、數字可信、路徑可追。使用者可能正在確認薪資、離職、加班或保險問題，情緒不一定輕鬆；畫面要降低焦慮，不製造聲量。",
+    "keyCharacteristics": ["restrained, functional, high-trust", "calculator-first, content-supported", "clear hierarchy, compact enough for repeat use", "official-source oriented, privacy conservative"],
+    "rules": [
+      {
+        "name": "The Blue Is Action Rule",
+        "body": "藍色只服務主要動作、選取狀態與可查核路徑，不拿來灑滿整頁。",
+        "section": "colors"
+      },
+      {
+        "name": "The No Ad-Glow Rule",
+        "body": "廣告周圍不得使用吸睛色、箭頭、動態或強提示文案。",
+        "section": "colors"
+      },
+      {
+        "name": "The Answer First Rule",
+        "body": "標題下第一段必須直接回答使用者問題，不重述標題。",
+        "section": "typography"
+      },
+      {
+        "name": "The Lift Means Click Rule",
+        "body": "如果元素不可點擊，不要在 hover 或常態上做強陰影。",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do 把工具結果、公式與官方來源放在同一個任務流裡。",
+      "Do 使用 Civic Blue 表示主要動作與可查核路徑。",
+      "Do 讓手機上的輸入、按鈕與 chips 達到 44px 以上觸控高度。",
+      "Do 在法規、費率、級距更新時同步更新 `/sources`、sitemap 與頁面最後更新日期。",
+      "Do 用完整邊框或淡底色處理 callout，不用粗側邊條。"
+    ],
+    "donts": [
+      "Don't 做誘導點擊的廣告站效果，包含箭頭指向廣告、近距離放置廣告與工具按鈕、或暗示點擊廣告支持本站。",
+      "Don't 使用法律恐嚇頁語氣、過度行銷的 SaaS landing page、暗色金融儀表板、紫藍漸層 AI 工具頁、玻璃擬態卡片或浮誇英雄區。",
+      "Don't 使用 gradient text、粗側邊條 callout、裝飾性 blur glass、彈跳動效。",
+      "Don't 把每個區塊都做成同尺寸 icon card grid。只有工具入口、文章列表、比較入口需要卡片。",
+      "Don't 在 GA4 或第三方工具送出薪資、年資、日期、公司名稱或完整搜尋文字。"
+    ]
+  }
+}
