@@ -1,6 +1,8 @@
 import type { ArticleMeta, ArticleCategory } from "@/types";
 
-export const ARTICLES: ArticleMeta[] = [
+export const ARTICLE_CONTENT_UPDATED_AT = "2026-05-09";
+
+const RAW_ARTICLES: ArticleMeta[] = [
   {
     slug: "salary-slip-explained",
     title: "2026 薪資單完全解讀：每一項扣款是什麼？",
@@ -505,6 +507,11 @@ export const ARTICLES: ArticleMeta[] = [
     readingMinutes: 6,
   },
 ];
+
+export const ARTICLES: ArticleMeta[] = RAW_ARTICLES.map((article) => ({
+  ...article,
+  updatedAt: article.updatedAt ?? ARTICLE_CONTENT_UPDATED_AT,
+}));
 
 export function getArticleBySlug(slug: string): ArticleMeta | undefined {
   return ARTICLES.find((a) => a.slug === slug);
