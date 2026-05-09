@@ -53,7 +53,7 @@ export function SearchDialog() {
       <button
         type="button"
         onClick={() => openDialog("button")}
-        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[10px] text-slate-500 hover:text-brand-600 hover:bg-brand-50 transition-colors text-sm"
+        className="inline-flex min-h-10 items-center gap-2 rounded-[10px] px-3 text-sm font-semibold text-slate-600 transition-colors hover:bg-brand-50 hover:text-brand-700 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
         aria-label="搜尋"
       >
         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -61,7 +61,7 @@ export function SearchDialog() {
           <path d="m21 21-4.3-4.3" />
         </svg>
         <span className="hidden md:inline">搜尋</span>
-        <span className="hidden md:inline text-xs text-slate-300 border border-slate-200 rounded px-1.5 py-0.5">⌘K</span>
+        <span className="hidden rounded border border-slate-200 px-1.5 py-0.5 text-xs text-slate-400 md:inline">⌘K</span>
       </button>
 
       {open && (
@@ -69,9 +69,9 @@ export function SearchDialog() {
           className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4"
           onClick={closeDialog}
         >
-          <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm" />
+          <div className="fixed inset-0 bg-slate-900/45" />
           <div
-            className="relative w-full max-w-xl bg-white rounded-[16px] shadow-2xl overflow-hidden"
+            className="relative w-full max-w-xl overflow-hidden rounded-[18px] border border-slate-200 bg-surface shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 px-4 py-3 border-b border-slate-200">
@@ -85,12 +85,12 @@ export function SearchDialog() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="搜尋工具、文章⋯⋯"
-                className="flex-1 bg-transparent outline-none text-slate-900 placeholder:text-slate-400"
+                className="flex-1 bg-transparent text-slate-900 outline-none placeholder:text-slate-400"
               />
               <button
                 type="button"
                 onClick={closeDialog}
-                className="text-xs text-slate-500 border border-slate-200 rounded px-1.5 py-0.5"
+                className="rounded border border-slate-200 px-1.5 py-0.5 text-xs text-slate-500 hover:bg-slate-50"
               >
                 ESC
               </button>
@@ -123,7 +123,7 @@ export function SearchDialog() {
                           });
                           closeDialog();
                         }}
-                        className="flex items-start gap-3 px-4 py-3 hover:bg-slate-50 transition-colors"
+                        className="flex items-start gap-3 px-4 py-3 transition-colors hover:bg-brand-50"
                       >
                         <span
                           className={`mt-0.5 shrink-0 px-2 py-0.5 rounded-[6px] text-xs font-semibold ${typeColors[r.type]}`}

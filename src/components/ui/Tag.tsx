@@ -9,10 +9,10 @@ export function Tag({ label, selected = false, onClick }: TagProps) {
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex items-center px-3.5 py-1.5 rounded-[8px] text-sm font-medium transition-all ${
+      className={`inline-flex min-h-9 items-center rounded-[8px] px-3.5 py-1.5 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200 ${
         selected
-          ? "bg-brand-500 text-white shadow-sm"
-          : "bg-white text-slate-700 border border-slate-200 hover:border-brand-300 hover:text-brand-600"
+          ? "bg-brand-500 text-surface shadow-sm"
+          : "border border-slate-200 bg-surface text-slate-700 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700"
       }`}
     >
       {label}

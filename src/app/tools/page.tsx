@@ -3,16 +3,11 @@ import Link from "next/link";
 import { TOOLS } from "@/data/constants";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { ToolCard } from "@/components/tools/ToolCard";
 import { buildPageMetadata, collectionPageSchema, SITE_URL } from "@/lib/seo";
 
-const TOOL_ICONS: Record<string, string> = {
-  calculator: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
-  clock: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
-  briefcase: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-  calendar: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
-  shield: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-  "piggy-bank": "M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z",
-};
+type Tool = (typeof TOOLS)[number];
 
 export const metadata: Metadata = buildPageMetadata({
   title: "勞工權益計算工具",
@@ -29,6 +24,49 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/tools",
 });
 
+const TOOL_GROUPS = [
+  {
+    title: "薪資與工時",
+    description: "先確認實領、加班、時薪月薪與年終，避免薪資單只看最後一行。",
+    hrefs: ["/tools/salary", "/tools/overtime", "/tools/hourly-monthly", "/tools/bonus"],
+  },
+  {
+    title: "離職、資遣與職場狀況",
+    description: "處理被資遣、離職預告、職災、颱風出勤與權益健檢。",
+    hrefs: [
+      "/tools/severance",
+      "/tools/notice-period",
+      "/tools/work-injury",
+      "/tools/typhoon",
+      "/tools/rights-check",
+      "/tools/dispute-checker",
+    ],
+  },
+  {
+    title: "保險、勞退與退休",
+    description: "核對勞保、健保、勞退級距，估算未來退休金與雇主負擔。",
+    hrefs: [
+      "/tools/insurance-premium",
+      "/tools/insurance-bracket",
+      "/tools/pension",
+      "/tools/retirement-planner",
+    ],
+  },
+  {
+    title: "請假、生育與工作選擇",
+    description: "計算特休、產假育嬰假，並比較不同 offer 的實際待遇。",
+    hrefs: ["/tools/annual-leave", "/tools/maternity", "/tools/salary-compare"],
+  },
+];
+
+function findTool(href: string) {
+  return TOOLS.find((tool) => tool.href === href);
+}
+
+function isTool(tool: Tool | undefined): tool is Tool {
+  return Boolean(tool);
+}
+
 export default function ToolsPage() {
   const collectionSchema = collectionPageSchema({
     name: "勞工權益計算工具",
@@ -42,39 +80,74 @@ export default function ToolsPage() {
     })),
   });
 
+  const featuredTool = TOOLS[0];
+
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className="bg-slate-50">
       <JsonLd data={collectionSchema} />
-      <Breadcrumb items={[{ label: "首頁", href: "/" }, { label: "計算工具" }]} />
-      <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
-        勞工權益計算工具
-      </h1>
-      <p className="text-slate-500 mb-10 max-w-2xl">
-        所有工具依據 2026 年最新勞基法與勞保/健保費率，免費使用、即時計算。
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {TOOLS.map((tool) => (
-          <Link
-            key={tool.href}
-            href={tool.href}
-            data-track="tools_index_card_clicked"
-            data-track-label={tool.name}
-            data-track-target={tool.href}
-            className="group bg-white rounded-[16px] p-6 shadow-[0_1px_3px_rgba(15,23,42,0.06)] hover:shadow-[0_10px_25px_rgba(15,23,42,0.1)] transition-all"
-          >
-            <div className="w-12 h-12 rounded-[12px] bg-brand-50 flex items-center justify-center mb-4 group-hover:bg-brand-100 transition-colors">
-              <svg className="w-6 h-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d={TOOL_ICONS[tool.icon] || TOOL_ICONS.calculator}/>
-              </svg>
-            </div>
-            <h2 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">
-              {tool.name}
-            </h2>
-            <p className="text-sm text-slate-500 leading-relaxed">
-              {tool.description}
+      <div className="container-page py-8 md:py-12">
+        <Breadcrumb items={[{ label: "首頁", href: "/" }, { label: "計算工具" }]} />
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+          <div>
+            <p className="mb-3 inline-flex rounded-full border border-brand-200 bg-surface px-3 py-1 text-xs font-bold text-brand-700">
+              16 個免費工具
             </p>
-          </Link>
-        ))}
+            <h1 className="text-3xl font-extrabold leading-tight text-slate-950 md:text-5xl">
+              <span className="block">先選情境，</span>
+              <span className="block">再開始計算</span>
+            </h1>
+            <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700 md:text-lg">
+              每個工具都保留在本機計算，不上傳薪資、年資或日期等敏感輸入。結果頁會接到公式、常見錯誤與官方來源。
+            </p>
+          </div>
+          <div className="rounded-[22px] border border-slate-200 bg-surface p-5 shadow-[0_12px_32px_rgba(15,23,42,0.07)]">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
+              Recommended
+            </p>
+            <h2 className="mt-2 text-xl font-extrabold text-slate-950">
+              第一次來，從薪資明細開始
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              先算出實領薪水、勞健保扣款與勞退提繳，再往加班費或級距檢查延伸。
+            </p>
+            <Link
+              href={featuredTool.href}
+              data-track="tools_featured_cta_clicked"
+              data-track-target={featuredTool.href}
+              className="mt-4 inline-flex min-h-11 items-center rounded-[12px] bg-brand-500 px-5 text-sm font-bold text-surface hover:bg-brand-600"
+            >
+              開始算薪資明細
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="container-page pb-16">
+        <div className="space-y-12">
+          {TOOL_GROUPS.map((group) => {
+            const tools = group.hrefs.map(findTool).filter(isTool);
+
+            return (
+              <section key={group.title}>
+                <SectionHeader
+                  eyebrow="Tool Group"
+                  title={group.title}
+                  description={group.description}
+                />
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {tools.map((tool, index) => (
+                    <ToolCard
+                      key={tool.href}
+                      tool={tool}
+                      priority={index === 0}
+                      trackingSource="tools_index_card_clicked"
+                    />
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

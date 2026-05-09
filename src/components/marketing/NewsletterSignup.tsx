@@ -27,7 +27,7 @@ export function NewsletterSignup({ compact = false }: Props) {
   };
 
   return (
-    <section className={compact ? "" : "rounded-[16px] border border-brand-100 bg-brand-50 p-6"}>
+    <section className={compact ? "" : "rounded-[22px] border border-brand-100 bg-brand-50 p-6"}>
       <div className={compact ? "space-y-3" : "grid gap-5 md:grid-cols-[1fr_auto] md:items-center"}>
         <div>
           <p className="text-sm font-semibold text-brand-700">回訪入口</p>
@@ -47,12 +47,12 @@ export function NewsletterSignup({ compact = false }: Props) {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             placeholder="your@email.com"
-            className="min-h-11 rounded-[10px] border border-slate-300 bg-white px-3 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
+            className="min-h-11 rounded-[10px] border border-slate-300 bg-surface px-3 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
           />
           <button
             type="submit"
             data-track="newsletter_cta_clicked"
-            className="min-h-11 rounded-[10px] bg-brand-600 px-4 text-sm font-bold text-white hover:bg-brand-700 transition-colors"
+            className="min-h-11 rounded-[10px] bg-brand-600 px-4 text-sm font-bold text-surface transition-colors hover:bg-brand-700 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
           >
             開啟訂閱信
           </button>

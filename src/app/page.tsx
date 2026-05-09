@@ -5,9 +5,11 @@ import { GUIDE_HUBS } from "@/data/guide-hubs";
 import { ARTICLES } from "@/lib/articles";
 import { buildPageMetadata } from "@/lib/seo";
 import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { ToolCard } from "@/components/tools/ToolCard";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "台灣勞工權益工具站 — 薪資、加班費、資遣費免費計算",
+  title: "台灣勞工權益工具站：薪資、加班費、資遣費免費計算",
   description:
     "免費勞工權益計算工具：薪資明細、加班費、資遣費、特休天數、勞健保保費、勞退退休金。依據最新勞基法，幫你算清楚每一筆錢。",
   keywords: [
@@ -24,33 +26,35 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/",
 });
 
-const TOOL_ICONS: Record<string, string> = {
-  calculator: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
-  clock: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
-  briefcase: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-  calendar: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
-  shield: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-  "piggy-bank": "M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z",
-};
-
-// 最熱門的 6 個工具（人工挑選，基於常見搜尋意圖）
 const POPULAR_TOOLS = TOOLS.slice(0, 6);
 
-const GUIDES = GUIDE_HUBS.map((hub) => ({
-  title: hub.shortTitle,
-  desc: hub.description,
-  href: `/guides/${hub.slug}`,
-  emoji: hub.emoji,
-}));
-
-const COMPARE_PAGES = [
-  { title: "月薪 vs 時薪", desc: "哪個比較划算？", href: "/compare/monthly-vs-hourly" },
-  { title: "新制 vs 舊制勞退", desc: "差在哪？怎麼選？", href: "/compare/new-vs-old-pension" },
-  { title: "被資遣 vs 自願離職", desc: "差別與影響比較", href: "/compare/fired-vs-quit" },
-  { title: "勞保 vs 國保", desc: "哪個保障比較好？", href: "/compare/labor-vs-national-insurance" },
+const WORKBENCH_ACTIONS = [
+  {
+    title: "先算實領薪水",
+    description: "月薪、勞健保、勞退與雇主成本",
+    href: "/tools/salary",
+    badge: "薪資",
+  },
+  {
+    title: "確認加班費",
+    description: "平日、休息日、國定假日倍率",
+    href: "/tools/overtime",
+    badge: "工時",
+  },
+  {
+    title: "被資遣先估金額",
+    description: "資遣費、預告期與下一步",
+    href: "/tools/severance",
+    badge: "離職",
+  },
+  {
+    title: "查勞健保級距",
+    description: "檢查薪資單扣款是否合理",
+    href: "/tools/insurance-premium",
+    badge: "保險",
+  },
 ];
 
-// 熱門問題（目標 featured snippets）
 const POPULAR_QUESTIONS = [
   { q: "月薪 45000 實領多少？", href: "/articles/salary-45000-take-home" },
   { q: "加班 2 小時多少錢？", href: "/articles/overtime-2hours-calculation" },
@@ -60,265 +64,321 @@ const POPULAR_QUESTIONS = [
   { q: "時薪 196 元合理嗎？", href: "/articles/minimum-wage-hourly-2026" },
 ];
 
+const COMPARE_PAGES = [
+  { title: "月薪 vs 時薪", desc: "換工作或接案前，先比較實際待遇", href: "/compare/monthly-vs-hourly" },
+  { title: "新制 vs 舊制勞退", desc: "看懂退休金制度與適用差異", href: "/compare/new-vs-old-pension" },
+  { title: "被資遣 vs 自願離職", desc: "失業給付、證明與權益一次對照", href: "/compare/fired-vs-quit" },
+  { title: "勞保 vs 國保", desc: "保障範圍、保費與給付差在哪", href: "/compare/labor-vs-national-insurance" },
+];
+
 export default function HomePage() {
-  // 最新 5 篇文章
   const latestArticles = [...ARTICLES]
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
-    .slice(0, 6);
+    .slice(0, 5);
 
   return (
     <>
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-brand-600 to-brand-700 text-white py-16 md:py-24">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
-            算清楚你的每一筆錢
-          </h1>
-          <p className="text-lg md:text-xl text-brand-100 max-w-2xl mx-auto mb-8">
-            免費勞工權益計算工具，依據 2026 最新勞基法。
-            <br className="hidden md:block" />
-            薪資明細、加班費、資遣費、特休、勞健保、退休金 — 一次算清楚。
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/tools"
-              data-track="home_primary_cta_clicked"
-              data-track-label="開始計算"
-              data-track-target="/tools"
-              className="inline-flex items-center justify-center px-8 py-3.5 bg-white text-brand-600 font-bold rounded-[12px] hover:bg-brand-50 transition-colors shadow-lg text-lg"
-            >
-              開始計算
-            </Link>
-            <Link
-              href="/guides"
-              data-track="home_secondary_cta_clicked"
-              data-track-label="瀏覽指南"
-              data-track-target="/guides"
-              className="inline-flex items-center justify-center px-8 py-3.5 bg-brand-800/40 text-white font-bold rounded-[12px] hover:bg-brand-800/60 transition-colors border border-white/30 text-lg"
-            >
-              瀏覽指南
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 熱門問題 — Quick Answer 區塊 */}
-      <section className="py-10 bg-slate-50 border-b border-slate-200">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-sm font-semibold text-slate-500 uppercase mb-4 text-center">
-            🔥 熱門問題
-          </h2>
-          <div className="flex flex-wrap gap-2 justify-center">
-            {POPULAR_QUESTIONS.map((q) => (
-              <Link
-                key={q.href}
-                href={q.href}
-                data-track="home_question_clicked"
-                data-track-label={q.q}
-                data-track-target={q.href}
-                className="inline-flex items-center px-4 py-2 bg-white text-slate-700 rounded-full border border-slate-200 hover:border-brand-300 hover:text-brand-600 hover:bg-brand-50 transition-colors text-sm"
-              >
-                {q.q}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tools Grid */}
-      <section className="py-16">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
-                免費計算工具
-              </h2>
-              <p className="text-slate-500 mt-1">16 個工具，涵蓋薪資、加班、資遣、退休</p>
-            </div>
-            <Link
-              href="/tools"
-              data-track="home_tools_index_clicked"
-              data-track-target="/tools"
-              className="hidden sm:inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-sm"
-            >
-              查看全部 →
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {POPULAR_TOOLS.map((tool) => (
-              <Link
-                key={tool.href}
-                href={tool.href}
-                data-track="home_tool_clicked"
-                data-track-label={tool.name}
-                data-track-target={tool.href}
-                className="group bg-white rounded-[16px] p-6 shadow-[0_1px_3px_rgba(15,23,42,0.06)] hover:shadow-[0_10px_25px_rgba(15,23,42,0.1)] transition-all"
-              >
-                <div className="w-12 h-12 rounded-[12px] bg-brand-50 flex items-center justify-center mb-4 group-hover:bg-brand-100 transition-colors">
-                  <svg className="w-6 h-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d={TOOL_ICONS[tool.icon] || TOOL_ICONS.calculator}/>
-                  </svg>
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">
-                  {tool.name}
-                </h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  {tool.description}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 指南 Hub 區塊 */}
-      <section className="py-16 bg-white">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 text-center mb-3">
-            完整指南
-          </h2>
-          <p className="text-center text-slate-500 mb-10">
-            按主題整理的深度內容中樞，工具與文章一次看完
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {GUIDES.map((g) => (
-              <Link
-                key={g.href}
-                href={g.href}
-                data-track="home_guide_clicked"
-                data-track-label={g.title}
-                data-track-target={g.href}
-                className="block p-6 bg-slate-50 rounded-[16px] hover:bg-brand-50 border border-transparent hover:border-brand-200 transition-all"
-              >
-                <div className="text-3xl mb-3">{g.emoji}</div>
-                <h3 className="font-bold text-slate-900 mb-1">{g.title}</h3>
-                <p className="text-sm text-slate-500">{g.desc}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 比較頁區塊 */}
-      <section className="py-16">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 text-center mb-3">
-            一次看懂：熱門比較
-          </h2>
-          <p className="text-center text-slate-500 mb-10">
-            職場常見的兩難選擇，用對照表快速搞懂
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {COMPARE_PAGES.map((c) => (
-              <Link
-                key={c.href}
-                href={c.href}
-                className="block p-5 bg-white rounded-[14px] border border-slate-200 hover:border-brand-300 hover:shadow-md transition-all"
-              >
-                <div className="inline-block text-xs font-semibold text-brand-600 bg-brand-50 px-2 py-0.5 rounded mb-3">VS</div>
-                <h3 className="font-bold text-slate-900 mb-1">{c.title}</h3>
-                <p className="text-sm text-slate-500">{c.desc}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 最新文章 */}
-      <section className="py-16 bg-white">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
-                最新文章
-              </h2>
-              <p className="text-slate-500 mt-1">持續更新的勞工權益知識</p>
-            </div>
-            <Link
-              href="/articles"
-              data-track="home_articles_index_clicked"
-              data-track-target="/articles"
-              className="hidden sm:inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-sm"
-            >
-              全部文章 →
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {latestArticles.map((article) => (
-              <Link
-                key={article.slug}
-                href={`/articles/${article.slug}`}
-                data-track="home_article_clicked"
-                data-track-label={article.title}
-                data-track-target={`/articles/${article.slug}`}
-                className="block p-5 bg-slate-50 rounded-[14px] hover:bg-white hover:shadow-md border border-transparent hover:border-slate-200 transition-all"
-              >
-                <div className="text-xs text-slate-400 mb-2">
-                  {article.publishedAt} · {article.readingMinutes} 分鐘閱讀
-                </div>
-                <h3 className="font-bold text-slate-900 mb-2 leading-snug">
-                  {article.title}
-                </h3>
-                <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed">
-                  {article.description}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trust / Law Reference */}
-      <section className="py-16">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-extrabold text-brand-600 mb-2">2026</div>
-              <p className="text-slate-700 font-medium">最新法規數據</p>
-              <p className="text-sm text-slate-500 mt-1">基本工資 $29,500 適用</p>
-            </div>
-            <div>
-              <div className="text-3xl font-extrabold text-brand-600 mb-2">16+</div>
-              <p className="text-slate-700 font-medium">免費計算工具</p>
-              <p className="text-sm text-slate-500 mt-1">薪資、加班、資遣、特休...</p>
-            </div>
-            <div>
-              <div className="text-3xl font-extrabold text-brand-600 mb-2">100%</div>
-              <p className="text-slate-700 font-medium">官方來源對照</p>
-              <p className="text-sm text-slate-500 mt-1">
-                <Link href="/sources" className="text-brand-600 hover:text-brand-700 font-semibold">
-                  查看資料來源與更新紀錄
-                </Link>
+      <section className="border-b border-slate-200 bg-slate-50">
+        <div className="container-page py-10 md:py-14">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-start">
+            <div className="max-w-3xl">
+              <p className="mb-4 inline-flex rounded-full border border-brand-200 bg-surface px-3 py-1 text-xs font-bold text-brand-700">
+                2026 台灣勞工權益搜尋入口
               </p>
+              <h1 className="text-[2.55rem] font-extrabold leading-[1.12] tracking-normal text-slate-950 md:text-6xl">
+                <span className="block">先確認權益，</span>
+                <span className="block">再決定下一步</span>
+              </h1>
+              <p className="mt-5 max-w-[22rem] text-lg leading-8 text-slate-700 sm:max-w-2xl">
+                從薪資、加班、資遣、特休到勞健保，把常見勞權問題變成可計算、可查來源、可帶走的下一步。
+              </p>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/tools"
+                  data-track="home_primary_cta_clicked"
+                  data-track-label="進入計算工具"
+                  data-track-target="/tools"
+                  className="inline-flex min-h-12 items-center justify-center rounded-[12px] bg-brand-500 px-6 text-base font-bold text-surface shadow-[0_10px_22px_rgba(37,99,235,0.24)] transition-colors hover:bg-brand-600 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
+                >
+                  進入計算工具
+                </Link>
+                <Link
+                  href="/guides"
+                  data-track="home_secondary_cta_clicked"
+                  data-track-label="按情境找指南"
+                  data-track-target="/guides"
+                  className="inline-flex min-h-12 items-center justify-center rounded-[12px] border border-slate-300 bg-surface px-6 text-base font-bold text-slate-800 transition-colors hover:border-brand-300 hover:bg-brand-50 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
+                >
+                  按情境找指南
+                </Link>
+              </div>
+              <dl className="mt-9 grid gap-3 rounded-[20px] border border-slate-200 bg-surface p-3 shadow-[0_1px_3px_rgba(15,23,42,0.05)] sm:max-w-2xl sm:grid-cols-3">
+                <div className="rounded-[14px] bg-slate-50 p-4">
+                  <dt className="text-xs font-bold text-slate-500">基本工資</dt>
+                  <dd className="mt-1 text-xl font-extrabold text-slate-950">$29,500</dd>
+                </div>
+                <div className="rounded-[14px] bg-slate-50 p-4">
+                  <dt className="text-xs font-bold text-slate-500">時薪下限</dt>
+                  <dd className="mt-1 text-xl font-extrabold text-slate-950">$196</dd>
+                </div>
+                <div className="rounded-[14px] bg-slate-50 p-4">
+                  <dt className="text-xs font-bold text-slate-500">免費工具</dt>
+                  <dd className="mt-1 text-xl font-extrabold text-slate-950">16+</dd>
+                </div>
+              </dl>
+            </div>
+
+            <aside className="rounded-[24px] border border-slate-200 bg-surface p-4 shadow-[0_16px_48px_rgba(15,23,42,0.08)]">
+              <div className="mb-4 flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
+                    Workbench
+                  </p>
+                  <h2 className="mt-1 text-xl font-extrabold text-slate-950">
+                    今天要處理什麼？
+                  </h2>
+                </div>
+                <Link
+                  href="/sources"
+                  className="rounded-[10px] bg-brand-50 px-3 py-2 text-xs font-bold text-brand-700 hover:bg-brand-100"
+                >
+                  官方來源
+                </Link>
+              </div>
+              <div className="space-y-3">
+                {WORKBENCH_ACTIONS.map((action) => (
+                  <Link
+                    key={action.href}
+                    href={action.href}
+                    data-track="home_workbench_action_clicked"
+                    data-track-label={action.title}
+                    data-track-target={action.href}
+                    className="group grid grid-cols-[auto_1fr] gap-3 rounded-[16px] border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-brand-300 hover:bg-brand-50 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
+                  >
+                    <span className="rounded-[10px] bg-surface px-2.5 py-1 text-xs font-bold text-brand-700">
+                      {action.badge}
+                    </span>
+                    <span>
+                      <span className="block font-bold text-slate-950 group-hover:text-brand-700">
+                        {action.title}
+                      </span>
+                      <span className="mt-1 block text-sm leading-6 text-slate-600">
+                        {action.description}
+                      </span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-surface py-10">
+        <div className="container-page">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center">
+            <div className="shrink-0">
+              <p className="text-sm font-extrabold text-slate-900">熱門快速答案</p>
+              <p className="text-sm text-slate-500">高搜尋意圖問題，直接進文章或工具</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {POPULAR_QUESTIONS.map((q) => (
+                <Link
+                  key={q.href}
+                  href={q.href}
+                  data-track="home_question_clicked"
+                  data-track-label={q.q}
+                  data-track-target={q.href}
+                  className="inline-flex min-h-10 items-center rounded-full border border-slate-200 bg-slate-50 px-4 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700"
+                >
+                  {q.q}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-white">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <NewsletterSignup />
+      <section className="bg-slate-50 py-14 md:py-20">
+        <div className="container-page">
+          <SectionHeader
+            eyebrow="Calculators"
+            title="先用工具把金額算清楚"
+            description="把最常見的薪資、工時、離職與投保問題放在前面；結果頁再接到公式、官方來源與下一步。"
+            actionHref="/tools"
+            actionLabel="全部工具"
+          />
+          <div className="grid gap-5 lg:grid-cols-[1.05fr_1fr]">
+            <ToolCard
+              tool={POPULAR_TOOLS[0]}
+              priority
+              trackingSource="home_featured_tool_clicked"
+            />
+            <div className="grid gap-3 sm:grid-cols-2">
+              {POPULAR_TOOLS.slice(1).map((tool) => (
+                <ToolCard
+                  key={tool.href}
+                  tool={tool}
+                  compact
+                  trackingSource="home_tool_clicked"
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 bg-brand-50">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-            不確定自己的權益？
-          </h2>
-          <p className="text-slate-600 mb-8 max-w-xl mx-auto">
-            輸入你的月薪，馬上看到勞健保扣了多少、實領多少、雇主幫你提繳了多少退休金。
-          </p>
-          <Link
-            href="/tools/salary"
-            data-track="home_bottom_cta_clicked"
-            data-track-label="試算薪資明細"
-            data-track-target="/tools/salary"
-            className="inline-flex items-center px-8 py-3.5 bg-brand-500 text-white font-bold rounded-[12px] hover:bg-brand-600 transition-colors shadow-md text-lg"
-          >
-            試算薪資明細
-          </Link>
+      <section className="bg-surface py-14 md:py-20">
+        <div className="container-page">
+          <SectionHeader
+            eyebrow="Guides"
+            title="按情境走，不用自己翻法條"
+            description="六大主題把工具、文章、FAQ 與官方依據接在一起，讓使用者從問題一路走到可執行的下一步。"
+            actionHref="/guides"
+            actionLabel="完整指南"
+          />
+          <div className="grid gap-4 lg:grid-cols-2">
+            {GUIDE_HUBS.map((hub, index) => (
+              <Link
+                key={hub.slug}
+                href={`/guides/${hub.slug}`}
+                data-track="home_guide_clicked"
+                data-track-label={hub.shortTitle}
+                data-track-target={`/guides/${hub.slug}`}
+                className="group grid gap-4 rounded-[18px] border border-slate-200 bg-slate-50 p-5 transition-colors hover:border-brand-300 hover:bg-brand-50 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200 sm:grid-cols-[64px_1fr]"
+              >
+                <span className="grid h-14 w-14 place-items-center rounded-[16px] bg-surface text-sm font-extrabold text-brand-700 shadow-[0_1px_2px_rgba(15,23,42,0.06)]">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span>
+                  <span className="block text-lg font-extrabold text-slate-950 group-hover:text-brand-700">
+                    {hub.shortTitle}
+                  </span>
+                  <span className="mt-1 block text-sm leading-6 text-slate-600">
+                    {hub.description}
+                  </span>
+                  <span className="mt-3 flex flex-wrap gap-2">
+                    {hub.tools.slice(0, 2).map((tool) => (
+                      <span
+                        key={tool.href}
+                        className="rounded-full bg-surface px-3 py-1 text-xs font-bold text-slate-600"
+                      >
+                        {tool.title}
+                      </span>
+                    ))}
+                  </span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-14 md:py-20">
+        <div className="container-page">
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <SectionHeader
+                eyebrow="Compare"
+                title="用比較表做決定"
+                description="適合離職、轉職、保險與退休制度選擇前快速掃描。"
+                actionHref="/compare"
+                actionLabel="熱門比較"
+              />
+              <div className="space-y-3">
+                {COMPARE_PAGES.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="group flex items-start gap-4 rounded-[16px] border border-slate-200 bg-surface p-4 transition-colors hover:border-brand-300 hover:bg-brand-50"
+                  >
+                    <span className="rounded-[10px] bg-brand-50 px-2.5 py-1 text-xs font-extrabold text-brand-700">
+                      VS
+                    </span>
+                    <span>
+                      <span className="block font-bold text-slate-950 group-hover:text-brand-700">
+                        {item.title}
+                      </span>
+                      <span className="mt-1 block text-sm leading-6 text-slate-600">
+                        {item.desc}
+                      </span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <SectionHeader
+                eyebrow="Articles"
+                title="最新勞權文章"
+                description="每篇文章都要回答一個明確問題，並連回工具、FAQ 與官方來源。"
+                actionHref="/articles"
+                actionLabel="全部文章"
+              />
+              <div className="rounded-[20px] border border-slate-200 bg-surface p-3 shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
+                {latestArticles.map((article) => (
+                  <Link
+                    key={article.slug}
+                    href={`/articles/${article.slug}`}
+                    data-track="home_article_clicked"
+                    data-track-label={article.title}
+                    data-track-target={`/articles/${article.slug}`}
+                    className="group block rounded-[14px] p-4 transition-colors hover:bg-brand-50"
+                  >
+                    <div className="text-xs font-semibold text-slate-500">
+                      {article.publishedAt} · {article.readingMinutes} 分鐘閱讀
+                    </div>
+                    <h3 className="mt-1 font-extrabold leading-snug text-slate-950 group-hover:text-brand-700">
+                      {article.title}
+                    </h3>
+                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-600">
+                      {article.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-surface py-14 md:py-20">
+        <div className="container-page">
+          <div className="grid gap-5 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+            <div className="rounded-[24px] border border-slate-200 bg-slate-50 p-6">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
+                Trust
+              </p>
+              <h2 className="mt-2 text-2xl font-extrabold text-slate-950">
+                公式、來源、更新紀錄要看得到
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                這個站的設計重點不是把廣告放大，而是讓內容可信、工具好用、來源可查。廣告只保守放在不干擾閱讀的位置。
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                <Link
+                  href="/sources"
+                  className="rounded-full bg-surface px-4 py-2 text-sm font-bold text-brand-700 hover:bg-brand-50"
+                >
+                  資料來源與更新紀錄
+                </Link>
+                <Link
+                  href="/privacy"
+                  className="rounded-full bg-surface px-4 py-2 text-sm font-bold text-slate-700 hover:bg-brand-50"
+                >
+                  隱私權政策
+                </Link>
+                <Link
+                  href="/about"
+                  className="rounded-full bg-surface px-4 py-2 text-sm font-bold text-slate-700 hover:bg-brand-50"
+                >
+                  關於本站
+                </Link>
+              </div>
+            </div>
+            <NewsletterSignup />
+          </div>
         </div>
       </section>
     </>

@@ -32,7 +32,7 @@ export function Select({
       )}
       <select
         id={selectId}
-        className={`w-full rounded-[10px] border border-slate-200 bg-slate-50 px-4 py-2.5 text-base text-slate-900 focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-200 transition-all appearance-none bg-no-repeat bg-[right_1rem_center] pr-10 ${className}`}
+        className={`w-full appearance-none rounded-[10px] border border-slate-200 bg-slate-50 bg-[right_1rem_center] bg-no-repeat px-4 py-2.5 pr-10 text-base text-slate-900 transition-colors focus:border-brand-500 focus:bg-surface focus:outline-none focus:ring-2 focus:ring-brand-200 ${className}`}
         style={{
           backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2364748B' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
         }}

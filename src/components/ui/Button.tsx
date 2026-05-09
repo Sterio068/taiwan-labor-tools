@@ -14,14 +14,14 @@ export function Button({
   ...rest
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center font-semibold rounded-[12px] transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
+    "inline-flex items-center justify-center font-semibold rounded-[12px] transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-200";
   const variants = {
     primary:
-      "bg-brand-500 text-white hover:bg-brand-600 active:bg-brand-700 shadow-sm hover:shadow-md",
+      "bg-brand-500 text-surface hover:bg-brand-600 active:bg-brand-700 shadow-sm",
     secondary:
-      "bg-accent-500 text-white hover:bg-accent-600 active:bg-accent-700 shadow-sm hover:shadow-md",
+      "bg-surface text-brand-700 hover:bg-brand-50 active:bg-brand-100 border border-brand-200",
     ghost:
-      "bg-transparent text-brand-600 hover:bg-brand-50 border border-brand-200",
+      "bg-transparent text-brand-700 hover:bg-brand-50 border border-brand-200",
   };
   const sizes = {
     sm: "px-3 py-1.5 text-sm",

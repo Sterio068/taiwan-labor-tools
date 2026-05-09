@@ -10,15 +10,15 @@ const NAV_ITEMS = [
 
 export function BottomNav() {
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 shadow-[0_-2px_12px_rgba(15,23,42,0.06)]">
-      <ul className="flex items-center justify-around h-16">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 bg-surface shadow-[0_-2px_12px_rgba(15,23,42,0.06)] md:hidden">
+      <ul className="flex h-16 items-center justify-around">
         {NAV_ITEMS.map((item) => (
           <li key={item.href} className="flex-1">
             <Link
               href={item.href}
-              className="flex flex-col items-center justify-center gap-0.5 py-2 text-slate-500 hover:text-brand-600 transition-colors"
+              className="mx-1 flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-[12px] py-2 text-slate-500 transition-colors hover:bg-brand-50 hover:text-brand-700 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-1 focus-visible:outline-brand-200"
             >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d={item.iconPath}/>
               </svg>
               <span className="text-[11px] font-medium">{item.label}</span>
