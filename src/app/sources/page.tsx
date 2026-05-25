@@ -45,9 +45,13 @@ export default function SourcesPage() {
             <h1 className="text-3xl font-extrabold leading-tight text-slate-950 md:text-5xl">
               資料來源與更新紀錄
             </h1>
-            <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700 md:text-lg">
-              本站計算工具與文章以主管機關公告、法規資料庫與公開資料為主要依據。法規與費率可能調整，實際適用仍以官方最新公告與個案事實為準。
-            </p>
+          <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700 md:text-lg">
+            本站計算工具與文章以主管機關公告、法規資料庫與公開資料為主要依據。法規與費率可能調整，實際適用仍以官方最新公告與個案事實為準。
+          </p>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
+            這一頁是本站的資料查核入口。當工具結果、文章說明或 FAQ 使用特定費率與級距時，會優先回到這裡列出的官方來源確認。
+            若某個主題暫時沒有完整來源，我們會避免把推論寫成確定結論。
+          </p>
           </header>
           <aside className="rounded-[22px] border border-slate-200 bg-surface p-5 shadow-[0_12px_32px_rgba(15,23,42,0.07)]">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
@@ -116,6 +120,32 @@ export default function SourcesPage() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mb-12 rounded-[20px] border border-slate-200 bg-surface p-5 shadow-[0_1px_3px_rgba(15,23,42,0.05)] md:p-6">
+        <h2 className="mb-3 text-xl font-bold text-slate-950">
+          查核優先順序
+        </h2>
+        <div className="grid gap-4 md:grid-cols-3">
+          <div className="rounded-[16px] bg-slate-50 p-4">
+            <h3 className="font-bold text-slate-900">高優先</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              最低工資、勞健保級距、勞退提繳、資遣費與加班費倍率，會優先同步到工具與高流量文章。
+            </p>
+          </div>
+          <div className="rounded-[16px] bg-slate-50 p-4">
+            <h3 className="font-bold text-slate-900">中優先</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              FAQ、情境頁、比較頁與檢查表會在核心工具確認後更新，避免同一規則在不同頁面出現不同說法。
+            </p>
+          </div>
+          <div className="rounded-[16px] bg-slate-50 p-4">
+            <h3 className="font-bold text-slate-900">人工回報</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              若讀者提供官方來源或實際錯誤案例，會優先核對相關頁面，並在必要時更新本頁紀錄。
+            </p>
+          </div>
         </div>
       </section>
 

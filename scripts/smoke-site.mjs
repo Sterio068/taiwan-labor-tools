@@ -25,6 +25,23 @@ function assertIncludes(body, expected, label) {
   assert.ok(body.includes(expected), `${label} missing: ${expected}`);
 }
 
+function visibleContentUnits(html) {
+  const text = html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const hanChars = text.match(/[\u4e00-\u9fff]/gu) || [];
+  const words = text.replace(/[\u4e00-\u9fff]/gu, " ").match(/[A-Za-z0-9]+/g) || [];
+  return hanChars.length + words.length;
+}
+
+function assertMinContentUnits(html, minUnits, label) {
+  const count = visibleContentUnits(html);
+  assert.ok(count >= minUnits, `${label} too thin: ${count} < ${minUnits}`);
+}
+
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -52,6 +69,12 @@ const corePages = [
   "/tools/severance",
   "/questions",
   "/scenarios",
+  "/about",
+  "/contact",
+  "/privacy",
+  "/terms",
+  "/sources",
+  "/editorial-policy",
   "/guides/salary",
   "/guides/overtime",
   "/guides/severance",
@@ -151,5 +174,21 @@ assertIncludes(questionsHub, "application/ld+json", "questions schema JSON-LD");
 const scenariosHub = await fetchText(baseUrl, "/scenarios");
 assertIncludes(scenariosHub, "勞工權益情境入口", "scenarios hub title");
 assertIncludes(scenariosHub, "application/ld+json", "scenarios schema JSON-LD");
+
+const trustPages = [
+  { path: "/about", title: "關於勞工權益站", minUnits: 900 },
+  { path: "/contact", title: "聯絡與回饋", minUnits: 700 },
+  { path: "/privacy", title: "隱私權政策", minUnits: 950 },
+  { path: "/terms", title: "服務條款", minUnits: 1050 },
+  { path: "/sources", title: "資料來源與更新紀錄", minUnits: 850 },
+  { path: "/editorial-policy", title: "編輯政策", minUnits: 1200 },
+];
+
+for (const page of trustPages) {
+  const html = await fetchText(baseUrl, page.path);
+  assertIncludes(html, page.title, `trust page ${page.path} title`);
+  assertIncludes(html, `${expectedSiteUrl}${page.path}`, `trust page ${page.path} canonical`);
+  assertMinContentUnits(html, page.minUnits, `trust page ${page.path}`);
+}
 
 console.log(`Smoke check passed for ${baseUrl}`);

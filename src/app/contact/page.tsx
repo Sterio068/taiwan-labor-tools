@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -32,6 +33,41 @@ export default function ContactPage() {
           <li>• 官方來源連結或可查證資料</li>
           <li>• 使用裝置與瀏覽器（若是工具錯誤）</li>
         </ul>
+      </section>
+
+      <section className="rounded-[16px] border border-slate-200 bg-white p-5 md:p-6 mb-8">
+        <h2 className="text-xl font-bold text-slate-900 mb-3">
+          我們會如何處理
+        </h2>
+        <div className="space-y-3 text-slate-700 leading-relaxed">
+          <p>
+            若回報涉及薪資、加班費、資遣費、勞健保、勞退或最低工資等核心工具，我們會優先核對
+            <Link
+              href="/sources"
+              className="mx-1 font-semibold text-brand-700 underline underline-offset-2"
+            >
+              資料來源與更新紀錄
+            </Link>
+            中列出的官方資料，再檢查工具公式與頁面說明是否需要同步修正。
+          </p>
+          <p>
+            若回報屬於個案諮詢，例如雇主是否違法、調解策略、契約條款效力或訴訟風險，本站無法代替律師或主管機關判斷。
+            我們會盡量回覆可查證的公開資料方向，並提醒你向地方勞工局、法律扶助或專業律師確認。
+          </p>
+          <p>
+            若是廣告版位、外部連結或頁面可用性問題，也歡迎附上截圖。本站不會要求使用者點擊廣告，也會避免廣告遮蔽工具、表單或重要導覽。
+          </p>
+        </div>
+      </section>
+
+      <section className="rounded-[16px] border border-amber-200 bg-amber-50 p-5 md:p-6 mb-8">
+        <h2 className="text-xl font-bold text-amber-950 mb-3">
+          回信與資料保護
+        </h2>
+        <p className="text-amber-900 leading-relaxed">
+          來信只會用於處理你的回報或合作洽詢。請不要寄送完整身分證字號、完整薪資單、醫療資料、公司內部文件或任何未遮蔽個資。
+          若需要說明案例，建議移除姓名、公司名稱、員工編號與可識別個人的資訊。
+        </p>
       </section>
 
       <a

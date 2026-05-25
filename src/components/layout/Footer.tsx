@@ -39,6 +39,7 @@ export function Footer() {
             <h3 className="mb-3 font-bold text-slate-950">關於</h3>
             <ul className="space-y-2 text-sm text-slate-600">
               <li><Link href="/about" className="hover:text-brand-700">關於我們</Link></li>
+              <li><Link href="/editorial-policy" className="hover:text-brand-700">編輯政策</Link></li>
               <li><Link href="/sources" className="hover:text-brand-700">資料來源與更新紀錄</Link></li>
               <li><Link href="/contact" className="hover:text-brand-700">聯絡與回饋</Link></li>
               <li><Link href="/privacy" className="hover:text-brand-700">隱私權政策</Link></li>

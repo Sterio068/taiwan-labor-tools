@@ -7,6 +7,7 @@ import { SITE_URL } from "@/lib/seo";
 const UPDATED_2026_05_07 = "2026-05-07";
 const UPDATED_2026_05_09 = "2026-05-09";
 const UPDATED_2026_05_10 = "2026-05-10";
+const UPDATED_2026_05_25 = "2026-05-25";
 const UPDATED_2026_04_30 = "2026-04-30";
 const UPDATED_2026_04_07 = "2026-04-07";
 
@@ -21,11 +22,12 @@ const STATIC_LASTMOD: Record<string, string> = {
   "/faq": UPDATED_2026_05_09,
   "/glossary": UPDATED_2026_05_09,
   "/minimum-wage": UPDATED_2026_05_09,
-  "/about": UPDATED_2026_05_07,
-  "/privacy": UPDATED_2026_05_07,
-  "/terms": UPDATED_2026_05_07,
-  "/sources": UPDATED_2026_05_09,
-  "/contact": UPDATED_2026_05_07,
+  "/about": UPDATED_2026_05_25,
+  "/privacy": UPDATED_2026_05_25,
+  "/terms": UPDATED_2026_05_25,
+  "/sources": UPDATED_2026_05_25,
+  "/contact": UPDATED_2026_05_25,
+  "/editorial-policy": UPDATED_2026_05_25,
   "/newsletter": UPDATED_2026_05_07,
   "/checklists": UPDATED_2026_05_07,
   "/growth-dashboard": UPDATED_2026_05_07,
@@ -60,6 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/glossary", "monthly", 0.8),
     page("/minimum-wage", "monthly", 0.85),
     page("/sources", "monthly", 0.72),
+    page("/editorial-policy", "monthly", 0.7),
     page("/checklists", "monthly", 0.74),
     page("/newsletter", "monthly", 0.55),
     page("/growth-dashboard", "monthly", 0.45),

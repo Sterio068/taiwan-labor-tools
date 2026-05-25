@@ -113,6 +113,32 @@ export default function AboutPage() {
             本站可能顯示 Google AdSense 廣告。廣告區塊會以「廣告」標示，並與工具按鈕、表單與主要操作保持距離；
             我們不會要求、暗示、交換或鼓勵任何使用者點擊廣告。
           </p>
+          <p>
+            完整的查核流程、內容邊界、廣告揭露與勘誤處理方式，整理在
+            <Link
+              href="/editorial-policy"
+              className="mx-1 font-semibold text-brand-600 underline underline-offset-2"
+            >
+              編輯政策
+            </Link>
+            。這些原則用來確保本站不是單純堆疊法條或製造流量頁，而是維持可查證、可行動、可回報修正的內容品質。
+          </p>
+        </div>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="text-xl font-bold text-slate-900 mb-3">
+          我們不是官方機關
+        </h2>
+        <div className="space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            勞工權益站是民間整理的資訊工具，不隸屬勞動部、勞保局、健保署、地方勞工局或任何政府機關。
+            我們會盡量連回官方資料，讓讀者能自己核對原始依據，但本站內容不代表主管機關正式見解。
+          </p>
+          <p>
+            若你正在處理資遣、欠薪、職災、職場霸凌、競業禁止或其他具體勞資爭議，請把本站當成整理問題與準備資料的起點。
+            實際主張權利前，仍建議向地方勞工局、法律扶助基金會、工會或專業律師確認個案適用情形。
+          </p>
         </div>
       </section>
 
