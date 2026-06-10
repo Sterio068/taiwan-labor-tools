@@ -169,7 +169,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-surface py-10">
+      <section className="bg-surface py-10 [contain-intrinsic-size:260px] [content-visibility:auto]">
         <div className="container-page">
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
             <div className="shrink-0">
@@ -203,7 +203,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-surface py-14 md:py-20">
+      <section className="bg-surface py-14 [contain-intrinsic-size:520px] [content-visibility:auto] md:py-20">
         <div className="container-page">
           <SectionHeader
             eyebrow="Scenarios"
@@ -237,7 +237,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-14 md:py-20">
+      <section className="bg-slate-50 py-14 [contain-intrinsic-size:620px] [content-visibility:auto] md:py-20">
         <div className="container-page">
           <SectionHeader
             eyebrow="Calculators"
@@ -266,7 +266,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-surface py-14 md:py-20">
+      <section className="bg-surface py-14 [contain-intrinsic-size:560px] [content-visibility:auto] md:py-20">
         <div className="container-page">
           <SectionHeader
             eyebrow="Guides"
@@ -312,7 +312,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-14 md:py-20">
+      <section className="bg-slate-50 py-14 [contain-intrinsic-size:760px] [content-visibility:auto] md:py-20">
         <div className="container-page">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
@@ -381,7 +381,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-surface py-14 md:py-20">
+      <section className="bg-surface py-14 [contain-intrinsic-size:520px] [content-visibility:auto] md:py-20">
         <div className="container-page">
           <div className="grid gap-5 lg:grid-cols-[1fr_1.1fr] lg:items-center">
             <div className="rounded-[24px] border border-slate-200 bg-slate-50 p-6">
