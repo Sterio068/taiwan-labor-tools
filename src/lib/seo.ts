@@ -70,13 +70,15 @@ export function webApplicationSchema(tool: {
   name: string;
   description: string;
   path: string;
+  dateModified?: string;
 }) {
+  const url = `${SITE_URL}${tool.path}`;
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: tool.name,
     description: tool.description,
-    url: `${SITE_URL}${tool.path}`,
+    url,
     applicationCategory: "FinanceApplication",
     operatingSystem: "All",
     offers: {
@@ -85,6 +87,9 @@ export function webApplicationSchema(tool: {
       priceCurrency: "TWD",
     },
     inLanguage: "zh-TW",
+    isAccessibleForFree: true,
+    mainEntityOfPage: url,
+    ...(tool.dateModified ? { dateModified: tool.dateModified } : {}),
   };
 }
 
@@ -252,8 +257,14 @@ export function articleSchema(article: {
   updatedAt?: string;
   keywords?: string[];
   category?: string;
+  sources?: { label: string; url: string }[];
 }) {
   const url = `${SITE_URL}/articles/${article.slug}`;
+  const sourceWorks = article.sources?.map((source) => ({
+    "@type": "CreativeWork",
+    name: source.label,
+    url: source.url,
+  }));
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -270,6 +281,12 @@ export function articleSchema(article: {
       ? { keywords: article.keywords.join(", ") }
       : {}),
     ...(article.category ? { articleSection: article.category } : {}),
+    ...(sourceWorks?.length
+      ? {
+          citation: article.sources?.map((source) => source.url),
+          isBasedOn: sourceWorks,
+        }
+      : {}),
     inLanguage: "zh-TW",
     isAccessibleForFree: true,
     author: {

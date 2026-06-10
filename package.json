@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit",
     "smoke:prod": "node scripts/smoke-site.mjs",
     "lint": "eslint",
+    "seo:audit": "node scripts/audit-seo.mjs",
     "design:audit": "impeccable detect src --fast"
   },
   "dependencies": {

@@ -46,9 +46,11 @@ export default async function ArticlePage({ params }: Props) {
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
+  const sources = getArticleSources(article.category);
   const articleSchema = buildArticleSchema({
     ...article,
     category: CATEGORY_LABELS[article.category],
+    sources,
   });
 
   const bcSchema = breadcrumbSchema([
@@ -59,7 +61,6 @@ export default async function ArticlePage({ params }: Props) {
 
   // Tool CTA for this article
   const tools = ARTICLE_TOOLS[slug] ?? [];
-  const sources = getArticleSources(article.category);
   const articleFaqs = [
     {
       question: `這篇「${article.title}」先看什麼重點？`,
