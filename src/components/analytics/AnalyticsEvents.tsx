@@ -27,6 +27,18 @@ export function AnalyticsEvents() {
       content_group: contentGroup,
     });
 
+    // Standardized cross-site funnel: explicit tool_viewed with the tool slug.
+    if (contentGroup === "tool") {
+      const toolId = pathname.replace(/^\/tools\//, "").split("/")[0];
+      if (toolId) {
+        trackEvent("tool_viewed", {
+          path: pathname,
+          content_group: contentGroup,
+          tool_id: toolId,
+        });
+      }
+    }
+
     const onScroll = () => {
       const scrollable =
         document.documentElement.scrollHeight - window.innerHeight;
