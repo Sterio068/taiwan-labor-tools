@@ -784,6 +784,37 @@ const RAW_ARTICLES: ArticleMeta[] = [
     publishedAt: "2026-05-10",
     readingMinutes: 6,
   },
+  // — 第五批文章：原創深度文章 —
+  {
+    slug: "overtime-calculation-examples",
+    title: "加班費計算實例：3 種月薪 x 5 種情境完整試算",
+    description:
+      "月薪 30k、45k、60k 在平日加班、休息日加班、國定假日出勤各該拿多少加班費？用 15 組實際算例帶你核對薪資單。",
+    category: "overtime",
+    keywords: ["加班費計算實例", "加班費試算", "平日加班", "休息日加班", "國定假日加班", "加班費怎麼算"],
+    publishedAt: "2026-07-03",
+    readingMinutes: 8,
+  },
+  {
+    slug: "severance-pay-notice-wages",
+    title: "資遣費與預告工資一次搞懂：計算公式、實例與文件清單",
+    description:
+      "資遣費和預告工資是兩種不同的錢。本文拆解法規依據、計算公式、不同年資的實際試算，以及被資遣後必拿的 5 份文件。",
+    category: "severance",
+    keywords: ["資遣費", "預告工資", "資遣費計算", "預告期", "非自願離職", "被資遣"],
+    publishedAt: "2026-07-03",
+    readingMinutes: 8,
+  },
+  {
+    slug: "labor-nhi-bracket-guide",
+    title: "2026 勞健保級距完整說明：投保金額、保費計算與薪資單核對",
+    description:
+      "勞保、健保的投保級距怎麼分？月薪多少對應哪一級？保費怎麼算？本文整理 2026 年完整級距表與薪資單核對方法。",
+    category: "insurance",
+    keywords: ["勞保級距", "健保級距", "投保薪資", "勞保費率", "健保費率", "投保金額", "薪資單核對"],
+    publishedAt: "2026-07-03",
+    readingMinutes: 8,
+  },
 ];
 
 export const ARTICLES: ArticleMeta[] = RAW_ARTICLES.map((article) => ({
