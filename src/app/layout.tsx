@@ -123,9 +123,11 @@ export default function RootLayout({
               crossOrigin="anonymous"
               strategy="afterInteractive"
             />
-            <Script id="adsense-auto-ads-init" strategy="lazyOnload">
-              {`(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"${ADSENSE_ID}",enable_page_level_ads:true});`}
-            </Script>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"${ADSENSE_ID}",enable_page_level_ads:true});`,
+              }}
+            />
           </>
         )}
         <AnalyticsEvents />
