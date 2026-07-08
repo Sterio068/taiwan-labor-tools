@@ -116,12 +116,17 @@ export default function RootLayout({
           </>
         )}
         {ADSENSE_ID && (
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
+          <>
+            <Script
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
+              crossOrigin="anonymous"
+              strategy="afterInteractive"
+            />
+            <Script id="adsense-auto-ads-init" strategy="lazyOnload">
+              {`(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"${ADSENSE_ID}",enable_page_level_ads:true});`}
+            </Script>
+          </>
         )}
         <AnalyticsEvents />
         {GA_ID && <WebVitalsReporter />}
