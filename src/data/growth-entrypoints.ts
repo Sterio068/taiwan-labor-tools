@@ -16,7 +16,7 @@ export interface ScenarioEntry {
   links: { label: string; href: string }[];
 }
 
-export const GROWTH_QUESTIONS: GrowthQuestion[] = [
+const RAW_GROWTH_QUESTIONS: GrowthQuestion[] = [
   {
     question: "月薪 30000 實領多少？",
     answer: "單身、不自提勞退時，主要扣款是勞保與健保；實際金額仍要看眷屬與自提比例。",
@@ -159,7 +159,18 @@ export const GROWTH_QUESTIONS: GrowthQuestion[] = [
   },
 ];
 
-export const SCENARIO_ENTRIES: ScenarioEntry[] = [
+function isIndexableArticleHref(href: string) {
+  const match = href.match(/^\/articles\/([^/?#]+)/);
+  if (!match) return true;
+  const article = getArticleBySlug(match[1]);
+  return !article || isIndexableArticle(article);
+}
+
+export const GROWTH_QUESTIONS = RAW_GROWTH_QUESTIONS.filter((item) =>
+  isIndexableArticleHref(item.href),
+);
+
+const RAW_SCENARIO_ENTRIES: ScenarioEntry[] = [
   {
     slug: "monthly-worker",
     title: "我是月薪族，想確認實領與扣款",
@@ -244,3 +255,9 @@ export const SCENARIO_ENTRIES: ScenarioEntry[] = [
     ],
   },
 ];
+
+export const SCENARIO_ENTRIES = RAW_SCENARIO_ENTRIES.map((scenario) => ({
+  ...scenario,
+  links: scenario.links.filter((link) => isIndexableArticleHref(link.href)),
+}));
+import { getArticleBySlug, isIndexableArticle } from "@/lib/articles";

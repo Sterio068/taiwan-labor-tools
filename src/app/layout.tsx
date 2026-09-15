@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { AnalyticsEvents } from "@/components/analytics/AnalyticsEvents";
 import { WebVitalsReporter } from "@/components/analytics/WebVitalsReporter";
+import { AdSenseLoader } from "@/components/ads/AdSenseLoader";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   organizationSchema,
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     "勞退",
     "退休金試算",
   ],
-  authors: [{ name: "勞工權益站" }],
+  authors: [{ name: "SterioCheng", url: `${SITE_URL}/about` }],
   verification: {
     google: "e58910d0ffcea7b8",
   },
@@ -115,21 +116,7 @@ export default function RootLayout({
             </Script>
           </>
         )}
-        {ADSENSE_ID && (
-          <>
-            <Script
-              async
-              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
-              crossOrigin="anonymous"
-              strategy="afterInteractive"
-            />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"${ADSENSE_ID}",enable_page_level_ads:true});`,
-              }}
-            />
-          </>
-        )}
+        <AdSenseLoader />
         <AnalyticsEvents />
         {GA_ID && <WebVitalsReporter />}
         <Header />

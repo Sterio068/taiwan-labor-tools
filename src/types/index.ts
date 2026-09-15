@@ -54,6 +54,8 @@ export interface ArticleMeta {
   publishedAt: string;
   updatedAt?: string;
   readingMinutes: number;
+  noindex?: boolean;
+  contentStatus?: "indexable" | "improve";
 }
 
 export type ArticleCategory =

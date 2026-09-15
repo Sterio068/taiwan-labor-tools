@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ARTICLES, getArticleBySlug, CATEGORY_LABELS } from "@/lib/articles";
+import { ARTICLES, getArticleBySlug, CATEGORY_LABELS, getIndexableArticles } from "@/lib/articles";
+import { isAdEligibleArticle } from "@/lib/content-policy";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
   if (!article) return {};
-  return buildPageMetadata({
+  const metadata = buildPageMetadata({
     title: article.title,
     description: article.description,
     keywords: article.keywords,
@@ -39,6 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     modifiedTime: article.updatedAt || article.publishedAt,
     section: CATEGORY_LABELS[article.category],
   });
+  return article.noindex ? { ...metadata, robots: { index: false, follow: true } } : metadata;
 }
 
 export default async function ArticlePage({ params }: Props) {
@@ -46,7 +48,7 @@ export default async function ArticlePage({ params }: Props) {
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
-  const sources = getArticleSources(article.category);
+  const sources = getArticleSources(article.category, article.slug);
   const articleSchema = buildArticleSchema({
     ...article,
     category: CATEGORY_LABELS[article.category],
@@ -95,7 +97,7 @@ export default async function ArticlePage({ params }: Props) {
   const relatedSlugs = getRelatedSlugs(
     slug,
     article.category,
-    ARTICLES.map((a) => ({ slug: a.slug, category: a.category }))
+    getIndexableArticles().map((a) => ({ slug: a.slug, category: a.category }))
   );
   const relatedArticles = relatedSlugs
     .map((s) => getArticleBySlug(s))
@@ -143,6 +145,9 @@ export default async function ArticlePage({ params }: Props) {
         <p className="mt-4 text-lg text-slate-500 leading-relaxed">
           {article.description}
         </p>
+        <p className="mt-3 text-xs text-slate-500">
+          維護與編輯：SterioCheng（依公開法規與主管機關資料整理，未宣稱法律專業資格）
+        </p>
       </header>
 
       <section className="mb-8 rounded-[16px] border border-brand-100 bg-brand-50 p-5">
@@ -172,7 +177,7 @@ export default async function ArticlePage({ params }: Props) {
         </div>
       </section>
 
-      <AdBanner slot="article-top" format="horizontal" />
+      {isAdEligibleArticle(article) && <AdBanner slot="article-top" format="horizontal" />}
 
       {Content ? (
         <article className="prose-custom">
@@ -274,7 +279,7 @@ export default async function ArticlePage({ params }: Props) {
         </div>
       )}
 
-      <AdBanner slot="article-bottom" format="horizontal" className="mt-8" />
+      {isAdEligibleArticle(article) && <AdBanner slot="article-bottom" format="horizontal" className="mt-8" />}
 
       <div className="mt-10 pt-6 border-t border-slate-200">
         <ShareButtons title={article.title} path={`/articles/${slug}`} />

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { RelatedLink } from "@/data/tool-related";
+import { getArticleBySlug, isIndexableArticle } from "@/lib/articles";
 
 interface Props {
   articles?: RelatedLink[];
@@ -7,11 +8,17 @@ interface Props {
 }
 
 export function RelatedLinks({ articles = [], tools = [] }: Props) {
-  if (articles.length === 0 && tools.length === 0) return null;
+  const visibleArticles = articles.filter((link) => {
+    const match = link.href.match(/^\/articles\/([^/?#]+)/);
+    if (!match) return true;
+    const article = getArticleBySlug(match[1]);
+    return !article || isIndexableArticle(article);
+  });
+  if (visibleArticles.length === 0 && tools.length === 0) return null;
 
   return (
     <section className="mt-12 grid gap-6 md:grid-cols-2">
-      {articles.length > 0 && (
+      {visibleArticles.length > 0 && (
         <div className="rounded-[16px] border border-slate-200 bg-surface p-6">
           <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
             <svg className="w-5 h-5 text-brand-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -22,7 +29,7 @@ export function RelatedLinks({ articles = [], tools = [] }: Props) {
             延伸閱讀
           </h3>
           <ul className="space-y-2">
-            {articles.map((link, i) => (
+            {visibleArticles.map((link, i) => (
               <li key={i}>
                 <Link
                   href={link.href}

@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { type GuideHub } from "@/data/guide-hubs";
 import { breadcrumbSchema, faqSchema, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { getArticleBySlug, isIndexableArticle } from "@/lib/articles";
 
 interface GuideHubPageProps {
   hub: GuideHub;
@@ -13,6 +14,12 @@ interface GuideHubPageProps {
 
 export function GuideHubPage({ hub }: GuideHubPageProps) {
   const path = `/guides/${hub.slug}`;
+  const articles = hub.articles.filter((item) => {
+    const match = item.href.match(/^\/articles\/([^/?#]+)/);
+    if (!match) return true;
+    const article = getArticleBySlug(match[1]);
+    return !article || isIndexableArticle(article);
+  });
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -23,7 +30,7 @@ export function GuideHubPage({ hub }: GuideHubPageProps) {
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
     mainEntity: {
       "@type": "ItemList",
-      itemListElement: [...hub.tools, ...hub.articles].map((item, index) => ({
+      itemListElement: [...hub.tools, ...articles].map((item, index) => ({
         "@type": "ListItem",
         position: index + 1,
         name: item.title,
@@ -132,7 +139,7 @@ export function GuideHubPage({ hub }: GuideHubPageProps) {
           />
           <div className="overflow-hidden rounded-[16px] border border-slate-200 bg-surface shadow-[var(--shadow-card)]">
             <div className="divide-y divide-slate-100">
-              {hub.articles.map((article) => (
+              {articles.map((article) => (
                 <Link
                   key={article.href}
                   href={article.href}

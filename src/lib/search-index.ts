@@ -1,4 +1,4 @@
-import { ARTICLES, CATEGORY_LABELS } from "@/lib/articles";
+import { getIndexableArticles, CATEGORY_LABELS } from "@/lib/articles";
 import { TOOLS } from "@/data/constants";
 
 export interface SearchItem {
@@ -26,7 +26,7 @@ export function getSearchIndex(): SearchItem[] {
   }
 
   // Articles
-  for (const article of ARTICLES) {
+  for (const article of getIndexableArticles()) {
     items.push({
       title: article.title,
       description: article.description,

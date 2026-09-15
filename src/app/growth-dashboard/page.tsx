@@ -49,6 +49,10 @@ const INDEXING_QUEUE = [
   "/articles/severance-5years",
 ];
 
+const INDEXING_QUEUE_VISIBLE = INDEXING_QUEUE.filter(
+  (path) => !path.startsWith("/articles/") || !path.match(/take-home|hours-calculation|severance-|evidence-checklist|underreporting|unused-annual|health-insurance-bracket/),
+);
+
 export default function GrowthDashboardPage() {
   return (
     <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
@@ -121,7 +125,7 @@ export default function GrowthDashboardPage() {
           Search Console 驗證後，優先用網址審查提交以下核心入口。這些頁面是薪資、加班與資遣三個 topic cluster 的主幹。
         </p>
         <div className="grid gap-2 text-sm text-slate-700 md:grid-cols-2">
-          {INDEXING_QUEUE.map((path) => (
+          {INDEXING_QUEUE_VISIBLE.map((path) => (
             <Link
               key={path}
               href={path}

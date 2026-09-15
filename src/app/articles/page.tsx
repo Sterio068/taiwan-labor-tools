@@ -4,7 +4,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ArticleCard } from "@/components/articles/ArticleCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { ARTICLES, getAllCategories } from "@/lib/articles";
+import { getIndexableArticles, getAllCategories } from "@/lib/articles";
 import { buildPageMetadata, collectionPageSchema, SITE_URL } from "@/lib/seo";
 
 interface ArticlesPageProps {
@@ -53,7 +53,8 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
   const params = searchParams ? await searchParams : {};
   const query = normalizeQuery(params.q);
   const normalizedQuery = query.toLowerCase();
-  const filtered = ARTICLES.filter((article) => {
+  const articles = getIndexableArticles();
+  const filtered = articles.filter((article) => {
     if (!normalizedQuery) return true;
 
     return (
@@ -87,7 +88,7 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-start">
           <div>
             <p className="mb-3 inline-flex rounded-full border border-brand-200 bg-surface px-3 py-1 text-xs font-bold text-brand-700">
-              {query ? "搜尋結果" : `${ARTICLES.length} 篇白話勞權文章`}
+              {query ? "搜尋結果" : `${articles.length} 篇白話勞權文章`}
             </p>
             <h1 className="text-3xl font-extrabold leading-tight text-slate-950 md:text-5xl">
               勞工權益文章
@@ -148,7 +149,7 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
               className="inline-flex min-h-9 items-center rounded-[8px] bg-brand-500 px-3.5 text-sm font-bold text-surface shadow-sm"
             >
               全部
-              <span className="ml-1 text-xs opacity-80">{ARTICLES.length}</span>
+              <span className="ml-1 text-xs opacity-80">{articles.length}</span>
             </Link>
             {categories.map((category) => (
               <Link

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { isMonetizablePath } from "@/lib/content-policy";
 
 interface AdBannerProps {
   slot?: string;
@@ -87,18 +89,21 @@ export function AdBanner({
   format = "auto",
   className = "",
 }: AdBannerProps) {
+  const pathname = usePathname();
   const adClient = ADSENSE_ID?.trim();
   const adSlot = normalizeAdSlot(slot);
 
   useEffect(() => {
-    if (!adClient || !adSlot) return;
+    if (!isMonetizablePath(pathname) || !adClient || !adSlot) return;
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
     } catch {
       // adsbygoogle not yet ready
     }
-  }, [adClient, adSlot]);
+  }, [adClient, adSlot, pathname]);
+
+  if (!isMonetizablePath(pathname)) return null;
 
   if (!adClient || !adSlot) {
     if (process.env.NODE_ENV === "development") {

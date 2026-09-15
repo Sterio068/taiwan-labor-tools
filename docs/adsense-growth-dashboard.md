@@ -21,6 +21,14 @@
 | GA4 | content_shared、tool_result_shared、question_article_clicked、scenario_primary_tool_clicked、cta_clicked、tool_next_step_clicked、tool_result_next_step_clicked | 評估分享、內部延伸閱讀、熱門問題、情境入口與工具結果後續路徑，但不追蹤薪資、年資或日期輸入 |
 | AdSense | Page RPM、曝光、可見率、政策中心 | 只做合法曝光品質優化，不以點擊誘導為目標 |
 
+## GA4 Key event 契約（需帳戶管理員操作）
+
+- 唯一高意圖事件：`tool_started`（開始試算）與 `tool_result`（完成並產生結果）。
+- `tool_completed` 是既有相容別名；保留收集，但不要和 `tool_result` 同時標為 Key event，避免完成數加倍。
+- `tool_result_shared`、`content_scroll_depth_reached`、`site_search_performed` 與頁面瀏覽維持一般事件，用來診斷漏斗，不標為 Key event。
+- 目前 GA4 讀值的「重要活動」為 0，狀態記為 `unknown/blocker`；只有在 Admin 標記後，再以 DebugView 觸發一次開始／完成流程，並於 24 小時報表確認事件各出現一次。
+- 禁止把薪資、年資、日期、公司名稱、姓名、Email 或任何自由文字送入事件參數；只保留 `tool_id`、`content_group`、路徑與布林狀態等低敏欄位。
+
 ## 部署後 Search Console 操作
 
 1. 到 Search Console 的 `twlabor.org` 網域資源。

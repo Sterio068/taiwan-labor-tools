@@ -1,4 +1,5 @@
 import type { ArticleMeta, ArticleCategory } from "@/types";
+import { contentStatus, isIndexableArticle } from "@/lib/content-policy";
 
 const RAW_ARTICLES: ArticleMeta[] = [
   {
@@ -815,12 +816,50 @@ const RAW_ARTICLES: ArticleMeta[] = [
     publishedAt: "2026-07-03",
     readingMinutes: 8,
   },
+  // — 第六批文章：原創深度文章 —
+  {
+    slug: "overtime-pay-vs-compensatory-leave",
+    title: "加班補休 vs 加班費：哪個划算？法律規定與選擇策略",
+    description:
+      "加班後該領加班費還是換補休？勞基法第 32-1 條規定勞工有選擇權，補休時數依加班費倍率換算。本文整理比較表、選擇建議與常見爭議。",
+    category: "overtime",
+    keywords: ["加班補休", "補休", "加班費", "加班費vs補休", "勞基法第32-1條", "補休時數"],
+    publishedAt: "2026-07-03",
+    readingMinutes: 7,
+  },
+  {
+    slug: "severance-calculation-complete",
+    title: "資遣費計算全攻略：年資、月薪對照完整試算",
+    description:
+      "新制資遣費計算公式與完整試算表，涵蓋 3 個月到 15 年不同年資、不同月薪的實際金額，同步整理預告工資與必拿文件。",
+    category: "severance",
+    keywords: ["資遣費計算", "資遣費公式", "資遣費試算", "預告工資", "新制資遣費", "非自願離職"],
+    publishedAt: "2026-07-03",
+    readingMinutes: 8,
+  },
+  {
+    slug: "insurance-deduction-examples",
+    title: "勞健保自付額計算：不同月薪的實際扣款與薪資單核對",
+    description:
+      "2026 年勞保費率 12.5%、健保費率 5.17%，本文按不同月薪級距試算勞保、健保、勞退的實際扣款金額，附薪資單核對方法。",
+    category: "insurance",
+    keywords: ["勞保自付額", "健保自付額", "勞健保扣款", "薪資單核對", "勞保級距", "健保級距", "實領金額"],
+    publishedAt: "2026-07-03",
+    readingMinutes: 8,
+  },
 ];
 
 export const ARTICLES: ArticleMeta[] = RAW_ARTICLES.map((article) => ({
   ...article,
   updatedAt: article.updatedAt ?? article.publishedAt,
+  contentStatus: contentStatus(article.slug),
 }));
+
+export { isIndexableArticle };
+
+export function getIndexableArticles(): ArticleMeta[] {
+  return ARTICLES.filter(isIndexableArticle);
+}
 
 export function getArticleBySlug(slug: string): ArticleMeta | undefined {
   return ARTICLES.find((a) => a.slug === slug);
@@ -829,7 +868,7 @@ export function getArticleBySlug(slug: string): ArticleMeta | undefined {
 export function getArticlesByCategory(
   category: ArticleCategory,
 ): ArticleMeta[] {
-  return ARTICLES.filter((a) => a.category === category);
+  return getIndexableArticles().filter((a) => a.category === category);
 }
 
 export const CATEGORY_LABELS: Record<ArticleCategory, string> = {
@@ -851,7 +890,7 @@ export function getAllCategories(): {
   count: number;
 }[] {
   const counts = new Map<ArticleCategory, number>();
-  for (const a of ARTICLES) {
+  for (const a of getIndexableArticles()) {
     counts.set(a.category, (counts.get(a.category) ?? 0) + 1);
   }
   return (

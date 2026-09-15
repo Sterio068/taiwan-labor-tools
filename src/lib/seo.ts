@@ -290,9 +290,9 @@ export function articleSchema(article: {
     inLanguage: "zh-TW",
     isAccessibleForFree: true,
     author: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
+      "@type": "Person",
+      name: "SterioCheng",
+      url: `${SITE_URL}/about`,
     },
     publisher: {
       "@type": "Organization",

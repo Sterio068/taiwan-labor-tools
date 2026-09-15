@@ -3,7 +3,7 @@ import Link from "next/link";
 import { TOOLS } from "@/data/constants";
 import { GUIDE_HUBS } from "@/data/guide-hubs";
 import { GROWTH_QUESTIONS, SCENARIO_ENTRIES } from "@/data/growth-entrypoints";
-import { ARTICLES } from "@/lib/articles";
+import { getIndexableArticles } from "@/lib/articles";
 import { buildPageMetadata } from "@/lib/seo";
 import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -67,7 +67,7 @@ const COMPARE_PAGES = [
 ];
 
 export default function HomePage() {
-  const latestArticles = [...ARTICLES]
+  const latestArticles = [...getIndexableArticles()]
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
     .slice(0, 5);
 

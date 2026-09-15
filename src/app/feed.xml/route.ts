@@ -1,4 +1,4 @@
-import { ARTICLES, CATEGORY_LABELS } from "@/lib/articles";
+import { getIndexableArticles, CATEGORY_LABELS } from "@/lib/articles";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -13,7 +13,7 @@ function escapeXml(str: string): string {
 }
 
 export async function GET() {
-  const sortedArticles = [...ARTICLES].sort((a, b) =>
+  const sortedArticles = [...getIndexableArticles()].sort((a, b) =>
     (b.updatedAt || b.publishedAt).localeCompare(a.updatedAt || a.publishedAt)
   );
   const latestBuildDate = new Date(
