@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { LABOR_CONSTANTS } from "@/data/constants";
+import { calculateAnnualLeave } from "./annual-leave";
 import { calculateOvertime } from "./overtime";
 import { calculateSalaryBreakdown } from "./salary-breakdown";
 import { calculateSeverance } from "./severance";
@@ -53,21 +54,31 @@ describe("labor calculation regressions", () => {
     ]);
   });
 
-  it("applies rest-day minimum billed hours and holiday double pay", () => {
-    const restDay = calculateOvertime(29_500, 1, "rest-day");
+  it("bills rest-day overtime by actual hours (no 4/8/12 rule since 2018)", () => {
+    // 臺中市政府勞工局問答：月薪 36,000、時薪 150，休息日 1 / 6 / 10 小時另再加給 200 / 1,400 / 2,700
+    expect(calculateOvertime(36_000, 1, "rest-day").overtimePay).toBe(200);
+    expect(calculateOvertime(36_000, 6, "rest-day").overtimePay).toBe(1_400);
+    const tenHours = calculateOvertime(36_000, 10, "rest-day");
+    expect(tenHours.overtimePay).toBe(2_700);
+    expect(tenHours.billedHours).toBe(10);
+    expect(tenHours.breakdown.map((row) => row.rate)).toEqual([4 / 3, 5 / 3, 8 / 3]);
+  });
 
-    expect(restDay.billedHours).toBe(4);
-    expect(restDay.overtimePay).toBe(738);
-    expect(restDay.note).toContain("依法以 4 小時計算工資");
+  it("pays one extra day's wage for national-holiday work within 8 hours", () => {
+    // 勞動部：月薪 36,000，國定假日出勤 8 小時以內，月薪之外另加給 1 日工資 1,200 元
+    expect(calculateOvertime(36_000, 2, "holiday").overtimePay).toBe(1_200);
+    expect(calculateOvertime(36_000, 8, "holiday").overtimePay).toBe(1_200);
+    // 第 9–10 小時依第 24 條第 1 項加給 1/3：150 × 4/3 × 2 = 400
+    const tenHours = calculateOvertime(36_000, 10, "holiday");
+    expect(tenHours.overtimePay).toBe(1_600);
+    expect(tenHours.breakdown[0]).toMatchObject({ rate: 1, pay: 1_200, billedHours: 8 });
+  });
 
-    const holiday = calculateOvertime(29_500, 2, "holiday");
-
-    expect(holiday.billedHours).toBe(2);
-    expect(holiday.overtimePay).toBe(492);
-    expect(holiday.breakdown[0]).toMatchObject({
-      rate: 2,
-      label: "國定假日加班",
-    });
+  it("caps weekday overtime at four hours per day", () => {
+    const result = calculateOvertime(36_000, 6, "weekday");
+    expect(result.billedHours).toBe(4);
+    expect(result.overtimePay).toBe(900);
+    expect(result.note).toContain("12 小時");
   });
 
   it("caps new-system severance at six months and preserves old-system accrual", () => {
@@ -92,5 +103,12 @@ describe("labor calculation regressions", () => {
       amount: 175_000,
       yearsOfService: 3.5,
     });
+  });
+
+  it("adds one day per year from 10 years of service, capped at 30 days", () => {
+    const start = new Date("2010-01-01T00:00:00+08:00");
+    expect(calculateAnnualLeave(start, new Date("2020-01-02T00:00:00+08:00")).days).toBe(16);
+    expect(calculateAnnualLeave(start, new Date("2015-01-02T00:00:00+08:00")).days).toBe(15);
+    expect(calculateAnnualLeave(new Date("1990-01-01T00:00:00+08:00"), new Date("2026-01-02T00:00:00+08:00")).days).toBe(30);
   });
 });

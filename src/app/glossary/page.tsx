@@ -201,7 +201,7 @@ const GLOSSARY_GROUPS: GlossaryGroup[] = [
         term: "休息日",
         definition:
           "例假外的非工作日（通常週六），可彈性安排出勤，出勤須依規定給加班費。",
-        example: "週六被叫進來工作，最少以 4 小時計算加班費。",
+        example: "週六出勤 3 小時，依實際 3 小時計算：前 2 小時 × 1⅓、第 3 小時 × 1⅔。",
       },
       {
         term: "國定假日",

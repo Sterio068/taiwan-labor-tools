@@ -52,12 +52,12 @@ export const TOOL_GUIDANCE: Record<string, ToolGuidance> = {
     formula: [
       "月薪制時薪基數 = 月薪 ÷ 30 ÷ 8",
       "平日前 2 小時 = 時薪基數 × 4/3；第 3 小時起 = 時薪基數 × 5/3",
-      "休息日加班需套用 4/8/12 小時計薪規則",
-      "國定假日出勤原則上工資加倍",
+      "休息日依實際時數：第 1–2 小時另再加給 × 4/3，第 3–8 小時 × 5/3，第 9–12 小時 × 8/3",
+      "國定假日出勤 8 小時內：月薪之外另加給 1 日工資（月薪 ÷ 30）",
     ],
     useCases: ["核對加班費", "估算休息日出勤報酬", "判斷責任制或無加班費說法是否合理"],
     limitations: ["實際加班認定仍需出勤紀錄、排班表與公司制度佐證", "變形工時或特殊行業需另行確認"],
-    mistakes: ["把休息日實際 1 小時只算 1 小時", "把底薪當作唯一加班費基數", "誤以為責任制就完全沒有加班費"],
+    mistakes: ["沿用已刪除的休息日 4/8/12 小時計薪規則", "把底薪當作唯一加班費基數", "誤以為責任制就完全沒有加班費"],
     sourceTopics: ["overtime", "salary"],
     nextSteps: [
       { label: "下載加班自保清單", href: "/checklists#overtime" },
@@ -66,7 +66,7 @@ export const TOOL_GUIDANCE: Record<string, ToolGuidance> = {
     ],
     presets: [
       { label: "月薪 45,000 平日 2 小時", href: "/tools/overtime?w=45000&h=2&ot=weekday", description: "最常見加班情境" },
-      { label: "月薪 45,000 休息日 4 小時", href: "/tools/overtime?w=45000&h=4&ot=rest-day", description: "套用休息日最低計薪" },
+      { label: "月薪 45,000 休息日 4 小時", href: "/tools/overtime?w=45000&h=4&ot=rest-day", description: "休息日依實際時數另再加給" },
       { label: "月薪 29,500 國定假日 8 小時", href: "/tools/overtime?w=29500&h=8&ot=holiday", description: "月最低工資假日出勤" },
     ],
   },

@@ -37,15 +37,9 @@ export const LABOR_CONSTANTS = {
   // 加班費倍率（勞基法第 24 條）
   overtimeRates: {
     weekday: { first2h: 4 / 3, after2h: 5 / 3 },
-    restDay: { first2h: 4 / 3, after2h: 5 / 3 }, // 休息日另有工時計算
-    holiday: { rate: 2 }, // 國定假日、例假日
-  },
-
-  // 休息日加班工時計算（勞基法第 24 條第 2 項）
-  restDayMinHours: {
-    first: 4, // 前 4 小時以 4 小時計
-    second: 8, // 超過 4 小時以 8 小時計
-    max: 12, // 超過 8 小時以 12 小時計
+    // 休息日另再加給（第 24 條第 2 項，依實際時數覈實計算；第 9–12 小時依勞動部／地方勞工局問答）
+    restDay: { first2h: 4 / 3, after2h: 5 / 3, after8h: 8 / 3 },
+    holiday: { rate: 2 }, // 國定假日、例假：工資加倍發給（月薪制另加給 1 日工資）
   },
 
   // 特休天數（勞基法第 38 條）
@@ -55,7 +49,8 @@ export const LABOR_CONSTANTS = {
     { minYears: 2, maxYears: 3, days: 10 },
     { minYears: 3, maxYears: 5, days: 14 },
     { minYears: 5, maxYears: 10, days: 15 },
-    { minYears: 10, maxYears: Infinity, daysBase: 15, extraPerYear: 1, maxDays: 30 },
+    // 十年以上者，每一年加給一日，加至三十日為止：滿 10 年 16 日，滿 24 年 30 日
+    { minYears: 10, maxYears: Infinity, daysBase: 16, extraPerYear: 1, maxDays: 30 },
   ],
 
   // 資遣費

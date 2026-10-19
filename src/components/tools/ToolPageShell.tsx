@@ -151,7 +151,7 @@ export function ToolPageShell({
         </div>
       </section>
 
-      <main className="container-page pb-16 pt-10">
+      <div className="container-page pb-16 pt-10">
         <AdBanner slot="tool-result" />
 
         <article className="max-w-3xl rounded-[16px] border border-slate-200 bg-surface p-5 shadow-[var(--shadow-card)] md:p-8">
@@ -169,7 +169,7 @@ export function ToolPageShell({
           <FaqSection items={faqItems} />
           <RelatedLinks articles={relatedArticles} tools={relatedTools} />
         </div>
-      </main>
+      </div>
     </div>
   );
 }
