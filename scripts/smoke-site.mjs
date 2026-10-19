@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 
 const DEFAULT_BASE_URL = "https://twlabor.org";
 
@@ -89,15 +90,16 @@ const corePages = [
   "/articles/involuntary-separation-certificate",
 ];
 
-// Template pages consolidated into pillar articles (src/lib/content-policy.ts):
-// still reachable for visitors, but noindex and out of the sitemap.
-const consolidatedPages = [
-  "/articles/salary-38000-take-home",
-  "/articles/overtime-2hours-calculation",
-  "/articles/severance-2years",
-  "/articles/holiday-overtime-8hours",
-  "/articles/overtime-evidence-checklist",
-];
+// Template pages consolidated into pillar articles: still reachable for visitors,
+// but noindex and out of the sitemap. Read the full list from the content policy
+// so every consolidated route stays covered.
+function readConsolidatedPages() {
+  const policy = readFileSync(new URL("../src/lib/content-policy.ts", import.meta.url), "utf8");
+  const block = policy.match(/CONSOLIDATED_ARTICLES[^=]*=\s*\{([\s\S]*?)\n\};/u)?.[1] ?? "";
+  return [...block.matchAll(/^\s*"([a-z0-9-]+)":/gmu)].map((match) => `/articles/${match[1]}`);
+}
+const consolidatedPages = readConsolidatedPages();
+assert.ok(consolidatedPages.length >= 29, `expected consolidated routes, found ${consolidatedPages.length}`);
 const noindexUtilityPages = ["/growth-dashboard", "/newsletter"];
 
 for (const path of corePages) {
