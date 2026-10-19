@@ -26,10 +26,12 @@ const inter = Inter({
   display: "swap",
 });
 
+// Noto Sans TC 每個字重會產生上百條 unicode-range @font-face，全部放在阻擋渲染的 CSS 裡；
+// 只載入內文 400 與標題 700；font-medium（500）會以最接近的 400 呈現。
 const notoSansTC = Noto_Sans_TC({
   variable: "--font-noto-sans-tc",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "700"],
   display: "swap",
 });
 

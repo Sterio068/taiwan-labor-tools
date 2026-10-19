@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 
 const DEFAULT_BASE_URL = "https://twlabor.org";
 
@@ -78,39 +79,39 @@ const corePages = [
   "/guides/salary",
   "/guides/overtime",
   "/guides/severance",
-  "/growth-dashboard",
-  "/articles/salary-35000-take-home",
+  "/minimum-wage",
+  "/articles/insurance-deduction-examples",
+  "/articles/overtime-calculation-examples",
+  "/articles/severance-calculation-complete",
+  "/articles/holiday-overtime-complete",
   "/articles/labor-insurance-bracket-2026",
-  "/articles/health-insurance-bracket-2026",
+  "/articles/labor-nhi-bracket-guide",
   "/articles/labor-pension-6-percent",
-  "/articles/unused-annual-leave-wage",
   "/articles/involuntary-separation-certificate",
-  "/articles/salary-40000-take-home",
-  "/articles/salary-50000-take-home",
-  "/articles/salary-60000-take-home",
-  "/articles/salary-38000-take-home",
-  "/articles/salary-42000-take-home",
-  "/articles/salary-55000-take-home",
-  "/articles/overtime-1hour-calculation",
-  "/articles/overtime-1-5hours-calculation",
-  "/articles/overtime-2-5hours-calculation",
-  "/articles/overtime-3hours-calculation",
-  "/articles/overtime-4hours-calculation",
-  "/articles/holiday-overtime-8hours",
-  "/articles/overtime-evidence-checklist",
-  "/articles/severance-6months",
-  "/articles/severance-1year",
-  "/articles/severance-18months",
-  "/articles/severance-2years",
-  "/articles/severance-4years",
-  "/articles/severance-5years",
-  "/articles/severance-10years",
-  "/articles/annual-leave-resignation-payout-example",
-  "/articles/labor-insurance-underreporting-complaint",
 ];
+
+// Template pages consolidated into pillar articles: still reachable for visitors,
+// but noindex and out of the sitemap. Read the full list from the content policy
+// so every consolidated route stays covered.
+function readConsolidatedPages() {
+  const policy = readFileSync(new URL("../src/lib/content-policy.ts", import.meta.url), "utf8");
+  const block = policy.match(/CONSOLIDATED_ARTICLES[^=]*=\s*\{([\s\S]*?)\n\};/u)?.[1] ?? "";
+  return [...block.matchAll(/^\s*"([a-z0-9-]+)":/gmu)].map((match) => `/articles/${match[1]}`);
+}
+const consolidatedPages = readConsolidatedPages();
+assert.ok(consolidatedPages.length >= 29, `expected consolidated routes, found ${consolidatedPages.length}`);
+const noindexUtilityPages = ["/growth-dashboard", "/newsletter"];
 
 for (const path of corePages) {
   await fetchText(baseUrl, path);
+}
+for (const path of [...consolidatedPages, ...noindexUtilityPages]) {
+  const html = await fetchText(baseUrl, path);
+  assert.match(html, /<meta name="robots" content="noindex, follow"/, `${path} should be noindex`);
+}
+for (const path of consolidatedPages) {
+  const html = await fetchText(baseUrl, path);
+  assertIncludes(html, "這篇是單一情境的試算", `${path} pillar notice`);
 }
 
 const adsTxt = await fetchText(baseUrl, "/ads.txt");
@@ -129,24 +130,15 @@ assert.ok(
   getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/articles/salary-slip-explained`).startsWith("2026-04-07"),
   "sitemap should keep older article lastmod stable"
 );
+for (const path of [...consolidatedPages, ...noindexUtilityPages]) {
+  assert.ok(!sitemapXml.includes(`${expectedSiteUrl}${path}<`), `sitemap should not list noindex page ${path}`);
+}
 assert.ok(
-  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/articles/salary-50000-take-home`).startsWith("2026-05-09"),
-  "sitemap should expose new article lastmod"
+  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/articles/insurance-deduction-examples`).startsWith("2026-10-19"),
+  "sitemap should expose the rewritten pillar article lastmod"
 );
 assert.ok(
-  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/articles/salary-35000-take-home`).startsWith("2026-05-10"),
-  "sitemap should expose latest long-tail article lastmod"
-);
-assert.ok(
-  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/articles/salary-38000-take-home`).startsWith("2026-05-10"),
-  "sitemap should expose new salary long-tail article lastmod"
-);
-assert.ok(
-  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/articles/overtime-evidence-checklist`).startsWith("2026-05-10"),
-  "sitemap should expose new evidence article lastmod"
-);
-assert.ok(
-  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/questions`).startsWith("2026-05-10"),
+  getSitemapLastMod(sitemapXml, `${expectedSiteUrl}/questions`).startsWith("2026-10-19"),
   "sitemap should expose questions hub lastmod"
 );
 
@@ -159,13 +151,13 @@ assertIncludes(salaryTool, "application/ld+json", "schema JSON-LD");
 assertIncludes(salaryTool, "算完下一步", "tool next-step panel");
 assertIncludes(salaryTool, `${expectedSiteUrl}/tools/salary`, "canonical");
 
-const highIntentArticle = await fetchText(baseUrl, "/articles/salary-60000-take-home");
-assertIncludes(highIntentArticle, "月薪 60000 實領多少", "high intent article title");
+const highIntentArticle = await fetchText(baseUrl, "/articles/insurance-deduction-examples");
+assertIncludes(highIntentArticle, "實領速查表", "pillar article title");
 assertIncludes(highIntentArticle, "application/ld+json", "article schema JSON-LD");
 
-const evidenceArticle = await fetchText(baseUrl, "/articles/overtime-evidence-checklist");
-assertIncludes(evidenceArticle, "加班費爭議證據清單", "evidence article title");
-assertIncludes(evidenceArticle, "application/ld+json", "evidence article schema JSON-LD");
+const overtimeTool = await fetchText(baseUrl, "/tools/overtime");
+assertIncludes(overtimeTool, "法源依據", "tool explainer legal basis");
+assertIncludes(overtimeTool, "law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0030001", "tool explainer law citation");
 
 const questionsHub = await fetchText(baseUrl, "/questions");
 assertIncludes(questionsHub, "勞工權益熱門問題", "questions hub title");
