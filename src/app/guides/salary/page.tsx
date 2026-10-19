@@ -58,15 +58,12 @@ const SALARY_TOOLS = [
 
 const SALARY_ARTICLES = [
   { title: "2026 薪資單完全解讀", href: "/articles/salary-slip-explained" },
-  { title: "月薪 38000 實領多少？級距試算", href: "/articles/salary-38000-take-home" },
-  { title: "月薪 42000 實領多少？扣款試算", href: "/articles/salary-42000-take-home" },
-  { title: "月薪 45000 實領多少？實例試算", href: "/articles/salary-45000-take-home" },
-  { title: "月薪 55000 實領多少？完整試算", href: "/articles/salary-55000-take-home" },
-  { title: "月薪 60000 實領多少？完整試算", href: "/articles/salary-60000-take-home" },
+  { title: "實領速查表：月薪 29,500～60,000 各扣多少", href: "/articles/insurance-deduction-examples" },
+  { title: "2026 勞健保投保級距對照表", href: "/articles/labor-nhi-bracket-guide" },
   { title: "2026 薪資報稅完全指南", href: "/articles/salary-tax-guide-2026" },
   { title: "最低工資 29,500：2026 新制影響", href: "/articles/minimum-wage-2026" },
   { title: "時薪 196 元合理嗎？", href: "/articles/minimum-wage-hourly-2026" },
-  { title: "平日加班 2 小時多少錢？", href: "/articles/overtime-2hours-calculation" },
+  { title: "加班費速查表：平日、休息日、國定假日", href: "/articles/overtime-calculation-examples" },
   { title: "加班費完整圖解指南", href: "/articles/overtime-pay-guide" },
   { title: "責任制加班合法嗎？", href: "/articles/exempt-employee" },
   { title: "老闆欠薪怎麼辦？7 步驟催討", href: "/articles/wage-theft-what-to-do" },
@@ -106,7 +103,7 @@ export default function SalaryGuidePage() {
         </h1>
         <p className="text-lg text-slate-600 leading-relaxed">
           從月薪實領到報稅、加班費、年終，一次搞懂台灣上班族的薪資知識。
-          6 個免費計算工具 + 16 篇深度文章，依據 2026 最新勞基法與費率。
+          6 個免費計算工具與精選深度文章，依據 2026 年勞基法、勞保局與健保署公告的費率。
         </p>
       </header>
 
@@ -193,8 +190,23 @@ export default function SalaryGuidePage() {
 
         <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">薪資所得稅怎麼扣？</h3>
         <p className="text-slate-700 leading-relaxed my-4">
-          每月薪資若超過一定門檻（2026 年單身約 $86,001 以上），公司會依「薪資所得扣繳辦法」預扣所得稅。
+          公司依「各類所得扣繳率標準」與財政部公布的薪資所得扣繳稅額表預扣所得稅，未達起扣標準的月份不會預扣。
           年度結束後申報綜所稅時，再根據你的總收入與扣除額計算實際應繳稅金，多退少補。
+        </p>
+
+        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">常見月薪的實領對照</h3>
+        <p className="text-slate-700 leading-relaxed my-4">
+          以 2026 年費率、沒有眷屬加保、沒有勞退自提計算：月薪 $29,500 實領約 $28,304；月薪 $35,000 實領約 $33,529；
+          月薪 $40,000 實領約 $38,375；月薪 $45,000 實領約 $43,145；月薪 $50,000 實領約 $48,070；月薪 $60,000 實領約 $57,912。
+          月薪超過 $45,800 後勞保停在上限，扣款增加主要來自健保。每多加保一位眷屬，就多一份與本人相同的健保費，最多計 3 口。
+          完整的級距與眷屬保費表見<Link href="/articles/insurance-deduction-examples" className="text-brand-600 underline-offset-2 hover:underline">勞健保自付額速查表</Link>。
+        </p>
+
+        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">薪資給付的基本規則</h3>
+        <p className="text-slate-700 leading-relaxed my-4">
+          勞基法第 22 條規定工資應全額直接給付勞工；第 23 條規定每月至少定期發給 2 次（約定按月預付者除外），並要提供各項目計算方式的明細，雇主應置備工資清冊保存 5 年。
+          第 26 條禁止雇主預扣工資作為違約金或賠償費用。所以「離職沒交接就扣最後一個月薪水」「遲到一次扣 500 元」這類做法，都可能違法。
+          工資也不得低於最低工資：2026 年月薪 {formatMoney(LABOR_CONSTANTS.minimumMonthlyWage)} 元、時薪 {LABOR_CONSTANTS.minimumHourlyWage} 元，約定低於最低工資的部分，依最低工資法以最低工資為準。
         </p>
 
         <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">如何自我檢查薪資單？</h3>

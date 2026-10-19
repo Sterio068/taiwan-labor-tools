@@ -28,9 +28,7 @@ const STATIC_LASTMOD: Record<string, string> = {
   "/sources": UPDATED_2026_05_25,
   "/contact": UPDATED_2026_05_25,
   "/editorial-policy": UPDATED_2026_05_25,
-  "/newsletter": UPDATED_2026_05_07,
   "/checklists": UPDATED_2026_05_07,
-  "/growth-dashboard": UPDATED_2026_05_07,
 };
 
 const COMPARE_LASTMOD: Record<string, string> = {
@@ -64,8 +62,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/sources", "monthly", 0.72),
     page("/editorial-policy", "monthly", 0.7),
     page("/checklists", "monthly", 0.74),
-    page("/newsletter", "monthly", 0.55),
-    page("/growth-dashboard", "monthly", 0.45),
     page("/contact", "yearly", 0.3),
     page("/about", "monthly", 0.35),
     page("/privacy", "yearly", 0.12),

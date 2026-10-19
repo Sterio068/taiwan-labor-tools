@@ -55,7 +55,7 @@ export default function QuestionsPage() {
         </header>
       </div>
 
-      <main className="container-page pb-16">
+      <div className="container-page pb-16">
         <SectionHeader
           eyebrow="Question Hub"
           title="直接找你正在遇到的問題"
@@ -121,7 +121,7 @@ export default function QuestionsPage() {
             );
           })}
         </div>
-      </main>
+      </div>
     </div>
   );
 }

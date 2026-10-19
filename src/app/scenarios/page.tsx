@@ -44,7 +44,7 @@ export default function ScenariosPage() {
         </header>
       </div>
 
-      <main className="container-page pb-16">
+      <div className="container-page pb-16">
         <SectionHeader
           eyebrow="Scenarios"
           title="六種常見勞工處境"
@@ -107,7 +107,7 @@ export default function ScenariosPage() {
             </section>
           ))}
         </div>
-      </main>
+      </div>
     </div>
   );
 }

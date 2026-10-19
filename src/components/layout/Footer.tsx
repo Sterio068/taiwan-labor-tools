@@ -55,7 +55,6 @@ export function Footer() {
               <li><Link href="/guides" className="hover:text-brand-700">六大指南</Link></li>
               <li><Link href="/checklists" className="hover:text-brand-700">權益檢查表</Link></li>
               <li><Link href="/newsletter" className="hover:text-brand-700">更新提醒</Link></li>
-              <li><Link href="/growth-dashboard" className="hover:text-brand-700">成效追蹤說明</Link></li>
             </ul>
           </div>
         </div>

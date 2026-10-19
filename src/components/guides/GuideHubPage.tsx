@@ -5,6 +5,7 @@ import { FaqSection } from "@/components/seo/FaqSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { type GuideHub } from "@/data/guide-hubs";
+import { getGuideLongform } from "@/data/guide-sections";
 import { breadcrumbSchema, faqSchema, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { getArticleBySlug, isIndexableArticle } from "@/lib/articles";
 
@@ -14,6 +15,7 @@ interface GuideHubPageProps {
 
 export function GuideHubPage({ hub }: GuideHubPageProps) {
   const path = `/guides/${hub.slug}`;
+  const longform = getGuideLongform(hub.slug);
   const articles = hub.articles.filter((item) => {
     const match = item.href.match(/^\/articles\/([^/?#]+)/);
     if (!match) return true;
@@ -83,7 +85,7 @@ export function GuideHubPage({ hub }: GuideHubPageProps) {
         </header>
       </div>
 
-      <main className="container-page pb-16">
+      <div className="container-page pb-16">
         <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
           <div>
             <SectionHeader
@@ -156,6 +158,39 @@ export function GuideHubPage({ hub }: GuideHubPageProps) {
           </div>
         </section>
 
+        {longform && (
+          <article className="mt-12 max-w-3xl rounded-[16px] border border-slate-200 bg-surface p-5 shadow-[var(--shadow-card)] md:p-8">
+            <div className="prose prose-slate max-w-none prose-headings:text-slate-900 prose-p:leading-8">
+              {longform.sections.map((section) => (
+                <section key={section.heading}>
+                  <h2>{section.heading}</h2>
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                  {section.bullets && (
+                    <ul>
+                      {section.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              ))}
+              <h2>法源連結</h2>
+              <ul>
+                {longform.sources.map((source) => (
+                  <li key={source.url}>
+                    <a href={source.url} target="_blank" rel="noopener noreferrer">
+                      {source.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm text-slate-500">本指南法規最後查核：{longform.checkedAt}。</p>
+            </div>
+          </article>
+        )}
+
         <section className="mt-12">
           <SectionHeader
             eyebrow="Decision table"
@@ -209,7 +244,7 @@ export function GuideHubPage({ hub }: GuideHubPageProps) {
         </section>
 
         <AdBanner slot={`guide-${hub.slug}-bottom`} />
-      </main>
+      </div>
     </div>
   );
 }
