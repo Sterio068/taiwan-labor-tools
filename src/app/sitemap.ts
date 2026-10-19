@@ -10,32 +10,33 @@ const UPDATED_2026_05_10 = "2026-05-10";
 const UPDATED_2026_05_25 = "2026-05-25";
 const UPDATED_2026_04_30 = "2026-04-30";
 const UPDATED_2026_04_07 = "2026-04-07";
+const UPDATED_2026_10_19 = "2026-10-19";
 
 const STATIC_LASTMOD: Record<string, string> = {
   "/": UPDATED_2026_05_10,
-  "/tools": UPDATED_2026_05_10,
-  "/questions": UPDATED_2026_05_10,
-  "/scenarios": UPDATED_2026_05_10,
-  "/guides": UPDATED_2026_05_10,
-  "/compare": UPDATED_2026_04_07,
+  "/tools": UPDATED_2026_10_19,
+  "/questions": UPDATED_2026_10_19,
+  "/scenarios": UPDATED_2026_10_19,
+  "/guides": UPDATED_2026_10_19,
+  "/compare": UPDATED_2026_10_19,
   "/articles": UPDATED_2026_05_10,
-  "/faq": UPDATED_2026_05_09,
-  "/glossary": UPDATED_2026_05_09,
-  "/minimum-wage": UPDATED_2026_05_09,
-  "/about": UPDATED_2026_05_25,
-  "/privacy": UPDATED_2026_05_25,
-  "/terms": UPDATED_2026_05_25,
-  "/sources": UPDATED_2026_05_25,
-  "/contact": UPDATED_2026_05_25,
-  "/editorial-policy": UPDATED_2026_05_25,
-  "/checklists": UPDATED_2026_05_07,
+  "/faq": UPDATED_2026_10_19,
+  "/glossary": UPDATED_2026_10_19,
+  "/minimum-wage": UPDATED_2026_10_19,
+  "/about": UPDATED_2026_10_19,
+  "/privacy": UPDATED_2026_10_19,
+  "/terms": UPDATED_2026_10_19,
+  "/sources": UPDATED_2026_10_19,
+  "/contact": UPDATED_2026_10_19,
+  "/editorial-policy": UPDATED_2026_10_19,
+  "/checklists": UPDATED_2026_10_19,
 };
 
 const COMPARE_LASTMOD: Record<string, string> = {
-  "/compare/monthly-vs-hourly": UPDATED_2026_04_07,
-  "/compare/new-vs-old-pension": UPDATED_2026_04_07,
-  "/compare/fired-vs-quit": UPDATED_2026_04_07,
-  "/compare/labor-vs-national-insurance": UPDATED_2026_04_07,
+  "/compare/monthly-vs-hourly": UPDATED_2026_10_19,
+  "/compare/new-vs-old-pension": UPDATED_2026_10_19,
+  "/compare/fired-vs-quit": UPDATED_2026_10_19,
+  "/compare/labor-vs-national-insurance": UPDATED_2026_10_19,
 };
 
 function page(urlPath: string, changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"], priority: number) {
@@ -70,7 +71,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const guidePages: MetadataRoute.Sitemap = GUIDE_HUBS.map((hub) => ({
     url: `${SITE_URL}/guides/${hub.slug}`,
-    lastModified: UPDATED_2026_05_10,
+    lastModified: UPDATED_2026_10_19,
     changeFrequency: "weekly" as const,
     priority: 0.95,
   }));
@@ -78,7 +79,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const legacyGuidePages: MetadataRoute.Sitemap = [
     {
       url: `${SITE_URL}/guides/retirement`,
-      lastModified: UPDATED_2026_04_07,
+      lastModified: UPDATED_2026_10_19,
       changeFrequency: "monthly",
       priority: 0.78,
     },
@@ -93,7 +94,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const toolPages: MetadataRoute.Sitemap = TOOLS.map((tool) => ({
     url: `${SITE_URL}${tool.href}`,
-    lastModified: UPDATED_2026_05_10,
+    lastModified: UPDATED_2026_10_19,
     changeFrequency: "monthly" as const,
     priority: 0.9,
   }));

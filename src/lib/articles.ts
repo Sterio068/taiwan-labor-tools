@@ -651,6 +651,7 @@ const RAW_ARTICLES: ArticleMeta[] = [
     category: "pension",
     keywords: ["勞退6%", "勞退扣薪", "雇主提繳", "勞退自提", "退休金"],
     publishedAt: "2026-05-10",
+    updatedAt: "2026-10-19",
     readingMinutes: 7,
   },
   {
@@ -671,6 +672,7 @@ const RAW_ARTICLES: ArticleMeta[] = [
     category: "severance",
     keywords: ["非自願離職證明", "離職證明", "被資遣文件", "失業給付"],
     publishedAt: "2026-05-10",
+    updatedAt: "2026-10-19",
     readingMinutes: 7,
   },
   {
