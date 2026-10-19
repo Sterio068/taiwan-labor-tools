@@ -81,6 +81,14 @@ describe("labor calculation regressions", () => {
     expect(tenHours.breakdown[0]).toMatchObject({ rate: 1, pay: 1_200, billedHours: 8 });
   });
 
+  it("pays hours after eight on an Article 40 regular day off at double the hourly base", () => {
+    // 月薪 36,000（時薪 150）：例假出勤 9 小時 = 1 日工資 1,200 + 150 × 2 × 1 = 1,500
+    const nineHours = calculateOvertime(36_000, 9, "national-holiday");
+    expect(nineHours.overtimePay).toBe(1_500);
+    expect(calculateOvertime(36_000, 12, "national-holiday").overtimePay).toBe(2_400);
+    expect(calculateOvertime(36_000, 6, "national-holiday").overtimePay).toBe(1_200);
+  });
+
   it("caps weekday overtime at four hours per day", () => {
     const result = calculateOvertime(36_000, 6, "weekday");
     expect(result.billedHours).toBe(4);
@@ -114,8 +122,13 @@ describe("labor calculation regressions", () => {
 
   it("adds one day per year from 10 years of service, capped at 30 days", () => {
     const start = new Date("2010-01-01T00:00:00+08:00");
-    expect(calculateAnnualLeave(start, new Date("2020-01-02T00:00:00+08:00")).days).toBe(16);
+    // 滿 10 年的週年當天就適用 16 天
+    expect(calculateAnnualLeave(start, new Date("2020-01-01T00:00:00+08:00")).days).toBe(16);
+    expect(calculateAnnualLeave(start, new Date("2019-12-31T00:00:00+08:00")).days).toBe(15);
     expect(calculateAnnualLeave(start, new Date("2015-01-02T00:00:00+08:00")).days).toBe(15);
     expect(calculateAnnualLeave(new Date("1990-01-01T00:00:00+08:00"), new Date("2026-01-02T00:00:00+08:00")).days).toBe(30);
+    // 滿 6 個月當天取得 3 天
+    expect(calculateAnnualLeave(new Date("2026-01-15T00:00:00+08:00"), new Date("2026-07-15T00:00:00+08:00")).days).toBe(3);
+    expect(calculateAnnualLeave(new Date("2026-01-15T00:00:00+08:00"), new Date("2026-07-14T00:00:00+08:00")).days).toBe(0);
   });
 });

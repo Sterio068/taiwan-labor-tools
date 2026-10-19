@@ -44,7 +44,8 @@ function applyTiers(hourlyBase: number, hours: number, tiers: Tier[]): OvertimeR
  *   第 1–2 小時另再加給 1⅓、第 3–8 小時另再加給 1⅔、第 9–12 小時另再加給 2⅔。
  * - 國定假日（第 37、39 條）：8 小時以內，月薪之外另加給 1 日工資；
  *   第 9–10 小時按第 24 條第 1 項加給 1/3、第 11–12 小時加給 2/3。
- * - 例假（第 40 條）：僅限天災、事變或突發事件，工資加倍（另加給 1 日工資）並應事後補假。
+ * - 例假（第 40 條）：僅限天災、事變或突發事件，工資加倍（另加給 1 日工資）並應事後補假；
+ *   超過 8 小時的部分依第 24 條第 1 項第 3 款按平日每小時工資額加倍發給。
  */
 export function calculateOvertime(monthlySalary: number, hours: number, type: OvertimeType): OvertimeResult {
   const hourlyBase = monthlySalary / LABOR_CONSTANTS.monthlyWorkHours;
@@ -80,7 +81,11 @@ export function calculateOvertime(monthlySalary: number, hours: number, type: Ov
       });
     }
     if (isRegularDayOff) {
-      note = "例假依第 40 條僅限天災、事變或突發事件出勤，雇主除工資加倍外，應於事後給予補假休息。超過 8 小時的部分請另向勞工局確認。";
+      // 第 40 條停止假期而延長工時，屬第 32 條第 4 項之延長，依第 24 條第 1 項第 3 款按平日每小時工資額加倍發給
+      breakdown.push(
+        ...applyTiers(hourlyBase, workedHours, [{ from: 8, to: 12, rate: 2, label: "第 9–12 小時（加倍發給）" }]),
+      );
+      note = "例假依第 40 條僅限天災、事變或突發事件出勤，雇主除工資加倍外，應於事後給予補假休息；超過 8 小時的部分依第 24 條第 1 項第 3 款按平日每小時工資額加倍發給。";
     } else {
       const { first2h, after2h } = LABOR_CONSTANTS.overtimeRates.weekday;
       breakdown.push(
