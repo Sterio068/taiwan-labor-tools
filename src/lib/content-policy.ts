@@ -75,7 +75,7 @@ export const CONSOLIDATED_ARTICLES: Record<string, ConsolidatedArticle> = {
   "annual-leave-resignation-payout-example": LEAVE_PILLAR,
   "unused-annual-leave-wage": LEAVE_PILLAR,
   "health-insurance-bracket-2026": { pillarHref: "/articles/labor-nhi-bracket-guide", pillarTitle: "勞健保投保級距一次看懂" },
-  "labor-insurance-underreporting-complaint": { pillarHref: "/articles/no-labor-insurance", pillarTitle: "沒保勞保或被低報怎麼辦" },
+  "labor-insurance-underreporting-complaint": { pillarHref: "/articles/labor-insurance-bracket-2026", pillarTitle: "2026 勞保投保級距表與低報處理方式" },
   "overtime-evidence-checklist": { pillarHref: "/guides/overtime", pillarTitle: "加班費完整指南（含證據清單）" },
 };
 

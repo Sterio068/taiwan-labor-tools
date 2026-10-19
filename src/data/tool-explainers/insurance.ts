@@ -180,8 +180,8 @@ const insurancePremium: ToolExplainerContent = {
   prepare: ["薪資單上的勞保、健保扣款與投保金額。", "健保依附眷屬人數。", "勞保局 e 化服務系統或健保快易通 App 的投保紀錄。"],
   readNext: [
     { label: "2026 勞保投保級距表", href: "/articles/labor-insurance-bracket-2026" },
-    { label: "2026 健保投保級距表", href: "/articles/health-insurance-bracket-2026" },
-    { label: "勞保被低報怎麼申訴", href: "/articles/labor-insurance-underreporting-complaint" },
+    { label: "2026 勞健保級距對照表", href: "/articles/labor-nhi-bracket-guide" },
+    { label: "沒保勞保怎麼辦", href: "/articles/no-labor-insurance" },
     { label: "勞健保完整攻略", href: "/guides/insurance" },
   ],
   checkedAt: CHECKED_AT,
@@ -249,7 +249,7 @@ const insuranceBracket: ToolExplainerContent = {
   readNext: [
     { label: "2026 勞保級距表", href: "/articles/labor-insurance-bracket-2026" },
     { label: "勞健保級距一次看懂", href: "/articles/labor-nhi-bracket-guide" },
-    { label: "勞保低報申訴步驟", href: "/articles/labor-insurance-underreporting-complaint" },
+    { label: "被低報怎麼更正與檢舉", href: "/articles/no-labor-insurance" },
   ],
   checkedAt: CHECKED_AT,
 };

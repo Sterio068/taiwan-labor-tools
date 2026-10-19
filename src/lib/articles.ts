@@ -51,6 +51,7 @@ const RAW_ARTICLES: ArticleMeta[] = [
     category: "insurance",
     keywords: ["勞保", "國保", "農保", "社會保險", "投保資格", "保險比較"],
     publishedAt: "2026-04-07",
+    updatedAt: "2026-10-19",
     readingMinutes: 7,
   },
   {
@@ -101,6 +102,7 @@ const RAW_ARTICLES: ArticleMeta[] = [
     category: "rights",
     keywords: ["時薪", "打工", "兼職", "基本時薪", "打工權益"],
     publishedAt: "2026-04-07",
+    updatedAt: "2026-10-19",
     readingMinutes: 7,
   },
   {
@@ -111,6 +113,7 @@ const RAW_ARTICLES: ArticleMeta[] = [
     category: "leave",
     keywords: ["產假", "陪產假", "育嬰假", "育嬰留停", "生育給付"],
     publishedAt: "2026-04-07",
+    updatedAt: "2026-10-19",
     readingMinutes: 7,
   },
   {
@@ -161,6 +164,7 @@ const RAW_ARTICLES: ArticleMeta[] = [
     category: "salary",
     keywords: ["基本工資", "最低工資", "基本工資2026", "時薪196", "月薪29500"],
     publishedAt: "2026-04-07",
+    updatedAt: "2026-10-19",
     readingMinutes: 5,
   },
   {
@@ -262,6 +266,7 @@ const RAW_ARTICLES: ArticleMeta[] = [
     category: "freelance",
     keywords: ["副業報稅", "兼職", "斜槓", "副業勞保", "兼職所得稅"],
     publishedAt: "2026-04-07",
+    updatedAt: "2026-10-19",
     readingMinutes: 7,
   },
   {
@@ -621,10 +626,11 @@ const RAW_ARTICLES: ArticleMeta[] = [
     slug: "labor-insurance-bracket-2026",
     title: "勞保級距怎麼查？2026 投保薪資低報檢查",
     description:
-      "勞保投保薪資級距怎麼看？整理 2026 常見級距、低報風險、薪資單核對方式與申訴前要保存的資料。",
+      "2026 勞保投保薪資分級表 29,500～45,800 元，各級距勞工與雇主保費，以及被低報時失業給付、生育補助與老年年金會少多少、如何更正與檢舉。",
     category: "insurance",
     keywords: ["勞保級距", "勞保投保薪資", "投保薪資低報", "勞保分級表"],
     publishedAt: "2026-05-10",
+    updatedAt: "2026-10-19",
     readingMinutes: 7,
   },
   {
@@ -812,12 +818,13 @@ const RAW_ARTICLES: ArticleMeta[] = [
   },
   {
     slug: "labor-nhi-bracket-guide",
-    title: "2026 勞健保級距完整說明：投保金額、保費計算與薪資單核對",
+    title: "2026 勞健保投保級距表：勞保、健保、勞退一次對照",
     description:
-      "勞保、健保的投保級距怎麼分？月薪多少對應哪一級？保費怎麼算？本文整理 2026 年完整級距表與薪資單核對方法。",
+      "2026 年勞保（含就保）29,500～45,800 元、健保 29,500～219,500 元、勞退 1,500～150,000 元的分級表，列出各級距勞工與雇主負擔、眷屬保費與低報影響。",
     category: "insurance",
     keywords: ["勞保級距", "健保級距", "投保薪資", "勞保費率", "健保費率", "投保金額", "薪資單核對"],
     publishedAt: "2026-07-03",
+    updatedAt: "2026-10-19",
     readingMinutes: 8,
   },
   // — 第六批文章：原創深度文章 —
