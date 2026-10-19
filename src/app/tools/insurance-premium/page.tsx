@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolExplainer } from "@/components/tools/ToolExplainer";
 import { InsurancePremiumCalculator } from "@/components/tools/InsurancePremiumCalculator";
 import { ToolPageShell } from "@/components/tools/ToolPageShell";
 import { TOOL_FAQS } from "@/data/tool-faqs";
@@ -72,28 +73,7 @@ export default function InsurancePremiumPage() {
         relatedTools={TOOL_RELATED_TOOLS["insurance-premium"]}
         shareTitle="勞健保保費計算機"
         sharePath="/tools/insurance-premium"
-        article={
-          <>
-            <h2>勞保與健保費率說明</h2>
-            <h3>勞保費率 12.5%</h3>
-            <p>
-              含普通事故保險費率 11.5%（含就業保險 1%）。
-              一般勞工負擔 20%、雇主 70%、政府 10%。
-              勞保投保薪資上限 $45,800。
-            </p>
-            <h3>健保費率 5.17%</h3>
-            <p>
-              一般受僱者負擔 30%、雇主 60%、政府 10%。
-              眷屬（配偶、子女、父母）最多計 3 口，自付額隨人數等比增加。
-              健保投保金額上限 $219,500。
-            </p>
-            <h3>什麼是投保級距？</h3>
-            <p>
-              保費不是用你的實際薪水直接計算，而是先對照「投保薪資級距表」，
-              找到大於等於你月薪的最近一級，再用這個級距金額去算保費。
-            </p>
-          </>
-        }
+        article={<ToolExplainer slug="insurance-premium" />}
       >
         <InsurancePremiumCalculator />
       </ToolPageShell>

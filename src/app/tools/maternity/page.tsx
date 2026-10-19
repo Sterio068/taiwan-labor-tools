@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolExplainer } from "@/components/tools/ToolExplainer";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { FaqSection } from "@/components/seo/FaqSection";
@@ -62,43 +63,8 @@ export default function MaternityPage() {
 
       <AdBanner slot="tool-result" />
 
-      {/* SEO 長文 */}
-      <article className="mt-12 prose prose-slate max-w-none">
-        <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">產假與育嬰假完整指南</h2>
-        <p className="text-slate-700 leading-relaxed my-4">
-          台灣的產假與育嬰假制度主要依據《性別平等工作法》與《勞工保險條例》。
-          不同假別的天數、薪資計算方式各有不同，以下逐一說明。
-        </p>
-        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">產假（56 天）</h3>
-        <p className="text-slate-700 leading-relaxed my-4">
-          女性勞工分娩前後，雇主應給予產假 8 週（56 天）。
-          任職滿 6 個月者，產假期間工資照給（全薪）；未滿 6 個月者減半發給。
-          此外，參加勞保的女性勞工可申請「生育給付」，金額為投保薪資 2 個月，一次領取。
-        </p>
-        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">陪產檢及陪產假（7 天）</h3>
-        <p className="text-slate-700 leading-relaxed my-4">
-          配偶分娩時，受僱者可請陪產檢及陪產假共 7 天。
-          此假為有薪假（工資照給），可以在配偶分娩的前後合計 15 天內分次請假。
-          不需要一次請完，方便爸爸配合產檢或陪伴住院。
-        </p>
-        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">育嬰留職停薪（最長 2 年）</h3>
-        <p className="text-slate-700 leading-relaxed my-4">
-          任職滿 6 個月的受僱者，在子女滿 3 歲前，可以申請育嬰留職停薪，每次最長 2 年。
-          育嬰留停期間沒有薪水，但可以向勞保局申請「育嬰留職停薪津貼」。
-          津貼金額為投保薪資的 80%，最長發給 6 個月。夫妻可同時請領，合計最多 12 個月。
-        </p>
-        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">流產假</h3>
-        <p className="text-slate-700 leading-relaxed my-4">
-          懷孕 3 個月以上流產者，雇主應給予 4 週（28 天）產假，工資照給。
-          懷孕未滿 3 個月流產者，給予 5 天假。未滿 2 個月流產者，給予 5 天假（性別平等工作法第 15 條）。
-          流產假期間的薪資依勞工請假規則辦理。
-        </p>
-        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">請假小提醒</h3>
-        <p className="text-slate-700 leading-relaxed my-4">
-          產假、陪產假屬於法定假別，雇主不得拒絕。如果雇主違法不給假或扣薪，
-          勞工可以向地方勞工主管機關申訴，雇主最高可處新台幣 30 萬元罰鍰。
-          建議保留請假紀錄與薪資單，作為日後爭議的佐證。
-        </p>
+      <article className="mt-12 prose prose-slate max-w-none prose-headings:text-slate-900 prose-p:leading-8">
+        <ToolExplainer slug="maternity" />
       </article>
 
       <AdBanner slot="tool-bottom" />

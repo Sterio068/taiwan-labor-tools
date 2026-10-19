@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { LABOR_CONSTANTS } from "@/data/constants";
 import { calculateAnnualLeave } from "./annual-leave";
+import { calculateNhi } from "./nhi";
 import { calculateOvertime } from "./overtime";
 import { calculateSalaryBreakdown } from "./salary-breakdown";
 import { calculateSeverance } from "./severance";
@@ -26,8 +27,14 @@ describe("labor calculation regressions", () => {
       pensionWorker: 1_770,
       totalDeductions: 3_424,
       netSalary: 26_076,
-      employerCost: 35_279,
+      employerCost: 35_280,
     });
+  });
+
+  it("matches the 115-year NHI employer share table", () => {
+    // 健保 115.1.1 起負擔金額表：投保金額 29,500 元，個人 458 元、雇主 1,428 元
+    expect(calculateNhi(29_500, 0)).toMatchObject({ workerShare: 458, employerShare: 1_428 });
+    expect(calculateNhi(45_800, 0)).toMatchObject({ workerShare: 710, employerShare: 2_216 });
   });
 
   it("calculates weekday overtime with first-two-hour and after-two-hour rates", () => {

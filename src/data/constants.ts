@@ -225,9 +225,9 @@ export const TOOLS: {
   },
   {
     name: "颱風假薪資計算機",
-    description: "颱風出勤雙倍工資怎麼算？一秒計算應得補償金額。",
+    description: "颱風停班日出勤或未出勤，當日工資與全勤權益一次算清楚。",
     href: "/tools/typhoon",
     icon: "shield",
-    keywords: ["颱風假薪資", "颱風出勤加倍", "颱風假不能扣薪"],
+    keywords: ["颱風假薪資", "颱風出勤加給", "颱風假扣薪"],
   },
 ];

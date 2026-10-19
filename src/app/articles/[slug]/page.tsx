@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ARTICLES, getArticleBySlug, CATEGORY_LABELS, getIndexableArticles } from "@/lib/articles";
-import { isAdEligibleArticle } from "@/lib/content-policy";
+import { getConsolidatedArticle, isAdEligibleArticle } from "@/lib/content-policy";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -49,6 +49,7 @@ export default async function ArticlePage({ params }: Props) {
   if (!article) notFound();
 
   const sources = getArticleSources(article.category, article.slug);
+  const consolidated = getConsolidatedArticle(article.slug);
   const articleSchema = buildArticleSchema({
     ...article,
     category: CATEGORY_LABELS[article.category],
@@ -149,6 +150,19 @@ export default async function ArticlePage({ params }: Props) {
           維護與編輯：SterioCheng（依公開法規與主管機關資料整理，未宣稱法律專業資格）
         </p>
       </header>
+
+      {consolidated && (
+        <aside className="mb-6 rounded-[16px] border border-slate-200 bg-surface p-5" aria-label="完整說明">
+          <p className="text-sm font-semibold text-slate-900">這篇是單一情境的試算</p>
+          <p className="mt-1 text-sm leading-6 text-slate-600">
+            完整的法源、計算表與常見爭議已整合到{" "}
+            <Link href={consolidated.pillarHref} className="font-semibold text-brand-700 underline-offset-2 hover:underline">
+              {consolidated.pillarTitle}
+            </Link>
+            ，建議先讀完整版，再用計算工具帶入自己的數字。
+          </p>
+        </aside>
+      )}
 
       <section className="mb-8 rounded-[16px] border border-brand-100 bg-brand-50 p-5">
         <p className="text-sm font-semibold text-brand-700 mb-2">本文重點</p>

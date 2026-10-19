@@ -1,5 +1,5 @@
 import type { ArticleMeta, ArticleCategory } from "@/types";
-import { contentStatus, isIndexableArticle } from "@/lib/content-policy";
+import { contentStatus, getConsolidatedArticle, isIndexableArticle } from "@/lib/content-policy";
 
 const RAW_ARTICLES: ArticleMeta[] = [
   {
@@ -16,10 +16,11 @@ const RAW_ARTICLES: ArticleMeta[] = [
     slug: "overtime-pay-guide",
     title: "加班費怎麼算？平日/休息日/國定假日完整圖解",
     description:
-      "依勞基法第 24 條，圖解平日加班 1.34 倍與 1.67 倍、休息日、國定假日加班費計算方式，附實際算例。",
+      "依勞基法第 24 條，圖解平日加班 4/3 與 5/3 倍、休息日依實際時數計算、國定假日加給 1 日工資的方式，附月薪 36,000 元實際算例。",
     category: "overtime",
     keywords: ["加班費", "加班費計算", "休息日加班", "國定假日加班", "勞基法第24條"],
     publishedAt: "2026-04-07",
+    updatedAt: "2026-10-19",
     readingMinutes: 8,
   },
   {
@@ -557,12 +558,13 @@ const RAW_ARTICLES: ArticleMeta[] = [
   },
   {
     slug: "holiday-overtime-complete",
-    title: "國定假日加班費怎麼算？10 大節日完整說明",
+    title: "國定假日加班費怎麼算？2026 放假日清單與計算表",
     description:
-      "元旦、春節、勞動節、中秋節等 10 個國定假日出勤工資規定，含雙倍計算公式與補休規定對照表。",
+      "依勞基法第 37、39 條與紀念日及節日實施條例，整理國定假日清單、月薪制 8 小時內加給 1 日工資的算法、超過 8 小時與調移規定。",
     category: "overtime",
     keywords: ["國定假日加班", "過年加班費", "國慶日加班", "勞動節加班", "假日加班工資"],
     publishedAt: "2026-04-10",
+    updatedAt: "2026-10-19",
     readingMinutes: 7,
   },
   {
@@ -719,10 +721,11 @@ const RAW_ARTICLES: ArticleMeta[] = [
     slug: "holiday-overtime-8hours",
     title: "國定假日加班 8 小時多少錢？雙倍工資試算",
     description:
-      "國定假日出勤 8 小時的雙倍工資怎麼算？用月薪 45,000 元示範時薪基數、加班費與補休常見爭議。",
+      "國定假日出勤 8 小時，月薪 45,000 元在月薪之外應加給 1 日工資 1,500 元；說明為什麼 2 小時與 8 小時加給相同。",
     category: "overtime",
     keywords: ["國定假日加班8小時", "假日加班費", "雙倍工資", "國定假日上班"],
     publishedAt: "2026-05-10",
+    updatedAt: "2026-10-19",
     readingMinutes: 6,
   },
   {
@@ -788,12 +791,13 @@ const RAW_ARTICLES: ArticleMeta[] = [
   // — 第五批文章：原創深度文章 —
   {
     slug: "overtime-calculation-examples",
-    title: "加班費計算實例：3 種月薪 x 5 種情境完整試算",
+    title: "加班費計算實例：5 種月薪的平日、休息日、國定假日速查表",
     description:
-      "月薪 30k、45k、60k 在平日加班、休息日加班、國定假日出勤各該拿多少加班費？用 15 組實際算例帶你核對薪資單。",
+      "月薪 29,500 到 60,000 元，平日加班 1 到 4 小時、休息日 2 到 12 小時、國定假日出勤各該拿多少？用與計算機相同的算法列出完整對照表。",
     category: "overtime",
     keywords: ["加班費計算實例", "加班費試算", "平日加班", "休息日加班", "國定假日加班", "加班費怎麼算"],
     publishedAt: "2026-07-03",
+    updatedAt: "2026-10-19",
     readingMinutes: 8,
   },
   {
@@ -819,12 +823,13 @@ const RAW_ARTICLES: ArticleMeta[] = [
   // — 第六批文章：原創深度文章 —
   {
     slug: "overtime-pay-vs-compensatory-leave",
-    title: "加班補休 vs 加班費：哪個划算？法律規定與選擇策略",
+    title: "加班費還是補休？補休 1:1 換算與折現規定",
     description:
-      "加班後該領加班費還是換補休？勞基法第 32-1 條規定勞工有選擇權，補休時數依加班費倍率換算。本文整理比較表、選擇建議與常見爭議。",
+      "勞基法第 32 條之 1：補休須由勞工選擇並經雇主同意，補休時數依工作時數 1:1 計算，期限屆滿未休要依加班當日標準折發工資。國定假日出勤不適用補休。",
     category: "overtime",
     keywords: ["加班補休", "補休", "加班費", "加班費vs補休", "勞基法第32-1條", "補休時數"],
     publishedAt: "2026-07-03",
+    updatedAt: "2026-10-19",
     readingMinutes: 7,
   },
   {
@@ -835,16 +840,18 @@ const RAW_ARTICLES: ArticleMeta[] = [
     category: "severance",
     keywords: ["資遣費計算", "資遣費公式", "資遣費試算", "預告工資", "新制資遣費", "非自願離職"],
     publishedAt: "2026-07-03",
+    updatedAt: "2026-10-19",
     readingMinutes: 8,
   },
   {
     slug: "insurance-deduction-examples",
-    title: "勞健保自付額計算：不同月薪的實際扣款與薪資單核對",
+    title: "勞健保自付額計算：2026 各級距扣款與實領速查表",
     description:
-      "2026 年勞保費率 12.5%、健保費率 5.17%，本文按不同月薪級距試算勞保、健保、勞退的實際扣款金額，附薪資單核對方法。",
+      "2026 年勞保（含就保）12.5%、健保 5.17%，列出各投保級距的勞工與雇主負擔、眷屬加保保費，以及月薪 29,500 到 60,000 元的實領速查表。",
     category: "insurance",
     keywords: ["勞保自付額", "健保自付額", "勞健保扣款", "薪資單核對", "勞保級距", "健保級距", "實領金額"],
     publishedAt: "2026-07-03",
+    updatedAt: "2026-10-19",
     readingMinutes: 8,
   },
 ];
@@ -853,6 +860,7 @@ export const ARTICLES: ArticleMeta[] = RAW_ARTICLES.map((article) => ({
   ...article,
   updatedAt: article.updatedAt ?? article.publishedAt,
   contentStatus: contentStatus(article.slug),
+  noindex: article.noindex ?? getConsolidatedArticle(article.slug) !== undefined,
 }));
 
 export { isIndexableArticle };

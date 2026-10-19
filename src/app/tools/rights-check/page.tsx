@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolExplainer } from "@/components/tools/ToolExplainer";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { FaqSection } from "@/components/seo/FaqSection";
@@ -71,41 +72,8 @@ export default function RightsCheckPage() {
 
       <AdBanner slot="tool-result" />
 
-      <article className="mt-12 prose prose-slate max-w-none">
-        <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">
-          為什麼需要勞工權益健檢？
-        </h2>
-        <p className="text-slate-700 leading-relaxed my-4">
-          台灣有超過 1,100 萬名受僱勞工，但根據勞動部統計，每年勞動檢查仍查獲數萬件違法案例。許多勞工因為不了解自身權益，長期處於不合法的勞動條件下卻不自知。本工具透過 8 個核心問題，幫助你快速篩檢最常見的違法態樣。
-        </p>
-
-        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">
-          基本工資與工資全額給付
-        </h3>
-        <p className="text-slate-700 leading-relaxed my-4">
-          依勞基法第 21 條，勞工的工資不得低於最低工資。2026 年起，月薪制最低工資調整為 $29,500，時薪制為 $196。雇主不得以任何名目任意扣薪，勞基法第 22 條明確規定工資應全額直接給付勞工。若雇主違法扣薪，勞工可保留薪資單據向勞工局檢舉。
-        </p>
-
-        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">
-          加班費與特休假
-        </h3>
-        <p className="text-slate-700 leading-relaxed my-4">
-          加班費依勞基法第 24 條計算，平日前 2 小時以 1 又 1/3 倍計算，後 2 小時以 1 又 2/3 倍計算。許多雇主以「責任制」為由不給加班費，但實際上責任制須經勞動部核定，並非雇主片面宣告即可成立。特休假方面，依勞基法第 38 條，到職滿 6 個月即有 3 天特休，未休完的天數應折算工資。
-        </p>
-
-        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">
-          勞健保與投保薪資
-        </h3>
-        <p className="text-slate-700 leading-relaxed my-4">
-          雇主依法必須為勞工投保勞保與健保。勞保投保薪資應按實際月薪申報，低報投保薪資不僅違法，更會直接影響勞工的傷病給付、生育給付、失業給付及未來的老年給付金額。發現低報情形，可向勞保局提出申訴要求更正。
-        </p>
-
-        <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3">
-          資遣與非自願離職
-        </h3>
-        <p className="text-slate-700 leading-relaxed my-4">
-          雇主資遣勞工時，應依勞基法第 16 條給予預告期間、第 17 條給付資遣費，並開立非自願離職證明。部分雇主會要求勞工簽署「自願離職同意書」以規避資遣費與失業給付，這是嚴重違法行為。若遇此狀況，切勿簽名，應保留所有對話紀錄並向勞工局申請勞資調解。遇到任何勞資爭議，都可撥打免費的 1955 勞工諮詢專線尋求協助。
-        </p>
+      <article className="mt-12 prose prose-slate max-w-none prose-headings:text-slate-900 prose-p:leading-8">
+        <ToolExplainer slug="rights-check" />
       </article>
 
       <AdBanner slot="tool-bottom" />

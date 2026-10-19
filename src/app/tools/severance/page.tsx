@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { buildPageMetadata, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolExplainer } from "@/components/tools/ToolExplainer";
 import { SeveranceCalculator } from "@/components/tools/SeveranceCalculator";
 import { ToolPageShell } from "@/components/tools/ToolPageShell";
 import { TOOL_FAQS } from "@/data/tool-faqs";
@@ -73,27 +74,7 @@ export default function SeverancePage() {
         relatedTools={TOOL_RELATED_TOOLS["severance"]}
         shareTitle="資遣費計算機"
         sharePath="/tools/severance"
-        article={
-          <>
-            <h2>新制 vs 舊制資遣費</h2>
-            <p>
-              2005 年 7 月 1 日以後到職的勞工適用「新制」。之前就在職的勞工，94 年 7 月 1 日之前的年資適用舊制，之後的年資適用新制。
-            </p>
-            <h3>新制資遣費</h3>
-            <p>
-              每滿 1 年發給 0.5 個月平均工資，未滿 1 年以比例計算。上限 6 個月平均工資。
-            </p>
-            <h3>舊制資遣費</h3>
-            <p>
-              每滿 1 年發給 1 個月平均工資，不滿 1 年以比例計算。沒有上限。
-            </p>
-            <h3>平均工資怎麼算？</h3>
-            <p>
-              資遣費的「平均工資」是指離職前 6 個月的工資總額除以該期間的總日數，再乘以 30。
-              包含本薪、加班費、獎金等經常性給與。
-            </p>
-          </>
-        }
+        article={<ToolExplainer slug="severance" />}
       >
         <SeveranceCalculator />
       </ToolPageShell>
