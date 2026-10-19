@@ -175,6 +175,7 @@ const RAW_ARTICLES: ArticleMeta[] = [
     category: "leave",
     keywords: ["病假", "病假扣薪", "事假", "請假薪資", "半薪"],
     publishedAt: "2026-04-07",
+    updatedAt: "2026-10-19",
     readingMinutes: 6,
   },
   {
@@ -448,6 +449,7 @@ const RAW_ARTICLES: ArticleMeta[] = [
     category: "leave",
     keywords: ["6個月特休幾天", "滿半年特休", "入職半年特休", "6個月特休"],
     publishedAt: "2026-04-09",
+    updatedAt: "2026-10-19",
     readingMinutes: 6,
   },
   {

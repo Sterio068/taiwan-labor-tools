@@ -4,12 +4,8 @@ import { TOOLS } from "@/data/constants";
 import { GUIDE_HUBS } from "@/data/guide-hubs";
 import { SITE_URL } from "@/lib/seo";
 
-const UPDATED_2026_05_07 = "2026-05-07";
-const UPDATED_2026_05_09 = "2026-05-09";
 const UPDATED_2026_05_10 = "2026-05-10";
-const UPDATED_2026_05_25 = "2026-05-25";
 const UPDATED_2026_04_30 = "2026-04-30";
-const UPDATED_2026_04_07 = "2026-04-07";
 const UPDATED_2026_10_19 = "2026-10-19";
 
 const STATIC_LASTMOD: Record<string, string> = {

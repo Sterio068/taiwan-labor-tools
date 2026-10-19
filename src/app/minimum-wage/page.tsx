@@ -93,7 +93,7 @@ export default function MinimumWagePage() {
         </div>
       </header>
 
-      <article className="prose prose-slate max-w-3xl prose-headings:text-slate-900 prose-p:leading-8">
+      <article className="longform max-w-3xl">
         <h2>誰適用最低工資</h2>
         <p>
           最低工資法第 3 條規定，適用對象是所有適用勞動基準法的勞工，包括全職、兼職、工讀、試用期與派遣勞工，本國籍與外籍勞工都一樣。

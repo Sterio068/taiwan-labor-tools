@@ -63,7 +63,7 @@ export default function MaternityPage() {
 
       <AdBanner slot="tool-result" />
 
-      <article className="mt-12 prose prose-slate max-w-none prose-headings:text-slate-900 prose-p:leading-8">
+      <article className="mt-12 longform max-w-none">
         <ToolExplainer slug="maternity" />
       </article>
 
