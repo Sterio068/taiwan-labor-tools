@@ -4,6 +4,8 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { FaqSection } from "@/components/seo/FaqSection";
+import { OfficialSources } from "@/components/seo/OfficialSources";
+import { PAGE_SOURCES } from "@/data/page-sources";
 import { buildPageMetadata, faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -76,7 +78,7 @@ const ROWS: Array<{
   {
     label: "加班費倍率",
     monthly: "時薪基數 = 月薪 ÷ 30 ÷ 8，約 $123",
-    hourly: "直接以時薪 × 1.34 或 1.67 倍",
+    hourly: "直接以時薪 × 4/3 或 5/3 倍",
   },
   {
     label: "特別休假",
@@ -294,6 +296,8 @@ export default function MonthlyVsHourlyPage() {
       </section>
 
       <FaqSection items={FAQS} />
+
+      <OfficialSources sources={PAGE_SOURCES["compare/monthly-vs-hourly"]} />
     </div>
   );
 }

@@ -5,6 +5,8 @@ import { FaqSection } from "@/components/seo/FaqSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { type GuideHub } from "@/data/guide-hubs";
+import { getGuideLongform } from "@/data/guide-sections";
+import { LongformSections } from "@/components/guides/LongformSections";
 import { breadcrumbSchema, faqSchema, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { getArticleBySlug, isIndexableArticle } from "@/lib/articles";
 
@@ -14,6 +16,7 @@ interface GuideHubPageProps {
 
 export function GuideHubPage({ hub }: GuideHubPageProps) {
   const path = `/guides/${hub.slug}`;
+  const longform = getGuideLongform(hub.slug);
   const articles = hub.articles.filter((item) => {
     const match = item.href.match(/^\/articles\/([^/?#]+)/);
     if (!match) return true;
@@ -83,7 +86,7 @@ export function GuideHubPage({ hub }: GuideHubPageProps) {
         </header>
       </div>
 
-      <main className="container-page pb-16">
+      <div className="container-page pb-16">
         <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
           <div>
             <SectionHeader
@@ -156,6 +159,8 @@ export function GuideHubPage({ hub }: GuideHubPageProps) {
           </div>
         </section>
 
+        {longform && <LongformSections content={longform} />}
+
         <section className="mt-12">
           <SectionHeader
             eyebrow="Decision table"
@@ -209,7 +214,7 @@ export function GuideHubPage({ hub }: GuideHubPageProps) {
         </section>
 
         <AdBanner slot={`guide-${hub.slug}-bottom`} />
-      </main>
+      </div>
     </div>
   );
 }

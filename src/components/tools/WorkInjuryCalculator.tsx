@@ -139,7 +139,7 @@ export function WorkInjuryCalculator() {
                 ))}
                 {result.compensations.length > 1 && (
                   <tr className="border-t-2 border-slate-200">
-                    <td className="py-2.5 font-bold text-slate-900">合計</td>
+                    <td className="py-2.5 font-bold text-slate-900">合計（不含參考用保險給付）</td>
                     <td className="py-2.5 text-right font-extrabold text-brand-600 text-lg">
                       ${formatMoney(result.totalEstimate)}
                     </td>

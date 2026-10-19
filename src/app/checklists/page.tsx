@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { LongformSections } from "@/components/guides/LongformSections";
+import { HUB_LONGFORM } from "@/data/hub-longform";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { PrintButton } from "@/components/print/PrintButton";
@@ -25,7 +27,7 @@ const CHECKLISTS = [
     id: "overtime",
     title: "加班自保清單",
     intro: "加班爭議常卡在證據，請先保存出勤與指揮監督紀錄，再核對倍率。",
-    items: ["保留打卡、排班、任務指派與主管訊息", "確認加班日屬於平日、休息日、國定假日或例假", "用月薪除以 30 再除以 8 換算時薪基數", "休息日加班套用 4/8/12 小時計薪規則", "責任制須確認是否有主管機關核備"],
+    items: ["保留打卡、排班、任務指派與主管訊息", "確認加班日屬於平日、休息日、國定假日或例假", "用月薪除以 30 再除以 8 換算時薪基數", "休息日加班依實際時數計算：前 2 小時另加 1⅓、第 3–8 小時另加 1⅔", "責任制須確認是否有主管機關核備"],
     toolHref: "/tools/overtime",
   },
   {
@@ -99,6 +101,7 @@ export default function ChecklistsPage() {
             </Link>
           </section>
         ))}
+        <LongformSections content={HUB_LONGFORM["/checklists"]} />
       </div>
     </div>
   );

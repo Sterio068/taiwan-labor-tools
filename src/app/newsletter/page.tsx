@@ -4,13 +4,17 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
 import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "勞工權益更新提醒｜每月回訪入口",
-  description:
-    "訂閱勞工權益站更新提醒，掌握基本工資、勞健保費率、特休、資遣與勞資爭議工具更新。",
-  keywords: ["勞工權益更新", "newsletter", "勞基法更新", "基本工資"],
-  path: "/newsletter",
-});
+export const metadata: Metadata = {
+  ...buildPageMetadata({
+    title: "勞工權益更新提醒｜每月回訪入口",
+    description:
+      "訂閱勞工權益站更新提醒，掌握基本工資、勞健保費率、特休、資遣與勞資爭議工具更新。",
+    keywords: ["勞工權益更新", "newsletter", "勞基法更新", "基本工資"],
+    path: "/newsletter",
+  }),
+  // 營運說明／訂閱頁不是給搜尋者的內容頁，不列入索引與 sitemap
+  robots: { index: false, follow: true },
+};
 
 export default function NewsletterPage() {
   return (

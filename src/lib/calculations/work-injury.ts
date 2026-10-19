@@ -4,6 +4,8 @@ export interface WorkInjuryResult {
     item: string;
     amount: number;
     note: string;
+    /** false = 參考用的保險給付，雇主可依勞基法第 59 條抵充，不重複計入合計 */
+    includedInTotal: boolean;
   }[];
   totalEstimate: number;
 }
@@ -30,13 +32,20 @@ export function calculateWorkInjury(
         item: "原領工資補償",
         amount: wageCompensation,
         note: `月薪 ÷ 30 × ${lostDays} 天（雇主應補償不能工作期間之原領工資）`,
+        includedInTotal: true,
       });
-      // 勞保職災傷病給付
-      const insuranceBenefit = Math.round((insuredSalary / 30) * 0.7 * lostDays);
+      // 職災保險傷病給付（勞工職業災害保險及保護法第 42 條）：
+      // 不能工作第 4 日起給付，前 2 個月按平均月投保薪資發給，第 3 個月起按 70% 發給
+      const payableDays = Math.max(0, lostDays - 3);
+      const fullRateDays = Math.min(payableDays, 60);
+      const reducedRateDays = payableDays - fullRateDays;
+      const dailyInsured = insuredSalary / 30;
+      const insuranceBenefit = Math.round(dailyInsured * fullRateDays + dailyInsured * 0.7 * reducedRateDays);
       compensations.push({
-        item: "勞保職災傷病給付（參考）",
+        item: "職災保險傷病給付（參考）",
         amount: insuranceBenefit,
-        note: `投保薪資日額 × 70% × ${lostDays} 天（前 2 個月，雇主可抵充）`,
+        note: `第 4 日起給付：前 2 個月 100%、第 3 個月起 70% 投保薪資日額；雇主可用來抵充原領工資補償`,
+        includedInTotal: false,
       });
       break;
     }
@@ -53,6 +62,7 @@ export function calculateWorkInjury(
         item: `勞保失能給付（${disabilityLevel} 等級）`,
         amount: disabilityBenefit,
         note: `投保薪資日額 × ${months} 日`,
+        includedInTotal: true,
       });
       break;
     }
@@ -62,16 +72,19 @@ export function calculateWorkInjury(
         item: "喪葬費（雇主）",
         amount: monthlySalary * 5,
         note: "5 個月平均工資",
+        includedInTotal: true,
       });
       compensations.push({
         item: "死亡補償（雇主）",
         amount: monthlySalary * 40,
         note: "40 個月平均工資",
+        includedInTotal: true,
       });
       compensations.push({
         item: "勞保遺屬年金（月領參考）",
         amount: Math.round(insuredSalary * 0.5),
-        note: "投保薪資 × 50%（按月發給）",
+        note: "投保薪資 × 50%（按月發給，不計入一次給付合計）",
+        includedInTotal: false,
       });
       break;
     }
@@ -81,12 +94,15 @@ export function calculateWorkInjury(
         item: "醫療費用",
         amount: 0,
         note: "雇主應負擔必要之醫療費用（依實際支出）",
+        includedInTotal: true,
       });
       break;
     }
   }
 
-  const totalEstimate = compensations.reduce((sum, c) => sum + c.amount, 0);
+  const totalEstimate = compensations
+    .filter((c) => c.includedInTotal)
+    .reduce((sum, c) => sum + c.amount, 0);
 
   return {
     type: injuryType,

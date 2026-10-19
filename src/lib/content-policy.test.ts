@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { isAdEligibleArticle, isIndexableArticle, isMonetizablePath } from "./content-policy";
+import { ARTICLES, getIndexableArticles } from "./articles";
+import {
+  CONSOLIDATED_ARTICLES,
+  IMPROVE_ARTICLE_SLUGS,
+  isAdEligibleArticle,
+  isIndexableArticle,
+  isMonetizablePath,
+} from "./content-policy";
 
 describe("content policy", () => {
   it("keeps improve articles indexable until a page-level noindex decision", () => {
@@ -20,5 +27,24 @@ describe("content policy", () => {
   it("keeps regular article paths monetizable", () => {
     expect(isMonetizablePath("/articles/salary-slip-explained")).toBe(true);
     expect(isMonetizablePath("/tools/salary")).toBe(true);
+  });
+
+  it("noindexes consolidated template articles and points them at indexable pillars", () => {
+    const indexable = new Set(getIndexableArticles().map((article) => `/articles/${article.slug}`));
+    for (const [slug, consolidated] of Object.entries(CONSOLIDATED_ARTICLES)) {
+      const article = ARTICLES.find((item) => item.slug === slug);
+      expect(article?.noindex, slug).toBe(true);
+      expect(indexable.has(`/articles/${slug}`)).toBe(false);
+      if (consolidated.pillarHref.startsWith("/articles/")) {
+        expect(indexable.has(consolidated.pillarHref), consolidated.pillarHref).toBe(true);
+      }
+    }
+  });
+
+  it("leaves no indexable article in the improve queue", () => {
+    const indexableImprove = [...IMPROVE_ARTICLE_SLUGS].filter((slug) =>
+      getIndexableArticles().some((article) => article.slug === slug),
+    );
+    expect(indexableImprove).toEqual([]);
   });
 });

@@ -4,7 +4,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "隱私權政策",
-  description: "勞工權益站隱私權政策，說明本站如何收集、使用與保護您的個人資料。",
+  description: "勞工權益站隱私權政策：計算機輸入只在瀏覽器本機處理，說明 Google Analytics、AdSense Cookie 的用途、關閉方式與個人資料保護原則。",
   keywords: ["隱私權政策", "隱私權", "個資保護"],
   path: "/privacy",
 });
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
             </li>
             <li>
               <strong>廣告用 Cookies</strong> — Google AdSense
-              用於顯示相關廣告內容；本站不會要求或鼓勵使用者點擊廣告
+              用於顯示相關廣告內容；本站不會要求或鼓勵使用者與廣告互動
             </li>
           </ul>
           <p className="mt-3">

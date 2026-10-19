@@ -92,3 +92,90 @@ body {
 @utility card-hover {
   @apply hover:shadow-[var(--shadow-card-hover)];
 }
+
+/*
+ * Long-form explanatory content written as plain JSX (tool explainers, guide
+ * sections, minimum-wage page). Mirrors the MDX article styles in
+ * src/mdx-components.tsx so every reading surface looks the same.
+ */
+@layer components {
+  .longform {
+    color: var(--color-slate-700);
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+  .longform > * + *,
+  .longform section > * + * {
+    margin-top: 1rem;
+  }
+  .longform h2 {
+    margin-top: 2.5rem;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--color-slate-900);
+  }
+  .longform > h2:first-child,
+  .longform > section:first-child > h2:first-child {
+    margin-top: 0;
+  }
+  .longform h3 {
+    margin-top: 1.75rem;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    font-weight: 700;
+    color: var(--color-slate-900);
+  }
+  .longform ul,
+  .longform ol {
+    padding-left: 1.5rem;
+  }
+  .longform ul {
+    list-style: disc;
+  }
+  .longform ol {
+    list-style: decimal;
+  }
+  .longform li + li {
+    margin-top: 0.5rem;
+  }
+  .longform a {
+    color: var(--color-brand-600);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--color-brand-300);
+    text-underline-offset: 2px;
+  }
+  .longform a:hover {
+    text-decoration-color: var(--color-brand-600);
+  }
+  .longform strong {
+    font-weight: 700;
+    color: var(--color-slate-900);
+  }
+  .longform table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+  }
+  .longform th,
+  .longform td {
+    border: 1px solid var(--color-slate-200);
+    padding: 0.5rem 0.875rem;
+    text-align: left;
+  }
+  .longform th {
+    background: var(--color-slate-100);
+    font-weight: 700;
+    color: var(--color-slate-900);
+  }
+  @media (min-width: 768px) {
+    .longform {
+      font-size: 1.0625rem;
+    }
+    .longform h2 {
+      font-size: 1.75rem;
+    }
+  }
+}

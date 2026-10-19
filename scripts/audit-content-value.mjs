@@ -55,9 +55,11 @@ if (missingContentFiles.length > 0) {
   console.error(`FAIL improve queue has no MDX content file: ${missingContentFiles.join(", ")}`);
   process.exitCode = 1;
 }
-const explicitNoindexCount = [...metadata.matchAll(/noindex:\s*true/gu)].length;
+const consolidatedBlock = policy.match(/CONSOLIDATED_ARTICLES[^=]*=\s*\{([\s\S]*?)\n\};/u)?.[1] ?? "";
+const consolidatedSlugs = [...consolidatedBlock.matchAll(/^\s*"([a-z0-9-]+)":/gmu)].map((m) => m[1]);
+const explicitNoindexCount = [...metadata.matchAll(/noindex:\s*true/gu)].length + consolidatedSlugs.length;
 const indexableCount = slugs.length - explicitNoindexCount;
-console.log(`INFO indexable metadata articles: ${indexableCount}; improve queue entries: ${new Set(policySlugs).size}; explicit noindex: ${explicitNoindexCount}`);
+console.log(`INFO indexable metadata articles: ${indexableCount}; improve queue entries: ${new Set(policySlugs).size}; noindex (explicit + consolidated): ${explicitNoindexCount}`);
 
 const improveBodies = await Promise.all(
   policySlugs

@@ -4,6 +4,8 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { FaqSection } from "@/components/seo/FaqSection";
+import { OfficialSources } from "@/components/seo/OfficialSources";
+import { PAGE_SOURCES } from "@/data/page-sources";
 import { buildPageMetadata, faqSchema, SITE_URL, SITE_NAME } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -228,6 +230,8 @@ export default function SeveranceGuidePage() {
       <AdBanner slot="guide-severance-bottom" />
 
       <FaqSection items={FAQS} />
+
+      <OfficialSources sources={PAGE_SOURCES["guides/severance"]} />
 
       <section className="mt-12 rounded-[16px] border border-brand-100 bg-brand-50 p-6 text-center">
         <h2 className="text-xl font-bold text-slate-900 mb-3">立即試算你的資遣費</h2>

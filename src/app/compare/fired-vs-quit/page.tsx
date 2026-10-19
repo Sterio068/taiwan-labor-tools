@@ -4,6 +4,8 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { FaqSection } from "@/components/seo/FaqSection";
+import { OfficialSources } from "@/components/seo/OfficialSources";
+import { PAGE_SOURCES } from "@/data/page-sources";
 import { buildPageMetadata, faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -281,6 +283,8 @@ export default function FiredVsQuitPage() {
       </section>
 
       <FaqSection items={FAQS} />
+
+      <OfficialSources sources={PAGE_SOURCES["compare/fired-vs-quit"]} />
     </div>
   );
 }

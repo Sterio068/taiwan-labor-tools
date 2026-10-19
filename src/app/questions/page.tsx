@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { LongformSections } from "@/components/guides/LongformSections";
+import { HUB_LONGFORM } from "@/data/hub-longform";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -55,7 +57,7 @@ export default function QuestionsPage() {
         </header>
       </div>
 
-      <main className="container-page pb-16">
+      <div className="container-page pb-16">
         <SectionHeader
           eyebrow="Question Hub"
           title="直接找你正在遇到的問題"
@@ -121,7 +123,8 @@ export default function QuestionsPage() {
             );
           })}
         </div>
-      </main>
+        <LongformSections content={HUB_LONGFORM["/questions"]} />
+      </div>
     </div>
   );
 }

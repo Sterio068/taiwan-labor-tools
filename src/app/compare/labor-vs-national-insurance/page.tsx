@@ -4,6 +4,8 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { FaqSection } from "@/components/seo/FaqSection";
+import { OfficialSources } from "@/components/seo/OfficialSources";
+import { PAGE_SOURCES } from "@/data/page-sources";
 import { buildPageMetadata, faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -38,12 +40,12 @@ const FAQS = [
   {
     question: "勞保的老年給付多少?國保呢?",
     answer:
-      "勞保老年年金月領金額 = 平均月投保薪資 × 年資 × 1.55%（或選 0.775% 加計算式）。以投保 $45,800、年資 30 年計算,月領約 $21,296。國保月領則是「月投保金額 × 年資 × 1.3% + $3,772」,以 2026 年月投保金額 $19,761、年資 30 年計算,月領約 $11,479。",
+      "勞保老年年金月領金額 = 平均月投保薪資 × 年資 × 1.55%（或選 0.775% 加計算式）。以投保 $45,800、年資 30 年計算,月領約 $21,296。國保老年年金則依「月投保金額 × 年資 × 0.65% + 加計金額」與「月投保金額 × 年資 × 1.3%」擇優發給；以 115 年起月投保金額 $21,103、年資 30 年用後者計算，月領約 $8,230。",
   },
   {
     question: "國保的費率是多少?",
     answer:
-      "2026 年國保費率為 10.5%,保費 = 月投保金額 $19,761 × 10.5% = $2,074。其中政府補助 40%,被保險人自付 60% 約 $1,244。低收入戶、身心障礙者另有更高補助。",
+      "國保費率依國民年金法逐步調整，2026 年為 10.5%，保費 = 月投保金額 $21,103 × 10.5% ≈ $2,216。一般被保險人自付 60% 約 $1,330、政府補助 40%；低收入戶、身心障礙者等另有更高補助。",
   },
   {
     question: "沒收入為什麼還要繳國保?",
@@ -74,18 +76,18 @@ const ROWS: Array<{
   },
   {
     label: "費率(2026)",
-    labor: "12.5%(含就保 1%)",
+    labor: "12.5%(普通事故 11.5% + 就保 1%)",
     national: "10.5%",
   },
   {
     label: "投保金額",
     labor: "依實際月薪投保級距表",
-    national: "固定 $19,761(2026 年度)",
+    national: "固定 $21,103(115 年起)",
   },
   {
     label: "老年給付",
     labor: "月投保薪資 × 年資 × 1.55%",
-    national: "$19,761 × 年資 × 1.3% + $3,772",
+    national: "$21,103 × 年資 × 1.3%,或 × 0.65% + 加計金額,擇優",
   },
   {
     label: "失能給付",
@@ -286,6 +288,8 @@ export default function LaborVsNationalInsurancePage() {
       </section>
 
       <FaqSection items={FAQS} />
+
+      <OfficialSources sources={PAGE_SOURCES["compare/labor-vs-national-insurance"]} />
     </div>
   );
 }

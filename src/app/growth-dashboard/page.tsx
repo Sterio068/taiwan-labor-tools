@@ -3,13 +3,17 @@ import Link from "next/link";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "成效追蹤 Dashboard 說明｜Search Console、GA4、AdSense 指標",
-  description:
-    "說明勞工權益站如何用 Search Console、GA4 與 AdSense 指標追蹤內容品質、搜尋流量、工具使用率與合法廣告曝光。",
-  keywords: ["Search Console", "GA4", "AdSense", "成效追蹤", "SEO dashboard"],
-  path: "/growth-dashboard",
-});
+export const metadata: Metadata = {
+  ...buildPageMetadata({
+    title: "成效追蹤 Dashboard 說明｜Search Console、GA4、AdSense 指標",
+    description:
+      "說明勞工權益站如何用 Search Console、GA4 與 AdSense 指標追蹤內容品質、搜尋流量、工具使用率與合法廣告曝光。",
+    keywords: ["Search Console", "GA4", "AdSense", "成效追蹤", "SEO dashboard"],
+    path: "/growth-dashboard",
+  }),
+  // 營運說明／訂閱頁不是給搜尋者的內容頁，不列入索引與 sitemap
+  robots: { index: false, follow: true },
+};
 
 const METRICS = [
   { area: "Search Console", metric: "曝光、點擊、CTR、平均排名", use: "判斷文章與指南是否被搜尋者看見，優先優化高曝光低 CTR 的標題與摘要。" },

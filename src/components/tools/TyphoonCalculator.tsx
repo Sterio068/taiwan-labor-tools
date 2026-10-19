@@ -155,9 +155,9 @@ export function TyphoonCalculator() {
                 <div className="bg-brand-50 rounded-[12px] p-5 text-center border border-brand-100">
                   <p className="text-sm font-medium text-brand-700 mb-1">【已宣告】颱風日出勤</p>
                   <p className="text-3xl md:text-4xl font-extrabold text-brand-600">
-                    ${formatMoney(result.typhoonOutWage)}
+                    ${formatMoney(result.dailyWage)}
                   </p>
-                  <p className="text-xs text-brand-500 mt-2">雙倍工資，應得補償</p>
+                  <p className="text-xs text-brand-500 mt-2">當日工資照給；勞動部建議雇主另外加給</p>
                 </div>
                 {/* 不出勤 */}
                 <div className="bg-slate-50 rounded-[12px] p-5 text-center border border-slate-200">
@@ -165,7 +165,7 @@ export function TyphoonCalculator() {
                   <p className="text-3xl md:text-4xl font-extrabold text-slate-700">
                     ${formatMoney(result.typhoonStayWage)}
                   </p>
-                  <p className="text-xs text-slate-500 mt-2">薪資照給，不得扣薪</p>
+                  <p className="text-xs text-slate-500 mt-2">勞動部要點：雇主宜不扣發；不得記曠職或扣全勤</p>
                 </div>
               </div>
 
@@ -217,13 +217,13 @@ export function TyphoonCalculator() {
                       </>
                     )}
                     <tr>
-                      <td className="py-2.5 text-slate-700">出勤加倍工資（× 2）</td>
+                      <td className="py-2.5 text-slate-700">若公司比照加倍發給（參考，非法定義務）</td>
                       <td className="py-2.5 text-right font-semibold text-brand-600">
                         ${formatMoney(result.typhoonOutWage)}
                       </td>
                     </tr>
                     <tr className="border-t-2 border-slate-200">
-                      <td className="py-2.5 font-bold text-slate-900">不出勤薪資照給</td>
+                      <td className="py-2.5 font-bold text-slate-900">未出勤：雇主宜不扣發的當日工資</td>
                       <td className="py-2.5 text-right font-extrabold text-slate-700">
                         ${formatMoney(result.typhoonStayWage)}
                       </td>
@@ -237,17 +237,17 @@ export function TyphoonCalculator() {
                 <p className="text-sm text-slate-500 mb-1">計算公式</p>
                 {result.wageType === "monthly" ? (
                   <p className="text-sm font-mono text-slate-700">
-                    出勤雙倍工資 = 月薪 ÷ 30 × 2
+                    當日工資 = 月薪 ÷ 30；比照加倍時另加 1 日工資
                   </p>
                 ) : (
                   <p className="text-sm font-mono text-slate-700">
-                    出勤雙倍工資 = 時薪 × 2 × 出勤小時數
+                    當日工資 = 時薪 × 出勤小時數；比照加倍時再乘 2
                   </p>
                 )}
               </div>
 
               <p className="mt-4 text-xs text-slate-400">
-                依據「天然災害發生事業單位勞工出勤管理及工資給付要點」。超過正常工時部分，另計加班費。
+                依據勞動部「天然災害發生事業單位勞工出勤管理及工資給付要點」：出勤者當日工資照給，雇主「宜」再加給並提供交通協助，屬勸導性規定。颱風日若同時是休息日或國定假日，仍依勞基法加班規定計算；超過 8 小時另計延長工時工資。
               </p>
             </>
           ) : (
@@ -260,23 +260,23 @@ export function TyphoonCalculator() {
                   <p className="text-3xl md:text-4xl font-extrabold text-slate-700">
                     ${formatMoney(result.dailyWage)}
                   </p>
-                  <p className="text-xs text-slate-500 mt-2">正常工資，無加倍補償</p>
+                  <p className="text-xs text-slate-500 mt-2">正常工資</p>
                 </div>
                 {/* 不出勤 */}
                 <div className="bg-amber-50 rounded-[12px] p-5 text-center border border-amber-200">
                   <p className="text-sm font-medium text-amber-700 mb-1">【未宣告】颱風日不出勤</p>
-                  <p className="text-3xl md:text-4xl font-extrabold text-amber-600">無保障</p>
-                  <p className="text-xs text-amber-600 mt-2">雇主可能扣薪或要求補班</p>
+                  <p className="text-3xl md:text-4xl font-extrabold text-amber-600">先確認</p>
+                  <p className="text-xs text-amber-600 mt-2">居住地或通勤途中是否已宣布停班</p>
                 </div>
               </div>
 
               <div className="p-4 bg-amber-50 rounded-[12px] border border-amber-200">
                 <p className="text-sm font-semibold text-amber-800 mb-2">注意事項</p>
                 <ul className="text-sm text-amber-700 space-y-1 list-disc list-inside">
-                  <li>政府未宣告颱風假時，勞工自行判斷不出勤，法律無保障</li>
-                  <li>雇主可視情況扣薪、要求補班，但仍應考量勞工人身安全</li>
-                  <li>建議事先與雇主溝通，並留存相關往來記錄</li>
-                  <li>颱風假宣告以「實際工作地點」所在縣市為準</li>
+                  <li>工作地、居住地或上班必經途中任一轄區宣布停止上班，都適用要點的保護</li>
+                  <li>三地都未停班但因災害交通阻斷而無法到班，同樣不得視為曠職</li>
+                  <li>若都不符合，自行不出勤可能被要求以假別處理，請事先與主管溝通並留存紀錄</li>
+                  <li>勞工安全優先；公司另有約定時，以較有利勞工的約定為準</li>
                 </ul>
               </div>
 

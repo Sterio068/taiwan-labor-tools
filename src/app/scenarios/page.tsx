@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { LongformSections } from "@/components/guides/LongformSections";
+import { HUB_LONGFORM } from "@/data/hub-longform";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -44,7 +46,7 @@ export default function ScenariosPage() {
         </header>
       </div>
 
-      <main className="container-page pb-16">
+      <div className="container-page pb-16">
         <SectionHeader
           eyebrow="Scenarios"
           title="六種常見勞工處境"
@@ -107,7 +109,8 @@ export default function ScenariosPage() {
             </section>
           ))}
         </div>
-      </main>
+        <LongformSections content={HUB_LONGFORM["/scenarios"]} />
+      </div>
     </div>
   );
 }

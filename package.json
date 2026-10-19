@@ -12,6 +12,7 @@
     "lint": "eslint",
     "seo:audit": "node scripts/audit-seo.mjs",
     "content:audit": "node scripts/audit-content-value.mjs",
+    "content:audit:live": "node scripts/audit-content-live.mjs",
     "design:audit": "impeccable detect src --fast"
   },
   "dependencies": {

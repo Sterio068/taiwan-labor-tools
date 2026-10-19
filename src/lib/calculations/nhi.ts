@@ -24,8 +24,10 @@ export function calculateNhi(
   const cappedDependents = Math.min(dependents, 3);
   const total = Math.round(bracket * LABOR_CONSTANTS.nhiRate);
   const workerShare = Math.round(total * LABOR_CONSTANTS.nhiWorkerShare);
+  // 依健保署負擔金額表，以投保金額直接相乘後四捨五入（例：29,500 元 → 1,428 元）
   const employerShare = Math.round(
-    total *
+    bracket *
+      LABOR_CONSTANTS.nhiRate *
       LABOR_CONSTANTS.nhiEmployerShare *
       (1 + LABOR_CONSTANTS.nhiAverageDependentCount)
   );
