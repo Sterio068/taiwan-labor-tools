@@ -4,7 +4,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "服務條款",
-  description: "勞工權益站服務條款，說明使用本站的相關規定與免責聲明。",
+  description: "勞工權益站服務條款：說明計算工具與文章的用途、法規資料來源與更新方式、試算結果的限制與免責聲明，以及內容使用規範。",
   keywords: ["服務條款", "使用條款", "免責聲明"],
   path: "/terms",
 });
@@ -91,7 +91,7 @@ export default function TermsPage() {
             使用者應自行判斷外部廣告連結的風險。
           </p>
           <p className="mt-3">
-            使用者不得以人工或自動化方式製造不正常流量、重複點擊廣告、鼓勵他人點擊廣告，或把廣告誤導成本站功能。
+            使用者不得以人工或自動化方式製造不正常流量、重複觸發廣告、鼓勵他人與廣告互動，或把廣告誤導成本站功能。
             若發現廣告內容不當、遮擋操作或疑似冒用官方名義，可透過聯絡頁回報。
           </p>
         </section>

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { LongformSections } from "@/components/guides/LongformSections";
+import { HUB_LONGFORM } from "@/data/hub-longform";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -107,6 +109,7 @@ export default function ScenariosPage() {
             </section>
           ))}
         </div>
+        <LongformSections content={HUB_LONGFORM["/scenarios"]} />
       </div>
     </div>
   );

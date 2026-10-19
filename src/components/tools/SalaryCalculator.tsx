@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
@@ -46,25 +46,12 @@ function SalaryCalculatorInner() {
   const [salary, setSalary] = useState(initial.salary);
   const [dependents, setDependents] = useState(initial.dependents);
   const [pensionRate, setPensionRate] = useState(initial.pensionRate);
-  const [result, setResult] = useState<SalaryBreakdownResult | null>(null);
-
-  // 若 URL 帶有有效的初始值，自動觸發一次計算
-  useEffect(() => {
-    if (initial.salary) {
-      const s = parseInt(initial.salary, 10);
-      if (s > 0) {
-        setResult(
-          calculateSalaryBreakdown(
-            s,
-            parseInt(initial.dependents, 10),
-            parseFloat(initial.pensionRate) / 100
-          )
-        );
-      }
-    }
-  // 只在 mount 時跑一次
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // 若 URL 帶有有效的初始值，首次渲染就直接顯示試算結果
+  const [result, setResult] = useState<SalaryBreakdownResult | null>(() => {
+    const s = parseInt(initial.salary, 10);
+    if (!initial.salary || !(s > 0)) return null;
+    return calculateSalaryBreakdown(s, parseInt(initial.dependents, 10), parseFloat(initial.pensionRate) / 100);
+  });
 
   const handleCalculate = () => {
     const s = parseInt(salary);

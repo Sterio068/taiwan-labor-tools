@@ -10,7 +10,7 @@ import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 export const metadata: Metadata = buildPageMetadata({
   title: "特休天數計算：輸入到職日自動算",
   description:
-    "輸入到職日期，立即計算今年度特休天數。完整年資對照表。依據勞基法第 38 條。",
+    "輸入到職日，依勞基法第 38 條算出目前特休天數與下一個級距日期；附滿 10 年 16 天的年資對照、未休特休折發工資算法與週年制、曆年制說明。",
   keywords: ["特休幾天", "年假計算", "特休天數", "年資特休對照表"],
   path: "/tools/annual-leave",
 });

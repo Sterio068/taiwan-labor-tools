@@ -12,7 +12,7 @@ import { formatMoney } from "@/lib/format";
 export const metadata: Metadata = buildPageMetadata({
   title: "薪資明細計算機：2026 實領薪水一秒算出",
   description:
-    "輸入月薪，自動計算勞保、健保自付額、勞退提繳與實領金額。2026 最新費率，含雇主成本。",
+    "輸入月薪、眷屬人數與勞退自提比例，依 2026 年投保級距與費率算出勞保、健保扣款、實領金額與雇主總成本，附月薪 45,000 與 60,000 元試算範例。",
   keywords: ["薪資計算", "實領薪水", "勞健保扣多少", "薪資明細", "薪水計算機"],
   path: "/tools/salary",
 });

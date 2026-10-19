@@ -28,7 +28,11 @@ const DEFAULT_BASE_URL = "https://twlabor.org";
 const DEFAULT_OUT = ".content-audit/content-value-audit.json";
 const BOILERPLATE_PAGE_SHARE = 0.2;
 const SHINGLE_SIZE = 8;
-const NEAR_DUPLICATE_SIMILARITY = 0.55;
+// 8-character shingle Jaccard on unique text. Distinct articles on this site
+// score <= 0.12; templated "same page, different number" articles score 0.15-0.25.
+const NEAR_DUPLICATE_SIMILARITY = 0.15;
+// Descriptions are mostly Chinese, so length is measured in content units.
+const MIN_DESCRIPTION_UNITS = 30;
 
 const ADSENSE_FORBIDDEN_TEXT = [
   /click\s+(?:an?\s+|the\s+)?ads?/iu,
@@ -212,7 +216,7 @@ function extractLinks(html, baseUrl) {
     try {
       const url = new URL(href, base);
       if (url.hostname === base.hostname) internal.add(url.pathname.replace(/\/$/u, "") || "/");
-      else if (/(?:^|\.)gov\.tw$/u.test(url.hostname)) official.add(`${url.hostname}${url.pathname}`);
+      else if (/(?:^|\.)gov\.tw$/u.test(url.hostname)) official.add(`${url.hostname}${url.pathname}${url.search}`);
     } catch {
       // Malformed hrefs are not content-value signals.
     }
@@ -295,7 +299,9 @@ export function evaluatePage(page, baseUrl) {
 
   if (page.status !== 200) issues.push(issue("http-status", "error", `HTTP ${page.status}`));
   if (page.title.length < 8) issues.push(issue("missing-title", "error", "title missing or too short"));
-  if (page.description.length < 50) issues.push(issue("short-description", "warning", "meta description < 50 chars"));
+  if (contentUnits(page.description) < MIN_DESCRIPTION_UNITS) {
+    issues.push(issue("short-description", "warning", `meta description < ${MIN_DESCRIPTION_UNITS} units`));
+  }
   if (!canonical) issues.push(issue("missing-canonical", "error", "canonical missing"));
   else if (canonical !== expectedCanonical) {
     issues.push(issue("canonical-mismatch", "error", `canonical is ${page.canonical}`));

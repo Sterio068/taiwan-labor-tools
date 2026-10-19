@@ -10,7 +10,7 @@ import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 export const metadata: Metadata = buildPageMetadata({
   title: "加班費計算機：2026 最新勞基法",
   description:
-    "輸入月薪和加班時數，立即算出平日、休息日、國定假日加班費。依據勞基法第 24 條。",
+    "輸入月薪與時數，依勞基法第 24、39、40 條算出平日、休息日（依實際時數）與國定假日（8 小時內加給 1 日工資）的加班費，附官方範例與證據清單。",
   keywords: ["加班費計算", "加班費怎麼算", "平日加班", "休息日加班費", "國定假日加班"],
   path: "/tools/overtime",
 });

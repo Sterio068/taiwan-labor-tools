@@ -10,7 +10,7 @@ import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 export const metadata: Metadata = buildPageMetadata({
   title: "勞健保保費計算機：2026 最新費率",
   description:
-    "輸入月薪查詢投保級距，計算勞保、健保自付額與雇主負擔。2026 最新費率，含眷屬計算。",
+    "輸入月薪與眷屬人數，依 2026 年勞保 11.5% 加就保 1%、健保 5.17% 計算勞工自付額、雇主負擔與政府補助，附級距規則與勞保局、健保署來源。",
   keywords: ["勞保自付額", "健保費計算", "勞保費率", "健保費率", "投保級距"],
   path: "/tools/insurance-premium",
 });

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { LongformSections } from "@/components/guides/LongformSections";
+import { HUB_LONGFORM } from "@/data/hub-longform";
 import Link from "next/link";
 import { buildPageMetadata, collectionPageSchema, SITE_URL } from "@/lib/seo";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
@@ -162,6 +164,7 @@ export default function GuidesIndexPage() {
             </Link>
           </div>
         </section>
+        <LongformSections content={HUB_LONGFORM["/guides"]} />
       </div>
     </div>
   );

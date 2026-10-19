@@ -14,7 +14,7 @@ import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 export const metadata: Metadata = buildPageMetadata({
   title: "職災給付計算機 — 2026 工傷補償一鍵試算",
   description:
-    "計算職災不能工作補償、失能給付、死亡給付。依據勞基法第59條與職災保險法。",
+    "依勞基法第 59 條與勞工職業災害保險及保護法，估算職災不能工作期間的原領工資補償、傷病給付（前 2 個月全額、之後 70%）、失能與死亡補償。",
   keywords: ["職災賠償", "工傷補助", "職業災害", "職災給付", "失能給付"],
   path: "/tools/work-injury",
 });

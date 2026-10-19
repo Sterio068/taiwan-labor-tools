@@ -14,7 +14,7 @@ import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 export const metadata: Metadata = buildPageMetadata({
   title: "產假/育嬰假計算機 — 2026 天數與給付一鍵查",
   description:
-    "計算產假、陪產假、育嬰留停天數與勞保生育給付。依據性別平等工作法與勞保條例。",
+    "依勞基法第 50 條、性別平等工作法與勞保條例，查產假 8 週、產檢假與陪產檢及陪產假 7 日、育嬰留職停薪天數，並估算勞保生育給付與育嬰津貼。",
   keywords: ["產假幾天", "育嬰留停", "陪產假", "生育給付", "流產假", "育嬰假"],
   path: "/tools/maternity",
 });

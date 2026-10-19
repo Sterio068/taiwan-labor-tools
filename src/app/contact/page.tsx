@@ -6,7 +6,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "聯絡與回饋｜資料勘誤、工具建議與合作洽詢",
   description:
-    "聯絡勞工權益站，回報資料勘誤、工具計算問題、文章更新建議或合作需求。",
+    "聯絡勞工權益站：回報法規或數字勘誤、工具計算問題與文章更新建議，說明回覆時間、勘誤處理流程，以及個案勞資爭議應洽詢的官方管道。",
   keywords: ["聯絡我們", "勘誤回報", "工具建議", "勞工權益站"],
   path: "/contact",
 });
@@ -55,7 +55,15 @@ export default function ContactPage() {
             我們會盡量回覆可查證的公開資料方向，並提醒你向地方勞工局、法律扶助或專業律師確認。
           </p>
           <p>
-            若是廣告版位、外部連結或頁面可用性問題，也歡迎附上截圖。本站不會要求使用者點擊廣告，也會避免廣告遮蔽工具、表單或重要導覽。
+            需要立即協助的個案，可以直接使用這些官方管道：勞動部 1955 勞工諮詢申訴專線（24 小時、免付費）；工作地所在的縣市政府勞工局（處）可受理申訴與勞資爭議調解；
+            符合資格者可向財團法人法律扶助基金會申請勞工訴訟扶助。本站整理的流程說明見
+            <Link href="/guides/disputes" className="mx-1 font-semibold text-brand-700 underline underline-offset-2">
+              勞資爭議與申訴指南
+            </Link>
+            。
+          </p>
+          <p>
+            若是廣告版位、外部連結或頁面可用性問題，也歡迎附上截圖。本站不會以任何方式引導使用者與廣告互動，也會避免廣告遮蔽工具、表單或重要導覽。
           </p>
         </div>
       </section>

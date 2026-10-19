@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { LongformSections } from "@/components/guides/LongformSections";
+import { HUB_LONGFORM } from "@/data/hub-longform";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { PrintButton } from "@/components/print/PrintButton";
@@ -99,6 +101,7 @@ export default function ChecklistsPage() {
             </Link>
           </section>
         ))}
+        <LongformSections content={HUB_LONGFORM["/checklists"]} />
       </div>
     </div>
   );

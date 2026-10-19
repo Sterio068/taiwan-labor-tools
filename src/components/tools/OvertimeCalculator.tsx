@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
@@ -56,20 +56,13 @@ function OvertimeCalculatorInner() {
   const [salary, setSalary] = useState(initial.salary);
   const [hours, setHours] = useState(initial.hours);
   const [type, setType] = useState<OtType>(initial.type);
-  const [result, setResult] = useState<OvertimeResult | null>(null);
-
-  // 若 URL 帶有有效的初始值，自動觸發一次計算
-  useEffect(() => {
-    if (initial.salary && initial.hours) {
-      const s = parseInt(initial.salary, 10);
-      const h = parseFloat(initial.hours);
-      if (s > 0 && h > 0) {
-        setResult(calculateOvertime(s, h, initial.type));
-      }
-    }
-  // 只在 mount 時跑一次
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // 若 URL 帶有有效的初始值，首次渲染就直接顯示試算結果
+  const [result, setResult] = useState<OvertimeResult | null>(() => {
+    const s = parseInt(initial.salary, 10);
+    const h = parseFloat(initial.hours);
+    if (!initial.salary || !initial.hours || !(s > 0) || !(h > 0)) return null;
+    return calculateOvertime(s, h, initial.type);
+  });
 
   const handleCalculate = () => {
     const s = parseInt(salary);

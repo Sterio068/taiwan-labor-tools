@@ -14,7 +14,7 @@ import { TOOL_RELATED_ARTICLES, TOOL_RELATED_TOOLS } from "@/data/tool-related";
 export const metadata: Metadata = buildPageMetadata({
   title: "離職預告期計算 — 提前幾天告知才合法？",
   description:
-    "輸入到職日，自動計算離職預告期間天數與建議最晚離職日。依據勞基法第 16 條。",
+    "輸入到職日，依勞基法第 15、16 條算出離職或資遣的預告天數（10、20、30 日）與最晚提出日，並說明未預告的預告期間工資與謀職假。",
   keywords: ["離職預告", "離職提前幾天", "預告期", "離職預告期間", "勞基法預告期"],
   path: "/tools/notice-period",
 });

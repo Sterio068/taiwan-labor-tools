@@ -9,7 +9,7 @@ export function Footer() {
             Compliance
           </p>
           <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">
-            本站提供勞工權益工具與資料整理，內容僅供參考，不構成法律建議。廣告不影響工具計算，也不會要求或暗示使用者點擊廣告。
+            本站提供勞工權益工具與資料整理，內容僅供參考，不構成法律建議。廣告不影響工具計算，也不會要求或暗示使用者與廣告互動。
           </p>
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
