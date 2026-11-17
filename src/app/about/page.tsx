@@ -1,178 +1,161 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
+import { getIndexableArticles } from "@/lib/articles";
+import { TOOLS } from "@/data/constants";
+import { DATA_UPDATE_LOG } from "@/data/official-sources";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "關於勞工權益站",
+  title: "關於勞工權益站：誰在整理、內容怎麼查核",
   description:
-    "勞工權益站致力於幫助台灣勞工了解自己的權益，提供免費計算工具與法規解讀文章。",
-  keywords: ["勞工權益站", "關於我們", "台灣勞工", "勞基法"],
+    "勞工權益站由 SterioCheng 個人整理維護，依法規條文與勞動部、勞保局、健保署公告製作薪資、加班費、資遣費、特休與勞健保的計算工具和說明文章。這裡說明內容怎麼查核、怎麼更新，以及本站不是什麼。",
+  keywords: ["勞工權益站", "關於我們", "SterioCheng", "編輯政策", "勞基法"],
   path: "/about",
 });
 
+const CHECK_STEPS = [
+  {
+    title: "從法條與公告開始",
+    text: "每個數字都要找到出處：全國法規資料庫的條文、勞動部的公告與問答、勞保局與健保署的分級表。找不到官方出處的說法，不寫進文章。",
+  },
+  {
+    title: "用官方範例驗算工具",
+    text: "計算工具的公式寫成程式後，會拿主管機關公布的算例做測試，例如臺中市勞工局休息日加班的範例（時薪 150 元出勤 1、6、10 小時分別加給 200、1,400、2,700 元），結果不一致就不上線。",
+  },
+  {
+    title: "文章裡的金額由工具產生",
+    text: "文章中的金額對照表與試算範例，用與計算工具相同的算法產生並互相核對，避免文章和工具算出不同答案。",
+  },
+  {
+    title: "標出查核日期與來源",
+    text: "每篇文章列出發布日期、最後查核日期與參考的法條或公告；費率、級距或最低工資調整時，先更新工具，再更新受影響的文章。",
+  },
+];
+
 export default function AboutPage() {
+  const articleCount = getIndexableArticles().length;
+  const recentUpdates = DATA_UPDATE_LOG.slice(0, 3);
+
   return (
     <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <Breadcrumb items={[{ label: "首頁", href: "/" }, { label: "關於" }]} />
 
-      <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">
-        關於勞工權益站
-      </h1>
+      <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">關於勞工權益站</h1>
 
-      {/* Mission */}
-      <section className="mb-10">
-        <h2 className="text-xl font-bold text-slate-900 mb-3">
-          我們的使命
-        </h2>
-        <p className="text-slate-700 leading-relaxed">
-          勞工權益站的目標很簡單：幫助每一位台灣勞工了解自己的權益。
-          太多人不清楚薪資單上每一項扣款的意義、不知道加班費該怎麼算、被資遣時不確定自己能拿到多少錢。
-          我們希望透過免費的線上工具與白話文章，讓每個人都能輕鬆搞懂這些事。
+      <section className="mb-10 space-y-4 text-slate-700 leading-relaxed">
+        <p>
+          勞工權益站是一個免費的台灣勞工權益工具站，目前有 {TOOLS.length} 個計算工具與 {articleCount}{" "}
+          篇說明文章，主題涵蓋薪資與實領、加班費、特休與請假、資遣與離職、勞健保、勞退，以及勞資爭議的處理流程。
+        </p>
+        <p>
+          很多勞動問題卡在「規定看得懂，但不知道自己的情況該怎麼算」。所以這裡的做法是：每個主題都配一個能輸入自己數字的工具，再用一篇文章把法條、算法、例外情況和下一步寫清楚。
         </p>
       </section>
 
-      {/* What we provide */}
       <section className="mb-10">
-        <h2 className="text-xl font-bold text-slate-900 mb-3">
-          我們提供什麼
-        </h2>
-        <ul className="space-y-3 text-slate-700">
-          <li className="flex gap-3">
-            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-sm font-bold">
-              1
-            </span>
-            <span>
-              <strong className="text-slate-900">免費計算工具</strong> —
-              薪資明細、加班費、資遣費、特休天數、勞健保保費、退休金試算等，依據最新法規即時計算。
-            </span>
-          </li>
-          <li className="flex gap-3">
-            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-sm font-bold">
-              2
-            </span>
-            <span>
-              <strong className="text-slate-900">權益解讀文章</strong> —
-              白話解釋勞基法條文，搭配實際案例與計算範例，讓法規不再艱澀難懂。
-            </span>
-          </li>
-          <li className="flex gap-3">
-            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-sm font-bold">
-              3
-            </span>
-            <span>
-              <strong className="text-slate-900">即時更新</strong> —
-              每年追蹤基本工資調整、費率變動等法規異動，確保工具與文章的數據正確。
-            </span>
-          </li>
-        </ul>
+        <h2 className="text-xl font-bold text-slate-900 mb-3">誰在整理這個網站</h2>
+        <div className="space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            本站由 <strong className="text-slate-900">SterioCheng</strong> 個人整理與維護。SterioCheng
+            是獨立開發者，網站的程式、計算工具和文章都由他撰寫與維護。
+          </p>
+          <p>
+            SterioCheng 不是律師，也沒有勞動法相關的專業證照。本站的價值不在於提供法律意見，而在於把散在法規資料庫、勞動部問答和各種分級表裡的規則整理成可以直接核對的工具與說明，並清楚標出每一項的出處，讓你可以自己回到原始資料確認。
+          </p>
+        </div>
       </section>
 
-      {/* Data sources */}
       <section className="mb-10">
-        <h2 className="text-xl font-bold text-slate-900 mb-3">
-          資料來源
-        </h2>
-        <p className="text-slate-700 leading-relaxed mb-4">
-          本站所有計算工具與文章內容均依據以下官方法規與資料：
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-slate-700">
-          <li>勞動基準法及其施行細則</li>
-          <li>勞工保險條例</li>
-          <li>全民健康保險法</li>
-          <li>勞工退休金條例</li>
-          <li>就業保險法</li>
-          <li>勞動部及勞動部勞工保險局公告之費率與級距表</li>
-          <li>衛生福利部中央健康保險署公告之保費費率</li>
-        </ul>
+        <h2 className="text-xl font-bold text-slate-900 mb-3">內容怎麼查核</h2>
+        <ol className="space-y-3">
+          {CHECK_STEPS.map((step, index) => (
+            <li key={step.title} className="flex gap-3 rounded-[12px] border border-slate-200 bg-surface p-4">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-50 text-sm font-bold text-brand-700">
+                {index + 1}
+              </span>
+              <div>
+                <h3 className="font-semibold text-slate-900">{step.title}</h3>
+                <p className="mt-1 text-sm leading-6 text-slate-600">{step.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
         <p className="mt-4 text-slate-700 leading-relaxed">
-          完整來源連結、最近查核日期與更新紀錄可見
-          <Link href="/sources" className="mx-1 text-brand-600 font-semibold underline underline-offset-2">
+          完整的查核原則、勘誤處理與廣告揭露寫在
+          <Link href="/editorial-policy" className="mx-1 font-semibold text-brand-600 underline underline-offset-2">
+            編輯政策
+          </Link>
+          ，所有官方來源與查核日期列在
+          <Link href="/sources" className="mx-1 font-semibold text-brand-600 underline underline-offset-2">
             資料來源與更新紀錄
           </Link>
           。
         </p>
       </section>
 
-      {/* Editorial standards */}
       <section className="mb-10">
-        <h2 className="text-xl font-bold text-slate-900 mb-3">
-          編輯與更新原則
-        </h2>
+        <h2 className="text-xl font-bold text-slate-900 mb-3">最近的修正</h2>
+        <p className="mb-4 text-slate-700 leading-relaxed">
+          發現錯誤就公開修正。以下是最近幾次的更新，完整紀錄在資料來源頁：
+        </p>
+        <ul className="space-y-3">
+          {recentUpdates.map((record) => (
+            <li key={record.date} className="rounded-[12px] border border-slate-200 bg-surface p-4">
+              <p className="text-sm font-semibold text-slate-900">
+                <time dateTime={record.date}>{record.date.replaceAll("-", "/")}</time>　{record.title}
+              </p>
+              <p className="mt-1 text-sm leading-6 text-slate-600">{record.summary}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="text-xl font-bold text-slate-900 mb-3">本站不是官方機關</h2>
         <div className="space-y-4 text-slate-700 leading-relaxed">
           <p>
-            勞工權益站的文章與工具以官方法規、主管機關公告及公開資料為主要依據。
-            內容撰寫時會優先核對全國法規資料庫、勞動部、勞工保險局與健保署等來源，
-            並在文章頁面列出相關參考資料，方便讀者自行查證。
+            本站不隸屬勞動部、勞保局、健保署、地方勞工局或任何政府機關，內容不代表主管機關的正式見解。
           </p>
           <p>
-            遇到基本工資、勞健保費率、投保級距或勞退規定調整時，我們會更新相關工具與文章。
-            若讀者發現資料過期、計算異常或文字說明不清楚，歡迎來信提供頁面網址與問題描述。
-          </p>
-          <p>
-            本站可能顯示 Google AdSense 廣告。廣告區塊會以「廣告」標示，並與工具按鈕、表單與主要操作保持距離；
-            我們不會要求、暗示、交換或鼓勵任何使用者與廣告互動。
-          </p>
-          <p>
-            完整的查核流程、內容邊界、廣告揭露與勘誤處理方式，整理在
-            <Link
-              href="/editorial-policy"
-              className="mx-1 font-semibold text-brand-600 underline underline-offset-2"
-            >
-              編輯政策
-            </Link>
-            。這些原則用來確保本站不是單純堆疊法條或製造流量頁，而是維持可查證、可行動、可回報修正的內容品質。
+            正在處理資遣、欠薪、職災、職場霸凌、競業禁止等具體爭議時，請把本站當成整理問題、準備資料的起點；實際主張權利前，建議向地方勞工局、勞動部 1955 專線、法律扶助基金會、工會或律師確認你的情況。
           </p>
         </div>
       </section>
 
       <section className="mb-10">
-        <h2 className="text-xl font-bold text-slate-900 mb-3">
-          我們不是官方機關
-        </h2>
-        <div className="space-y-4 text-slate-700 leading-relaxed">
-          <p>
-            勞工權益站是民間整理的資訊工具，不隸屬勞動部、勞保局、健保署、地方勞工局或任何政府機關。
-            我們會盡量連回官方資料，讓讀者能自己核對原始依據，但本站內容不代表主管機關正式見解。
-          </p>
-          <p>
-            若你正在處理資遣、欠薪、職災、職場霸凌、競業禁止或其他具體勞資爭議，請把本站當成整理問題與準備資料的起點。
-            實際主張權利前，仍建議向地方勞工局、法律扶助基金會、工會或專業律師確認個案適用情形。
-          </p>
-        </div>
-      </section>
-
-      {/* Disclaimer */}
-      <section className="bg-amber-50 border border-amber-200 rounded-[12px] p-6">
-        <h2 className="text-xl font-bold text-amber-900 mb-3">
-          免責聲明
-        </h2>
-        <p className="text-amber-800 leading-relaxed">
-          本站提供的計算工具與文章內容僅供參考，不構成法律建議。
-          每個人的勞動條件與契約內容不同，實際權益可能因個案而異。
-          如有具體法律問題，建議諮詢專業律師或向各縣市勞動局洽詢。
+        <h2 className="text-xl font-bold text-slate-900 mb-3">廣告</h2>
+        <p className="text-slate-700 leading-relaxed">
+          本站可能顯示 Google AdSense 廣告。廣告與工具按鈕、表單保持距離，不影響任何計算結果，也不會引導或鼓勵你與廣告互動。
         </p>
       </section>
 
-      {/* Contact */}
-      <section className="mt-10 mb-10">
-        <h2 className="text-xl font-bold text-slate-900 mb-3">聯絡我們</h2>
+      <section className="mb-10 rounded-[12px] border border-amber-200 bg-amber-50 p-6">
+        <h2 className="text-xl font-bold text-amber-900 mb-3">免責聲明</h2>
+        <p className="text-amber-800 leading-relaxed">
+          本站的計算工具與文章僅供參考，不構成法律、稅務或財務建議。每個人的勞動契約、公司規章與實際情況不同，權利義務仍以法規、主管機關最新公告與個案事實為準。
+        </p>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="text-xl font-bold text-slate-900 mb-3">聯絡與勘誤</h2>
         <p className="text-slate-700 leading-relaxed">
-          如有任何建議、勘誤回報或合作需求，歡迎使用
-          <Link href="/contact" className="mx-1 text-brand-600 font-semibold underline underline-offset-2">
+          發現數字過期、計算有誤或說明不清楚，請到
+          <Link href="/contact" className="mx-1 font-semibold text-brand-600 underline underline-offset-2">
             聯絡與回饋頁
           </Link>
           或來信{" "}
-          <a href="mailto:sterio068@gmail.com" className="text-brand-600 font-semibold underline underline-offset-2">sterio068@gmail.com</a>
-          。
+          <a href="mailto:sterio068@gmail.com" className="font-semibold text-brand-600 underline underline-offset-2">
+            sterio068@gmail.com
+          </a>
+          ，附上頁面網址和你看到的官方資料，會優先處理影響金額判斷的問題。
         </p>
       </section>
 
-      {/* CTA */}
       <div className="mt-10 text-center">
         <Link
           href="/tools"
-          className="inline-flex items-center px-6 py-3 bg-brand-500 text-white font-bold rounded-[12px] hover:bg-brand-600 transition-colors shadow-md"
+          className="inline-flex items-center rounded-[12px] bg-brand-500 px-6 py-3 font-bold text-white shadow-md transition-colors hover:bg-brand-600"
         >
           開始使用計算工具
         </Link>

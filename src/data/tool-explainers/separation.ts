@@ -98,7 +98,6 @@ const severance: ToolExplainerContent = {
   ],
   readNext: [
     { label: "資遣費完整計算指南", href: "/articles/severance-calculation-complete" },
-    { label: "資遣費、預告工資與特休折現", href: "/articles/severance-pay-notice-wages" },
     { label: "非自願離職證明怎麼拿", href: "/articles/involuntary-separation-certificate" },
     { label: "被資遣後的失業給付", href: "/articles/unemployment-benefits" },
   ],

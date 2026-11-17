@@ -175,6 +175,13 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
 
 export const DATA_UPDATE_LOG: UpdateRecord[] = [
   {
+    date: "2026-11-17",
+    title: "合併重疊文章、補上作者與查核日期",
+    summary:
+      "加班費、補休、資遣費與預告工資、居家工作、勞退 6%、勞健保級距、最低工資與特休等主題，原本各有 2～3 篇內容重疊的文章，合併成一篇完整說明，舊網址轉到合併後的頁面；最低工資文章併入最低工資專頁。合併時重新查核法條，修正居家工作與時薪文章中的錯誤說明（例如最低工資法自 2025 年起施行、罰鍰為 2 萬至 100 萬元）。文章頁改列整理者、發布日期與最後查核日期。",
+    affectedPages: ["/articles/*", "/minimum-wage", "/about", "/editorial-policy"],
+  },
+  {
     date: "2026-10-19",
     title: "全站法規查核與內容整併",
     summary:
@@ -194,13 +201,6 @@ export const DATA_UPDATE_LOG: UpdateRecord[] = [
     summary:
       "補上勞基法、最低工資、勞保、健保、勞退等官方來源，供工具頁與文章查證。",
     affectedPages: ["/sources", "/about", "/tools/*", "/articles/*"],
-  },
-  {
-    date: "2026-04-30",
-    title: "AdSense 審核準備與索引送審",
-    summary:
-      "確認 ads.txt、sitemap、Search Console 索引請求、AdSense 政策中心狀態。",
-    affectedPages: ["/ads.txt", "/sitemap.xml", "/"],
   },
   {
     date: "2026-04-07",

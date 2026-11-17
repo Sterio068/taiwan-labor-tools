@@ -109,3 +109,48 @@
 | 日期 | 事件 | 稽核結果 |
 |------|------|----------|
 | 2026-10-19 | 本分支完成整改，開 PR | 本機 100/100 |
+| 2026-11-17 | AdSense 再次回覆「缺乏價值的內容」 | — |
+
+## 第二輪整改（2026-11-17）
+
+10/19 整改後重新送審，11/17 仍回覆「缺乏價值的內容」。第一輪處理的是錯誤與單頁正文量，這一輪處理的是站內重複與可信度：
+
+### 合併重疊文章
+
+同一問題有 2～3 篇內容重疊的文章，合併成一篇，舊網址 308 轉址（`src/lib/article-redirects.ts`，由 `next.config.ts` 讀取）。原本設為 noindex 的 29 篇數字模板頁也改為轉址，不再保留可開啟的薄頁。
+
+| 合併後 | 併入的文章 |
+|--------|-----------|
+| `/articles/overtime-pay-guide` | overtime-calculation-examples、overtime-pay-vs-compensatory-leave、6 篇加班時數模板頁 |
+| `/articles/severance-calculation-complete` | severance-pay-notice-wages、8 篇資遣年資模板頁 |
+| `/articles/remote-work-rights` | work-from-home-overtime |
+| `/articles/pension-voluntary` | labor-pension-6-percent |
+| `/articles/labor-nhi-bracket-guide` | labor-insurance-bracket-2026、health-insurance-bracket-2026、labor-insurance-underreporting-complaint |
+| `/articles/insurance-deduction-examples` | 9 篇月薪實領模板頁 |
+| `/articles/annual-leave-2026` | annual-leave-after-6months、2 篇特休折算模板頁 |
+| `/minimum-wage` | minimum-wage-2026、minimum-wage-hourly-2026 |
+| `/guides/overtime` | overtime-evidence-checklist |
+
+文章由 84 篇（55 篇索引）變成 46 篇，全部可索引。合併時重新查核，修正了原文中的錯誤：最低工資法施行年度（2025 年）、違反最低工資罰鍰（2 萬～100 萬元）、勞退自提高薪試算用錯級距、居家工作文章引用不存在的指導原則名稱、特休文章「事假不影響全勤」等。
+
+### 移除模板化區塊
+
+文章頁原本每篇都自動產生同樣的「本文重點」、「這篇先看什麼重點？」FAQ（含 FAQPage 結構化資料）、「如何使用本文檢查權益」HowTo 結構化資料與「下一步檢查流程」。這些區塊在 46 篇文章內容幾乎相同，已全部移除。
+
+### 署名與日期
+
+- 文章頁列出整理者（SterioCheng，連到關於頁）、發布日期、最後查核日期；文章列表卡片顯示更新日期。
+- 關於頁改寫：誰在整理、不是律師、內容怎麼查核（含官方算例驗證）、最近的修正紀錄。
+- 編輯政策新增署名、查核日期的定義，以及「同一問題只寫一篇」的原則。
+- 公開的更新紀錄移除「AdSense 審核準備」一筆。
+
+### 驗證
+
+- typecheck、lint、test（25 tests）、build 通過；`content:audit`、`seo:audit` 全 PASS。
+- 本機 `next start` 執行 `audit-content-live`：91/91 通過，文章正文中位數 2,158。
+- 轉址抽查：`/articles/salary-45000-take-home` → `/articles/insurance-deduction-examples`（308）。
+
+### 後續
+
+1. 部署後在 Search Console 重新提交 sitemap，要求重新索引合併後的 7 篇主題文章。
+2. 等 Google 重新抓取（約 2 週）後，再到 AdSense 要求審查。

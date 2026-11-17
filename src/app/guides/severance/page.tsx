@@ -55,12 +55,7 @@ const SEVERANCE_TOOLS = [
 
 const SEVERANCE_ARTICLES = [
   { title: "被資遣了怎麼辦？5 步驟自保", href: "/articles/fired-what-to-do" },
-  { title: "工作 6 個月被資遣有資遣費嗎？", href: "/articles/severance-6months" },
-  { title: "工作 1 年被資遣多少錢？試算實例", href: "/articles/severance-1year" },
-  { title: "工作 1 年 6 個月資遣費怎麼算？", href: "/articles/severance-18months" },
-  { title: "工作 3 年被資遣多少錢？試算實例", href: "/articles/severance-3years" },
-  { title: "工作 4 年被資遣多少錢？試算實例", href: "/articles/severance-4years" },
-  { title: "工作 5 年被資遣多少錢？試算實例", href: "/articles/severance-5years" },
+  { title: "工作 6 個月被資遣有資遣費嗎？", href: "/articles/severance-calculation-complete" },
   { title: "非自願離職證明拿不到怎麼辦？", href: "/articles/involuntary-separation-certificate" },
   { title: "失業給付怎麼領？完整申請流程", href: "/articles/unemployment-benefits" },
   { title: "離職要提前幾天？預告期規定", href: "/articles/resignation-notice" },

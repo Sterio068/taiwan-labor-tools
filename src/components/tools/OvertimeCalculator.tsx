@@ -204,7 +204,7 @@ function OvertimeCalculatorInner() {
             steps={[
               {
                 label: "整理加班證據",
-                href: "/articles/overtime-evidence-checklist",
+                href: "/guides/overtime",
                 description: "把打卡、排班、主管訊息、交付紀錄與薪資單串成同一條時間線。",
               },
               {

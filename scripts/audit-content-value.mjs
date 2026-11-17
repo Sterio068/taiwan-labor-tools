@@ -17,20 +17,22 @@ const policySlugs = [...policyBlock.matchAll(/"([a-z0-9-]+)"/g)].map((m) => m[1]
 const duplicateSlugs = slugs.filter((slug, index) => slugs.indexOf(slug) !== index);
 const unknownImprove = policySlugs.filter((slug) => !slugs.includes(slug));
 const expected = [
-  "overtime-pay-vs-compensatory-leave",
+  "overtime-pay-guide",
   "severance-calculation-complete",
   "insurance-deduction-examples",
-  "annual-leave-resignation-payout-example",
-  "health-insurance-bracket-2026",
-  "holiday-overtime-8hours",
-  "labor-insurance-underreporting-complaint",
-  "overtime-evidence-checklist",
-  "unused-annual-leave-wage",
+  "labor-nhi-bracket-guide",
+  "annual-leave-2026",
+  "pension-voluntary",
+  "remote-work-rights",
 ];
+const redirects = await read("src/lib/article-redirects.ts");
+const redirectedSlugs = [...redirects.matchAll(/^\s*"([a-z0-9-]+)":/gmu)].map((m) => m[1]);
+const stillListed = redirectedSlugs.filter((slug) => slugs.includes(slug));
 const missing = expected.filter((slug) => !slugs.includes(slug));
 const checks = [
   [duplicateSlugs.length === 0, "article metadata slugs are unique", duplicateSlugs],
-  [missing.length === 0, "all planned pillar and low-distinctness slugs are registered", missing],
+  [missing.length === 0, "all planned pillar slugs are registered", missing],
+  [stillListed.length === 0, "redirected article slugs are removed from metadata", stillListed],
   [unknownImprove.length === 0, "content policy only references registered article slugs", unknownImprove],
   [articlePage.includes("getArticleSources(article.category, article.slug)"), "article sources support page-specific overrides"],
   [articlePage.includes("isAdEligibleArticle(article)"), "improve articles suppress manual ad slots"],
@@ -39,7 +41,7 @@ const checks = [
   [sitemap.includes("filter((article) => !article.noindex)"), "sitemap honors explicit noindex only"],
   [feed.includes("getIndexableArticles") && search.includes("getIndexableArticles"), "RSS and search index only indexable articles"],
   [layout.includes("<AdSenseLoader />"), "AdSense loader is route-aware"],
-  [sourceMap.includes("overtime-pay-vs-compensatory-leave") && sourceMap.includes("severance-calculation-complete") && sourceMap.includes("insurance-deduction-examples"), "three content pillars have dedicated sources"],
+  [sourceMap.includes("overtime-pay-guide") && sourceMap.includes("severance-calculation-complete") && sourceMap.includes("insurance-deduction-examples"), "three content pillars have dedicated sources"],
 ];
 for (const [ok, label, details] of checks) {
   if (!ok) {

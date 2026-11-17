@@ -146,7 +146,7 @@ const RELATED_TOOLS = [
 
 const RELATED_ARTICLES = [
   { title: "打工族必懂：部分工時勞工的 7 大權益", href: "/articles/part-time-rights" },
-  { title: "2026 最低時薪 $196 完全解析", href: "/articles/minimum-wage-hourly-2026" },
+  { title: "2026 最低時薪 $196 完全解析", href: "/minimum-wage" },
 ];
 
 export default function MonthlyVsHourlyPage() {

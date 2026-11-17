@@ -233,7 +233,7 @@ function SalaryCalculatorInner() {
               },
               {
                 label: "了解勞退 6%",
-                href: "/articles/labor-pension-6-percent",
+                href: "/articles/pension-voluntary",
                 description: "雇主提繳 6% 不得從薪水扣除，自提才會影響實領。",
               },
             ]}

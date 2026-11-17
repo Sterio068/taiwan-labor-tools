@@ -14,14 +14,14 @@ const RAW_ARTICLES: ArticleMeta[] = [
   },
   {
     slug: "overtime-pay-guide",
-    title: "加班費怎麼算？平日/休息日/國定假日完整圖解",
+    title: "加班費怎麼算？平日、休息日、國定假日與補休完整說明",
     description:
-      "依勞基法第 24 條，圖解平日加班 4/3 與 5/3 倍、休息日依實際時數計算、國定假日加給 1 日工資的方式，附月薪 36,000 元實際算例。",
+      "依勞基法第 24、32 條之 1、39 條，說明平日 4/3 與 5/3 倍、休息日依實際時數、國定假日加給 1 日工資的算法，附 5 種月薪對照表、加班換補休的規定與薪資單核對步驟。",
     category: "overtime",
-    keywords: ["加班費", "加班費計算", "休息日加班", "國定假日加班", "勞基法第24條"],
+    keywords: ["加班費", "加班費計算", "休息日加班", "國定假日加班", "加班補休", "勞基法第24條"],
     publishedAt: "2026-04-07",
-    updatedAt: "2026-10-19",
-    readingMinutes: 8,
+    updatedAt: "2026-11-17",
+    readingMinutes: 12,
   },
   {
     slug: "fired-what-to-do",
@@ -35,13 +35,14 @@ const RAW_ARTICLES: ArticleMeta[] = [
   },
   {
     slug: "annual-leave-2026",
-    title: "2026 特休假完整攻略：年資對照＋未休折算",
+    title: "2026 特休怎麼算：年資天數、週年制與曆年制、未休折發",
     description:
-      "依勞基法第 38 條，年資對照特休天數一覽表，未休完可折算工資，附到職日自動計算教學。",
+      "依勞基法第 38 條，滿 6 個月 3 天、滿 1 年 7 天起的特休天數表，說明新人滿半年的實務問題、週年制與曆年制、誰決定休假日期，以及未休特休與離職時的折發算法。",
     category: "leave",
-    keywords: ["特休", "年假", "特休天數", "未休折算", "勞基法第38條"],
+    keywords: ["特休", "特休天數", "滿6個月特休", "曆年制", "未休特休", "勞基法第38條"],
     publishedAt: "2026-04-07",
-    readingMinutes: 6,
+    updatedAt: "2026-11-17",
+    readingMinutes: 9,
   },
   {
     slug: "labor-insurance-comparison",
@@ -56,13 +57,14 @@ const RAW_ARTICLES: ArticleMeta[] = [
   },
   {
     slug: "pension-voluntary",
-    title: "勞退自提 6% 到底要不要？節稅效果試算",
+    title: "勞退 6%：雇主提繳不能扣薪，自提要不要？",
     description:
-      "勞退自願提繳 6% 的節稅效果有多大？依不同月薪級距試算，分析自提的優缺點與適合族群。",
+      "雇主提繳的 6% 由雇主負擔、不得扣薪；勞工自提 0～6% 才會扣薪並可免計入所得。附 2026 提繳級距表、違法扣薪的處理方式，以及不同月薪與稅率的自提節稅試算。",
     category: "pension",
-    keywords: ["勞退自提", "自願提繳", "節稅", "退休金", "勞退新制"],
+    keywords: ["勞退6%", "勞退自提", "自願提繳", "勞退扣薪", "節稅", "勞退提繳級距"],
     publishedAt: "2026-04-07",
-    readingMinutes: 6,
+    updatedAt: "2026-11-17",
+    readingMinutes: 10,
   },
   {
     slug: "no-labor-insurance",
@@ -157,17 +159,6 @@ const RAW_ARTICLES: ArticleMeta[] = [
     readingMinutes: 6,
   },
   {
-    slug: "minimum-wage-2026",
-    title: "最低工資 29,500：2026 新制影響",
-    description:
-      "2026 年最低工資調整為月薪 29,500 元、時薪 196 元，對勞健保保費、加班費基數的連動影響。",
-    category: "salary",
-    keywords: ["基本工資", "最低工資", "基本工資2026", "時薪196", "月薪29500"],
-    publishedAt: "2026-04-07",
-    updatedAt: "2026-10-19",
-    readingMinutes: 5,
-  },
-  {
     slug: "sick-leave-pay",
     title: "病假扣薪合法嗎？各假別薪資規定",
     description:
@@ -211,13 +202,14 @@ const RAW_ARTICLES: ArticleMeta[] = [
   // — 第二批文章 —
   {
     slug: "remote-work-rights",
-    title: "居家工作的勞基法適用指南：加班、工時、保險怎麼算",
+    title: "居家工作的勞基法權益：工時認定、加班費與出勤紀錄",
     description:
-      "居家辦公的工時認定、加班費計算、設備補助義務與勞健保適用，遠距工作者必讀的法律指南。",
+      "居家工作一樣適用勞基法。依勞基法第 30 條與勞動部「勞工在事業場所外工作時間指導原則」，說明哪些時間算工時、WFH 加班費怎麼算、出勤怎麼記錄、設備費用與職災認定。",
     category: "rights",
-    keywords: ["居家工作", "遠距工作", "WFH", "在家上班", "居家辦公勞基法"],
+    keywords: ["居家工作", "遠距工作", "WFH", "居家加班費", "在家上班", "出勤紀錄"],
     publishedAt: "2026-04-07",
-    readingMinutes: 7,
+    updatedAt: "2026-11-17",
+    readingMinutes: 10,
   },
   {
     slug: "salary-tax-guide-2026",
@@ -312,157 +304,6 @@ const RAW_ARTICLES: ArticleMeta[] = [
   },
   // — 第三批文章：高流量長尾關鍵字 —
   {
-    slug: "salary-45000-take-home",
-    title: "月薪 45000 實領多少？2026 最新試算",
-    description:
-      "月薪 45,000 元的勞工每月實領金額試算，含勞保、健保、勞退扣款明細，以及眷屬加保、自提 6% 的差異分析。",
-    category: "salary",
-    keywords: ["月薪45000實領", "45000實拿", "月薪45000薪資", "實領薪水"],
-    publishedAt: "2026-04-09",
-    readingMinutes: 7,
-  },
-  {
-    slug: "salary-40000-take-home",
-    title: "月薪 40000 實領多少？2026 勞健保扣款試算",
-    description:
-      "月薪 40,000 元實領金額試算，拆解勞保、健保、勞退級距、眷屬加保與自提 6% 對每月入帳的影響。",
-    category: "salary",
-    keywords: ["月薪40000實領", "40000實拿", "月薪40000扣多少", "實領薪水"],
-    publishedAt: "2026-05-09",
-    readingMinutes: 7,
-  },
-  {
-    slug: "salary-50000-take-home",
-    title: "月薪 50000 實領多少？2026 勞健保與勞退完整試算",
-    description:
-      "月薪 50,000 元每月實領試算，含勞保上限、健保級距、勞退自提 6%、眷屬加保與薪資單核對重點。",
-    category: "salary",
-    keywords: ["月薪50000實領", "50000實拿", "月薪50000扣多少", "薪資扣款"],
-    publishedAt: "2026-05-09",
-    readingMinutes: 7,
-  },
-  {
-    slug: "salary-60000-take-home",
-    title: "月薪 60000 實領多少？2026 勞健保扣款完整試算",
-    description:
-      "月薪 60,000 元實領金額試算，拆解勞保、健保、勞退級距、自提 6% 與眷屬加保後的每月差異。",
-    category: "salary",
-    keywords: ["月薪60000實領", "60000實拿", "月薪60000扣多少", "實領薪水"],
-    publishedAt: "2026-05-09",
-    readingMinutes: 7,
-  },
-  {
-    slug: "overtime-2hours-calculation",
-    title: "平日加班 2 小時多少錢？加班費試算範例",
-    description:
-      "月薪 30k/40k/50k/60k 加班 2 小時的加班費試算表，含計算公式、倍率規則與常見陷阱。",
-    category: "overtime",
-    keywords: ["加班2小時", "加班費2小時", "平日加班費", "加班費計算"],
-    publishedAt: "2026-04-09",
-    readingMinutes: 6,
-  },
-  {
-    slug: "overtime-1hour-calculation",
-    title: "平日加班 1 小時多少錢？2026 加班費快速試算",
-    description:
-      "平日加班 1 小時的加班費公式與常見月薪速查表，說明時薪基數、4/3 倍倍率與薪資單核對方式。",
-    category: "overtime",
-    keywords: ["加班1小時", "加班費1小時", "平日加班費", "加班費試算"],
-    publishedAt: "2026-05-09",
-    readingMinutes: 6,
-  },
-  {
-    slug: "overtime-3hours-calculation",
-    title: "平日加班 3 小時多少錢？第 3 小時倍率怎麼算",
-    description:
-      "平日加班 3 小時的分段加班費試算，前 2 小時 4/3、第 3 小時 5/3，附常見月薪速查表。",
-    category: "overtime",
-    keywords: ["加班3小時", "加班費3小時", "第3小時加班費", "平日加班費"],
-    publishedAt: "2026-05-09",
-    readingMinutes: 7,
-  },
-  {
-    slug: "overtime-4hours-calculation",
-    title: "平日加班 4 小時多少錢？第 3、4 小時倍率試算",
-    description:
-      "平日加班 4 小時的加班費試算表，說明前 2 小時 4/3、第 3 小時起 5/3 的分段算法與常見錯誤。",
-    category: "overtime",
-    keywords: ["加班4小時", "加班費4小時", "第3小時加班費", "平日加班費"],
-    publishedAt: "2026-05-09",
-    readingMinutes: 7,
-  },
-  {
-    slug: "severance-1year",
-    title: "工作 1 年被資遣有多少錢？資遣費與預告期試算",
-    description:
-      "工作滿 1 年被資遣的新制資遣費、預告期間、非自願離職證明與失業給付下一步，含不同月薪試算表。",
-    category: "severance",
-    keywords: ["工作1年資遣費", "1年資遣", "資遣費試算", "年資1年"],
-    publishedAt: "2026-05-09",
-    readingMinutes: 7,
-  },
-  {
-    slug: "severance-2years",
-    title: "工作 2 年被資遣有多少錢？資遣費與預告工資試算",
-    description:
-      "工作滿 2 年被資遣的新制資遣費、20 天預告期、非自願離職證明與失業給付下一步，含不同月薪試算表。",
-    category: "severance",
-    keywords: ["工作2年資遣費", "2年資遣", "資遣費試算", "年資2年"],
-    publishedAt: "2026-05-09",
-    readingMinutes: 7,
-  },
-  {
-    slug: "severance-3years",
-    title: "工作 3 年被資遣有多少錢？資遣費實例計算",
-    description:
-      "3 年年資勞工在不同薪資下的資遣費試算，新舊制比較、平均工資計算、試用期年資爭議一次解答。",
-    category: "severance",
-    keywords: ["工作3年資遣費", "3年資遣", "資遣費範例", "年資3年"],
-    publishedAt: "2026-04-09",
-    readingMinutes: 7,
-  },
-  {
-    slug: "severance-5years",
-    title: "工作 5 年被資遣有多少錢？新制資遣費完整試算",
-    description:
-      "工作滿 5 年被資遣可拿多少資遣費？用新制公式試算不同平均工資，並整理預告工資、特休折現與失業給付。",
-    category: "severance",
-    keywords: ["工作5年資遣費", "5年資遣", "資遣費計算", "年資5年"],
-    publishedAt: "2026-05-09",
-    readingMinutes: 7,
-  },
-  {
-    slug: "severance-10years",
-    title: "工作 10 年被資遣有多少錢？新制資遣費上限前試算",
-    description:
-      "工作滿 10 年被資遣的新制資遣費、30 天預告工資、特休折現與非自願離職證明檢查清單，含薪資級距試算。",
-    category: "severance",
-    keywords: ["工作10年資遣費", "10年資遣", "資遣費上限", "年資10年"],
-    publishedAt: "2026-05-09",
-    readingMinutes: 8,
-  },
-  {
-    slug: "annual-leave-after-6months",
-    title: "滿 6 個月有幾天特休？入職半年權益解析",
-    description:
-      "入職滿 6 個月的 3 天特休怎麼算？何時開始可以用？離職前未休完怎麼辦？勞基法第 38 條實務解析。",
-    category: "leave",
-    keywords: ["6個月特休幾天", "滿半年特休", "入職半年特休", "6個月特休"],
-    publishedAt: "2026-04-09",
-    updatedAt: "2026-10-19",
-    readingMinutes: 6,
-  },
-  {
-    slug: "minimum-wage-hourly-2026",
-    title: "時薪 196 元合理嗎？2026 最低時薪計算",
-    description:
-      "2026 年最低時薪 196 元解析，含歷年調幅、打工族月收入試算、與生活成本比較。",
-    category: "salary",
-    keywords: ["時薪196", "基本時薪", "最低時薪", "時薪制", "打工時薪"],
-    publishedAt: "2026-04-09",
-    readingMinutes: 6,
-  },
-  {
     slug: "labor-insurance-payout",
     title: "勞保老年給付怎麼算？一次領 vs 月領試算",
     description:
@@ -501,37 +342,6 @@ const RAW_ARTICLES: ArticleMeta[] = [
     keywords: ["資遣費退職金", "退職金差別", "離職金", "資遣費退職金比較"],
     publishedAt: "2026-04-09",
     readingMinutes: 6,
-  },
-  {
-    slug: "work-from-home-overtime",
-    title: "居家上班加班費怎麼算？WFH 工時認定指南",
-    description:
-      "居家辦公的工時認定、加班費計算、出勤紀錄責任、勞動部解釋令完整解析，WFH 族必讀。",
-    category: "rights",
-    keywords: ["居家加班費", "WFH加班", "遠距加班", "居家工作工時"],
-    publishedAt: "2026-04-09",
-    readingMinutes: 7,
-  },
-  // — 第四批文章：更多高流量長尾關鍵字 —
-  {
-    slug: "salary-30000-take-home",
-    title: "月薪 30000 實領多少？2026 完整試算",
-    description:
-      "月薪 30,000 元扣除勞保、健保、勞退後的實領金額試算，包含單身、有眷屬、自提 6% 的三種情境比較。",
-    category: "salary",
-    keywords: ["月薪30000實領", "30000實拿", "月薪30000扣多少", "最低薪資實領"],
-    publishedAt: "2026-04-10",
-    readingMinutes: 6,
-  },
-  {
-    slug: "salary-35000-take-home",
-    title: "月薪 35000 實領多少？2026 勞健保級距試算",
-    description:
-      "月薪 35,000 元實領金額試算，拆解 36,300 元投保級距、勞保健保自付、自提勞退與眷屬加保差異。",
-    category: "salary",
-    keywords: ["月薪35000實領", "35000實拿", "月薪35000扣多少", "勞健保級距"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 7,
   },
   {
     slug: "forced-overtime-illegal",
@@ -625,48 +435,6 @@ const RAW_ARTICLES: ArticleMeta[] = [
     readingMinutes: 6,
   },
   {
-    slug: "labor-insurance-bracket-2026",
-    title: "勞保級距怎麼查？2026 投保薪資低報檢查",
-    description:
-      "2026 勞保投保薪資分級表 29,500～45,800 元，各級距勞工與雇主保費，以及被低報時失業給付、生育補助與老年年金會少多少、如何更正與檢舉。",
-    category: "insurance",
-    keywords: ["勞保級距", "勞保投保薪資", "投保薪資低報", "勞保分級表"],
-    publishedAt: "2026-05-10",
-    updatedAt: "2026-10-19",
-    readingMinutes: 7,
-  },
-  {
-    slug: "health-insurance-bracket-2026",
-    title: "健保級距怎麼看？眷屬加保扣款完整說明",
-    description:
-      "健保投保金額級距、5.17% 費率、眷屬加保與薪資單扣款核對方式，一次看懂為什麼實領會變少。",
-    category: "insurance",
-    keywords: ["健保級距", "健保投保金額", "眷屬加保", "健保扣款"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 7,
-  },
-  {
-    slug: "labor-pension-6-percent",
-    title: "勞退 6% 可以從薪水扣嗎？雇主提繳與自提差異",
-    description:
-      "勞退雇主提繳 6% 不得從薪水扣除。本文比較雇主強制提繳與勞工自願提繳，整理薪資單檢查方式。",
-    category: "pension",
-    keywords: ["勞退6%", "勞退扣薪", "雇主提繳", "勞退自提", "退休金"],
-    publishedAt: "2026-05-10",
-    updatedAt: "2026-10-19",
-    readingMinutes: 7,
-  },
-  {
-    slug: "unused-annual-leave-wage",
-    title: "特休沒休完怎麼算錢？未休特休折現公式",
-    description:
-      "特休未休工資怎麼算？整理勞基法第 38 條、離職與年度終結折現公式、月薪制試算與常見爭議。",
-    category: "leave",
-    keywords: ["特休未休折現", "特休沒休完", "未休特休工資", "離職特休"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 7,
-  },
-  {
     slug: "involuntary-separation-certificate",
     title: "非自願離職證明拿不到怎麼辦？被資遣文件清單",
     description:
@@ -678,181 +446,27 @@ const RAW_ARTICLES: ArticleMeta[] = [
     readingMinutes: 7,
   },
   {
-    slug: "salary-38000-take-home",
-    title: "月薪 38000 實領多少？2026 勞健保扣款試算",
-    description:
-      "月薪 38,000 元實領金額試算，拆解 38,200 元投保級距、勞保健保自付額、勞退提繳與薪資單檢查重點。",
-    category: "salary",
-    keywords: ["月薪38000實領", "38000實拿", "月薪38000扣多少", "勞健保扣款"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 7,
-  },
-  {
-    slug: "salary-42000-take-home",
-    title: "月薪 42000 實領多少？2026 級距與扣款試算",
-    description:
-      "月薪 42,000 元扣除勞保與健保後約實領多少？整理投保薪資級距、勞退 6% 與眷屬加保影響。",
-    category: "salary",
-    keywords: ["月薪42000實領", "42000實拿", "月薪42000扣多少", "薪資級距"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 7,
-  },
-  {
-    slug: "salary-55000-take-home",
-    title: "月薪 55000 實領多少？勞保上限與健保級距試算",
-    description:
-      "月薪 55,000 元實領金額試算，說明勞保投保上限、健保與勞退級距、雇主提繳與自提 6% 的差異。",
-    category: "salary",
-    keywords: ["月薪55000實領", "55000實拿", "勞保上限", "健保級距"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 7,
-  },
-  {
-    slug: "overtime-1-5hours-calculation",
-    title: "平日加班 1.5 小時怎麼算？2026 加班費試算",
-    description:
-      "平日加班 1.5 小時多半落在前 2 小時 4/3 倍區間，本文用月薪 45,000 元示範公式、表格與常見錯誤。",
-    category: "overtime",
-    keywords: ["加班1.5小時", "平日加班1.5小時", "加班費計算", "勞基法第24條"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 6,
-  },
-  {
-    slug: "overtime-2-5hours-calculation",
-    title: "平日加班 2.5 小時怎麼算？分段倍率完整試算",
-    description:
-      "平日加班 2.5 小時要拆成前 2 小時 4/3 倍與後 0.5 小時 5/3 倍，附月薪 45,000 元完整算例。",
-    category: "overtime",
-    keywords: ["加班2.5小時", "平日加班2.5小時", "加班費倍率", "加班費分段"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 6,
-  },
-  {
-    slug: "holiday-overtime-8hours",
-    title: "國定假日加班 8 小時多少錢？雙倍工資試算",
-    description:
-      "國定假日出勤 8 小時，月薪 45,000 元在月薪之外應加給 1 日工資 1,500 元；說明為什麼 2 小時與 8 小時加給相同。",
-    category: "overtime",
-    keywords: ["國定假日加班8小時", "假日加班費", "雙倍工資", "國定假日上班"],
-    publishedAt: "2026-05-10",
-    updatedAt: "2026-10-19",
-    readingMinutes: 6,
-  },
-  {
-    slug: "severance-6months",
-    title: "工作 6 個月被資遣有資遣費嗎？新制試算",
-    description:
-      "工作滿 6 個月被資遣，新制資遣費通常是 0.25 個月平均工資。整理公式、預告工資與非自願離職證明。",
-    category: "severance",
-    keywords: ["工作6個月資遣費", "資遣費6個月", "新制資遣費", "被資遣"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 6,
-  },
-  {
-    slug: "severance-18months",
-    title: "工作 1 年 6 個月資遣費怎麼算？2026 新制",
-    description:
-      "工作 1 年 6 個月被資遣，新制資遣費通常是 0.75 個月平均工資，附平均月薪 45,000 元試算與文件清單。",
-    category: "severance",
-    keywords: ["工作1年6個月資遣費", "資遣費18個月", "新制資遣費", "非自願離職"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 6,
-  },
-  {
-    slug: "severance-4years",
-    title: "工作 4 年資遣費怎麼算？平均工資與預告期整理",
-    description:
-      "工作 4 年被資遣，新制資遣費通常是 2 個月平均工資。同步整理 30 天預告、特休折現與失業給付下一步。",
-    category: "severance",
-    keywords: ["工作4年資遣費", "資遣費4年", "平均工資", "預告工資"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 6,
-  },
-  {
-    slug: "annual-leave-resignation-payout-example",
-    title: "離職前特休沒休完怎麼算？未休折現範例",
-    description:
-      "離職前未休特休不能直接歸零。本文用月薪 45,000 元、剩 3 天特休示範折算工資與薪資結清檢查。",
-    category: "leave",
-    keywords: ["離職特休折現", "未休特休折現", "特休沒休完", "離職薪資結清"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 6,
-  },
-  {
-    slug: "labor-insurance-underreporting-complaint",
-    title: "勞保低報怎麼申訴？證據清單與處理流程",
-    description:
-      "懷疑雇主低報勞保投保薪資時，先準備薪資單、入帳紀錄與投保資料，本文整理申訴前檢查與書面詢問範本。",
-    category: "insurance",
-    keywords: ["勞保低報", "投保薪資低報", "勞保申訴", "雇主低報薪資"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 6,
-  },
-  {
-    slug: "overtime-evidence-checklist",
-    title: "加班費爭議證據清單：打卡、訊息、交付紀錄怎麼留",
-    description:
-      "加班費爭議不只看公式，也看證據。整理打卡、排班、主管訊息、系統紀錄與薪資單如何保存。",
-    category: "overtime",
-    keywords: ["加班證據", "加班費申訴", "加班紀錄", "勞資爭議證據"],
-    publishedAt: "2026-05-10",
-    readingMinutes: 6,
-  },
-  // — 第五批文章：原創深度文章 —
-  {
-    slug: "overtime-calculation-examples",
-    title: "加班費計算實例：5 種月薪的平日、休息日、國定假日速查表",
-    description:
-      "月薪 29,500 到 60,000 元，平日加班 1 到 4 小時、休息日 2 到 12 小時、國定假日出勤各該拿多少？用與計算機相同的算法列出完整對照表。",
-    category: "overtime",
-    keywords: ["加班費計算實例", "加班費試算", "平日加班", "休息日加班", "國定假日加班", "加班費怎麼算"],
-    publishedAt: "2026-07-03",
-    updatedAt: "2026-10-19",
-    readingMinutes: 8,
-  },
-  {
-    slug: "severance-pay-notice-wages",
-    title: "資遣費與預告工資一次搞懂：計算公式、實例與文件清單",
-    description:
-      "資遣費和預告工資是兩種不同的錢。本文拆解法規依據、計算公式、不同年資的實際試算，以及被資遣後必拿的 5 份文件。",
-    category: "severance",
-    keywords: ["資遣費", "預告工資", "資遣費計算", "預告期", "非自願離職", "被資遣"],
-    publishedAt: "2026-07-03",
-    readingMinutes: 8,
-  },
-  {
     slug: "labor-nhi-bracket-guide",
-    title: "2026 勞健保投保級距表：勞保、健保、勞退一次對照",
+    title: "2026 勞健保投保級距表與低報處理",
     description:
-      "2026 年勞保（含就保）29,500～45,800 元、健保 29,500～219,500 元、勞退 1,500～150,000 元的分級表，列出各級距勞工與雇主負擔、眷屬保費與低報影響。",
+      "2026 年勞保（含就保）29,500～45,800 元、健保 29,500～219,500 元、勞退 1,500～150,000 元的分級表，說明級距怎麼套、被低報會少領多少，以及向公司與勞保局要求更正的方式。",
     category: "insurance",
-    keywords: ["勞保級距", "健保級距", "投保薪資", "勞保費率", "健保費率", "投保金額", "薪資單核對"],
+    keywords: ["勞保級距", "健保級距", "投保薪資", "低報", "勞保費率", "投保金額"],
     publishedAt: "2026-07-03",
-    updatedAt: "2026-10-19",
-    readingMinutes: 8,
+    updatedAt: "2026-11-17",
+    readingMinutes: 10,
   },
   // — 第六批文章：原創深度文章 —
   {
-    slug: "overtime-pay-vs-compensatory-leave",
-    title: "加班費還是補休？補休 1:1 換算與折現規定",
-    description:
-      "勞基法第 32 條之 1：補休須由勞工選擇並經雇主同意，補休時數依工作時數 1:1 計算，期限屆滿未休要依加班當日標準折發工資。國定假日出勤不適用補休。",
-    category: "overtime",
-    keywords: ["加班補休", "補休", "加班費", "加班費vs補休", "勞基法第32-1條", "補休時數"],
-    publishedAt: "2026-07-03",
-    updatedAt: "2026-10-19",
-    readingMinutes: 7,
-  },
-  {
     slug: "severance-calculation-complete",
-    title: "資遣費計算全攻略：年資、月薪對照完整試算",
+    title: "資遣費與預告工資怎麼算：年資、月薪對照與完整案例",
     description:
-      "新制資遣費計算公式與完整試算表，涵蓋 3 個月到 15 年不同年資、不同月薪的實際金額，同步整理預告工資與必拿文件。",
+      "新制與舊制資遣費公式、各年資與月薪的對照表、預告期與預告工資算法，附一個完整案例、拿不到資遣費的情形與被資遣後要拿的文件。",
     category: "severance",
-    keywords: ["資遣費計算", "資遣費公式", "資遣費試算", "預告工資", "新制資遣費", "非自願離職"],
+    keywords: ["資遣費計算", "資遣費公式", "預告工資", "預告期", "新制資遣費", "非自願離職"],
     publishedAt: "2026-07-03",
-    updatedAt: "2026-10-19",
-    readingMinutes: 8,
+    updatedAt: "2026-11-17",
+    readingMinutes: 11,
   },
   {
     slug: "insurance-deduction-examples",
@@ -862,8 +476,8 @@ const RAW_ARTICLES: ArticleMeta[] = [
     category: "insurance",
     keywords: ["勞保自付額", "健保自付額", "勞健保扣款", "薪資單核對", "勞保級距", "健保級距", "實領金額"],
     publishedAt: "2026-07-03",
-    updatedAt: "2026-10-19",
-    readingMinutes: 8,
+    updatedAt: "2026-11-17",
+    readingMinutes: 7,
   },
 ];
 

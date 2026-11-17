@@ -94,7 +94,7 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
               勞工權益文章
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700 md:text-lg">
-              用白話整理薪資、加班、資遣、假別與保險問題，每篇文章都接回工具、FAQ 與官方來源。
+              用白話整理薪資、加班、資遣、假別與保險問題，每篇文章都附上計算工具與官方來源。
             </p>
           </div>
           <form

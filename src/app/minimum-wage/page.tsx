@@ -31,6 +31,13 @@ const HISTORY = [
   { year: "2021", monthly: 24_000, hourly: 160 },
 ];
 
+const HOURLY_SCENARIOS = [
+  { hours: 40, label: "每週約 10 小時" },
+  { hours: 80, label: "每週約 20 小時" },
+  { hours: 120, label: "每週約 30 小時" },
+  { hours: 176, label: "每天 8 小時、每月 22 天" },
+];
+
 const FAQ_ITEMS = [
   {
     question: "2026 年最低工資是多少？",
@@ -125,6 +132,32 @@ export default function MinimumWagePage() {
           最低工資調整時，勞保、健保、勞退的最低級距也會一起調整到 {formatMoney(MONTHLY)} 元。
         </p>
 
+        <h2>時薪 {HOURLY} 元，每月能領多少</h2>
+        <p>按時計酬的工作，收入就是時薪乘上實際工作時數。以最低時薪 {HOURLY} 元估算（未扣勞健保）：</p>
+        <table>
+          <thead>
+            <tr>
+              <th>每月工作時數</th>
+              <th>大約的排班</th>
+              <th>工資</th>
+            </tr>
+          </thead>
+          <tbody>
+            {HOURLY_SCENARIOS.map((row) => (
+              <tr key={row.hours}>
+                <td>{row.hours} 小時</td>
+                <td>{row.label}</td>
+                <td>{formatMoney(HOURLY * row.hours)} 元</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p>
+          時薪制一樣有加班費：一天超過 8 小時的前 2 小時至少 {HOURLY} × 4/3 ≈ {formatMoneyDecimal((HOURLY * 4) / 3)} 元，
+          第 3～4 小時至少 {HOURLY} × 5/3 ≈ {formatMoneyDecimal((HOURLY * 5) / 3)} 元。時薪工讀生同樣要加保勞保、健保，
+          雇主也要提繳勞退；工作滿 6 個月起，特休依工時比例給假。完整說明見<Link href="/articles/part-time-rights">時薪制勞工權益</Link>。
+        </p>
+
         <h2>歷年最低工資</h2>
         <table>
           <thead>
@@ -155,7 +188,7 @@ export default function MinimumWagePage() {
         </ol>
         <p>
           想核對自己的金額，可用<Link href="/tools/salary">薪資明細計算機</Link>與<Link href="/tools/hourly-monthly">時薪月薪換算</Link>；
-          更多說明見<Link href="/articles/minimum-wage-2026">2026 最低工資調整影響</Link>與<Link href="/articles/minimum-wage-hourly-2026">時薪 196 元說明</Link>。
+          打工的其他權益見<Link href="/articles/part-time-rights">時薪制勞工權益</Link>。
         </p>
       </article>
 

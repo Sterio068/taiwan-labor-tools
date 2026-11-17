@@ -35,7 +35,7 @@ export const GUIDE_HUBS: GuideHub[] = [
     ],
     articles: [
       { title: "2026 薪資單完全解讀", href: "/articles/salary-slip-explained" },
-      { title: "最低工資 29,500：2026 新制影響", href: "/articles/minimum-wage-2026" },
+      { title: "最低工資 29,500：2026 新制影響", href: "/minimum-wage" },
       { title: "勞健保自付額與實領速查表（月薪 29,500～60,000）", href: "/articles/insurance-deduction-examples" },
       { title: "2026 勞健保投保級距對照", href: "/articles/labor-nhi-bracket-guide" },
       { title: "勞退自提 6% 值得嗎？", href: "/articles/pension-voluntary" },
@@ -64,12 +64,10 @@ export const GUIDE_HUBS: GuideHub[] = [
     ],
     articles: [
       { title: "加班費怎麼算？完整圖解", href: "/articles/overtime-pay-guide" },
-      { title: "加班費速查表：5 種月薪 × 平日、休息日、國定假日", href: "/articles/overtime-calculation-examples" },
       { title: "國定假日加班費與放假日清單", href: "/articles/holiday-overtime-complete" },
-      { title: "加班費還是補休？", href: "/articles/overtime-pay-vs-compensatory-leave" },
       { title: "強迫加班違法嗎？", href: "/articles/forced-overtime-illegal" },
       { title: "責任制合法嗎？", href: "/articles/exempt-employee" },
-      { title: "居家工作加班怎麼算？", href: "/articles/work-from-home-overtime" },
+      { title: "居家工作加班怎麼算？", href: "/articles/remote-work-rights" },
     ],
     steps: ["確認當日類型", "用月薪換算時薪基數", "套用法定倍率", "核對出勤紀錄", "保留排班與對話紀錄"],
     faqs: [
@@ -96,7 +94,6 @@ export const GUIDE_HUBS: GuideHub[] = [
     articles: [
       { title: "被資遣了怎麼辦？", href: "/articles/fired-what-to-do" },
       { title: "資遣費完整計算與年資速查表", href: "/articles/severance-calculation-complete" },
-      { title: "資遣費、預告工資與特休折現", href: "/articles/severance-pay-notice-wages" },
       { title: "非自願離職證明怎麼拿？", href: "/articles/involuntary-separation-certificate" },
       { title: "失業給付怎麼領？", href: "/articles/unemployment-benefits" },
       { title: "被資遣和自請離職的差別", href: "/articles/layoff-compensation-comparison" },
@@ -125,7 +122,6 @@ export const GUIDE_HUBS: GuideHub[] = [
     ],
     articles: [
       { title: "2026 特休假完整攻略", href: "/articles/annual-leave-2026" },
-      { title: "到職滿 6 個月有幾天特休？", href: "/articles/annual-leave-after-6months" },
 
       { title: "公司拒絕特休怎麼辦？", href: "/articles/annual-leave-refused" },
       { title: "病假扣薪合法嗎？", href: "/articles/sick-leave-pay" },
@@ -156,9 +152,8 @@ export const GUIDE_HUBS: GuideHub[] = [
     ],
     articles: [
       { title: "勞保 vs 國保 vs 農保", href: "/articles/labor-insurance-comparison" },
-      { title: "2026 勞保投保級距怎麼看？", href: "/articles/labor-insurance-bracket-2026" },
-      { title: "2026 勞健保投保級距對照表", href: "/articles/labor-nhi-bracket-guide" },
-      { title: "勞退 6% 是什麼？", href: "/articles/labor-pension-6-percent" },
+      { title: "2026 勞保投保級距怎麼看？", href: "/articles/labor-nhi-bracket-guide" },
+      { title: "勞退 6% 是什麼？", href: "/articles/pension-voluntary" },
       { title: "沒幫我保勞保怎麼辦？", href: "/articles/no-labor-insurance" },
       { title: "二代健保補充保費完全攻略", href: "/articles/nhi-supplement-premium" },
       { title: "怎麼查勞退帳戶？", href: "/articles/pension-account-query" },
@@ -188,7 +183,7 @@ export const GUIDE_HUBS: GuideHub[] = [
       { title: "老闆欠薪怎麼辦？", href: "/articles/wage-theft-what-to-do" },
       { title: "勞資調解怎麼申請？", href: "/articles/labor-mediation" },
       { title: "勞動檢查來了怎麼辦？", href: "/articles/labor-inspection-guide" },
-      { title: "勞保被低報：級距表與更正方式", href: "/articles/labor-insurance-bracket-2026" },
+      { title: "勞保被低報：級距表與更正方式", href: "/articles/labor-nhi-bracket-guide" },
       { title: "公司倒閉、欠薪怎麼辦", href: "/articles/company-bankrupt-workers" },
       { title: "職場霸凌與騷擾怎麼辦？", href: "/articles/workplace-harassment" },
     ],

@@ -176,7 +176,7 @@ export function SeveranceCalculator() {
               },
               {
                 label: "核對未休特休折現",
-                href: "/articles/annual-leave-resignation-payout-example",
+                href: "/articles/annual-leave-2026",
                 description: "最後一期薪資要同步確認加班費、特休折現與預告工資。",
               },
             ]}

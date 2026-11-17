@@ -32,7 +32,12 @@ export function ArticleCard({ article, trackingName }: ArticleCardProps) {
       <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600">
         {article.description}
       </p>
-      <span className="mt-5 text-sm font-bold text-brand-700">閱讀文章</span>
+      <div className="mt-auto flex items-center justify-between gap-3 pt-5 text-xs text-slate-500">
+        <time dateTime={article.updatedAt || article.publishedAt}>
+          更新於 {(article.updatedAt || article.publishedAt).replaceAll("-", "/")}
+        </time>
+        <span className="text-sm font-bold text-brand-700">閱讀文章</span>
+      </div>
     </Link>
   );
 }

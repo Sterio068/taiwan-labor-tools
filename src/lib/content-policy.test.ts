@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { ARTICLES, getIndexableArticles } from "./articles";
+import { ARTICLE_REDIRECTS } from "./article-redirects";
 import {
   CONSOLIDATED_ARTICLES,
   IMPROVE_ARTICLE_SLUGS,
@@ -10,11 +11,10 @@ import {
 
 describe("content policy", () => {
   it("keeps improve articles indexable until a page-level noindex decision", () => {
-    const article = { slug: "holiday-overtime-8hours", contentStatus: "improve" as const };
+    const article = { slug: "salary-slip-explained", contentStatus: "improve" as const };
 
     expect(isIndexableArticle(article)).toBe(true);
     expect(isAdEligibleArticle(article)).toBe(false);
-    expect(isMonetizablePath("/articles/holiday-overtime-8hours")).toBe(false);
   });
 
   it("honors an explicit noindex override", () => {
@@ -46,5 +46,17 @@ describe("content policy", () => {
       getIndexableArticles().some((article) => article.slug === slug),
     );
     expect(indexableImprove).toEqual([]);
+  });
+
+  it("redirects merged articles to pages that still exist", () => {
+    const articleSlugs = new Set(ARTICLES.map((article) => article.slug));
+    const indexable = new Set(getIndexableArticles().map((article) => `/articles/${article.slug}`));
+    for (const [slug, destination] of Object.entries(ARTICLE_REDIRECTS)) {
+      expect(articleSlugs.has(slug), `${slug} should be removed from ARTICLES`).toBe(false);
+      if (destination.startsWith("/articles/")) {
+        expect(indexable.has(destination), destination).toBe(true);
+        expect(destination.slice("/articles/".length) in ARTICLE_REDIRECTS, destination).toBe(false);
+      }
+    }
   });
 });

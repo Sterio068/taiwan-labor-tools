@@ -118,8 +118,7 @@ const overtime: ToolExplainerContent = {
     "工作規則中的加班申請、補休期限與國定假日調移規定。",
   ],
   readNext: [
-    { label: "加班費計算範例：平日、休息日、國定假日一次看", href: "/articles/overtime-calculation-examples" },
-    { label: "加班費還是補休？勞工可以選擇嗎", href: "/articles/overtime-pay-vs-compensatory-leave" },
+    { label: "加班費計算範例：平日、休息日、國定假日一次看", href: "/articles/overtime-pay-guide" },
     { label: "責任制合法嗎？", href: "/articles/exempt-employee" },
     { label: "加班費完整指南", href: "/guides/overtime" },
   ],
@@ -216,7 +215,6 @@ const annualLeave: ToolExplainerContent = {
   ],
   readNext: [
     { label: "2026 特休天數表與排休規則", href: "/articles/annual-leave-2026" },
-    { label: "到職滿半年的 3 天特休", href: "/articles/annual-leave-after-6months" },
     { label: "特休被拒怎麼辦", href: "/articles/annual-leave-refused" },
     { label: "請假與特休完整指南", href: "/guides/leave" },
   ],
@@ -301,10 +299,9 @@ const hourlyMonthly: ToolExplainerContent = {
   ],
   prepare: ["勞動契約約定的計薪方式（月薪、日薪或時薪）。", "近一個月排班表與實際出勤時數。", "薪資單上的加給與扣款項目。"],
   readNext: [
-    { label: "2026 時薪最低工資 196 元說明", href: "/articles/minimum-wage-hourly-2026" },
+    { label: "2026 時薪最低工資 196 元說明", href: "/minimum-wage" },
     { label: "兼職打工的勞動權益", href: "/articles/part-time-rights" },
     { label: "月薪制與時薪制比較", href: "/compare/monthly-vs-hourly" },
-    { label: "最低工資總整理", href: "/minimum-wage" },
   ],
   checkedAt: CHECKED_AT,
 };

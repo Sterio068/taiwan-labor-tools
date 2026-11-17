@@ -56,11 +56,9 @@ const INSURANCE_TOOLS = [
 
 const INSURANCE_ARTICLES = [
   { title: "勞保 vs 國保 vs 農保差在哪？", href: "/articles/labor-insurance-comparison" },
-  { title: "2026 勞保投保級距怎麼看？", href: "/articles/labor-insurance-bracket-2026" },
-  { title: "2026 健保投保金額怎麼看？", href: "/articles/health-insurance-bracket-2026" },
-  { title: "勞退 6% 可以從薪水扣嗎？", href: "/articles/labor-pension-6-percent" },
+  { title: "2026 勞保投保級距怎麼看？", href: "/articles/labor-nhi-bracket-guide" },
+  { title: "勞退 6% 可以從薪水扣嗎？", href: "/articles/pension-voluntary" },
   { title: "沒幫我保勞保怎麼辦？檢舉流程", href: "/articles/no-labor-insurance" },
-  { title: "勞保低報怎麼申訴？證據清單", href: "/articles/labor-insurance-underreporting-complaint" },
   { title: "二代健保補充保費完全攻略", href: "/articles/nhi-supplement-premium" },
   { title: "自由接案者怎麼保勞保？", href: "/articles/freelancer-insurance" },
   { title: "職災發生怎麼辦？完整 SOP", href: "/articles/work-injury-guide" },
